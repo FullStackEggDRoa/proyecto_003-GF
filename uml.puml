@@ -3,7 +3,6 @@
 class GrupoF.Proyecto3.Entidades.Cliente extends GrupoF.Proyecto3.Entidades.Usuario{
     -- Atributos --
     -String direccion
-    -Boolean alta   
     -- Constructores --
     + Cliente()
     + Cliente(String direccion, Boolean alta)
