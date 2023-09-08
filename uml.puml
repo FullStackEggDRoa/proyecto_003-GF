@@ -64,10 +64,24 @@ class GrupoF.Proyecto3.Entidades.Imagen{
     
     
 }
-class GrupoF.Proyecto3.Entidades.Rol{
+class GrupoF.Proyecto3.Enumeradores.Rol{
     -- Atributos --     
     -- Constructores --
-    + Enum Rol    
+    + Enum nombreRol    
+    -- Métodos --
+    .. Getters ..
+    
+    .. Setters ..
+    
+    .. Propios ..
+    
+    
+}
+
+class GrupoF.Proyecto3.Enumeradores.EstadoContrato{
+    -- Atributos --     
+    -- Constructores --
+    + Enum nombreEstado    
     -- Métodos --
     .. Getters ..
     
@@ -90,6 +104,7 @@ class GrupoF.Proyecto3.Entidades.Contrato {
     - int calificacionCliente
     - String comentarioProv
     - String comentarioCliente
+    - EstadoContrato estadoContrato
     -- Constructores --
     -- Métodos --
     .. Getters ..
@@ -120,10 +135,11 @@ class GrupoF.Proyecto3.Entidades.Proveedor extends GrupoF.Proyecto3.Entidades.Us
 }
 
 GrupoF.Proyecto3.Entidades.Usuario "1" *-- "1" GrupoF.Proyecto3.Entidades.Dni
-GrupoF.Proyecto3.Entidades.Rol "1" *-- "Many" GrupoF.Proyecto3.Entidades.Usuario
+GrupoF.Proyecto3.Enumeradores.Rol "1" *-- "Many" GrupoF.Proyecto3.Entidades.Usuario
+GrupoF.Proyecto3.Enumeradores.EstadoContrato "1" *-- "Many" GrupoF.Proyecto3.Entidades.Contrato
 GrupoF.Proyecto3.Entidades.Usuario "1" *-- "1" GrupoF.Proyecto3.Entidades.Imagen
-GrupoF.Proyecto3.Entidades.Cliente "1" *-- "1" GrupoF.Proyecto3.Entidades.Contrato
-GrupoF.Proyecto3.Entidades.Proveedor "1" *-- "1" GrupoF.Proyecto3.Entidades.Contrato
+GrupoF.Proyecto3.Entidades.Cliente "1" *-- "Many" GrupoF.Proyecto3.Entidades.Contrato
+GrupoF.Proyecto3.Entidades.Proveedor "1" *-- "Many" GrupoF.Proyecto3.Entidades.Contrato
 
 class GrupoF.Proyecto3.Entidades.Usuario{
     -- Atributos --
@@ -166,9 +182,11 @@ class GrupoF.Proyecto3.Entidades.Usuario{
 class GrupoF.Proyecto3.Proyecto003Application{
     +static void main(String[] args)
 }
-class GrupoF.Proyecto3.Controladores{
-    + class controladorInicio
+class GrupoF.Proyecto3.Controladores.controladorInicio{
+    +String Index()
 }
-GrupoF.Proyecto3.Proyecto003Application ..> GrupoF.Proyecto3.Entidades.Dni
-GrupoF.Proyecto3.Proyecto003Application ..> GrupoF.Proyecto3.Entidades.Usuario
+
+GrupoF.Proyecto3.Proyecto003Application ..> GrupoF.Proyecto3.Entidades
+GrupoF.Proyecto3.Proyecto003Application ..> GrupoF.Proyecto3.Controladores
+GrupoF.Proyecto3.Proyecto003Application ..> GrupoF.Proyecto3.Enumeradores
 @enduml 
