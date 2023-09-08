@@ -1,0 +1,174 @@
+@startuml
+ 
+class GrupoF.Proyecto3.Entidades.Cliente extends GrupoF.Proyecto3.Entidades.Usuario{
+    -- Atributos --
+    -String direccion
+    -Boolean alta   
+    -- Constructores --
+    + Cliente()
+    + Cliente(String direccion, Boolean alta)
+    -- Métodos --
+    .. Getters ..
+    + String getDireccion()
+    + String getAlta()
+    .. Setters ..
+    + setDireccion(String direccion)
+    + setAlta(Boolean alta)
+    .. Propios ..
+    +String toString()
+    
+}
+
+
+class GrupoF.Proyecto3.Entidades.Dni{
+    -- Atributos --
+    -char serie
+    - String numero
+    -- Constructores --
+    + Dni()
+    + Dni(char serie, String numero)
+    -- Métodos --
+    .. Getters ..
+    + char getSerie()
+    + String getNumero()
+    .. Setters ..
+    + setSerie(char serie)
+    + setNumero(String numero)
+    .. Propios ..
+    +String toString()
+    
+}
+
+class GrupoF.Proyecto3.Entidades.Imagen{
+    -- Atributos --
+    
+    -String id
+    -String mime
+    -String nombre
+    -byte[] contenido   
+    -- Constructores --
+    + Imagen()    
+    -- Métodos --
+    .. Getters ..
+    + String getId()
+    + String getMime()
+    + String getNombre()
+    + byte[] getContenido()
+    
+    .. Setters ..
+    + void String setId()
+    + void String setMime()
+    + void String setNombre()
+    + void byte[] setContenido()
+    .. Propios ..
+    
+    
+}
+class GrupoF.Proyecto3.Entidades.Rol{
+    -- Atributos --     
+    -- Constructores --
+    + Enum Rol    
+    -- Métodos --
+    .. Getters ..
+    
+    .. Setters ..
+    
+    .. Propios ..
+    
+    
+}
+
+class GrupoF.Proyecto3.Entidades.Contrato {
+    -- Atributos --
+    - String id
+    - Cliente cliente
+    - Proveedor proveedor
+    - Date fechaInicio
+    - Date fechaFin
+    - EstadoContrato estadoContrato
+    - int calificacionProv
+    - int calificacionCliente
+    - String comentarioProv
+    - String comentarioCliente
+    -- Constructores --
+    -- Métodos --
+    .. Getters ..
+    .. Setter ..
+    .. Propios ..
+    + String toString()
+}
+
+class GrupoF.Proyecto3.Entidades.Proveedor extends GrupoF.Proyecto3.Entidades.Usuario{
+    -- Atributos --
+    -Integer numeroMatricula
+    -String categoriaServicio
+    -Double costoHora
+    -- Constructores --
+    + Proveedor()    
+    -- Métodos --
+    .. Getters ..
+    + Integer getNumeroMatricula()
+    + String getCategoriaServicio()
+    + Double getCostoHora()
+    .. Setters ..
+    + void setNumeroMatricula(Integer numeroMatricula)
+    + void setCategoriaServicio(String categoriaServicio)
+    + void setCostoHora(Double costoHora)
+    .. Propios ..
+    + String toString()
+    
+}
+
+GrupoF.Proyecto3.Entidades.Usuario "1" *-- "1" GrupoF.Proyecto3.Entidades.Dni
+GrupoF.Proyecto3.Entidades.Rol "1" *-- "Many" GrupoF.Proyecto3.Entidades.Usuario
+GrupoF.Proyecto3.Entidades.Usuario "1" *-- "1" GrupoF.Proyecto3.Entidades.Imagen
+GrupoF.Proyecto3.Entidades.Cliente "1" *-- "1" GrupoF.Proyecto3.Entidades.Contrato
+GrupoF.Proyecto3.Entidades.Proveedor "1" *-- "1" GrupoF.Proyecto3.Entidades.Contrato
+
+class GrupoF.Proyecto3.Entidades.Usuario{
+    -- Atributos --
+    -String id
+    -String nombreApellido
+    -String contrasenia
+    -Boolean alta
+    -Dni dni
+    -String correo
+    -Integer telefono
+    -Imagen imagen
+    -Rol rol
+    -- Constructores --
+    +Usuario()        
+    -- Métodos --
+    .. Getters ..
+    +String getId()
+    +String getNombreApellido()
+    +String getContrasenia()
+    +Boolean isAlta()
+    +Dni getDni()
+    +String getCorreo()
+    +Integer getTelefono()
+    +Imagen getImagen()
+    +Rol getRol()
+    .. Setters ..
+    +void setId(String id)
+    +void setNombreApellido(String nombreApellido)
+    +void setContrasenia(String contrasenia)
+    +void setAlta(Boolean alta)
+    +void setPerro(Dni dni)
+    +void setCorreo(String correo)
+    +void setTelefono(Integer telefono)
+    +void setImagen(Imagen imagen)
+    +void setRol(Rol rol)
+    .. Propios ..
+    +String toString()
+
+}
+class GrupoF.Proyecto3.Proyecto003Application{
+    +static void main(String[] args)
+}
+class GrupoF.Proyecto3.Controladores{
+    + class controladorInicio
+}
+GrupoF.Proyecto3.Proyecto003Application ..> GrupoF.Proyecto3.Entidades.Dni
+GrupoF.Proyecto3.Proyecto003Application ..> GrupoF.Proyecto3.Entidades.Usuario
+@enduml 
