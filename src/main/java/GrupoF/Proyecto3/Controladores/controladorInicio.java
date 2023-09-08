@@ -19,7 +19,7 @@ public class controladorInicio {
    
     
     @GetMapping("/")
-    public String index(){
+    public String Index(){
        
         return "Hola Grupo F - Estamo Listos!!";
         //si leer eto borra (ENRI estuvo aca)...
