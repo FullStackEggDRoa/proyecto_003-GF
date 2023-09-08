@@ -23,12 +23,10 @@ public class Imagen {
     private Byte[] contenido;
     
     //CONSTRUCTORES
-
     public Imagen() {
     }
     
     //GETTERS
-
     public String getId() {
         return id;
     }
@@ -46,7 +44,6 @@ public class Imagen {
     }
     
     //SETTERS
-
     public void setMime(String mime) {
         this.mime = mime;
     }
