@@ -195,6 +195,25 @@ class GrupoF.Proyecto3.Proyecto003Application{
 class GrupoF.Proyecto3.Controladores.controladorInicio{
     +String Index()
 }
+class GrupoF.Proyecto3.Repositorios.ClienteRepositorio{
+    +interface ClienteRepositorio extends JpaRepository<Cliente, String>
+}
+class GrupoF.Proyecto3.Repositorios.ContratoRepositorio{
+    +interface ContratoRepositorio extends JpaRepository<Contrato, String>
+}
+class GrupoF.Proyecto3.Repositorios.DniRepositorio{
+    +interface DniRepositorio extends JpaRepository<Dni, String>
+}
+class GrupoF.Proyecto3.Repositorios.ImagenRepositorio{
+    +interface ImagenRepositorio extends JpaRepository<Imagen, String>
+}
+class GrupoF.Proyecto3.Repositorios.ProveedorRepositorio{
+    +interface ProveedorRepositorio extends JpaRepository<Proveedor, String>
+}
+class GrupoF.Proyecto3.Repositorios.UsuarioRepositorio{
+    +interface UsuarioRepositorio extends JpaRepository<Usuario, String>
+}
+
 
 GrupoF.Proyecto3.Proyecto003Application ..> GrupoF.Proyecto3.Entidades
 GrupoF.Proyecto3.Proyecto003Application ..> GrupoF.Proyecto3.Controladores
