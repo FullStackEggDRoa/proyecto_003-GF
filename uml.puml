@@ -5,7 +5,10 @@ class GrupoF.Proyecto3.Entidades.Cliente extends GrupoF.Proyecto3.Entidades.Usua
     -String direccion
     -- Constructores --
     + Cliente()
+<<<<<<< HEAD
     + Cliente(String direccion, Boolean alta)
+=======
+>>>>>>> developer
     -- Métodos --
     .. Getters ..
     + String getDireccion()
@@ -21,6 +24,10 @@ class GrupoF.Proyecto3.Entidades.Cliente extends GrupoF.Proyecto3.Entidades.Usua
 
 class GrupoF.Proyecto3.Entidades.Dni{
     -- Atributos --
+<<<<<<< HEAD
+=======
+    -String id
+>>>>>>> developer
     -char serie
     - String numero
     -- Constructores --
@@ -169,7 +176,11 @@ class GrupoF.Proyecto3.Entidades.Usuario{
     +void setNombreApellido(String nombreApellido)
     +void setContrasenia(String contrasenia)
     +void setAlta(Boolean alta)
+<<<<<<< HEAD
     +void setPerro(Dni dni)
+=======
+    +void setDni(Dni dni)
+>>>>>>> developer
     +void setCorreo(String correo)
     +void setTelefono(Integer telefono)
     +void setImagen(Imagen imagen)
