@@ -22,10 +22,7 @@ public class controladorInicio {
     
     @GetMapping("/")
     public String Index(){
-<<<<<<< HEAD
-       
-=======
->>>>>>> 7fa55bc92cd83e872ad45a3b6510c36fa85838cc
+
         return "index.html";
     }
     

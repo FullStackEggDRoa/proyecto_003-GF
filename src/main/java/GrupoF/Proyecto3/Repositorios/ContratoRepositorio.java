@@ -1,6 +1,6 @@
 package GrupoF.Proyecto3.Repositorios;
 
-import GrupoF.Proyecto3.enridad.Contrato;
+import GrupoF.Proyecto3.Entidad.Contrato;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

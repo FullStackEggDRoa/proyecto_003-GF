@@ -1,5 +1,5 @@
 
-package GrupoF.Proyecto3.enridad;
+package GrupoF.Proyecto3.Entidad;
 
 import javax.persistence.Entity;
 
