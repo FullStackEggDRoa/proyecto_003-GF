@@ -1,6 +1,7 @@
 
 package GrupoF.Proyecto3.enridad;
 
+import GrupoF.Proyecto3.Enum.Rol;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -26,7 +27,7 @@ public class Usuario {
     private String correo;
     private Integer telefono;
     private Imagen imagen;
-    //private Rol rol;
+    private Rol rol;
     
     //CONSTRUCTORES
 
