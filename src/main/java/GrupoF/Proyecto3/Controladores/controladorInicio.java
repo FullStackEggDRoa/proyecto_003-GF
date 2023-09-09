@@ -21,8 +21,14 @@ public class controladorInicio {
     @GetMapping("/")
     public String Index(){
        
+<<<<<<< HEAD
         return "Hola Grupo F - Estamo Listos!!";
         //si leer eto borra (ENRI estuvo aca)...
+=======
+
+        return "index.html";
+
+>>>>>>> developer
     }
 }
 
