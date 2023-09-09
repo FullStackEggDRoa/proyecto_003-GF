@@ -6,6 +6,7 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.hibernate.annotations.GenericGenerator;
@@ -21,7 +22,9 @@ public class Contrato {
     @GeneratedValue(generator="uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
+    @OneToOne
     private Cliente cliente;
+    @OneToOne
     private Proveedor proveedor;
     @Temporal(TemporalType.DATE)
     private Date fechaInicio;
