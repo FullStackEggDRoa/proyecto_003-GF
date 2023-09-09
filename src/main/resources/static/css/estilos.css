@@ -8,3 +8,11 @@
     height: 70px;
    
   }
+#logo{
+  height: 10px;
+width: 5px;
+margin: 0;
+}
+#palabra{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
