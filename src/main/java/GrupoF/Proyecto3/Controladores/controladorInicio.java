@@ -19,10 +19,8 @@ public class controladorInicio {
    
     
     @GetMapping("/")
-    public String Index(){       
-
+    public String Index(){
         return "index.html";
-
     }
 }
 
