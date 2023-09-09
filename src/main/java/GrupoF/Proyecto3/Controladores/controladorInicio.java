@@ -21,7 +21,7 @@ public class controladorInicio {
     @GetMapping("/")
     public String Index(){
        
-        return "Hola Grupo F - Estamo Listos!!!!!";
+        return "index.html";
     }
 }
 
