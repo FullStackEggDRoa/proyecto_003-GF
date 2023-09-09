@@ -1,6 +1,6 @@
 package GrupoF.Proyecto3.repositorios;
 
-import GrupoF.Proyecto3.entidades.Cliente;
+import GrupoF.Proyecto3.enridad.Cliente;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

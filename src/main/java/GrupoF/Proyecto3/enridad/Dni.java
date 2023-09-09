@@ -30,8 +30,6 @@ public class Dni {
         this.numero = numero;
     }
     
-    //METODOS
-
     //GETTERS
     public String getId() {
         return id;
@@ -54,7 +52,7 @@ public class Dni {
         this.numero = numero;
     }
     
-    //toSring
+    //TOSTRING
     //A MODIFICAR
     @Override
     public String toString() {

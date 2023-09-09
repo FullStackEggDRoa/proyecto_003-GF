@@ -21,7 +21,7 @@ public class Usuario {
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
     private String nombreApellido;
-    private String contraseña;
+    private String contrasenia;
     private Boolean alta;
     private Dni dni;
     private String correo;
@@ -30,7 +30,6 @@ public class Usuario {
     private Rol rol;
     
     //CONSTRUCTORES
-
     public Usuario() {
     }
     
@@ -43,8 +42,8 @@ public class Usuario {
         return nombreApellido;
     }
 
-    public String getContraseña() {
-        return contraseña;
+    public String getContrasenia() {
+        return contrasenia;
     }
 
     public Boolean getAlta() {
@@ -72,8 +71,8 @@ public class Usuario {
         this.nombreApellido = nombreApellido;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setContraseña(String contrasenia) {
+        this.contrasenia = contrasenia;
     }
 
     public void setAlta(Boolean alta) {
@@ -99,7 +98,7 @@ public class Usuario {
     //TOSTRING
     @Override
     public String toString() {
-        return "Usuario{" + "id=" + id + ", nombreApellido=" + nombreApellido + ", contrase\u00f1a=" + contraseña + ", alta=" + alta + ", dni=" + dni + ", correo=" + correo + ", telefono=" + telefono + ", imagen=" + imagen + '}';
+        return "Usuario{" + "id=" + id + ", nombreApellido=" + nombreApellido + ", contrase\u00f1a=" + contrasenia + ", alta=" + alta + ", dni=" + dni + ", correo=" + correo + ", telefono=" + telefono + ", imagen=" + imagen + '}';
     }
     
     

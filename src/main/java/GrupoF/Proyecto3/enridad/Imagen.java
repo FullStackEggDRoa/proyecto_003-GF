@@ -56,5 +56,4 @@ public class Imagen {
         this.contenido = contenido;
     }
     
-    
 }
