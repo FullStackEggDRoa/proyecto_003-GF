@@ -21,7 +21,11 @@ public class controladorInicio {
     @GetMapping("/")
     public String Index(){
        
+<<<<<<< HEAD
         return "Hola Grupo F - Estamo Listos!!!!!";
+=======
+        return "index.html";
+>>>>>>> developer
     }
 }
 
