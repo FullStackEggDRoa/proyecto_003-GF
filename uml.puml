@@ -5,10 +5,6 @@ class GrupoF.Proyecto3.Entidades.Cliente extends GrupoF.Proyecto3.Entidades.Usua
     -String direccion
     -- Constructores --
     + Cliente()
-<<<<<<< HEAD
-    + Cliente(String direccion, Boolean alta)
-=======
->>>>>>> developer
     -- Métodos --
     .. Getters ..
     + String getDireccion()
@@ -24,10 +20,7 @@ class GrupoF.Proyecto3.Entidades.Cliente extends GrupoF.Proyecto3.Entidades.Usua
 
 class GrupoF.Proyecto3.Entidades.Dni{
     -- Atributos --
-<<<<<<< HEAD
-=======
     -String id
->>>>>>> developer
     -char serie
     - String numero
     -- Constructores --
@@ -176,11 +169,7 @@ class GrupoF.Proyecto3.Entidades.Usuario{
     +void setNombreApellido(String nombreApellido)
     +void setContrasenia(String contrasenia)
     +void setAlta(Boolean alta)
-<<<<<<< HEAD
-    +void setPerro(Dni dni)
-=======
     +void setDni(Dni dni)
->>>>>>> developer
     +void setCorreo(String correo)
     +void setTelefono(Integer telefono)
     +void setImagen(Imagen imagen)
@@ -195,8 +184,29 @@ class GrupoF.Proyecto3.Proyecto003Application{
 class GrupoF.Proyecto3.Controladores.controladorInicio{
     +String Index()
 }
+class GrupoF.Proyecto3.Repositorios.ClienteRepositorio{
+    +interface ClienteRepositorio extends JpaRepository<Cliente, String>
+}
+class GrupoF.Proyecto3.Repositorios.ContratoRepositorio{
+    +interface ContratoRepositorio extends JpaRepository<Contrato, String>
+}
+class GrupoF.Proyecto3.Repositorios.DniRepositorio{
+    +interface DniRepositorio extends JpaRepository<Dni, String>
+}
+class GrupoF.Proyecto3.Repositorios.ImagenRepositorio{
+    +interface ImagenRepositorio extends JpaRepository<Imagen, String>
+}
+class GrupoF.Proyecto3.Repositorios.ProveedorRepositorio{
+    +interface ProveedorRepositorio extends JpaRepository<Proveedor, String>
+}
+class GrupoF.Proyecto3.Repositorios.UsuarioRepositorio{
+    +interface UsuarioRepositorio extends JpaRepository<Usuario, String>
+}
+
 
 GrupoF.Proyecto3.Proyecto003Application ..> GrupoF.Proyecto3.Entidades
 GrupoF.Proyecto3.Proyecto003Application ..> GrupoF.Proyecto3.Controladores
 GrupoF.Proyecto3.Proyecto003Application ..> GrupoF.Proyecto3.Enumeradores
+GrupoF.Proyecto3.Proyecto003Application ..> GrupoF.Proyecto3.Repositorios
+
 @enduml 

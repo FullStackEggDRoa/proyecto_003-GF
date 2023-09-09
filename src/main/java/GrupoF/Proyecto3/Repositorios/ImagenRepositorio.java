@@ -1,4 +1,4 @@
-package GrupoF.Proyecto3.repositorios;
+package GrupoF.Proyecto3.Repositorios;
 
 import GrupoF.Proyecto3.entidades.Imagen;
 import org.springframework.data.jpa.repository.JpaRepository;
