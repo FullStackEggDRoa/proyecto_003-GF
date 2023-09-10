@@ -16,10 +16,7 @@ import org.hibernate.annotations.GenericGenerator;
 @NoArgsConstructor
 @ToString
 public class Imagen {
-
-    @Id
-    @GeneratedValue(generator="uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
+    
     private String id;
     private String mime;
     private String nombre;
