@@ -1,4 +1,4 @@
-package GrupoF.Proyecto3.Servicios;
+/*package GrupoF.Proyecto3.Servicios;
 
 import GrupoF.Proyecto3.entidad.Cliente;
 import GrupoF.Proyecto3.Repositorios.ClienteRepositorio;
@@ -95,4 +95,4 @@ public class ClienteServicio {
         }
     }
    
-}
+}*/

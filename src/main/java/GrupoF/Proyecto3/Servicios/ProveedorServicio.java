@@ -1,4 +1,4 @@
-
+/*
 package GrupoF.Proyecto3.Servicios;
 
 import GrupoF.Proyecto3.Entidad.proveedor;
@@ -69,4 +69,4 @@ public class ProveedorServicio {
     }
     
 }
-}
+}*/
