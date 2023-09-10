@@ -103,7 +103,6 @@ class GrupoF.Proyecto3.Entidades.Contrato {
     - int calificacionCliente
     - String comentarioProv
     - String comentarioCliente
-    - EstadoContrato estadoContrato
     -- Constructores --
     -- Métodos --
     .. Getters ..
