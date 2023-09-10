@@ -38,7 +38,7 @@ public class ProveedorServicio {
         pr.save(proveedor);
               
     }
-    
+    @Transactional
     private void validarP(String nombreApellido, String contrasenia, Integer dni, String correo, Integer telefono, Integer numeroMatricula, String categoriaServicio, Double costoHora) throws Exception{
 
         if (nombreApellido.isEmpty() || nombreApellido == null) {
