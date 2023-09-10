@@ -1,4 +1,4 @@
-/*package GrupoF.Proyecto3.Repositorios;
+package GrupoF.Proyecto3.Repositorios;
 
 import GrupoF.Proyecto3.entidades.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -11,4 +11,4 @@ public interface UsuarioRepositorio extends JpaRepository<Usuario, String>  {
     @Query("SELECT u FROM Usuario u WHERE u.correo = :correo")
     public Usuario buscarPorCorreo(@Param("correo") String correo);    
 }
-*/
+
