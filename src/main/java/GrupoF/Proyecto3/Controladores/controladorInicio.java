@@ -5,9 +5,13 @@
 package GrupoF.Proyecto3.Controladores;
 
 
+import GrupoF.Proyecto3.Servicios.ClienteServicio;
+import GrupoF.Proyecto3.Servicios.ProveedorServicio;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -18,7 +22,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping("/")
 public class controladorInicio {
-   
+    
+    @Autowired
+    private ClienteServicio cS;
+    @Autowired
+    private ProveedorServicio pS;
     
     @GetMapping("/")
     public String Index(){
@@ -44,6 +52,27 @@ public class controladorInicio {
         }
         
         return "registro-usuario.html";
+    }
+    @PostMapping("/registrar_cliente")
+    public String registrarCliente(@RequestParam String nombreApellido, @RequestParam String contrasenia,@RequestParam Integer dni,@RequestParam String correo, @RequestParam Integer telefono,
+            @RequestParam String contraseniaChk, @RequestParam String direccion, ModelMap modelo) {
+
+        try {
+            cS.registrarCliente(nombreApellido,contrasenia,dni,correo,telefono,direccion);
+
+            modelo.put("notificacion", "Usuario registrado correctamente!");
+            modelo.put("correo",correo);
+            modelo.put("contrasenia", contrasenia);
+            
+            return "login.html";
+            
+        } catch (Exception ex) {
+
+            modelo.put("notificacion", ex.getMessage());
+            
+            return "registro_usuario.html";
+        }
+
     }
     
 }

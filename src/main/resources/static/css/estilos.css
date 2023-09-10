@@ -1,3 +1,21 @@
+.header{
+    display: flex;
+    font-family: "Audiowide", sans-serif;
+  
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid black;
+    height: 70px;
+   
+  }
+#logo{
+height: 100px;
+width: 100px;
+margin: 0;
+}
+#palabra{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
 body {
   box-sizing: border-box;
   margin: 0;
