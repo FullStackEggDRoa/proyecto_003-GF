@@ -37,7 +37,7 @@ public class ClienteServicio {
 
         cr.save(cliente);
     }
-
+    @Transactional
     private void validarC(String nombreApellido, String contrasenia, Integer dni, String correo, String direccion) throws Exception {
 
         if (nombreApellido.isEmpty() || nombreApellido == null) {
@@ -56,7 +56,7 @@ public class ClienteServicio {
             throw new Exception("La direccion no puede ser nula o estar vacia");
         }
     }
-
+    @Transactional(readOnly = true)
     public List<Cliente> listarClientes() {
 
         List<Cliente> clientes = new ArrayList();
