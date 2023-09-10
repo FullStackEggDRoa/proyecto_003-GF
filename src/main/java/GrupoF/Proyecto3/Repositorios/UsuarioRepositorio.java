@@ -1,6 +1,6 @@
 package GrupoF.Proyecto3.Repositorios;
 
-import GrupoF.Proyecto3.entidades.Usuario;
+import GrupoF.Proyecto3.Entidades.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
