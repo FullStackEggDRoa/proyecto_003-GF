@@ -10,10 +10,6 @@ import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 
-/**
- *
- * @author cre_c
- */
 @Entity
 @Getter
 @Setter
@@ -21,7 +17,6 @@ import org.hibernate.annotations.GenericGenerator;
 @ToString
 public class Imagen {
 
-    //ATRIBUTOS
     @Id
     @GeneratedValue(generator="uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
