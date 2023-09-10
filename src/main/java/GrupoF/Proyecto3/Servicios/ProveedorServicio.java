@@ -50,7 +50,6 @@ public class ProveedorServicio {
            if (dni == -1 || dni == null) {
             throw new Exception("El DNI no puede ser nulo o estar vacio");
         }
-        if (correo.isEmpty() || correo == null) {
             throw new Exception("El correo no puede ser nulo o estar vacio");
         }
         if (telefono == -1 || telefono == null) {
