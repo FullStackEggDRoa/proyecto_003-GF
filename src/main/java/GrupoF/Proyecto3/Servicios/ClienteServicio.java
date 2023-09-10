@@ -82,7 +82,6 @@ public class ClienteServicio {
 
             cr.save(cliente);
         }
-
     }
     
     @Transactional
@@ -94,5 +93,4 @@ public class ClienteServicio {
             cr.save(clienteAux);
         }
     }
-   
-}
+    
