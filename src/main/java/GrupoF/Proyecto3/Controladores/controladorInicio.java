@@ -46,7 +46,7 @@ public class controladorInicio {
             modelo.put("notificacion", "Usuario o Contraseña invalidos");            
         }
         
-        return "login.html";
+        return "inicio.html";
     }
     
      @GetMapping("/registro")
