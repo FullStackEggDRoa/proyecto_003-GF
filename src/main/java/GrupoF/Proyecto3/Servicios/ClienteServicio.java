@@ -3,6 +3,7 @@ package GrupoF.Proyecto3.Servicios;
 
 import GrupoF.Proyecto3.Entidades.Cliente;
 import GrupoF.Proyecto3.Entidades.Dni;
+import GrupoF.Proyecto3.Enumeradores.NombreRol;
 import GrupoF.Proyecto3.Repositorios.ClienteRepositorio;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +19,7 @@ public class ClienteServicio {
     private ClienteRepositorio cr;
 
     @Transactional
-    public void registrarCliente(String nombreApellido, String contrasenia, Integer dni, String correo, Integer telefono, String direccion, nombreRol ) throws Exception {
+    public void registrarCliente(String nombreApellido, String contrasenia, Integer dni, String correo, Integer telefono, String direccion, NombreRol NombreRol) throws Exception {
 
         validarC(nombreApellido, contrasenia, dni, correo, direccion);
 
@@ -35,7 +36,7 @@ public class ClienteServicio {
         cliente.setTelefono(telefono);
         cliente.setDireccion(direccion);
         cliente.setAlta(true);
-        cliente.setRol(rol.Usuario);
+        cliente.setNombreRol(NombreRol.USUARIO);
 
         cr.save(cliente);
     }
@@ -67,7 +68,7 @@ public class ClienteServicio {
     }
 
     @Transactional
-    public void actualizarCliente(String id, String nombreApellido, String contrasenia, Integer dni, String correo, Integer telefono, String direccion) {
+    public void actualizarCliente(String id, String nombreApellido, String contrasenia, Integer dni, String correo, Integer telefono, String direccion) throws Exception {
         validarC(nombreApellido, contrasenia, dni, correo, direccion);
 
         Optional<Cliente> respuestaCliente = cr.findById(id);
