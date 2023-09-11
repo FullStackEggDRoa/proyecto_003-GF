@@ -1,4 +1,3 @@
-
 package GrupoF.Proyecto3.Entidades;
 
 import lombok.Getter;
@@ -13,10 +12,10 @@ import lombok.ToString;
 @RequiredArgsConstructor
 @ToString
 
-public class Dni {
+public class Dni{
 
     private String id;
     private char serie;
     private String numero;
-
+   
 }
