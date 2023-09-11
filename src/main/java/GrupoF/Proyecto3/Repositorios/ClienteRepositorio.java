@@ -1,3 +1,4 @@
+
 package GrupoF.Proyecto3.Repositorios;
 
 import GrupoF.Proyecto3.Entidades.Cliente;
@@ -11,3 +12,4 @@ public interface ClienteRepositorio extends JpaRepository<Cliente, String> {
     @Query("SELECT c FROM Cliente c WHERE c.correo = :correo")
     public Cliente findByCorreo(@Param("correo") String correo);
 }
+
