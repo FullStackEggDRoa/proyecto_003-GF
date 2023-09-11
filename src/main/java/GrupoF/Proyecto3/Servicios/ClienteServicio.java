@@ -43,11 +43,12 @@ public class ClienteServicio implements UserDetailsService {
         cliente.setNombreApellido(nombreApellido);
         cliente.setContrasenia(contrasenia);
         dni1.setNumero(dni);
+        cliente.setDni(dni1);
         cliente.setCorreo(correo);
         cliente.setTelefono(telefono);
         cliente.setDireccion(direccion);
         cliente.setAlta(true);
-        cliente.setRol(NombreRol.USUARIO);
+        cliente.setRol(NombreRol);
 
         cr.save(cliente);
     }
