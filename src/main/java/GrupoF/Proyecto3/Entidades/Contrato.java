@@ -1,7 +1,7 @@
 
 package GrupoF.Proyecto3.Entidades;
 
-import GrupoF.Proyecto3.Enum.NombreEstadoContrato;
+import GrupoF.Proyecto3.Enumeradores.NombreEstadoContrato;
 import java.util.Date;
 import javax.persistence.Entity;
 import lombok.Getter;

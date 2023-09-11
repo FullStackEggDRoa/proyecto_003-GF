@@ -1,7 +1,7 @@
 
 package GrupoF.Proyecto3.Entidades;
 
-import GrupoF.Proyecto3.Enum.NombreRol;
+import GrupoF.Proyecto3.Enumeradores.NombreRol;
 import javax.persistence.Entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

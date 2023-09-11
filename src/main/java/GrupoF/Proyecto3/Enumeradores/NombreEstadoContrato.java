@@ -1,5 +1,5 @@
 
-package GrupoF.Proyecto3.Enum;
+package GrupoF.Proyecto3.Enumeradores;
 
 
 
