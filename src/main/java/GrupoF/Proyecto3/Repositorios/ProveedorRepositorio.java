@@ -1,6 +1,6 @@
-//package GrupoF.Proyecto3.Repositorios;
+package GrupoF.Proyecto3.Repositorios;
 
-=======
+
 import GrupoF.Proyecto3.Entidades.Proveedor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
