@@ -1,6 +1,7 @@
 package GrupoF.Proyecto3.Servicios;
 
-import GrupoF.Proyecto3.entidad.Cliente;
+import GrupoF.Proyecto3.Entidades.Cliente;
+import GrupoF.Proyecto3.Entidades.Dni;
 import GrupoF.Proyecto3.Repositorios.ClienteRepositorio;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +17,7 @@ public class ClienteServicio {
     private ClienteRepositorio cr;
 
     @Transactional
-    public void registrarCliente(String nombreApellido, String contrasenia, Integer dni, String correo, Integer telefono, String direccion) {
+    public void registrarCliente(String nombreApellido, String contrasenia, Integer dni, String correo, Integer telefono, String direccion, nombreRol ) throws Exception {
 
         validarC(nombreApellido, contrasenia, dni, correo, direccion);
 
@@ -28,12 +29,12 @@ public class ClienteServicio {
 
         cliente.setNombreApellido(nombreApellido);
         cliente.setContrasenia(contrasenia);
-        cliente.setDni(new Dni('x', dni.toString()));
+        cliente.setDni(new Dni('x',dni.toString()));
         cliente.setCorreo(correo);
         cliente.setTelefono(telefono);
         cliente.setDireccion(direccion);
         cliente.setAlta(true);
-        cliente.setRol(Rol.USUARIO);
+        cliente.setRol(rol.Usuario);
 
         cr.save(cliente);
     }
