@@ -38,9 +38,9 @@
   
   <div class="signupFrm">
 
-    <form th:action="${/registro}" class="form">
+      <form th:action="${/registrar_usuario}" class="form" method="POST">
 
-    <form th:action="${/registro_usuario}" class="form">
+    
 
       <h3 class="title">Registrarse</h3>
 
@@ -62,7 +62,7 @@
       </div>
 
       <div class="inputContainer">
-        <input type="number" class="input" placeholder=""  name="telefono" th:value="${telefono}">
+        <input type="text" class="input" placeholder=""  name="telefono" th:value="${telefono}">
         <label for="" class="label">Telefono</label>
       </div>
 
