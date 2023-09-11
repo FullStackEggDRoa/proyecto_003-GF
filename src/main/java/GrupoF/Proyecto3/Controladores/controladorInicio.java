@@ -5,6 +5,7 @@
 package GrupoF.Proyecto3.Controladores;
 
 
+import GrupoF.Proyecto3.Enumeradores.NombreRol;
 import GrupoF.Proyecto3.Servicios.ClienteServicio;
 import GrupoF.Proyecto3.Servicios.ProveedorServicio;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,11 +55,11 @@ public class controladorInicio {
         return "registro-usuario.html";
     }
     @PostMapping("/registrar_cliente")
-    public String registrarCliente(@RequestParam String nombreApellido, @RequestParam String contrasenia,@RequestParam Integer dni,@RequestParam String correo, @RequestParam Integer telefono,
+    public String registrarCliente(@RequestParam String nombreApellido, @RequestParam String contrasenia,@RequestParam String dni,@RequestParam String correo, @RequestParam Integer telefono,
             @RequestParam String contraseniaChk, @RequestParam String direccion, ModelMap modelo) {
 
         try {
-//            cS.registrarCliente(nombreApellido,contrasenia,dni,correo,telefono,direccion);
+            cS.registrarCliente(nombreApellido,contrasenia,dni,correo,telefono,direccion,NombreRol.USUARIO);
 
             modelo.put("notificacion", "Usuario registrado correctamente!");
             modelo.put("correo",correo);
