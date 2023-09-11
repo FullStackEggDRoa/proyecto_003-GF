@@ -54,7 +54,7 @@ public class controladorInicio {
         
         return "registro-usuario.html";
     }
-    @PostMapping("/registrar_cliente")
+    @PostMapping("/registrar_usuario")
     public String registrarCliente(@RequestParam String nombreApellido, @RequestParam String contrasenia,@RequestParam String dni,@RequestParam String correo, @RequestParam Integer telefono,
             @RequestParam String contraseniaChk, @RequestParam String direccion, ModelMap modelo) {
 
