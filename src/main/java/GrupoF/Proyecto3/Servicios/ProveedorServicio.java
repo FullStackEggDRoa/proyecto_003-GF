@@ -15,31 +15,31 @@ public class ProveedorServicio {
     @Autowired
     private ProveedorRepositorio pr;
     
-//    @Transactional
-//    public void registrarProveedor (String nombreApellido, String contrasenia, Integer dni, String correo, Integer telefono, Integer numeroMatricula, String categoriaServicio, Double costoHora){
-//        
-//        validarP(nombreApellido, contrasenia, dni, correo, telefono, numeroMatricula, categoriaServicio, costoHora);
-//             
-//        if (pr.findByCorreo(correo) != null){
-//            throw new Exception("Ya existe un usuario registrado con este correo electrónico.");
-//        }
-//        
-//        Proveedor proveedor = new Proveedor();
-//        
-//        proveedor.setNombreApellido(nombreApellido);
-//        proveedor.setContrasenia(contrasenia);
-//        proveedor.setDni(new Dni('x',dni.toString())); 
-//        proveedor.setCorreo(correo);
-//        proveedor.setTelefono(telefono);
-//        proveedor.setnumeroMatricula(numeroMatricula);
-//        proveedor.setCategoriaMatricula(categoriaMatricula);
-//        proveedor.setCostoHora(costaHora);
-//        proveedor.serAlta(true);
-//        proveedor.setRol(Rol.USUARIO);
-//        
-//        pr.save(proveedor);
-//              
-//    }
+    @Transactional
+    public void registrarProveedor (String nombreApellido, String contrasenia, Integer dni, String correo, Integer telefono, Integer numeroMatricula, String categoriaServicio, Double costoHora){
+        
+        validarP(nombreApellido, contrasenia, dni, correo, telefono, numeroMatricula, categoriaServicio, costoHora);
+             
+        if (pr.findByCorreo(correo) != null){
+            throw new Exception("Ya existe un usuario registrado con este correo electrónico.");
+        }
+        
+        Proveedor proveedor = new Proveedor();
+        
+        proveedor.setNombreApellido(nombreApellido);
+        proveedor.setContrasenia(contrasenia);
+        proveedor.setDni(new Dni('x',dni.toString())); 
+        proveedor.setCorreo(correo);
+        proveedor.setTelefono(telefono);
+        proveedor.setnumeroMatricula(numeroMatricula);
+        proveedor.setCategoriaMatricula(categoriaMatricula);
+        proveedor.setCostoHora(costaHora);
+        proveedor.serAlta(true);
+        proveedor.setRol(Rol.USUARIO);
+        
+        pr.save(proveedor);
+              
+    }
     @Transactional
     private void validarP(String nombreApellido, String contrasenia, Integer dni, String correo, Integer telefono, Integer numeroMatricula, String categoriaServicio, Double costoHora) throws Exception{
 
