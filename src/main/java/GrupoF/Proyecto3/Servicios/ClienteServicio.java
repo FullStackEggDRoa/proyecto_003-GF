@@ -51,6 +51,7 @@ public class ClienteServicio implements UserDetailsService {
 
         cr.save(cliente);
     }
+    
     @Transactional
     private void validarC(String nombreApellido, String contrasenia, String dni, String correo, String direccion) throws Exception {
 
@@ -70,6 +71,7 @@ public class ClienteServicio implements UserDetailsService {
             throw new Exception("La direccion no puede ser nula o estar vacia");
         }
     }
+    
     @Transactional(readOnly = true)
     public List<Cliente> listarClientes() {
 
@@ -128,6 +130,8 @@ public class ClienteServicio implements UserDetailsService {
             
             return new User(cliente.getCorreo(), cliente.getContrasenia(),permisos);
         }else{
+            //throw new UsernameNotFoundException("Usuario y contraseña inválidos");
+            
             return null;
         }
     }
