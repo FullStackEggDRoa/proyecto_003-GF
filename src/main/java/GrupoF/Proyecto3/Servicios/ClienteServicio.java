@@ -1,20 +1,33 @@
 
 package GrupoF.Proyecto3.Servicios;
 
-import GrupoF.Proyecto3.entidad.Cliente;
+import GrupoF.Proyecto3.Entidades.Cliente;
+import GrupoF.Proyecto3.Entidades.Dni;
+import GrupoF.Proyecto3.Entidades.Usuario;
+
 import GrupoF.Proyecto3.Repositorios.ClienteRepositorio;
+import GrupoF.Proyecto3.Repositorios.UsuarioRepositorio;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 @Service
 public class ClienteServicio {
 
     @Autowired
     private ClienteRepositorio cr;
+    
 
     @Transactional
     public void registrarCliente(String nombreApellido, String contrasenia, Integer dni, String correo, Integer telefono, String direccion) {
@@ -95,6 +108,29 @@ public class ClienteServicio {
             cr.save(clienteAux);
         }
     }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Cliente cliente = cr.findByCorreo(username);
+        
+        if (cliente != null) {
+            
+            List<GrantedAuthority> permisos = new ArrayList();
+            
+            GrantedAuthority p = new SimpleGrantedAuthority("ROLE_"+ cliente.getRol().toString());
+            
+            permisos.add(p);
    
+            ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+            
+            HttpSession session = attr.getRequest().getSession(true);
+            
+            session.setAttribute("usuariosession", cliente);
+            
+            return new User(cliente.getCorreo(), cliente.getContrasenia(),permisos);
+        }else{
+            return null;
+        }
+    }
 }
 

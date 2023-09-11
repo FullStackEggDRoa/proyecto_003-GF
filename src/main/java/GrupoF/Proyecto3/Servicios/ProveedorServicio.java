@@ -2,7 +2,8 @@
 
 package GrupoF.Proyecto3.Servicios;
 
-import GrupoF.Proyecto3.Entidad.proveedor;
+import GrupoF.Proyecto3.Entidades.Proveedor;
+
 import GrupoF.Proyecto3.Repositorios.ProveedorRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

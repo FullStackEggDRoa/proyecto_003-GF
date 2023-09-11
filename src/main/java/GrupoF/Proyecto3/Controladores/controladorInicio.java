@@ -58,7 +58,7 @@ public class controladorInicio {
             @RequestParam String contraseniaChk, @RequestParam String direccion, ModelMap modelo) {
 
         try {
-            cS.registrarCliente(nombreApellido,contrasenia,dni,correo,telefono,direccion);
+//            cS.registrarCliente(nombreApellido,contrasenia,dni,correo,telefono,direccion);
 
             modelo.put("notificacion", "Usuario registrado correctamente!");
             modelo.put("correo",correo);
