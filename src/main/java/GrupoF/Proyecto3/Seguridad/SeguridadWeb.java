@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.egg.news.Seguridad;
+package GrupoF.Proyecto3.Seguridad;
 
 import GrupoF.Proyecto3.Servicios.ClienteServicio;
 
