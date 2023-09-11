@@ -39,37 +39,51 @@ background-position: center center;
 }
 /*index*/
 .marca{
-  text-align: center;
+  margin-left: 50px;
+  
   margin-top: 50px;
 }
 
 
+button:hover{
+color: rgb(255, 72, 72) ;
+
+
+}
 .logeate{
 
-  background-color: #ffffff;
+  background-color:transparent;
   border: #ffffff;
   font-style: oblique;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: xx-large;
   color:#f3b634;
+  margin-left: 500px;
+
+
   }
+  
+  
+
   .registrate{
 
-    background-color: #ffffff;
+    background-color: transparent;
     border: #ffffff;
     font-style: oblique;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: xx-large;
     color:#f3b634;
+    margin-left: 10px;
     }
     .visitanos{
 
-      background-color: #ffffff;
+      background-color:transparent;
       border: #ffffff;
       font-style: oblique;
       font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
       font-size: xx-large;
       color:#f3b634;
+      margin-left: 10px;
       }
 /*formulario*/
 .signupFrm {
