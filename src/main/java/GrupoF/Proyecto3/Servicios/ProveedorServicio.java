@@ -24,21 +24,21 @@ public class ProveedorServicio {
             throw new Exception("Ya existe un usuario registrado con este correo electrónico.");
         }
         
-        Proveedor proveedor = new Proveedor();
-        
-        proveedor.setNombreApellido(nombreApellido);
-        proveedor.setContrasenia(contrasenia);
-        proveedor.setDni(new Dni('x',dni.toString())); 
-        proveedor.setCorreo(correo);
-        proveedor.setTelefono(telefono);
-        proveedor.setnumeroMatricula(numeroMatricula);
-        proveedor.setCategoriaMatricula(categoriaMatricula);
-        proveedor.setCostoHora(costaHora);
-        proveedor.serAlta(true);
-        proveedor.setRol(Rol.USUARIO);
-        
-        pr.save(proveedor);
-              
+//        Proveedor proveedor = new Proveedor();
+//        
+//        proveedor.setNombreApellido(nombreApellido);
+//        proveedor.setContrasenia(contrasenia);
+//        proveedor.setDni(new Dni('x',dni.toString())); 
+//        proveedor.setCorreo(correo);
+//        proveedor.setTelefono(telefono);
+//        proveedor.setnumeroMatricula(numeroMatricula);
+//        proveedor.setCategoriaMatricula(categoriaMatricula);
+//        proveedor.setCostoHora(costaHora);
+//        proveedor.serAlta(true);
+//        proveedor.setRol(Rol.USUARIO);
+//        
+//        pr.save(proveedor);
+//              
     }
     @Transactional
     private void validarP(String nombreApellido, String contrasenia, Integer dni, String correo, Integer telefono, Integer numeroMatricula, String categoriaServicio, Double costoHora) throws Exception{

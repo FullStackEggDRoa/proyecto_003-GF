@@ -5,7 +5,7 @@
 package com.egg.news.Seguridad;
 
 import GrupoF.Proyecto3.Servicios.ClienteServicio;
-import com.egg.news.Servicios.serviciosUsuario;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
