@@ -7,26 +7,70 @@
     height: 70px;
 }
 #logo{
-    height: 100px;
-    width: 100px;
-    margin: 0;
+
+height: 400px;
+width: 400px;
+text-align: center;
+
 }
+
+
+
 #palabra{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 body {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    background-color: white;
-    font-family: "lato", sans-serif;
+
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  background-color: rgb(241, 240, 128);
+  font-family: "lato", sans-serif;
 }
 
 body {
-    background: #CAC531;
-    background: -webkit-linear-gradient(to right, #F3F9A7, #CAC531);
-    background: linear-gradient(to right, #F3F9A7, #CAC531);
+background-image: url(../img/fondo.png);
+background-size: cover;
+background-repeat: no-repeat;
+background-attachment: fixed;
+background-position: center center; 
+   
+
 }
+/*index*/
+.marca{
+  text-align: center;
+  margin-top: 50px;
+}
+
+
+.logeate{
+
+  background-color: #ffffff;
+  border: #ffffff;
+  font-style: oblique;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: xx-large;
+  color:#f3b634;
+  }
+  .registrate{
+
+    background-color: #ffffff;
+    border: #ffffff;
+    font-style: oblique;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: xx-large;
+    color:#f3b634;
+    }
+    .visitanos{
+
+      background-color: #ffffff;
+      border: #ffffff;
+      font-style: oblique;
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      font-size: xx-large;
+      color:#f3b634;
+      }
 /*formulario*/
 .signupFrm {
     display: flex;

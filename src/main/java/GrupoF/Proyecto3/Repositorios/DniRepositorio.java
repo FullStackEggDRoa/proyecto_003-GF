@@ -1,3 +1,4 @@
+
 package GrupoF.Proyecto3.Repositorios;
 
 import GrupoF.Proyecto3.Entidades.Dni;
@@ -12,3 +13,4 @@ public interface DniRepositorio extends JpaRepository<Dni, String> {
     @Query("SELECT d FROM Dni d WHERE d.numero = :numero")
     public Usuario buscarPorCorreo(@Param("numero") String numero);  
 }
+
