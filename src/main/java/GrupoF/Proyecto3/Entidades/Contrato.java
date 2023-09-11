@@ -2,6 +2,7 @@
 package GrupoF.Proyecto3.Entidades;
 
 import GrupoF.Proyecto3.Enumeradores.NombreEstadoContrato;
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,7 +22,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Setter
 @NoArgsConstructor
 @ToString
-public class Contrato {
+public class Contrato implements Serializable {
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")

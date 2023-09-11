@@ -3,10 +3,8 @@ package GrupoF.Proyecto3.Servicios;
 
 import GrupoF.Proyecto3.Entidades.Cliente;
 import GrupoF.Proyecto3.Entidades.Dni;
-import GrupoF.Proyecto3.Entidades.Usuario;
-
+import GrupoF.Proyecto3.Enumeradores.NombreRol;
 import GrupoF.Proyecto3.Repositorios.ClienteRepositorio;
-import GrupoF.Proyecto3.Repositorios.UsuarioRepositorio;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -16,6 +14,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,14 +22,14 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 @Service
-public class ClienteServicio {
+public class ClienteServicio implements UserDetailsService {
 
     @Autowired
     private ClienteRepositorio cr;
     
 
     @Transactional
-    public void registrarCliente(String nombreApellido, String contrasenia, Integer dni, String correo, Integer telefono, String direccion) {
+    public void registrarCliente(String nombreApellido, String contrasenia, String dni, String correo, Integer telefono, String direccion, NombreRol NombreRol) throws Exception {
 
         validarC(nombreApellido, contrasenia, dni, correo, direccion);
 
@@ -39,20 +38,21 @@ public class ClienteServicio {
         }
 
         Cliente cliente = new Cliente();
-
+        Dni dni1 = new Dni();
+                
         cliente.setNombreApellido(nombreApellido);
         cliente.setContrasenia(contrasenia);
-        cliente.setDni(new Dni('x', dni.toString()));
+        dni1.setNumero(dni);
         cliente.setCorreo(correo);
         cliente.setTelefono(telefono);
         cliente.setDireccion(direccion);
         cliente.setAlta(true);
-        cliente.setRol(Rol.USUARIO);
+        cliente.setRol(NombreRol.USUARIO);
 
         cr.save(cliente);
     }
     @Transactional
-    private void validarC(String nombreApellido, String contrasenia, Integer dni, String correo, String direccion) throws Exception {
+    private void validarC(String nombreApellido, String contrasenia, String dni, String correo, String direccion) throws Exception {
 
         if (nombreApellido.isEmpty() || nombreApellido == null) {
             throw new Exception("El nombre y apellido no pueden ser nulos o estar vacíos");
@@ -60,7 +60,7 @@ public class ClienteServicio {
         if (contrasenia.isEmpty() || contrasenia == null || contrasenia.length() <= 8) {
             throw new Exception("La contraseña no puede estar vacía, y tener más de 8 caracteres");
         }
-        if (dni == -1 || dni == null) {
+        if (dni.isEmpty() || dni == null) {
             throw new Exception("El DNI no puede ser nulo o estar vacio");
         }
         if (correo.isEmpty() || correo == null) {
@@ -79,24 +79,23 @@ public class ClienteServicio {
     }
 
     @Transactional
-    public void actualizarCliente(String id, String nombreApellido, String contrasenia, Integer dni, String correo, Integer telefono, String direccion) {
+    public void actualizarCliente(String id, String nombreApellido, String contrasenia, String dni, String correo, Integer telefono, String direccion) throws Exception {
         validarC(nombreApellido, contrasenia, dni, correo, direccion);
 
         Optional<Cliente> respuestaCliente = cr.findById(id);
-
+        Dni dni1 = new Dni();
         if (respuestaCliente.isPresent()) {
 
             Cliente cliente = respuestaCliente.get();
             cliente.setNombreApellido(nombreApellido);
             cliente.setContrasenia(contrasenia);
-            cliente.setDni(new Dni('x', dni.toString()));
+            dni1.setNumero(dni);
             cliente.setCorreo(correo);
             cliente.setTelefono(telefono);
             cliente.setDireccion(direccion);
 
             cr.save(cliente);
         }
-
     }
     
     @Transactional
@@ -133,4 +132,3 @@ public class ClienteServicio {
         }
     }
 }
-

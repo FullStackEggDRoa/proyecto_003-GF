@@ -1,6 +1,7 @@
 
 package GrupoF.Proyecto3.Entidades;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,7 +21,7 @@ import org.hibernate.annotations.GenericGenerator;
 @AllArgsConstructor
 @ToString
 
-public class Dni {
+public class Dni implements Serializable {
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")

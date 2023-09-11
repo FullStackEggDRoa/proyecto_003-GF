@@ -1,6 +1,7 @@
 
 package GrupoF.Proyecto3.Entidades;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import lombok.Getter;
@@ -13,7 +14,7 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @ToString
-public class Proveedor extends Usuario {
+public class Proveedor extends Usuario implements Serializable {
     @Column(name="num_matricula")
     private Integer numMatricula;
     @Column(name="cat_servicio")

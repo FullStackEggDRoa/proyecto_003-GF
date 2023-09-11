@@ -2,6 +2,7 @@
 package GrupoF.Proyecto3.Entidades;
 
 import GrupoF.Proyecto3.Enumeradores.NombreRol;
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -25,7 +26,7 @@ import org.hibernate.annotations.GenericGenerator;
 @ToString
 @Inheritance(strategy = InheritanceType.JOINED)
 
-public class Usuario {
+public class Usuario implements Serializable {
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")

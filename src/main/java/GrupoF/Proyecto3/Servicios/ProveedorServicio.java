@@ -16,7 +16,7 @@ public class ProveedorServicio {
     private ProveedorRepositorio pr;
     
     @Transactional
-    public void registrarProveedor (String nombreApellido, String contrasenia, Integer dni, String correo, Integer telefono, Integer numeroMatricula, String categoriaServicio, Double costoHora){
+    public void registrarProveedor (String nombreApellido, String contrasenia, Integer dni, String correo, Integer telefono, Integer numeroMatricula, String categoriaServicio, Double costoHora) throws Exception{
         
         validarP(nombreApellido, contrasenia, dni, correo, telefono, numeroMatricula, categoriaServicio, costoHora);
              
