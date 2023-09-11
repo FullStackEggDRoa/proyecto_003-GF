@@ -29,28 +29,28 @@ public class ClienteServicio {
     private ClienteRepositorio cr;
     
 
-//    @Transactional
-//    public void registrarCliente(String nombreApellido, String contrasenia, Integer dni, String correo, Integer telefono, String direccion) {
-//
-//        validarC(nombreApellido, contrasenia, dni, correo, direccion);
-//
-//        if (cr.findByCorreo(correo) != null) {
-//            throw new Exception("Ya existe un usuario registrado con este correo electrónico.");
-//        }
-//
-//        Cliente cliente = new Cliente();
-//
-//        cliente.setNombreApellido(nombreApellido);
-//        cliente.setContrasenia(contrasenia);
-//        cliente.setDni(new Dni('x', dni.toString()));
-//        cliente.setCorreo(correo);
-//        cliente.setTelefono(telefono);
-//        cliente.setDireccion(direccion);
-//        cliente.setAlta(true);
-//        cliente.setRol(Rol.USUARIO);
-//
-//        cr.save(cliente);
-//    }
+    @Transactional
+    public void registrarCliente(String nombreApellido, String contrasenia, Integer dni, String correo, Integer telefono, String direccion) {
+
+        validarC(nombreApellido, contrasenia, dni, correo, direccion);
+
+        if (cr.findByCorreo(correo) != null) {
+            throw new Exception("Ya existe un usuario registrado con este correo electrónico.");
+        }
+
+        Cliente cliente = new Cliente();
+
+        cliente.setNombreApellido(nombreApellido);
+        cliente.setContrasenia(contrasenia);
+        cliente.setDni(new Dni('x', dni.toString()));
+        cliente.setCorreo(correo);
+        cliente.setTelefono(telefono);
+        cliente.setDireccion(direccion);
+        cliente.setAlta(true);
+        cliente.setRol(Rol.USUARIO);
+
+        cr.save(cliente);
+    }
     @Transactional
     private void validarC(String nombreApellido, String contrasenia, Integer dni, String correo, String direccion) throws Exception {
 
@@ -78,26 +78,26 @@ public class ClienteServicio {
         return clientes;
     }
 
-//    @Transactional
-//    public void actualizarCliente(String id, String nombreApellido, String contrasenia, Integer dni, String correo, Integer telefono, String direccion) {
-//        validarC(nombreApellido, contrasenia, dni, correo, direccion);
-//
-//        Optional<Cliente> respuestaCliente = cr.findById(id);
-//
-//        if (respuestaCliente.isPresent()) {
-//
-//            Cliente cliente = respuestaCliente.get();
-//            cliente.setNombreApellido(nombreApellido);
-//            cliente.setContrasenia(contrasenia);
-//            cliente.setDni(new Dni('x', dni.toString()));
-//            cliente.setCorreo(correo);
-//            cliente.setTelefono(telefono);
-//            cliente.setDireccion(direccion);
-//
-//            cr.save(cliente);
-//        }
-//
-//    }
+    @Transactional
+    public void actualizarCliente(String id, String nombreApellido, String contrasenia, Integer dni, String correo, Integer telefono, String direccion) {
+        validarC(nombreApellido, contrasenia, dni, correo, direccion);
+
+        Optional<Cliente> respuestaCliente = cr.findById(id);
+
+        if (respuestaCliente.isPresent()) {
+
+            Cliente cliente = respuestaCliente.get();
+            cliente.setNombreApellido(nombreApellido);
+            cliente.setContrasenia(contrasenia);
+            cliente.setDni(new Dni('x', dni.toString()));
+            cliente.setCorreo(correo);
+            cliente.setTelefono(telefono);
+            cliente.setDireccion(direccion);
+
+            cr.save(cliente);
+        }
+
+    }
     
     @Transactional
     public void bajaCliente(String id){
