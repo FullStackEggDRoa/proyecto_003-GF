@@ -28,12 +28,12 @@ public class SeguridadWeb extends WebSecurityConfigurerAdapter {
     @Autowired
     public ClienteServicio cS;
     
-//    @Autowired
-//    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
-//        auth.userDetailsService(cS)
-//                .passwordEncoder(new BCryptPasswordEncoder());
-//    }
-//    
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
+        auth.userDetailsService(cS)
+                .passwordEncoder(new BCryptPasswordEncoder());
+    }
+    
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         
