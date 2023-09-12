@@ -46,7 +46,7 @@ public class controladorInicio {
             modelo.put("notificacion", "Usuario o Contraseña invalidos");            
         }
         
-        return "inicio.html";
+        return "login.html";
     }
     
      @GetMapping("/registro")
@@ -79,7 +79,7 @@ public class controladorInicio {
     }
     
     @PostMapping("/registrar_usuario")
-    public String registrarCliente(@RequestParam String nombreApellido, @RequestParam String contrasenia,@RequestParam String dni,@RequestParam String correo, @RequestParam Integer telefono,
+    public String registrar(@RequestParam String nombreApellido, @RequestParam String contrasenia,@RequestParam String dni,@RequestParam String correo, @RequestParam Integer telefono,
             @RequestParam String contraseniaChk, @RequestParam String direccion, ModelMap modelo) {
 
         try {
