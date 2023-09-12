@@ -11,36 +11,10 @@
 </head>
 
 <body>  
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Zona Servi</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Inicio</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Servicios</a>
-          </li>
-          <li class="nav-item dropdown"></li>          
-        </ul>
-        <form class="d-flex" role="Buscar">
-          <input class="form-control me-2" type="buscar" placeholder="Buscar" aria-label="Buscar">
-          <button class="btn btn-outline-success" type="submit">Ir</button>
-        </form>
-      </div>
-    </div>
-  </nav>
-  
+    <nav th:replace="/fragments/navbar :: nav" ></nav>
   <div class="signupFrm">
-
-      <form th:action="${/registrar_usuario}" class="form" method="POST">
-
-    
+      
+    <form th:action="${/registrar_usuario}" class="form" method="POST">
 
       <h3 class="title">Registrarse</h3>
 
@@ -62,7 +36,7 @@
       </div>
 
       <div class="inputContainer">
-        <input type="text" class="input" placeholder=""  name="telefono" th:value="${telefono}">
+        <input type="number" class="input" placeholder=""  name="telefono" th:value="${telefono}">
         <label for="" class="label">Telefono</label>
       </div>
 
