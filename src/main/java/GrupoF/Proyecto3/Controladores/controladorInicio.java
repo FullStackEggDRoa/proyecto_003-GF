@@ -50,12 +50,12 @@ public class controladorInicio {
     }
     
      @GetMapping("/registro")
-    public String registro(ModelMap modelo ) {
+    public String registro(@RequestParam(required = false) String error, ModelMap modelo ) {
 
-//        if (error != null) {
-//            modelo.put("notificacion", "Usuario o Contraseña invalidos!");
-//            
-//        }
+        if (error != null) {
+            modelo.put("notificacion", "Usuario o Contraseña invalidos!");
+            
+        }
         
         return "registro-usuario.html";
     }
