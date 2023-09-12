@@ -16,6 +16,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -41,13 +42,14 @@ public class ClienteServicio implements UserDetailsService {
         Dni dni1 = new Dni();
                 
         cliente.setNombreApellido(nombreApellido);
-        cliente.setContrasenia(contrasenia);
+        cliente.setContrasenia(new BCryptPasswordEncoder().encode(contrasenia));
         dni1.setNumero(dni);
+        cliente.setDni(dni1);
         cliente.setCorreo(correo);
         cliente.setTelefono(telefono);
         cliente.setDireccion(direccion);
         cliente.setAlta(true);
-        cliente.setRol(NombreRol.USUARIO);
+        cliente.setRol(NombreRol);
 
         cr.save(cliente);
     }
@@ -90,7 +92,7 @@ public class ClienteServicio implements UserDetailsService {
 
             Cliente cliente = respuestaCliente.get();
             cliente.setNombreApellido(nombreApellido);
-            cliente.setContrasenia(contrasenia);
+            cliente.setContrasenia(new BCryptPasswordEncoder().encode(contrasenia));
             dni1.setNumero(dni);
             cliente.setCorreo(correo);
             cliente.setTelefono(telefono);
