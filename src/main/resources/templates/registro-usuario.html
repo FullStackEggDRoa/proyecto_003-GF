@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-  <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +14,7 @@
     <nav th:replace="/fragments/navbar :: nav" ></nav>
   <div class="signupFrm">
       
-    <form th:action="${/registrar_usuario}" class="form" method="POST">
+    <form th:action="@{/registrar_usuario}" class="form" method="POST">
 
       <h3 class="title">Registrarse</h3>
 
