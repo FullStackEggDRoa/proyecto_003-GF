@@ -29,7 +29,11 @@ body {
 }
 
 body {
+<<<<<<< HEAD
 background-image: url(../img/fondo1.jpg);
+=======
+background-image: url(/img/hero-bg.png);
+>>>>>>> developer
 background-size: cover;
 background-repeat: no-repeat;
 background-attachment: fixed;
