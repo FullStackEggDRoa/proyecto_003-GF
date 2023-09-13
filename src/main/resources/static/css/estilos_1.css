@@ -1,0 +1,29 @@
+.header{
+    display: flex;
+    font-family: "Audiowide", sans-serif;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid black;
+    height: 70px;
+}
+nav{
+    background-color: whitesmoke
+}
+body{
+    background-image: url(/img/hero-bg.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center center;
+    
+}
+a{
+    color: grey
+}
+button{
+    color: grey
+}
+ul{
+    color: red
+}
+
