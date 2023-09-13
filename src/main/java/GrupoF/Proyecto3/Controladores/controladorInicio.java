@@ -95,7 +95,7 @@ public class controladorInicio {
 
             modelo.put("notificacion", ex.getMessage());
             
-            return "registro_usuario.html";
+            return "registro-usuario.html";
         }
 
     }
