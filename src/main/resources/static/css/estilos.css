@@ -29,6 +29,7 @@ body {
 }
 
 body {
+
 background-image: url(/img/hero-bg.png);
 background-size: cover;
 background-repeat: no-repeat;
@@ -39,37 +40,22 @@ background-position: center center;
 }
 /*index*/
 
-
-
-
 .marca{
  
    text-align: center;
    margin-top: 30px;
 }
 
-.gif_electricidad{
-    position: absolute;
-    top: 0px;
-    left: 0px;
-transform: scale(0.7);    
-        }
 
-.gif_plomeria{
-    position: absolute;
-    top: 0px;
-    left: 700px;
-    transform: scale(0.8);    
-                }
 
 button{
     background-color:transparent;
     border-color: transparent;
-    font-style: oblique;
-    font-family: "Caveat Brush";
-    font-size: 50px;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 30px;
     color:#f3b634;
-    margin-left: 180px;
+text-align: center;
+    font-weight: 700;
 }
 
 button:hover{
