@@ -46,8 +46,8 @@ public class ClienteServicio implements UserDetailsService {
         cliente.setNombreApellido(nombreApellido);
         cliente.setContrasenia(new BCryptPasswordEncoder().encode(contrasenia));
         dni1.setNumero(dni);
-        cliente.setDni(dni1);
         dR.save(dni1);
+        cliente.setDni(dni1);        
         cliente.setCorreo(correo);
         cliente.setTelefono(Integer.valueOf(telefono));
         cliente.setDireccion(direccion);
@@ -76,6 +76,7 @@ public class ClienteServicio implements UserDetailsService {
             throw new Exception("La direccion no puede ser nula o estar vacia");
         }
     }
+    
     @Transactional(readOnly = true)
     public List<Cliente> listarClientes() {
 
@@ -86,6 +87,7 @@ public class ClienteServicio implements UserDetailsService {
 
     @Transactional
     public void actualizarCliente(String id, String nombreApellido, String contrasenia, String dni, String correo, Integer telefono, String direccion) throws Exception {
+        
         validarC(nombreApellido, contrasenia, dni, correo, direccion);
 
         Optional<Cliente> respuestaCliente = cr.findById(id);
