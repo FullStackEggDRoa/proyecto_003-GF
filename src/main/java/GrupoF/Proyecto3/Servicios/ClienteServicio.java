@@ -36,7 +36,7 @@ public class ClienteServicio implements UserDetailsService {
 
         validarC(nombreApellido, contrasenia, dni, correo, direccion);
 
-        if (cr.findByCorreo(correo) != null) {
+        if (cr.buscarPorCorreo(correo) != null) {
             throw new Exception("Ya existe un usuario registrado con este correo electrónico.");
         }
 
@@ -118,7 +118,7 @@ public class ClienteServicio implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Cliente cliente = cr.findByCorreo(username);
+        Cliente cliente = cr.buscarPorCorreo(username);
         
         if (cliente != null) {
             
