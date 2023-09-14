@@ -32,12 +32,12 @@ public class ClienteServicio implements UserDetailsService {
     private DniRepositorio dr;
     
     @Transactional
-    public void registrarCliente(String nombreApellido, String contrasenia, String dni, String correo, String telefono, String direccion, NombreRol NombreRol) throws Exception {
+    public void registrarCliente(String nombreApellido, String contrasenia, String dni, String correo, String telefono, String direccion) throws MiExcepcion{
 
-        validarC(nombreApellido, contrasenia, dni, correo, direccion);
+        validarDatosCliente(nombreApellido, contrasenia, dni, correo, direccion);
 
         if (cr.findByCorreo(correo) != null) {
-            throw new Exception("Ya existe un usuario registrado con este correo electrónico.");
+           throw new MiExcepcion("Ya existe un usuario registrado con este correo electrónico.");
         }
 
         Cliente cliente = new Cliente();
@@ -58,8 +58,8 @@ public class ClienteServicio implements UserDetailsService {
         
     }
     
-    @Transactional
-    private void validarC(String nombreApellido, String contrasenia, String dni, String correo, String direccion) throws MiExcepcion {
+    
+    private void validarDatosCliente(String nombreApellido, String contrasenia, String dni, String correo, String direccion) throws MiExcepcion {
 
         if (nombreApellido.isEmpty() || nombreApellido == null) {
             throw new MiExcepcion("El nombre y apellido no pueden ser nulos o estar vacíos");
@@ -88,7 +88,7 @@ public class ClienteServicio implements UserDetailsService {
 
     @Transactional
     public void actualizarCliente(String id, String nombreApellido, String contrasenia, String dni, String correo, Integer telefono, String direccion) throws Exception {
-        validarC(nombreApellido, contrasenia, dni, correo, direccion);
+        validarDatosCliente(nombreApellido, contrasenia, dni, correo, direccion);
 
         Optional<Cliente> respuestaCliente = cr.findById(id);
         Dni dni1 = new Dni();

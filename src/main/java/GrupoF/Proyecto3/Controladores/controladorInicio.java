@@ -4,6 +4,7 @@ package GrupoF.Proyecto3.Controladores;
 import GrupoF.Proyecto3.Entidades.Cliente;
 import GrupoF.Proyecto3.Entidades.Usuario;
 import GrupoF.Proyecto3.Enumeradores.NombreRol;
+import GrupoF.Proyecto3.Excepciones.MiExcepcion;
 import GrupoF.Proyecto3.Servicios.ClienteServicio;
 import GrupoF.Proyecto3.Servicios.ProveedorServicio;
 import java.util.List;
@@ -73,17 +74,18 @@ public class controladorInicio {
     @PostMapping("/registrar_usuario")
     public String registrar(@RequestParam String nombreApellido, @RequestParam String contrasenia,@RequestParam String dni,@RequestParam String correo, @RequestParam String telefono,
             @RequestParam String contraseniaChk, @RequestParam String direccion, ModelMap modelo) {
-
-        try {
-            cS.registrarCliente(nombreApellido,contrasenia,dni,correo,telefono,direccion,NombreRol.USUARIO);
-
+            
+            try {
+                
+            cS.registrarCliente(nombreApellido,contrasenia,dni,correo,telefono,direccion);
+        
             modelo.put("notificacion", "Usuario registrado correctamente!");
             modelo.put("correo",correo);
             modelo.put("contrasenia", contrasenia);
             
             return "redirect:/";
             
-        } catch (Exception ex) {
+        } catch (MiExcepcion ex) {
 
             modelo.put("notificacion", ex.getMessage());
             
