@@ -29,15 +29,28 @@ public class ClienteServicio implements UserDetailsService {
 
     @Autowired
     private ClienteRepositorio cr;
+<<<<<<< HEAD
     private DniRepositorio dr;
     
     @Transactional
     public void registrarCliente(String nombreApellido, String contrasenia, String dni, String correo, String telefono, String direccion) throws MiExcepcion{
+=======
+    @Autowired
+    private DniRepositorio dR;
+
+    @Transactional
+    public void registrarCliente(String nombreApellido, String contrasenia, String dni, String correo, String telefono, String direccion) throws Exception  {
+>>>>>>> developer
 
         validarDatosCliente(nombreApellido, contrasenia, dni, correo, direccion);
 
+<<<<<<< HEAD
         if (cr.findByCorreo(correo) != null) {
            throw new MiExcepcion("Ya existe un usuario registrado con este correo electrónico.");
+=======
+        if (cr.buscarPorCorreo(correo) != null) {
+            throw new Exception("Ya existe un usuario registrado con este correo electrónico.");
+>>>>>>> developer
         }
 
         Cliente cliente = new Cliente();
@@ -46,20 +59,33 @@ public class ClienteServicio implements UserDetailsService {
         cliente.setNombreApellido(nombreApellido);
         cliente.setContrasenia(new BCryptPasswordEncoder().encode(contrasenia));
         dni1.setNumero(dni);
+<<<<<<< HEAD
         dr.save(dni1);
         cliente.setDni(dni1);
+=======
+        dR.save(dni1);
+        cliente.setDni(dni1);        
+>>>>>>> developer
         cliente.setCorreo(correo);
         cliente.setTelefono(Integer.valueOf(telefono));
         cliente.setDireccion(direccion);
         cliente.setAlta(true);
         cliente.setRol(NombreRol.USUARIO);
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> developer
         cr.save(cliente);
         
     }
     
     
+<<<<<<< HEAD
     private void validarDatosCliente(String nombreApellido, String contrasenia, String dni, String correo, String direccion) throws MiExcepcion {
+=======
+    private void validarC(String nombreApellido, String contrasenia, String dni, String correo, String direccion) throws Exception {
+>>>>>>> developer
 
         if (nombreApellido.isEmpty() || nombreApellido == null) {
             throw new MiExcepcion("El nombre y apellido no pueden ser nulos o estar vacíos");
@@ -88,7 +114,12 @@ public class ClienteServicio implements UserDetailsService {
 
     @Transactional
     public void actualizarCliente(String id, String nombreApellido, String contrasenia, String dni, String correo, Integer telefono, String direccion) throws Exception {
+<<<<<<< HEAD
         validarDatosCliente(nombreApellido, contrasenia, dni, correo, direccion);
+=======
+        
+        validarC(nombreApellido, contrasenia, dni, correo, direccion);
+>>>>>>> developer
 
         Optional<Cliente> respuestaCliente = cr.findById(id);
         Dni dni1 = new Dni();
@@ -120,7 +151,7 @@ public class ClienteServicio implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Cliente cliente = cr.findByCorreo(username);
+        Cliente cliente = cr.buscarPorCorreo(username);
         
         if (cliente != null) {
             

@@ -143,7 +143,26 @@ color: purple ;
     border-radius: 6px;
     cursor: pointer;
     font-size: 16px;
-    margin-top: 30px;
+    margin-top: 30px
+}
+
+ .submitBtnR {
+    display: block;
+    margin-left: auto;
+    padding: 10px 20px;
+    border: none;
+    background-color: transparent;
+    color: purple;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 20px;
+
+}
+
+.submitBtnR:hover {
+    background-color: #f3b634;
+    transform: translateY(-2px);
 }
 
 .submitBtn:hover {
@@ -157,7 +176,7 @@ color: purple ;
     z-index: 10;
     font-size: 14px;
     font-weight: 600;
-    color: purple;
+    color: #f3b634;
 }
 
 .input:focus {
@@ -175,3 +194,22 @@ color: purple ;
 h3 {
     text-align: center;
 }
+<!--registro prueba-->
+#registro{
+    
+   border-width: 50px;
+   border-color: orangered;
+   background-color: #f3b634;
+}
+.registro{
+    border-width: 50px;
+    border-color: orangered;
+    background-color: #f3b634;
+}
+#label{
+   width: 25%; 
+   float:left;
+}
+
+
+

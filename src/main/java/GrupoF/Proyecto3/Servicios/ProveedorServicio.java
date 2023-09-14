@@ -33,7 +33,7 @@ public class ProveedorServicio {
         
         validarP(nombreApellido, contrasenia, dni, correo, telefono, numMatricula, categoriaServicio, costoHora);
              
-        if (pr.findByCorreo(correo) != null){
+        if (pr.buscarPorCorreo(correo) != null){
             throw new Exception("Ya existe un usuario registrado con este correo electrónico.");
         }
         
