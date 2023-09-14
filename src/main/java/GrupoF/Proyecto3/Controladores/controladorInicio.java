@@ -44,10 +44,10 @@ public class controladorInicio {
      @GetMapping("/registro")
     public String registro(@RequestParam(required = false) String error, ModelMap modelo ) {
 
-       /* if (error != null) {
+       if (error != null) {
             modelo.put("notificacion", "Usuario o Contraseña invalidos!");
             
-        }*/
+       }
         
         return "registro-usuario.html";
     }
@@ -75,7 +75,7 @@ public class controladorInicio {
             @RequestParam String contraseniaChk, @RequestParam String direccion, ModelMap modelo) {
 
         try {
-            cS.registrar(nombreApellido,contrasenia,dni,correo,telefono,direccion,NombreRol.USUARIO);
+            cS.registrarCliente(nombreApellido,contrasenia,dni,correo,telefono,direccion,NombreRol.USUARIO);
 
             modelo.put("notificacion", "Usuario registrado correctamente!");
             modelo.put("correo",correo);
