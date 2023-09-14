@@ -5,6 +5,7 @@ import GrupoF.Proyecto3.Entidades.Cliente;
 import GrupoF.Proyecto3.Entidades.Dni;
 import GrupoF.Proyecto3.Enumeradores.NombreRol;
 import GrupoF.Proyecto3.Repositorios.ClienteRepositorio;
+import GrupoF.Proyecto3.Repositorios.DniRepositorio;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -27,14 +28,15 @@ public class ClienteServicio implements UserDetailsService {
 
     @Autowired
     private ClienteRepositorio cr;
-    
+    @Autowired
+    private DniRepositorio dR;
 
     @Transactional
-    public void registrarCliente(String nombreApellido, String contrasenia, String dni, String correo, Integer telefono, String direccion, NombreRol NombreRol) throws Exception {
+    public void registrarCliente(String nombreApellido, String contrasenia, String dni, String correo, String telefono, String direccion) throws Exception  {
 
         validarC(nombreApellido, contrasenia, dni, correo, direccion);
 
-        if (cr.findByCorreo(correo) != null) {
+        if (cr.buscarPorCorreo(correo) != null) {
             throw new Exception("Ya existe un usuario registrado con este correo electrónico.");
         }
 
@@ -44,16 +46,18 @@ public class ClienteServicio implements UserDetailsService {
         cliente.setNombreApellido(nombreApellido);
         cliente.setContrasenia(new BCryptPasswordEncoder().encode(contrasenia));
         dni1.setNumero(dni);
-        cliente.setDni(dni1);
+        dR.save(dni1);
+        cliente.setDni(dni1);        
         cliente.setCorreo(correo);
-        cliente.setTelefono(telefono);
+        cliente.setTelefono(Integer.valueOf(telefono));
         cliente.setDireccion(direccion);
         cliente.setAlta(true);
-        cliente.setRol(NombreRol);
+        cliente.setRol(NombreRol.USUARIO);
 
         cr.save(cliente);
     }
-    @Transactional
+    
+    
     private void validarC(String nombreApellido, String contrasenia, String dni, String correo, String direccion) throws Exception {
 
         if (nombreApellido.isEmpty() || nombreApellido == null) {
@@ -72,6 +76,7 @@ public class ClienteServicio implements UserDetailsService {
             throw new Exception("La direccion no puede ser nula o estar vacia");
         }
     }
+    
     @Transactional(readOnly = true)
     public List<Cliente> listarClientes() {
 
@@ -82,6 +87,7 @@ public class ClienteServicio implements UserDetailsService {
 
     @Transactional
     public void actualizarCliente(String id, String nombreApellido, String contrasenia, String dni, String correo, Integer telefono, String direccion) throws Exception {
+        
         validarC(nombreApellido, contrasenia, dni, correo, direccion);
 
         Optional<Cliente> respuestaCliente = cr.findById(id);
@@ -112,7 +118,7 @@ public class ClienteServicio implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Cliente cliente = cr.findByCorreo(username);
+        Cliente cliente = cr.buscarPorCorreo(username);
         
         if (cliente != null) {
             
