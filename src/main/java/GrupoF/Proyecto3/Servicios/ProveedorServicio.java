@@ -46,7 +46,6 @@ public class ProveedorServicio {
         proveedor.setDni(dni2);
         proveedor.setCorreo(correo);
         proveedor.setTelefono(telefono);
-        
         proveedor.setNumMatricula(numMatricula);
         proveedor.setCategoriaServicio(categoriaServicio);
         proveedor.setCostoHora(costoHora);
