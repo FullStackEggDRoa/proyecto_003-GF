@@ -44,7 +44,7 @@ public class Usuario implements Serializable {
     @Column(name="correo")
     private String correo;
     @Column(name="telefono")
-    private Integer telefono;
+    private String telefono;
     
     @OneToOne
     private Imagen imagen;

@@ -30,7 +30,7 @@ public class ClienteServicio implements UserDetailsService {
     
 
     @Transactional
-    public void registrarCliente(String nombreApellido, String contrasenia, String dni, String correo, Integer telefono, String direccion, NombreRol NombreRol) throws Exception {
+    public void registrarCliente(String nombreApellido, String contrasenia, String dni, String correo, Integer telefono, String direccion) throws Exception {
 
         validarC(nombreApellido, contrasenia, dni, correo, direccion);
 
@@ -49,7 +49,7 @@ public class ClienteServicio implements UserDetailsService {
         cliente.setTelefono((int)Integer.valueOf(telefono));
         cliente.setDireccion(direccion);
         cliente.setAlta(true);
-        cliente.setRol(NombreRol);
+        cliente.setRol(NombreRol.USUARIO);
 
         cr.save(cliente);
     }
