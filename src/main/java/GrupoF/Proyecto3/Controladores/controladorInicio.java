@@ -81,13 +81,13 @@ public class controladorInicio {
             modelo.put("correo",correo);
             modelo.put("contrasenia", contrasenia);
             
-            return "login.html";
+            return "redirect:/";
             
         } catch (Exception ex) {
 
             modelo.put("notificacion", ex.getMessage());
             
-            return "registro_usuario.html";
+            return "redirect:/registro";
         }
 
     }

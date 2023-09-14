@@ -38,11 +38,12 @@ public class ProveedorServicio {
         }
         
         Proveedor proveedor = new Proveedor();
-        Dni dni1 = new Dni();
+        Dni dni2 = new Dni();
         
         proveedor.setNombreApellido(nombreApellido);
         proveedor.setContrasenia(contrasenia);
-        dni1.setNumero(dni); 
+        dni2.setNumero(dni); 
+        proveedor.setDni(dni2);
         proveedor.setCorreo(correo);
         proveedor.setTelefono(telefono);
         
