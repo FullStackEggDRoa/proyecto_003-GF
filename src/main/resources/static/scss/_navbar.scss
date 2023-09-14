@@ -1,6 +1,21 @@
 // Generate series of `.navbar-expand-*` responsive classes for configuring
 // where your navbar collapses.
+button{
+  background-color:transparent;
+  border-color: transparent;
+  font-family:Arial, Helvetica, sans-serif;
+  font-size: 30px;
+  color:#f3b634;
+text-align: center;
+  font-weight: 700;
+}
+button:hover{
+  color: purple ;
+  
+  }
+
 .navbar-expand {
+
   @each $breakpoint in map-keys($grid-breakpoints) {
     $next: breakpoint-next($breakpoint, $grid-breakpoints);
     $infix: breakpoint-infix($next, $grid-breakpoints);
@@ -14,13 +29,9 @@
         .navbar-nav {
           flex-direction: row;
 
-          .dropdown-menu {
-            position: absolute;
-          }
-
           .nav-link {
-            padding-right: var(--#{$prefix}navbar-nav-link-padding-x);
-            padding-left: var(--#{$prefix}navbar-nav-link-padding-x);
+            padding-right: var(-#{$prefix}navbar-nav-link-padding-x);
+            padding-left: var(-#{$prefix}navbar-nav-link-padding-x);
           }
         }
 
