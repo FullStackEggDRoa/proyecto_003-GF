@@ -42,7 +42,7 @@ public class controladorInicio {
     }
     
      @GetMapping("/registro")
-    public String registro(@RequestParam(required = false) String error, ModelMap modelo ) {
+    public String registro(@RequestParam(required = false) String error, @RequestParam String tipoUsuario, ModelMap modelo ) {
 
        if (error != null) {
             modelo.put("notificacion", "Usuario o Contraseña invalidos!");
@@ -51,6 +51,7 @@ public class controladorInicio {
         
         return "registro-usuario.html";
     }
+    
     
     @PreAuthorize("hasAnyRole('ROLE_USUARIO', 'ROLE_ADM')")
     @GetMapping("/sesion")
