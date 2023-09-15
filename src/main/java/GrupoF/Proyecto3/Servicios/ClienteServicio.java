@@ -64,7 +64,7 @@ public class ClienteServicio implements UserDetailsService {
             throw new MiExcepcion("El nombre y apellido no pueden ser nulos o estar vacíos");
         }
         if (contrasenia.isEmpty() || contrasenia == null || contrasenia.length() <= 8) {
-            throw new MiExcepcion("La contraseña no puede estar vacía, y tener más de 8 caracteres");
+            throw new MiExcepcion("La contraseña no puede estar vacía, y debe tener al menos 8 caracteres");
         }
         if (dni.isEmpty() || dni == null) {
             throw new MiExcepcion("El DNI no puede ser nulo o estar vacio");
@@ -138,6 +138,7 @@ public class ClienteServicio implements UserDetailsService {
             
             return new User(cliente.getCorreo(), cliente.getContrasenia(),permisos);
         }else{
+            
             //throw new UsernameNotFoundException("Usuario y contraseña inválidos");
             
             return null;

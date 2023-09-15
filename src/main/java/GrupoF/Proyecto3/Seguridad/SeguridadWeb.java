@@ -5,7 +5,7 @@
 package GrupoF.Proyecto3.Seguridad;
 
 import GrupoF.Proyecto3.Servicios.ClienteServicio;
-//import GrupoF.Proyecto3.Servicios.ProveedorServicio;
+import GrupoF.Proyecto3.Servicios.ProveedorServicio;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -35,14 +35,14 @@ public class SeguridadWeb extends WebSecurityConfigurerAdapter {
                 .passwordEncoder(new BCryptPasswordEncoder());
     }
     
-//    @Autowired
-//    public ProveedorServicio pS;
-//    
-//    @Autowired
-//    public void configureGlobal2(AuthenticationManagerBuilder auth) throws Exception{
-//        auth.userDetailsService(pS)
-//                .passwordEncoder(new BCryptPasswordEncoder());
-//    }
+    @Autowired
+    public ProveedorServicio pS;
+    
+    @Autowired
+    public void configureGlobal2(AuthenticationManagerBuilder auth) throws Exception{
+        auth.userDetailsService(pS)
+                .passwordEncoder(new BCryptPasswordEncoder());
+    }
         
     @Override
     protected void configure(HttpSecurity http) throws Exception {
