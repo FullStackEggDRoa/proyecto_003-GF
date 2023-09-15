@@ -47,7 +47,16 @@
 
             </ul>            
             <a style="margin:1px;" class="button" href="/ingreso">Login</a>            
-            <a style="margin:10px;" class="button" href="/registro">Registrarse</a>  
+             
+            <div class="dropdown">
+                <button class="dropdown-toggle button" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Registrarse
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="/usuario/registro">Cliente</a></li>
+                    <li><a class="dropdown-item" href="/proveedor/registro">Proveedor</a></li>
+                </ul>
+            </div>
 
             <form class="d-flex" role="search">
                 <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">

@@ -12,7 +12,13 @@
 
 
         <nav th:replace="/fragments/navbar :: nav"> </nav>
-
+        <div th:if="${errors != null}" class="card text-white bg-danger mb-3 mensajeError" >
+            <div class="card-body">
+                <h5 class="card-title">Error!</h5>
+                <p class="card-text" th:text="${notificacion}"></p>
+            </div>
+        </div>
+        
 
         <div class="signupFrm">
             <form th:action="@{/ingreso}" class="form" method="POST">
@@ -29,9 +35,17 @@
                     <label for="" class="label">Contraseña</label>
                 </div>
                 <input type="submit" class="submitBtn" value="Enviar">
-                <input type="submit" class="submitBtnR" value="Registrarse">
 
 
+                <div class="dropdown">
+                    <button class="dropdown-toggle submitBtnR" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Registrarse
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/usuario/registro">Cliente</a></li>
+                        <li><a class="dropdown-item" href="/proveedor/reggistro">Proveedor</a></li>
+                    </ul>
+                </div>
 
             </form>
         </div> 
