@@ -1,4 +1,44 @@
+<<<<<<< HEAD
 .collapse navbar-collapse{
 color: black
+=======
+.navbar navbar-expand-sm navbar-white bg-white {
+height:min-content;
+background-color: #000;
+
+}
+
+.nav-item{
+color: #f62746;
+font-weight: bolder;
+
+}
+
+
+.button{
+   
+    margin: 10PX;
+    border-radius: 5px;
+    box-shadow: -2px 2px 0px 0px rgba(0, 0, 0, 0.3);
+    color: #f62746d2;
+    font-style: normal;
+    font-weight: bolder;
+    text-decoration: none;
+    padding: 3px;
+   
+  }
+  
+ /*Footer*/
+  
+.button1{
+  margin: 10PX;
+  border-radius: 5px;
+  box-shadow: -2px 2px 0px 0px rgba(0, 0, 0, 0.3);
+  color: #f62746d2;
+  font-style: normal;
+  font-weight: bolder;
+  text-decoration: none;
+  padding: 3px;
+>>>>>>> developer
 
 }
