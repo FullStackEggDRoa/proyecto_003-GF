@@ -49,7 +49,7 @@ public class controladorInicio {
             
        }
         
-        return "registro-usuario.html";
+        return "registro-cliente.html";
     }
     
     
