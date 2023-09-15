@@ -28,8 +28,7 @@ public class ControladorProveedor {
             @RequestParam String categoriaServicio, @RequestParam(required=false) String costoHora, ModelMap modelo){
         
         try {
-           ps.registrarProveedor(nombreApellido, contraseña, dni, correo, telefono, 
-                                numeroMatricula, categoriaServicio, costoHora);
+           //ps.registrarProveedor(nombreApellido, contraseña, dni, correo, telefono, numeroMatricula, categoriaServicio, costoHora);
            modelo.put("exito","el proveedor fue registrado correctamente");
         } catch (Exception e) {
             modelo.put("error", e.getMessage());

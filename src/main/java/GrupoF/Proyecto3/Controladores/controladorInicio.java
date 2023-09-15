@@ -41,7 +41,7 @@ public class controladorInicio {
         return "login.html";
     }
     
-     @GetMapping("/registro")
+    @GetMapping("/registro")
     public String registro(@RequestParam(required = false) String error, ModelMap modelo ) {
 
        if (error != null) {
@@ -51,6 +51,7 @@ public class controladorInicio {
         
         return "registro-usuario.html";
     }
+    
     
     @PreAuthorize("hasAnyRole('ROLE_USUARIO', 'ROLE_ADM')")
     @GetMapping("/sesion")
