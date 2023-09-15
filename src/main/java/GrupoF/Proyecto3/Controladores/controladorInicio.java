@@ -41,8 +41,8 @@ public class controladorInicio {
         return "login.html";
     }
     
-     @GetMapping("/registro")
-    public String registro(@RequestParam(required = false) String error, @RequestParam String tipoUsuario, ModelMap modelo ) {
+    @GetMapping("/registro")
+    public String registro(@RequestParam(required = false) String error, ModelMap modelo ) {
 
        if (error != null) {
             modelo.put("notificacion", "Usuario o Contraseña invalidos!");
