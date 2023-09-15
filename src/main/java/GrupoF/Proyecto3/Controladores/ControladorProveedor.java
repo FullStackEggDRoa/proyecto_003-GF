@@ -23,13 +23,13 @@ public class ControladorProveedor {
     }
     
     @PostMapping("/registrar")
-    public String registrar(@RequestParam String nombreApellido, @RequestParam String contraseña, @RequestParam(required=false) Integer dni,
-            @RequestParam String correo, @RequestParam(required=false) Integer telefono, @RequestParam(required=false) Integer numeroMatricula,
-            @RequestParam String categoriaServicio, @RequestParam(required=false) Double costoHora, ModelMap modelo){
+    public String registrar(@RequestParam String nombreApellido, @RequestParam String contraseña, @RequestParam(required=false) String dni,
+            @RequestParam String correo, @RequestParam(required=false) String telefono, @RequestParam(required=false) String numeroMatricula,
+            @RequestParam String categoriaServicio, @RequestParam(required=false) String costoHora, ModelMap modelo){
         
         try {
-           ps.registrarProveedor(nombreApellido, contraseña, dni, correo, telefono, numeroMatricula, 
-                   categoriaServicio, costoHora);
+           ps.registrarProveedor(nombreApellido, contraseña, dni, correo, telefono, 
+                                numeroMatricula, categoriaServicio, costoHora);
            modelo.put("exito","el proveedor fue registrado correctamente");
         } catch (Exception e) {
             modelo.put("error", e.getMessage());
@@ -38,5 +38,9 @@ public class ControladorProveedor {
         
         return ("index.html");
     }
+    
+    //metodo para listar
+    
+    //metodo  GET y POST para modificar
     
 }

@@ -37,4 +37,8 @@ public class ControladorUsuario {
         return ("index.html");
     }
     
+    //metodo para listar
+    
+    //metodos GET y POST para modificar
+    
 }
