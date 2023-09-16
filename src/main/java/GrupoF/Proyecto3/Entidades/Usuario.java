@@ -43,7 +43,7 @@ public class Usuario implements Serializable {
     private Dni dni;
     @Column(name="correo")
     private String correo;
-    @Column(name="telefono")
+    @Column(name="telefono", columnDefinition="BIGINT")
     private Integer telefono;
     
     @OneToOne
