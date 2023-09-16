@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+
+  <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="/css/estilos.css">
+  <link rel="stylesheet" href="/scss/_navbar.scss">
+        <link rel="stylesheet" href="/css/scss/_navbar.scss">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body> 
+  <nav th:replace="/fragments/navbar :: nav"> </nav>
+  <div th:if="${error != null}" class="card text-white bg-danger mb-3 mensajeError" >
+            <div class="card-body">
+                <h5 class="card-title">Error!</h5>
+                <p class="card-text" th:text="${error}"></p>
+            </div>
+        </div>
+        <div th:if="${exito != null}" class="card text-white bg-success mb-3 mt-3 mensajeExito" >
+            <div class="card-body">
+                <h5 class="card-title">Exito!</h5>
+                <p class="card-text" th:text="${exito}"></p>
+            </div>
+        </div>
+  <div class="signupFrm">
+      <form th:action="${/proveedor/registrar}" class="form" method="POST">
+      <h3 class="title">Registrarse</h3>
+
+      <div class="inputContainer">
+        <input type="text" class="input" placeholder="" name="nombreApellido" th:value="${nombreApellido}">
+        <label for="" class="label">Nombre y Apellido</label>
+      </div>
+
+      <div class="inputContainer">
+        <input type="text" class="input" placeholder="" name="direccion" th:value="${direccion}">
+        <label for="" class="label">Dirección</label>
+      </div>
+
+      <div class="inputContainer">
+        <input type="number" class="input" placeholder="" name="dni" th:value="${dni}">
+        <label for="" class="label">DNI</label>
+      </div>
+
+      <div class="inputContainer">
+        <input type="number" class="input" placeholder="" name="telefono" th:value="${telefono}">
+        <label for="" class="label">Telefono</label>
+      </div>
+
+      <div class="inputContainer">
+        <input type="email" class="input" placeholder="" name="correo" th:value="${correo}">
+        <label for="" class="label">E-mail</label>
+      </div>
+
+      <div class="inputContainer">
+        <input type="text" class="input" placeholder="" name="categoriaServicio" th:value="${categoriaServicio}">
+        <label for="" class="label">Profesión</label>
+      </div>
+
+      <div class="inputContainer">
+        <input type="text" class="input" placeholder="" name="numeroMatricula" th:value="${numeroMatricula}">
+        <label for="" class="label">Matricula Profesional</label>
+      </div>
+
+      <div class="inputContainer">
+        <input type="number" class="input" placeholder=""  name="costoHora" th:value="${costoHora}">
+        <label for="" class="label">Costo Hora de Trabajo</label>
+      </div>
+
+      <div class="inputContainer">
+        <input type="password" class="input" placeholder="" name="contrasenia">
+        <label for="" class="label">Contraseña</label>
+      </div>
+
+      <div class="inputContainer">
+        <input type="password" class="input" placeholder=""  name="contraseniaChk">
+        <label for="" class="label">Confirmar Contraseña</label>
+      </div>
+
+      <input type="submit" class="submitBtn" value="Enviar">
+    </form>
+  </div>  
+    
+     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+</body>
+</html>
