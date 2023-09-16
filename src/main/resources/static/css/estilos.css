@@ -54,7 +54,7 @@ button{
     font-family:Arial, Helvetica, sans-serif;
     font-size: 30px;
     color:#f3b634;
-text-align: center;
+    text-align: center;
     font-weight: 700;
 }
 
@@ -79,7 +79,7 @@ color: purple ;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 115vh;
+    height: 100vh;
 }
 
 .form {
