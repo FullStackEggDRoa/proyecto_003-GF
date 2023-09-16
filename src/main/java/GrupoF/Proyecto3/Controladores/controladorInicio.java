@@ -4,6 +4,7 @@ package GrupoF.Proyecto3.Controladores;
 import GrupoF.Proyecto3.Entidades.Cliente;
 import GrupoF.Proyecto3.Entidades.Usuario;
 import GrupoF.Proyecto3.Enumeradores.NombreRol;
+import GrupoF.Proyecto3.Excepciones.MiExcepcion;
 import GrupoF.Proyecto3.Servicios.ClienteServicio;
 import GrupoF.Proyecto3.Servicios.ProveedorServicio;
 import java.util.List;
@@ -87,7 +88,7 @@ public class controladorInicio {
 
             return "redirect:/";
 
-        } catch (Exception ex) {
+        } catch (MiExcepcion ex) {
 
             modelo.put("notificacion", ex.getMessage());
             
