@@ -31,6 +31,6 @@ public class Imagen implements Serializable {
     @Column(name="nombre")
     private String nombre;
     @Lob @Basic(fetch = FetchType.LAZY)
-    private Byte[] contenido;
+    private byte[] contenido;
     
 }
