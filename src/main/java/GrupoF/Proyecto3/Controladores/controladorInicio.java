@@ -79,6 +79,7 @@ public class controladorInicio {
     public String registrar(@RequestParam String nombreApellido, @RequestParam String contrasenia, @RequestParam String dni, @RequestParam String correo, @RequestParam String telefono,
             @RequestParam String contraseniaChk, @RequestParam String direccion, ModelMap modelo) {
 
+
         try {
             cS.registrarCliente(nombreApellido, contrasenia, dni, correo, telefono, direccion);
 

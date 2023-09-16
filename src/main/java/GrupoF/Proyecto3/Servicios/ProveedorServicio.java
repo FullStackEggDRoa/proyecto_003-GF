@@ -4,7 +4,9 @@ package GrupoF.Proyecto3.Servicios;
 
 import GrupoF.Proyecto3.Entidades.Dni;
 import GrupoF.Proyecto3.Entidades.Proveedor;
+
 import GrupoF.Proyecto3.Enumeradores.NombreRol;
+
 import GrupoF.Proyecto3.Excepciones.MiExcepcion;
 import GrupoF.Proyecto3.Repositorios.DniRepositorio;
 
@@ -14,6 +16,7 @@ import java.util.List;
 import java.util.Optional;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,11 +36,13 @@ public class ProveedorServicio implements UserDetailsService {
     @Autowired
     private ProveedorRepositorio pr;
     private DniRepositorio dr;
+
     
     @Transactional
     public void registrarProveedor (String nombreApellido, String contrasenia, String dni, String correo, String telefono, Integer numeroMatricula, String categoriaServicio, Double costoHora) throws MiExcepcion{
         
         validarDatosProveedor(nombreApellido, contrasenia, dni, correo, telefono, numeroMatricula, categoriaServicio, costoHora);
+
              
         if (pr.buscarPorCorreo(correo) != null){
             throw new MiExcepcion("Ya existe un usuario registrado con este correo electrónico.");
@@ -47,6 +52,7 @@ public class ProveedorServicio implements UserDetailsService {
         Dni dni2 = new Dni();
         
         proveedor.setNombreApellido(nombreApellido);
+
         proveedor.setContrasenia(new BCryptPasswordEncoder().encode(contrasenia));
         dni2.setNumero(dni);
         dr.save(dni2);
@@ -55,7 +61,7 @@ public class ProveedorServicio implements UserDetailsService {
         proveedor.setTelefono(Integer.valueOf(telefono));
         proveedor.setNumMatricula(numeroMatricula);
         proveedor.setCategoriaServicio(categoriaServicio);
-        proveedor.setCategoriaServicio(categoriaServicio);
+        proveedor.setCostoHora(costoHora);
         proveedor.setAlta(true);
         proveedor.setRol(NombreRol.USUARIO);
         
@@ -66,11 +72,12 @@ public class ProveedorServicio implements UserDetailsService {
     @Transactional
     private void validarDatosProveedor(String nombreApellido, String contrasenia, String dni, String correo, String telefono, Integer numeroMatricula, String categoriaServicio, Double costoHora) throws MiExcepcion{
 
+
         if (nombreApellido.isEmpty() || nombreApellido == null) {
             throw new MiExcepcion("El nombre y apellido no pueden ser nulos o estar vacíos");
         }
         if (contrasenia.isEmpty() || contrasenia == null || contrasenia.length() <= 8) {
-            throw new MiExcepcion("La contraseña no puede estar vacía, y tener más de 8 caracteres");
+            throw new MiExcepcion("La contraseña no puede estar vacía, y debe tener al menos 8 caracteres");
         }
            if (dni.isEmpty() || dni == null) {
             throw new MiExcepcion("El DNI no puede ser nulo o estar vacio");
@@ -91,7 +98,7 @@ public class ProveedorServicio implements UserDetailsService {
             throw new MiExcepcion("El costo no puede ser nulo o estar vacio");
         }
     }
-  
+
     @Transactional(readOnly = true)
     public List<Proveedor> listarProveedores() {
 
@@ -101,6 +108,7 @@ public class ProveedorServicio implements UserDetailsService {
     }
 
     @Transactional
+
     public void actualizarProveedor(String id, String nombreApellido, String contrasenia, String dni, String correo, String telefono, Integer numeroMatricula, String categoriaServicio, Double costoHora) throws MiExcepcion {
         
         validarDatosProveedor(nombreApellido, contrasenia, dni, correo, telefono, numeroMatricula, categoriaServicio, costoHora);
@@ -112,6 +120,7 @@ public class ProveedorServicio implements UserDetailsService {
             Proveedor proveedor = respuestaProveedor.get();
             proveedor.setNombreApellido(nombreApellido);
             proveedor.setContrasenia(new BCryptPasswordEncoder().encode(contrasenia));
+
             dni2.setNumero(dni);
             dr.save(dni2);
             proveedor.setDni(dni2);
@@ -126,7 +135,8 @@ public class ProveedorServicio implements UserDetailsService {
     }
     
     @Transactional
-    public void bajaproveedor(String id){
+
+    public void bajaProveedor(String id){
         Optional<Proveedor> proveedor = pr.findById(id);
         if (proveedor.isPresent()){
             Proveedor proveedorAux = proveedor.get();
@@ -155,6 +165,7 @@ public class ProveedorServicio implements UserDetailsService {
             
             return new User(proveedor.getCorreo(), proveedor.getContrasenia(),permisos);
         }else{
+
             return null;
         }
     }

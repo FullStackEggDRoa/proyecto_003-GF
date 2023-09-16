@@ -29,6 +29,7 @@ public class ClienteServicio implements UserDetailsService {
 
     @Autowired
     private ClienteRepositorio cr;
+
     @Autowired
     private DniRepositorio dr;
 
@@ -38,7 +39,9 @@ public class ClienteServicio implements UserDetailsService {
         validarDatosCliente(nombreApellido, contrasenia, dni, correo, direccion);
 
         if (cr.buscarPorCorreo(correo) != null) {
+
             throw new MiExcepcion("Ya existe un usuario registrado con este correo electrónico.");
+
         }
 
         Cliente cliente = new Cliente();
@@ -48,7 +51,9 @@ public class ClienteServicio implements UserDetailsService {
         cliente.setContrasenia(new BCryptPasswordEncoder().encode(contrasenia));
         dni1.setNumero(dni);
         dr.save(dni1);
+
         cliente.setDni(dni1);        
+
         cliente.setCorreo(correo);
         cliente.setTelefono(Integer.valueOf(telefono));
         cliente.setDireccion(direccion);
@@ -58,13 +63,14 @@ public class ClienteServicio implements UserDetailsService {
         cr.save(cliente);
     }
     
+
     private void validarDatosCliente(String nombreApellido, String contrasenia, String dni, String correo, String direccion) throws MiExcepcion {
 
         if (nombreApellido.isEmpty() || nombreApellido == null) {
             throw new MiExcepcion("El nombre y apellido no pueden ser nulos o estar vacíos");
         }
         if (contrasenia.isEmpty() || contrasenia == null || contrasenia.length() <= 8) {
-            throw new MiExcepcion("La contraseña no puede estar vacía, y tener más de 8 caracteres");
+            throw new MiExcepcion("La contraseña no puede estar vacía, y debe tener al menos 8 caracteres");
         }
         if (dni.isEmpty() || dni == null) {
             throw new MiExcepcion("El DNI no puede ser nulo o estar vacio");
@@ -86,8 +92,10 @@ public class ClienteServicio implements UserDetailsService {
     }
 
     @Transactional
+
     public void actualizarCliente(String id, String nombreApellido, String contrasenia, String dni, String correo, String telefono, String direccion) throws MiExcepcion {
         
+
         validarDatosCliente(nombreApellido, contrasenia, dni, correo, direccion);
 
         Optional<Cliente> respuestaCliente = cr.findById(id);
@@ -98,12 +106,15 @@ public class ClienteServicio implements UserDetailsService {
             cliente.setNombreApellido(nombreApellido);
             cliente.setContrasenia(new BCryptPasswordEncoder().encode(contrasenia));
             dni1.setNumero(dni);
+
             dr.save(dni1);
+
             cliente.setDni(dni1);
             cliente.setCorreo(correo);
             cliente.setTelefono(Integer.valueOf(telefono));
             cliente.setDireccion(direccion);
-
+            
+            dr.save(dni1);
             cr.save(cliente);
         }
     }
@@ -138,6 +149,9 @@ public class ClienteServicio implements UserDetailsService {
             
             return new User(cliente.getCorreo(), cliente.getContrasenia(),permisos);
         }else{
+            
+            //throw new UsernameNotFoundException("Usuario y contraseña inválidos");
+            
             return null;
         }
     }

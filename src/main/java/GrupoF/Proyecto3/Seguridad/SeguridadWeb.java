@@ -40,6 +40,7 @@ public class SeguridadWeb extends WebSecurityConfigurerAdapter {
                 .passwordEncoder(new BCryptPasswordEncoder());
     }
     
+            
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         
