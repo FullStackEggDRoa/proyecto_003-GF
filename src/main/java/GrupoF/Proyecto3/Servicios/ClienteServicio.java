@@ -58,7 +58,6 @@ public class ClienteServicio implements UserDetailsService {
         cr.save(cliente);
     }
     
-    
     private void validarDatosCliente(String nombreApellido, String contrasenia, String dni, String correo, String direccion) throws MiExcepcion {
 
         if (nombreApellido.isEmpty() || nombreApellido == null) {
@@ -87,7 +86,7 @@ public class ClienteServicio implements UserDetailsService {
     }
 
     @Transactional
-    public void actualizarCliente(String id, String nombreApellido, String contrasenia, String dni, String correo, Integer telefono, String direccion) throws Exception {
+    public void actualizarCliente(String id, String nombreApellido, String contrasenia, String dni, String correo, String telefono, String direccion) throws MiExcepcion {
         
         validarDatosCliente(nombreApellido, contrasenia, dni, correo, direccion);
 
@@ -102,7 +101,7 @@ public class ClienteServicio implements UserDetailsService {
             dr.save(dni1);
             cliente.setDni(dni1);
             cliente.setCorreo(correo);
-            cliente.setTelefono(telefono);
+            cliente.setTelefono(Integer.valueOf(telefono));
             cliente.setDireccion(direccion);
 
             cr.save(cliente);
