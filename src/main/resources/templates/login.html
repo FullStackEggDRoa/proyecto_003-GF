@@ -12,12 +12,7 @@
 
 
         <nav th:replace="/fragments/navbar :: nav"> </nav>
-        <div th:if="${errors != null}" class="card text-white bg-danger mb-3 mensajeError" >
-            <div class="card-body">
-                <h5 class="card-title">Error!</h5>
-                <p class="card-text" th:text="${notificacion}"></p>
-            </div>
-        </div>
+       
 
 
         <div class="signupFrm">
@@ -26,12 +21,12 @@
                 <h3 class="title">Iniciar sesión</h3>
 
                 <div class="inputContainer">
-                    <input type="email" class="input" placeholder="service@gmail.com" name="correo" th:value="${correo}">
+                    <input type="email" class="input" placeholder="service@gmail.com" name="correo" th:value="${correo}" required>
                     <label for="" class="label">E-mail</label>
                 </div>
 
                 <div class="inputContainer">
-                    <input type="password" class="input" placeholder="" name="contrasenia" th:value="${contrasenia}" >
+                    <input type="password" class="input" placeholder="" name="contrasenia" th:value="${contrasenia}" required>
                     <label for="" class="label">Contraseña</label>
                 </div>
                
