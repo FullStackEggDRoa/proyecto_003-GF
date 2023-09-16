@@ -12,6 +12,7 @@
 
     <body>  
         <nav th:replace="/fragments/navbar :: nav" ></nav>
+         <input hidden th:value= "${id}" name="modo">
         <div class="signupFrm">
 
         
@@ -65,7 +66,7 @@
                     </div>
 
                     <input type="submit" class="submitBtn" value="Enviar">
-                    <input type="submit" class="submitBtn" value="Registrarse">
+                    
                     </form>
                 </div> 
        </div>
