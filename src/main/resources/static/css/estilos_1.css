@@ -10,11 +10,7 @@ nav{
     background-color:white;
 }
 body{
-    background-image: url(/img/fondos/fondo-bg-5.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center center;
+    background-color: whitesmoke;
     
 }
 a{
