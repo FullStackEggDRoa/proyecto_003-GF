@@ -42,14 +42,17 @@ public class controladorInicio {
     }
     
     @GetMapping("/registro")
-    public String registro(@RequestParam(required = false) String error, ModelMap modelo ) {
+    public String registro(@RequestParam(required = false) String error, @RequestParam String modo,ModelMap modelo ) {
 
        if (error != null) {
             modelo.put("notificacion", "Usuario o Contraseña invalidos!");
             
        }
-        
-        return "registro-cliente.html";
+       if(modo.equalsIgnoreCase("cliente")){ 
+            return "registro-cliente.html";
+       }else {
+            return "registro-proveedor.html";
+       }
     }
     
     
