@@ -19,7 +19,7 @@ public class ControladorProveedor {
     
     @GetMapping("/registro")
     public String registro(){
-        return "registro_proveedor.html";
+        return "registro-proveedor.html";
     }
     
     @PostMapping("/registrar")
@@ -32,7 +32,7 @@ public class ControladorProveedor {
            modelo.put("exito","el proveedor fue registrado correctamente");
         } catch (Exception e) {
             modelo.put("error", e.getMessage());
-            return "registro_proveedor.html";
+            return "registro-proveedor.html";
         }
         
         return ("index.html");
