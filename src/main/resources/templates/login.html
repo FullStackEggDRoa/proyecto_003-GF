@@ -18,7 +18,7 @@
                 <p class="card-text" th:text="${notificacion}"></p>
             </div>
         </div>
-        
+
 
         <div class="signupFrm">
             <form th:action="@{/ingresoChk}" class="form" method="POST">
@@ -34,20 +34,22 @@
                     <input type="password" class="input" placeholder="" name="contrasenia" th:value="${contrasenia}" >
                     <label for="" class="label">Contraseña</label>
                 </div>
-                <input type="submit" class="submitBtn" value="Enviar">
-
-
-                <div class="dropdown">
-                    <p>¿Deseas ser parte?</p>
-                    <button class="dropdown-toggle submitBtnR" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                       <p>¿Deseas ser parte?</p> Regístrate
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/usuario/registro">Cliente</a></li>
-                        <li><a class="dropdown-item" href="/proveedor/reggistro">Proveedor</a></li>
-                    </ul>
+               
+                <div class="form-check">
+                    <p¡Como deseas ingresar?</p>
+                    <input class="form-check-input" type="radio" name="modo" id="exampleRadios1" value="cliente" checked>
+                    <label class="form-check-label" for="exampleRadios1">
+                        Cliente
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="modo" id="exampleRadios2" value="proveedor">
+                    <label class="form-check-label" for="exampleRadios2">
+                        Proveedor
+                    </label>
                 </div>
 
+                <input type="submit" class="submitBtn" value="Enviar">
             </form>
         </div> 
         <footer th:replace="/fragments/footer :: footer"> </footer>  
