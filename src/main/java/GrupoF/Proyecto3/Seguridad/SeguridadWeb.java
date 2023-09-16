@@ -5,6 +5,7 @@
 package GrupoF.Proyecto3.Seguridad;
 
 import GrupoF.Proyecto3.Servicios.ClienteServicio;
+import GrupoF.Proyecto3.Servicios.ProveedorServicio;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -27,10 +28,15 @@ import org.springframework.ui.ModelMap;
 public class SeguridadWeb extends WebSecurityConfigurerAdapter {
     @Autowired
     public ClienteServicio cS;
+    @Autowired
+    public ProveedorServicio pS;
     
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
         auth.userDetailsService(cS)
+                .passwordEncoder(new BCryptPasswordEncoder());
+        
+        auth.userDetailsService(pS)
                 .passwordEncoder(new BCryptPasswordEncoder());
     }
     

@@ -4,6 +4,7 @@ package GrupoF.Proyecto3.Servicios;
 import GrupoF.Proyecto3.Entidades.Cliente;
 import GrupoF.Proyecto3.Entidades.Dni;
 import GrupoF.Proyecto3.Enumeradores.NombreRol;
+import GrupoF.Proyecto3.Excepciones.MiExcepcion;
 import GrupoF.Proyecto3.Repositorios.ClienteRepositorio;
 import GrupoF.Proyecto3.Repositorios.DniRepositorio;
 import java.util.ArrayList;
@@ -29,15 +30,15 @@ public class ClienteServicio implements UserDetailsService {
     @Autowired
     private ClienteRepositorio cr;
     @Autowired
-    private DniRepositorio dR;
+    private DniRepositorio dr;
 
     @Transactional
-    public void registrarCliente(String nombreApellido, String contrasenia, String dni, String correo, String telefono, String direccion) throws Exception{
+    public void registrarCliente(String nombreApellido, String contrasenia, String dni, String correo, String telefono, String direccion) throws MiExcepcion{
 
-        validarC(nombreApellido, contrasenia, dni, correo, direccion);
+        validarDatosCliente(nombreApellido, contrasenia, dni, correo, direccion);
 
         if (cr.buscarPorCorreo(correo) != null) {
-            throw new Exception("Ya existe un usuario registrado con este correo electrónico.");
+            throw new MiExcepcion("Ya existe un usuario registrado con este correo electrónico.");
         }
 
         Cliente cliente = new Cliente();
@@ -46,7 +47,7 @@ public class ClienteServicio implements UserDetailsService {
         cliente.setNombreApellido(nombreApellido);
         cliente.setContrasenia(new BCryptPasswordEncoder().encode(contrasenia));
         dni1.setNumero(dni);
-        dR.save(dni1);
+        dr.save(dni1);
         cliente.setDni(dni1);        
         cliente.setCorreo(correo);
         cliente.setTelefono(Integer.valueOf(telefono));
@@ -58,22 +59,22 @@ public class ClienteServicio implements UserDetailsService {
     }
     
     
-    private void validarC(String nombreApellido, String contrasenia, String dni, String correo, String direccion) throws Exception {
+    private void validarDatosCliente(String nombreApellido, String contrasenia, String dni, String correo, String direccion) throws MiExcepcion {
 
         if (nombreApellido.isEmpty() || nombreApellido == null) {
-            throw new Exception("El nombre y apellido no pueden ser nulos o estar vacíos");
+            throw new MiExcepcion("El nombre y apellido no pueden ser nulos o estar vacíos");
         }
         if (contrasenia.isEmpty() || contrasenia == null || contrasenia.length() <= 8) {
-            throw new Exception("La contraseña no puede estar vacía, y tener más de 8 caracteres");
+            throw new MiExcepcion("La contraseña no puede estar vacía, y tener más de 8 caracteres");
         }
         if (dni.isEmpty() || dni == null) {
-            throw new Exception("El DNI no puede ser nulo o estar vacio");
+            throw new MiExcepcion("El DNI no puede ser nulo o estar vacio");
         }
         if (correo.isEmpty() || correo == null) {
-            throw new Exception("El correo no puede ser nulo o estar vacio");
+            throw new MiExcepcion("El correo no puede ser nulo o estar vacio");
         }
         if (direccion.isEmpty() || direccion == null) {
-            throw new Exception("La direccion no puede ser nula o estar vacia");
+            throw new MiExcepcion("La direccion no puede ser nula o estar vacia");
         }
     }
     
@@ -88,7 +89,7 @@ public class ClienteServicio implements UserDetailsService {
     @Transactional
     public void actualizarCliente(String id, String nombreApellido, String contrasenia, String dni, String correo, Integer telefono, String direccion) throws Exception {
         
-        validarC(nombreApellido, contrasenia, dni, correo, direccion);
+        validarDatosCliente(nombreApellido, contrasenia, dni, correo, direccion);
 
         Optional<Cliente> respuestaCliente = cr.findById(id);
         Dni dni1 = new Dni();
@@ -98,6 +99,8 @@ public class ClienteServicio implements UserDetailsService {
             cliente.setNombreApellido(nombreApellido);
             cliente.setContrasenia(new BCryptPasswordEncoder().encode(contrasenia));
             dni1.setNumero(dni);
+            dr.save(dni1);
+            cliente.setDni(dni1);
             cliente.setCorreo(correo);
             cliente.setTelefono(telefono);
             cliente.setDireccion(direccion);
