@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .navbar navbar-expand-sm navbar-white bg-white {
 height:min-content;
 background-color: #000;
@@ -35,5 +36,9 @@ font-weight: bolder;
   font-weight: bolder;
   text-decoration: none;
   padding: 3px;
+=======
+.collapse navbar-collapse{
+color: black
+>>>>>>> 43e7cd49bea7a6b3cba9ef304bb3c39aa99bcadd
 
 }
