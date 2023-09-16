@@ -71,18 +71,18 @@ public class controladorInicio {
     }
     
     @PostMapping("/registrar_usuario")
-    public String registrar(@RequestParam String nombreApellido, @RequestParam String contrasenia,@RequestParam String dni,@RequestParam String correo, @RequestParam String telefono,
+    public String registrar(@RequestParam String nombreApellido, @RequestParam String contrasenia, @RequestParam String dni, @RequestParam String correo, @RequestParam String telefono,
             @RequestParam String contraseniaChk, @RequestParam String direccion, ModelMap modelo) {
-            
+
         try {
-            cS.registrarCliente(nombreApellido,contrasenia,dni,correo,telefono,direccion);
+            cS.registrarCliente(nombreApellido, contrasenia, dni, correo, telefono, direccion);
 
             modelo.put("notificacion", "Usuario registrado correctamente!");
-            modelo.put("correo",correo);
+            modelo.put("correo", correo);
             modelo.put("contrasenia", contrasenia);
-            
+
             return "redirect:/";
-            
+
         } catch (Exception ex) {
 
             modelo.put("notificacion", ex.getMessage());

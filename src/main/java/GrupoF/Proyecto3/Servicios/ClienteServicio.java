@@ -32,7 +32,7 @@ public class ClienteServicio implements UserDetailsService {
     private DniRepositorio dR;
 
     @Transactional
-    public void registrarCliente(String nombreApellido, String contrasenia, String dni, String correo, String telefono, String direccion) throws Exception  {
+    public void registrarCliente(String nombreApellido, String contrasenia, String dni, String correo, String telefono, String direccion) throws Exception{
 
         validarC(nombreApellido, contrasenia, dni, correo, direccion);
 
