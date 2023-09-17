@@ -4,22 +4,17 @@ package GrupoF.Proyecto3.Servicios;
 
 import GrupoF.Proyecto3.Entidades.Dni;
 import GrupoF.Proyecto3.Entidades.Proveedor;
-
 import GrupoF.Proyecto3.Enumeradores.NombreRol;
-
 import GrupoF.Proyecto3.Excepciones.MiExcepcion;
 import GrupoF.Proyecto3.Repositorios.DniRepositorio;
-
 import GrupoF.Proyecto3.Repositorios.ProveedorRepositorio;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -52,7 +47,6 @@ public class ProveedorServicio implements UserDetailsService {
         Dni dni2 = new Dni();
         
         proveedor.setNombreApellido(nombreApellido);
-
         proveedor.setContrasenia(new BCryptPasswordEncoder().encode(contrasenia));
         dni2.setNumero(dni);
         dr.save(dni2);
@@ -66,12 +60,10 @@ public class ProveedorServicio implements UserDetailsService {
         proveedor.setRol(NombreRol.USUARIO);
         
         pr.save(proveedor);
-              
     }
     
     @Transactional
     private void validarDatosProveedor(String nombreApellido, String contrasenia, String dni, String correo, String telefono, Integer numeroMatricula, String categoriaServicio, Double costoHora) throws MiExcepcion{
-
 
         if (nombreApellido.isEmpty() || nombreApellido == null) {
             throw new MiExcepcion("El nombre y apellido no pueden ser nulos o estar vacíos");
@@ -164,6 +156,7 @@ public class ProveedorServicio implements UserDetailsService {
             session.setAttribute("usuariosession", proveedor);
             
             return new User(proveedor.getCorreo(), proveedor.getContrasenia(),permisos);
+        
         }else{
 
             return null;

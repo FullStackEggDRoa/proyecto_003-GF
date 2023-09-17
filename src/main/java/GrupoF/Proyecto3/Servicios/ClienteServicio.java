@@ -39,9 +39,7 @@ public class ClienteServicio implements UserDetailsService {
         validarDatosCliente(nombreApellido, contrasenia, dni, correo, direccion);
 
         if (cr.buscarPorCorreo(correo) != null) {
-
             throw new MiExcepcion("Ya existe un usuario registrado con este correo electrónico.");
-
         }
 
         Cliente cliente = new Cliente();
@@ -51,9 +49,7 @@ public class ClienteServicio implements UserDetailsService {
         cliente.setContrasenia(new BCryptPasswordEncoder().encode(contrasenia));
         dni1.setNumero(dni);
         dr.save(dni1);
-
         cliente.setDni(dni1);        
-
         cliente.setCorreo(correo);
         cliente.setTelefono(Integer.valueOf(telefono));
         cliente.setDireccion(direccion);
@@ -63,9 +59,7 @@ public class ClienteServicio implements UserDetailsService {
         cr.save(cliente);
     }
     
-
     private void validarDatosCliente(String nombreApellido, String contrasenia, String dni, String correo, String direccion) throws MiExcepcion {
-
         if (nombreApellido.isEmpty() || nombreApellido == null) {
             throw new MiExcepcion("El nombre y apellido no pueden ser nulos o estar vacíos");
         }
@@ -92,10 +86,8 @@ public class ClienteServicio implements UserDetailsService {
     }
 
     @Transactional
-
     public void actualizarCliente(String id, String nombreApellido, String contrasenia, String dni, String correo, String telefono, String direccion) throws MiExcepcion {
         
-
         validarDatosCliente(nombreApellido, contrasenia, dni, correo, direccion);
 
         Optional<Cliente> respuestaCliente = cr.findById(id);
@@ -106,15 +98,12 @@ public class ClienteServicio implements UserDetailsService {
             cliente.setNombreApellido(nombreApellido);
             cliente.setContrasenia(new BCryptPasswordEncoder().encode(contrasenia));
             dni1.setNumero(dni);
-
             dr.save(dni1);
-
             cliente.setDni(dni1);
             cliente.setCorreo(correo);
             cliente.setTelefono(Integer.valueOf(telefono));
             cliente.setDireccion(direccion);
             
-            dr.save(dni1);
             cr.save(cliente);
         }
     }
