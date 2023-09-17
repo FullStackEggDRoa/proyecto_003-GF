@@ -7,7 +7,7 @@
     <title>Perfil cliente</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="/css/estilos.css" />
+     <link rel="stylesheet" href="/css/estilos.css">
 </head>
 <body>
     <nav th:replace="/fragments/navbar :: nav" ></nav>
@@ -15,8 +15,8 @@
     <div class="signupFrm">
 
 
-        <form th:action="@{/usuario/modificar/__${usuario.id}__}" class="form" method="POST">
-          <input hidden th:value="${id}" name="id">
+        <form  th:action="" class="form" method="POST" >
+       <input hidden th:value="${id}" name="id">
           <h3 class="title">PERFIL CLIENTE</h3>
     <!--NOMBRE Y APELLIDO-->
           <div class="inputContainer">
