@@ -30,11 +30,7 @@ body {
 
 body {
 
-background-image: url(/img/hero-bg.png);
-background-size: cover;
-background-repeat: no-repeat;
-background-attachment: fixed;
-background-position: center center; 
+background-color: whitesmoke; 
    
 
 }
