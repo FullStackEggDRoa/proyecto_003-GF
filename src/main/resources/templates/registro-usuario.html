@@ -14,49 +14,39 @@
 
     <body>  
         <nav th:replace="/fragments/navbar :: nav" ></nav>
-          <div th:if="${error != null}" class="card text-white bg-danger mb-3 mensajeError" >
-            <div class="card-body">
-                <h5 class="card-title">Error!</h5>
-                <p class="card-text" th:text="${error}"></p>
-            </div>
-        </div>
-        <div th:if="${exito != null}" class="card text-white bg-success mb-3 mt-3 mensajeExito" >
-            <div class="card-body">
-                <h5 class="card-title">Exito!</h5>
-                <p class="card-text" th:text="${exito}"></p>
-            </div>
-        </div>
+         
+    
         <div class="signupFrm">
 
         
             <form th:action="@{/registrar_usuario}" class="form" method="POST">
-
+<input type="hidden" name="modo" value="cliente">
                 <h3 class="title">Registrarse</h3>
 
                 <div class="inputContainer">
-                    <input type="text" class="input" placeholder=""  name="nombreApellido" th:value="${nombreApellido}">
+                    <input type="text" class="input" placeholder=""  name="nombreApellido" th:value="${nombreApellido}" required>
                     <label for="" class="label">Nombre y apellido</label>
                 </div>
 
 
 
                 <div class="inputContainer">
-                    <input type="text" class="input" placeholder=""  name="direccion" th:value="${direccion}">
+                    <input type="text" class="input" placeholder=""  name="direccion" th:value="${direccion}" required>
                     <label for="" class="label">Dirección</label>
                 </div>
 
                 <div class="inputContainer">
-                    <input type="number" class="input" placeholder=""  name="dni" th:value="${dni}">
+                    <input type="number" class="input" placeholder=""  name="dni" th:value="${dni}" required>
                     <label for="" class="label">DNI</label>
                 </div>
 
                     <div class="inputContainer">
-                        <input type="number" class="input" placeholder=""  name="telefono" th:value="${telefono}">
+                        <input type="number" class="input" placeholder=""  name="telefono" th:value="${telefono}" required>
                         <label for="" class="label">Telefono</label>
                     </div>
 
                     <div class="inputContainer">
-                        <input type="email" class="input" placeholder="" name="correo" th:value="${correo}">
+                        <input type="email" class="input" placeholder="" name="correo" th:value="${correo}" required>
                         <label for="" class="label">E-mail</label>
                     </div>
                    <!-- <div class="inputContainer">
@@ -69,12 +59,12 @@
                     </div> -->
 
                     <div class="inputContainer">
-                        <input type="password" class="input" placeholder="" name="contrasenia" th:value="${contrasenia}" >
+                        <input type="password" class="input" placeholder="" name="contrasenia" th:value="${contrasenia}" required>
                         <label for="" class="label">Contraseña</label>
                     </div>
 
                     <div class="inputContainer">
-                        <input type="password" class="input" placeholder="" name="contraseniaChk" th:value="${contraseniaChk}" >
+                        <input type="password" class="input" placeholder="" name="contraseniaChk" th:value="${contraseniaChk}" required>
                         <label for="" class="label">Confirmar Contraseña</label>
                     </div>
 
