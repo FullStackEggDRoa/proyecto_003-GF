@@ -18,6 +18,11 @@
             <form th:action="@{/registrar_usuario}" class="form" method="POST">
 
                 <h3 class="title">Registrarse</h3>
+                
+                <input type="hidden" name="modo" value="cliente">
+                <input type="hidden" name="numeroMatricula" value="0">
+                <input type="hidden" name="categoriaServicio" value="NA">
+                <input type="hidden" name="costoHora" value="0">
 
                 <div class="inputContainer">
                     <input type="text" class="input" placeholder=""  name="nombreApellido" th:value="${nombreApellido}">
