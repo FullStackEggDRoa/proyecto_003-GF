@@ -57,7 +57,7 @@ public class SeguridadWeb extends WebSecurityConfigurerAdapter {
                     .loginProcessingUrl("/ingresoChk")
                     .usernameParameter("correo")
                     .passwordParameter("contrasenia")
-                    .defaultSuccessUrl("/sesion")
+                    .defaultSuccessUrl("/usario/sesion")
                     .permitAll()
                 .and().logout()
                         .logoutUrl("/salir")
