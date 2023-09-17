@@ -72,6 +72,6 @@ public class ImagenServicio {
 		return imagenRepositorio.findAll();
 	}
   
-
+}
 
 
