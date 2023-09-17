@@ -62,12 +62,12 @@ public class controladorInicio {
         
         Usuario sesionUsuario = (Usuario) session.getAttribute("usuariosession");
         
-       /*if (sesionUsuario.getRol.toString().equals("ADM")) {
+       if (sesionUsuario.getRol.toString().equals("ADM")) {
             
             List<Cliente> clientes = cS.listarClientes();
             modelo.addAttribute("clientes", clientes);
             return "admin.html";
-        }*/
+        }
             
             List<Cliente> clientes = cS.listarClientes();
             modelo.addAttribute("clientes", clientes);
