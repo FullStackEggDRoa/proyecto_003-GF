@@ -16,7 +16,10 @@
     </div>
   </nav>
   <div class="signupFrm">
-    <form th:action="${registrar_cliente}" class="form">
+    <form th:action="@{/registrar_usuario}" class="form" method="POST">
+
+      <input type="hidden" name="modo" value="proveedor">
+      
       <h3 class="title">Registrarse</h3>
 
       <div class="inputContainer">
@@ -27,7 +30,7 @@
         <input type="number" class="input" placeholder="" name="dni" th:value="${dni}">
         <label for="" class="label">DNI</label>
       </div>
-
+      <input type="hidden" name="direccion" value="-">
       <div class="inputContainer">
         <input type="number" class="input" placeholder="" name="telefono" th:value="${telefono}">
         <label for="" class="label">Telefono</label>
