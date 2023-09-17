@@ -10,9 +10,7 @@
     </head>
     <body>
 
-
         <nav th:replace="/fragments/navbar :: nav"> </nav>
-
 
         <div class="signupFrm">
             <form th:action="@{/ingresoChk}" class="form" method="POST">
@@ -20,19 +18,30 @@
                 <h3 class="title">Iniciar sesión</h3>
 
                 <div class="inputContainer">
-                    <input type="email" class="input" placeholder="service@gmail.com" name="correo" th:value="${correo}">
+                    <input type="email" class="input" placeholder="service@gmail.com" name="correo" th:value="${correo}" required>
                     <label for="" class="label">E-mail</label>
                 </div>
 
                 <div class="inputContainer">
-                    <input type="password" class="input" placeholder="" name="contrasenia" th:value="${contrasenia}" >
+                    <input type="password" class="input" placeholder="" name="contrasenia" th:value="${contrasenia}" required>
                     <label for="" class="label">Contraseña</label>
                 </div>
+               
+                <div class="form-check">
+                    <p>¿Como deseas ingresar?</p>
+                    <input class="form-check-input" type="radio" name="modo" id="exampleRadios1" value="cliente" checked>
+                    <label class="form-check-label" for="exampleRadios1">
+                        Cliente
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="modo" id="exampleRadios2" value="proveedor">
+                    <label class="form-check-label" for="exampleRadios2">
+                        Proveedor
+                    </label>
+                </div>
+
                 <input type="submit" class="submitBtn" value="Enviar">
-                <input type="submit" class="submitBtnR" value="Registrarse">
-
-
-
             </form>
         </div> 
         <footer th:replace="/fragments/footer :: footer"> </footer>  
