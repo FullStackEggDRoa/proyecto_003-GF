@@ -62,7 +62,7 @@ public class ProveedorServicio implements UserDetailsService {
         pr.save(proveedor);
     }
     
-    @Transactional
+    
     private void validarDatosProveedor(String nombreApellido, String contrasenia, String dni, String correo, String telefono, Integer numeroMatricula, String categoriaServicio, Double costoHora) throws MiExcepcion{
 
         if (nombreApellido.isEmpty() || nombreApellido == null) {
