@@ -14,7 +14,7 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @ToString
-public class Proveedor extends Usuario implements Serializable {
+public class Proveedor extends Usuario implements Serializable{
     @Column(name="num_matricula")
     private Integer numMatricula;
     @Column(name="cat_servicio")
