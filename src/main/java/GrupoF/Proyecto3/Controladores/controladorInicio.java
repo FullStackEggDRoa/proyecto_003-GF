@@ -76,11 +76,15 @@ public class controladorInicio {
     
     @PostMapping("/registrar_usuario")
     public String registrar(@RequestParam String nombreApellido, @RequestParam String contrasenia,@RequestParam String dni,@RequestParam String correo, @RequestParam String telefono,
-            @RequestParam String contraseniaChk, @RequestParam String direccion, ModelMap modelo) {
+            @RequestParam String contraseniaChk, @RequestParam String direccion, @RequestParam Integer numeroMatricula,
+            @RequestParam String categoriaServicio, @RequestParam Double costoHora,@RequestParam String modo, ModelMap modelo) {
             
         try {
-            cS.registrarCliente(nombreApellido,contrasenia,dni,correo,telefono,direccion);
-
+            if(modo.equalsIgnoreCase("cliente")){
+                cS.registrarCliente(nombreApellido,contrasenia,dni,correo,telefono,direccion);
+            }else{
+                pS.registrarProveedor(nombreApellido, contrasenia, Integer.valueOf(dni), correo,Integer.valueOf(telefono), numeroMatricula, categoriaServicio, costoHora);
+            }
             modelo.put("notificacion", "Usuario registrado correctamente!");
             modelo.put("correo",correo);
             modelo.put("contrasenia", contrasenia);
