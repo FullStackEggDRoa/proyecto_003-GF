@@ -10,27 +10,8 @@
 </head>
 
 <body> 
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Zona Servi</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Inicio</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Servicios</a>
-          </li>
-          <li class="nav-item dropdown"></li>          
-        </ul>
-        <form class="d-flex" role="Buscar">
-          <input class="form-control me-2" type="buscar" placeholder="Buscar" aria-label="Buscar">
-          <button class="btn btn-outline-success" type="submit">Ir</button>
-        </form>
+  <nav th:replace="/fragments/navbar :: nav"> </nav>
+        
       </div>
     </div>
   </nav>
@@ -90,6 +71,13 @@
 
       <input type="submit" class="submitBtn" value="Enviar">
     </form>
-  </div>  
+  </div> 
+  
+  
+  
+  
+  
+  
+  <footer th:replace="/fragments/footer :: footer"> </footer>
 </body>
 </html>
