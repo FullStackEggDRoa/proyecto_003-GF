@@ -78,27 +78,34 @@ public class controladorInicio {
     @PostMapping("/registrar_usuario")
 
     public String registrar(@RequestParam String nombreApellido, @RequestParam String contrasenia,@RequestParam String dni,@RequestParam String correo, @RequestParam String telefono,
-            @RequestParam String contraseniaChk, @RequestParam String direccion, @RequestParam Integer numeroMatricula,
+            @RequestParam String contraseniaChk, @RequestParam String direccion, @RequestParam String numeroMatricula,
             @RequestParam String categoriaServicio, @RequestParam Double costoHora,@RequestParam String modo, ModelMap modelo) {
             
         try {
             if(modo.equalsIgnoreCase("cliente")){
                 cS.registrarCliente(nombreApellido,contrasenia,dni,correo,telefono,direccion);
             }else{
-                pS.registrarProveedor(nombreApellido, contrasenia, dni, correo,telefono, numeroMatricula, categoriaServicio, costoHora);
+                pS.registrarProveedor(nombreApellido, contrasenia, dni, correo,telefono, Integer.valueOf(numeroMatricula), categoriaServicio, costoHora);
             }
 
             modelo.put("notificacion", "Usuario registrado correctamente!");
             modelo.put("correo", correo);
             modelo.put("contrasenia", contrasenia);
 
-            return "/ingreso";
+
+            return "login.html";
+
 
         } catch (MiExcepcion ex) {
 
             modelo.put("notificacion", ex.getMessage());
             
-            return "redirect:/registro";
+            if(modo.equalsIgnoreCase("cliente")){
+                return "registro-cliente.html";
+            }else{
+                return "registro-proveedor.html";
+            }
+            
         }
 
     }

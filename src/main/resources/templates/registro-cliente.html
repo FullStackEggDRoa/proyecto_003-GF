@@ -12,7 +12,9 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 
+
 <body>
+    
     <nav th:replace="/fragments/navbar :: nav"></nav>
 
 
@@ -21,7 +23,13 @@
 
 
         <form th:action="@{/registrar_usuario}" class="form" method="POST">
+            
             <input type="hidden" name="modo" value="cliente">
+            
+            <input type="hidden" name="numeroMatricula" value="0">
+            <input type="hidden" name="categoriaServicio" value="NA">
+            <input type="hidden" name="costoHora" value="0">
+            
             <h3 class="title">Registrarse</h3>
 
             <div class="inputContainer">
