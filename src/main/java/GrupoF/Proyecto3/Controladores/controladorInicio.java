@@ -92,7 +92,7 @@ public class controladorInicio {
             modelo.put("correo", correo);
             modelo.put("contrasenia", contrasenia);
 
-            return "redirect:/";
+            return "/ingreso";
 
         } catch (MiExcepcion ex) {
 
