@@ -57,11 +57,11 @@ public class SeguridadWeb extends WebSecurityConfigurerAdapter {
                     .loginProcessingUrl("/ingresoChk")
                     .usernameParameter("correo")
                     .passwordParameter("contrasenia")
-                    .defaultSuccessUrl("/usario/sesion")
+                    .defaultSuccessUrl("/usuario/sesion",true)
                     .permitAll()
                 .and().logout()
                         .logoutUrl("/salir")
-                        .logoutSuccessUrl("/?notificacion='Sesión cerrada Exitosamente'&modulo=signin&modo=ingreso")
+                        .logoutSuccessUrl("/?notificacion='Sesión cerrada Exitosamente'")
                         .permitAll()
                 .and().csrf()
                         .disable();                
