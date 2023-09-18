@@ -30,8 +30,8 @@ public class ProveedorServicio implements UserDetailsService {
     
     @Autowired
     private ProveedorRepositorio pr;
+    @Autowired
     private DniRepositorio dr;
-
     
     @Transactional
     public void registrarProveedor (String nombreApellido, String contrasenia, String dni, String correo, String telefono, Integer numeroMatricula, String categoriaServicio, Double costoHora) throws MiExcepcion{
