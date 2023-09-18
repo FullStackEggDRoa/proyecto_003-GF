@@ -1,3 +1,4 @@
+
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
@@ -14,8 +15,8 @@
     <div class="signupFrm">
 
 
-        <form  th:action="@{/usuario/modificar}" class="form" method="POST">
-                <input hidden th:value="${id}" name="id">
+        <form  th:action="@{/usuario/modificar/__${cliente.Id}__}" class="form" method="POST">
+                <input hidden th:value="${Id}" name="Id">
                 <input type="hidden" name="numeroMatricula" value="0">
                 <input type="hidden" name="categoriaServicio" value="NA">
                 <input type="hidden" name="costoHora" value="0">
@@ -25,7 +26,7 @@
                 <div class="inputContainer">
                     <label for="" class="label">Nombre y apellido</label >
                     <input type="text" class="input"  placeholder="" name="nombreApellido"
-                              disabled>
+                             th:text="${cliente.nombreApellido}" disabled>
                        
                         <!-- Button LAPIZ MODIFICAR -->
                         <button type="button" class="btn btn-outline-secondary "data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -46,7 +47,7 @@
                                     <div class="modal-body">
                                         <label for="" class="label">Nombre y apellido</label >
                                         <input type="text" class="input" placeholder="" name="nombreApellido"
-                                               >
+                                               th:value="${cliente.nombreApellido}">
 
                                     </div>
                                     <div class="modal-footer">
@@ -61,7 +62,7 @@
                 <div class="inputContainer">
                     <label for="" class="label">DNI</label >
                     <input type="text" class="input" placeholder="" name="dni"
-                            disabled>
+                           th:text="${cliente.dni}" disabled>
                         <!-- Button LAPIZ MODIFICAR -->
                         <button type="button" class="btn btn-outline-secondary "data-bs-toggle="modal" data-bs-target="#exampleModal">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
@@ -81,7 +82,7 @@
                                     <div class="modal-body">
                                         <label for="" class="label">DNI</label >
                                         <input type="number" class="input" placeholder="" name="dni"
-                                              >
+                                               th:value="${cliente.dni}">
 
                                     </div>
                                     <div class="modal-footer">
@@ -97,7 +98,7 @@
                 <div class="inputContainer">
                     <label for="" class="label">Teléfono</label >
                     <input type="text" class="input" placeholder="" name="telefono"
-                     disabled>
+                    th:text="${cliente.telefono " disabled>
                         <!-- Button LAPIZ MODIFICAR -->
                         <button type="button" class="btn btn-outline-secondary "data-bs-toggle="modal" data-bs-target="#exampleModal">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
@@ -117,7 +118,7 @@
                                     <div class="modal-body">
                                         <label for="" class="label">Teléfono</label >
                                         <input type="number" class="input" placeholder="" name="telefono"
-                                               >
+                                               th:value="${cliente.telefono}">
 
                                     </div>
                                     <div class="modal-footer">
@@ -132,7 +133,7 @@
                 <div class="inputContainer">
                     <label for="" class="label">Correo electrónico</label >
                     <input type="email" class="input" placeholder="" name="correo"
-                           disabled>
+                           th:text="${cliente.correo}" disabled>
                         <!-- Button LAPIZ MODIFICAR -->
                         <button type="button" class="btn btn-outline-secondary "data-bs-toggle="modal" data-bs-target="#exampleModal">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
@@ -152,7 +153,7 @@
                                     <div class="modal-body">
                                         <label for="" class="label">Correo electrónico</label >
                                         <input type="email" class="input" placeholder="" name="correo"
-                                               >
+                                               th:value="${cliente.correo}">
 
                                     </div>
                                     <div class="modal-footer">
@@ -168,7 +169,7 @@
                 <div class="inputContainer">
                     <label for="" class="label">Dirección</label >
                     <input type="text" class="input" placeholder="" name="direccion"
-                            disabled>
+                           th:text="${cliente.direccion}" disabled>
                         <!-- Button LAPIZ MODIFICAR -->
                         <button type="button" class="btn btn-outline-secondary "data-bs-toggle="modal" data-bs-target="#exampleModal">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
@@ -188,7 +189,7 @@
                                     <div class="modal-body">
                                         <label for="" class="label">Dirección</label >
                                         <input type="text" class="input" placeholder="" name="direccion"
-                                              >
+                                               th:value="${cliente.direccion}">
 
                                     </div>
                                     <div class="modal-footer">
@@ -205,7 +206,7 @@
                 <div class="inputContainer">
                     <label for="" class="label">Contraseña</label >
                     <input type="password" class="input" placeholder="" name="contrasenia"
-                            disabled>
+                           th:text="${cliente.contrasenia}" disabled>
                         <!-- Button LAPIZ MODIFICAR -->
                         <button type="button" class="btn btn-outline-secondary "data-bs-toggle="modal" data-bs-target="#exampleModal">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
@@ -225,7 +226,7 @@
                                     <div class="modal-body">
                                         <label for="" class="label">Contraseña</label >
                                         <input type="password" class="input" placeholder="" name="contrasenia"
-                                               >
+                                               th:value="${contrasenia}">
                                             <label for="" class="label">Repetir contraseña</label >
                                             <input type="password" class="input" placeholder="" name="contraseniaChk"
                                                    th:value="${contraseniChk}">
