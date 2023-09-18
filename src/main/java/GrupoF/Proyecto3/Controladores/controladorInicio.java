@@ -85,10 +85,9 @@ public class controladorInicio {
             
         try {
             if(modo.equalsIgnoreCase("cliente")){
-                cS.registrarCliente(nombreApellido,contrasenia,dni,correo,telefono,direccion);
-                        //,contraseniaChk);
+                cS.registrarCliente(nombreApellido,contrasenia,dni,correo,telefono,direccion,contraseniaChk);
             }else{
-                pS.registrarProveedor(nombreApellido, contrasenia, dni, correo,telefono, Integer.valueOf(numeroMatricula), categoriaServicio, costoHora);
+                pS.registrarProveedor(nombreApellido, contrasenia, dni, correo,telefono, Integer.valueOf(numeroMatricula), categoriaServicio, costoHora, contraseniaChk);
             }
 
             modelo.put("notificacion", "Usuario registrado correctamente!");

@@ -68,12 +68,12 @@ public class ControladorUsuario {
     
     
     @PostMapping("/registrar")
-    public String registrar(@RequestParam String nombreApellido, @RequestParam String contraseña, @RequestParam String contraseña2, @RequestParam String dni,
+    public String registrar(@RequestParam String nombreApellido, @RequestParam String contrasenia, @RequestParam String contraseniaChk, @RequestParam String dni,
             @RequestParam String correo, @RequestParam String telefono, @RequestParam String direccion, ModelMap modelo){
         
         try {
 
-            cS.registrarCliente(nombreApellido, contraseña, dni, correo, telefono, direccion);
+            cS.registrarCliente(nombreApellido, contrasenia, dni, correo, telefono, direccion, contraseniaChk);
 
             modelo.put("exito","El usuario se grabo correctamente");
         } catch (Exception e) {
