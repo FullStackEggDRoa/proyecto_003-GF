@@ -54,9 +54,14 @@ public class ControladorUsuario {
     }
     
     
-    @GetMapping("/registro")
-    public String registro(){
-        return "registro-usuario.html";
+    @GetMapping("/modificacion")
+    public String registro(@RequestParam String modo){
+        if (modo.equalsIgnoreCase("cliente")) {
+            return "modificar-cliente.html";
+        } else {
+            return "modificar-proveedor.html";
+        }
+        
     }
     
 
