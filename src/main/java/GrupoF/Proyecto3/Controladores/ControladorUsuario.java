@@ -27,7 +27,7 @@ public class ControladorUsuario {
     
     @PreAuthorize("hasAnyRole('ROLE_USUARIO', 'ROLE_ADM')")
     @GetMapping("/sesion")
-    public String sesion(HttpSession session,@RequestParam String modo, ModelMap modelo) {
+    public String sesion(HttpSession session, ModelMap modelo) {
         
         Usuario sesionUsuario = (Usuario) session.getAttribute("usuariosession");
         
@@ -39,8 +39,8 @@ public class ControladorUsuario {
             modelo.addAttribute("proveedores", proveedores);
             return "sesion-admin.html";
             
-        }else if(modo.equalsIgnoreCase("cliente")){
-            
+        }else if(sesionUsuario.getClass().getName().contains("Cliente")){
+            System.out.println(sesionUsuario.getClass().getName());
             //Cliente cliente = cS.;
             //modelo.addAttribute("clientes", clientes);
             return "sesion-cliente.html";
@@ -54,10 +54,18 @@ public class ControladorUsuario {
     }
     
     
-    @GetMapping("/registro")
-    public String registro(){
-        return "registro-usuario.html";
+    @GetMapping("/modificacion")
+    public String registro(@RequestParam String modo){
+        if (modo.equalsIgnoreCase("cliente")) {
+            return "modificar-cliente.html";
+        } else {
+            return "modificar-proveedor.html";
+        }
+        
     }
+    
+
+    
     
     @PostMapping("/registrar")
     public String registrar(@RequestParam String nombreApellido, @RequestParam String contraseña, @RequestParam String dni,
