@@ -72,11 +72,9 @@ public class ControladorUsuario {
             @RequestParam String correo, @RequestParam String telefono, @RequestParam String direccion, ModelMap modelo){
         
         try {
-<<<<<<< HEAD
-            us.registrarCliente(nombreApellido, contraseña, contraseña2, dni, correo, telefono, direccion);
-=======
+
             cS.registrarCliente(nombreApellido, contraseña, dni, correo, telefono, direccion);
->>>>>>> developer
+
             modelo.put("exito","El usuario se grabo correctamente");
         } catch (Exception e) {
             modelo.put("error", e.getMessage());
