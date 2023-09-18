@@ -127,7 +127,6 @@ public class ProveedorServicio implements UserDetailsService {
     }
     
     @Transactional
-
     public void bajaProveedor(String id){
         Optional<Proveedor> proveedor = pr.findById(id);
         if (proveedor.isPresent()){
@@ -136,6 +135,17 @@ public class ProveedorServicio implements UserDetailsService {
             pr.save(proveedorAux);
         }
     }
+    
+    @Transactional
+    public Proveedor proveedorById (String id){
+        Optional<Proveedor> proveedor = pr.findById(id);
+        Proveedor proveedorAux = new Proveedor();
+        if (proveedor.isPresent()){
+            proveedorAux = proveedor.get();    
+        }
+        return proveedorAux;
+    }
+    
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

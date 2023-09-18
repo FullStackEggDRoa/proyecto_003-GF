@@ -56,12 +56,20 @@ public class ControladorUsuario {
         }
     }
     
-    
+    @PreAuthorize("hasAnyRole('ROLE_USUARIO', 'ROLE_ADM')")
     @GetMapping("/modificacion")
-    public String registro(@RequestParam String modo){
+    public String registro(HttpSession session, @RequestParam String modo, ModelMap modelo){
+         Usuario sesionUsuario = (Usuario) session.getAttribute("usuariosession");
         if (modo.equalsIgnoreCase("cliente")) {
+            String idCliente = sesionUsuario.getId();
+            Cliente cliente = cS.clienteById(idCliente);
+            modelo.addAttribute("idCliente", idCliente);
+            
             return "modificar-cliente.html";
         } else {
+            String idProveedor = sesionUsuario.getId();
+            Proveedor proveedor = pS.proveedorById(idProveedor);
+            modelo.addAttribute("idProveedor", idProveedor);
             return "modificar-proveedor.html";
         }
         
