@@ -33,10 +33,9 @@ public class SeguridadWeb extends WebSecurityConfigurerAdapter {
     
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
-        auth.userDetailsService(cS)
-                .passwordEncoder(new BCryptPasswordEncoder());
-        
         auth.userDetailsService(pS)
+                .passwordEncoder(new BCryptPasswordEncoder());
+        auth.userDetailsService(cS)
                 .passwordEncoder(new BCryptPasswordEncoder());
     }
     
@@ -57,11 +56,11 @@ public class SeguridadWeb extends WebSecurityConfigurerAdapter {
                     .loginProcessingUrl("/ingresoChk")
                     .usernameParameter("correo")
                     .passwordParameter("contrasenia")
-                    .defaultSuccessUrl("/usario/sesion")
+                    .defaultSuccessUrl("/usuario/sesion")
                     .permitAll()
                 .and().logout()
                         .logoutUrl("/salir")
-                        .logoutSuccessUrl("/?notificacion='Sesión cerrada Exitosamente'&modulo=signin&modo=ingreso")
+                        .logoutSuccessUrl("/?notificacion='Sesión cerrada Exitosamente'")
                         .permitAll()
                 .and().csrf()
                         .disable();                
