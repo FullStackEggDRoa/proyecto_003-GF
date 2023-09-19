@@ -3,15 +3,19 @@ package GrupoF.Proyecto3.Controladores;
 import GrupoF.Proyecto3.Entidades.Cliente;
 import GrupoF.Proyecto3.Entidades.Proveedor;
 import GrupoF.Proyecto3.Entidades.Usuario;
+import GrupoF.Proyecto3.Excepciones.MiExcepcion;
 import GrupoF.Proyecto3.Servicios.ClienteServicio;
 import GrupoF.Proyecto3.Servicios.ProveedorServicio;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -40,53 +44,65 @@ public class ControladorUsuario {
             return "sesion-admin.html";
             
         }else if(sesionUsuario.getClass().getName().contains("Cliente")){
-            System.out.println(sesionUsuario.getClass().getName());
-            //Cliente cliente = cS.;
-            //modelo.addAttribute("clientes", clientes);
+            
+            String idCliente = sesionUsuario.getId();
+            modelo.addAttribute("idCliente", idCliente);
             return "sesion-cliente.html";
         
         }else{
-            
+            String idProveedor = sesionUsuario.getId();
             List<Proveedor> proveedores = pS.listarProveedores();
-            modelo.addAttribute("proveedores", proveedores);
+            modelo.addAttribute("idProveedor", idProveedor);
             return "sesion-proveedor.html";
         }
     }
     
-    
+    @PreAuthorize("hasAnyRole('ROLE_USUARIO', 'ROLE_ADM')")
     @GetMapping("/modificacion")
-    public String registro(@RequestParam String modo){
+    public String registro(HttpSession session, @RequestParam String modo, ModelMap modelo){
+        Usuario sesionUsuario = (Usuario) session.getAttribute("usuariosession");
         if (modo.equalsIgnoreCase("cliente")) {
+            String idCliente = sesionUsuario.getId();
+            Cliente cliente = cS.clienteById(idCliente);
+            modelo.addAttribute("Cliente", cliente);
             return "modificar-cliente.html";
         } else {
+            String idProveedor = sesionUsuario.getId();
+            Proveedor proveedor = pS.proveedorById(idProveedor);
+            modelo.addAttribute("Proveedor", proveedor);
             return "modificar-proveedor.html";
-        }
-        
+        }        
     }
     
 
-    
-    
-    @PostMapping("/registrar")
-    public String registrar(@RequestParam String nombreApellido, @RequestParam String contrasenia, @RequestParam String contraseniaChk, @RequestParam String dni,
-            @RequestParam String correo, @RequestParam String telefono, @RequestParam String direccion, ModelMap modelo){
-        
+    @PostMapping("/modificar")
+    public String modificar(@RequestParam String Id, @RequestParam String nombreApellido, @RequestParam String contrasenia,@RequestParam String dni,@RequestParam String correo, @RequestParam String telefono,
+            @RequestParam String contraseniaChk, @RequestParam String direccion, @RequestParam String numeroMatricula,
+            @RequestParam String categoriaServicio, @RequestParam Double costoHora,@RequestParam String modo, ModelMap modelo)
+    {
         try {
+            if (modo.equalsIgnoreCase("cliente")) {
+                cS.actualizarCliente(Id, nombreApellido, contrasenia, dni, correo, telefono, direccion);
+                modelo.put("notificacion", "Datos de usuario actualizados correctamente!");
+                return "sesion-cliente.html";
+            }
+            else{
+                pS.actualizarProveedor(Id, nombreApellido, contrasenia, dni, correo, telefono, Integer.valueOf(numeroMatricula), categoriaServicio, costoHora);
+                modelo.put("notificacion", "Datos de usuario actualizados correctamente!");
+                return "sesion-proveedor.html";
+            }
+           
+        } catch (MiExcepcion ex) {
+            if (modo.equalsIgnoreCase("cliente")) {
+                return "modificar-cliente.html";
+            } else {
+                return "modificar-proveedor.html";
+            }
 
-            cS.registrarCliente(nombreApellido, contrasenia, dni, correo, telefono, direccion, contraseniaChk);
-
-            modelo.put("exito","El usuario se grabo correctamente");
-        } catch (Exception e) {
-            modelo.put("error", e.getMessage());
-            return "registro-usuario.html";
         }
         
         
-        return ("index.html");
     }
-    
-    //metodo para listar
-    
-    //metodos GET y POST para modificar
+
     
 }

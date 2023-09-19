@@ -121,6 +121,16 @@ public class ClienteServicio implements UserDetailsService {
         }
     }
 
+    @Transactional
+    public Cliente clienteById (String id){
+        Optional<Cliente> cliente = cr.findById(id);
+        Cliente clienteAux = new Cliente();
+        if (cliente.isPresent()){
+            clienteAux = cliente.get();    
+        }
+        return clienteAux;
+    }
+    
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Cliente cliente = cr.buscarPorCorreo(username);
