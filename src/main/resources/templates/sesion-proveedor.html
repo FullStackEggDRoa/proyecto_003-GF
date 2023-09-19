@@ -22,7 +22,7 @@
            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                
             </ul>
-            <a href="/usuario/modificacion?modo=proveedor" class="btn btn-danger" style="margin:5px;" role="button">Mi perfil</a>
+            <a th:href="@{/usuario/modificacion?modo=proveedor&id=__${idProveedor}__}" class="btn btn-danger" style="margin:5px;" role="button">Mi perfil</a>
             <a href="#" class="btn btn-danger" style="margin:5px;" role="button">Contratos</a>
             <a href="#" class="btn btn-danger" style="margin:5px;" role="button">Notificaciones</a>
             <form class="d-flex" role="search">
