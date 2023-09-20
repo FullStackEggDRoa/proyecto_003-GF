@@ -10,13 +10,13 @@
         <link rel="stylesheet" href="/css/estilos.css">
     </head>
     <body>
-        <nav th:replace="/fragments/navbar :: nav" ></nav>
+        <nav th:replace="/fragments/navbar-sesion :: nav" ></nav>
 
         <div class="signupFrm">
 
 
-            <form  th:action="@{/usuario/modificar/__${Cleinte}__}" class="form" method="POST">
-    <!--                <input hidden th:value="${id}" name="id">-->
+            <form  th:action="@{/usuario/modificar/__${Cliente}__}" class="form" method="POST">
+           <!-- <input hidden th:value="${id}" name="id">-->
                 <input type="hidden" name="numeroMatricula" value="0">
                 <input type="hidden" name="categoriaServicio" value="NA">
                 <input type="hidden" name="costoHora" value="0">
@@ -34,7 +34,7 @@
                                                 <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
                                             </svg>
                                         </button>
-
+                                       
                                         <!-- Modal -->
                                         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog">
@@ -226,8 +226,8 @@
                                                                 </div>
                                                                 </div>
                                                                 </div>
-                                                                </div>
-                                                                <a href="/usuario/sesion?modo=cliente"  class="submitBtR" style="margin:5px;" role="button">Listo</a>
+     </div>
+     <a href="/usuario/sesion?modo=cliente"  class="submitBtR" style="margin:5px;" role="button">Listo</a>
 
                                                                 <input type="submit" class="submitBtR" value="Eliminar cuenta">
             </form>

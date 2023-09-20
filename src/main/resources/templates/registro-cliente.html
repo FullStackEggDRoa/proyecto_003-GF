@@ -2,83 +2,88 @@
 
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/css/estilos.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="/css/estilos.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+              integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    </head>
 
 
-<body>
-    
-    <nav th:replace="/fragments/navbar :: nav"></nav>
+    <body>
+
+        <nav th:replace="/fragments/navbar :: nav"></nav>
 
 
-    <div class="signupFrm">
+        <div class="signupFrm">
 
 
-        <form th:action="@{/registrar_usuario}" class="form" method="POST">
-            
-            <input type="hidden" name="modo" value="cliente">
-            
-            <input type="hidden" name="numeroMatricula" value="0">
-            <input type="hidden" name="categoriaServicio" value="NA">
-            <input type="hidden" name="costoHora" value="0">
-            
-            <h3 class="title">Registrarse</h3>
+            <form th:action="@{/registrar_usuario}" class="form" method="POST">
 
-            <div class="inputContainer">
-                <input type="text" class="input" placeholder="" name="nombreApellido" th:value="${nombreApellido}"
-                    required>
-                <label for="" class="label">Nombre y apellido</label>
-            </div>
-            <div class="inputContainer">
-                <input type="number" class="input" placeholder="" name="dni" th:value="${dni}" required>
-                <label for="" class="label">DNI</label>
-            </div>
-            <div class="inputContainer">
-                <input type="number" class="input" placeholder="" name="telefono" th:value="${telefono}" required>
-                <label for="" class="label">Telefono</label>
-            </div>
+                <input type="hidden" name="modo" value="cliente">
 
-            <div class="inputContainer">
-                <input type="email" class="input" placeholder="" name="correo" th:value="${correo}" required>
-                <label for="" class="label">E-mail</label>
-            </div>
+                <input type="hidden" name="numeroMatricula" value="0">
+                <input type="hidden" name="categoriaServicio" value="NA">
+                <input type="hidden" name="costoHora" value="0">
 
-            <div class="inputContainer">
-                <input type="text" class="input" placeholder="" name="direccion" th:value="${direccion}" required>
-                <label for="" class="label">Dirección</label>
-            </div>
+                <h3 class="title">Registrarse</h3>
 
-            <div class="inputContainer">
-                <input type="password" class="input" placeholder="" name="contrasenia" th:value="${contrasenia}"
-                    required>
-                <label for="" class="label">Contraseña</label>
-            </div>
+                <div class="inputContainer">
+                    <input type="text" class="input" placeholder="" name="nombreApellido" th:value="${nombreApellido}"
+                           required>
+                    <label for="" class="label">Nombre y apellido</label>
+                </div>
+                <div class="inputContainer">
+                    <input type="number" class="input" placeholder="" name="dni" th:value="${dni}" required>
+                    <label for="" class="label">DNI</label>
+                </div>
+                <div class="inputContainer">
+                    <input type="number" class="input" placeholder="" name="telefono" th:value="${telefono}" required>
+                    <label for="" class="label">Telefono</label>
+                </div>
 
-            <div class="inputContainer">
-                <input type="password" class="input" placeholder="" name="contraseniaChk" th:value="${contraseniaChk}"
-                    required>
-                <label for="" class="label">Confirmar Contraseña</label>
-            </div>
+                <div class="inputContainer">
+                    <input type="email" class="input" placeholder="" name="correo" th:value="${correo}" required>
+                    <label for="" class="label">E-mail</label>
+                </div>
 
-            <input type="submit" class="submitBtn" value="Enviar">
+                <div class="inputContainer">
+                    <input type="text" class="input" placeholder="" name="direccion" th:value="${direccion}" required>
+                    <label for="" class="label">Dirección</label>
+                </div>
+                <div class="inputContainer">
 
-        </form>
-    </div>
+                    <input class="input" type="file" id="">
+                    <label for="" class="label">Imagen de perfil</label>
+                </div>
+
+                <div class="inputContainer">
+                    <input type="password" class="input" placeholder="" name="contrasenia" th:value="${contrasenia}"
+                           required>
+                    <label for="" class="label">Contraseña</label>
+                </div>
+
+                <div class="inputContainer">
+                    <input type="password" class="input" placeholder="" name="contraseniaChk" th:value="${contraseniaChk}"
+                           required>
+                    <label for="" class="label">Confirmar Contraseña</label>
+                </div>
+
+                <input type="submit" class="submitBtn" value="Enviar">
+
+            </form>
+        </div>
     </div>
     <footer th:replace="/fragments/footer :: footer"> </footer>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
-        crossorigin="anonymous"></script>
+            integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+    crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
-        crossorigin="anonymous"></script>
+            integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+    crossorigin="anonymous"></script>
 
 </body>
 
