@@ -4,6 +4,7 @@ package GrupoF.Proyecto3.Controladores;
 import GrupoF.Proyecto3.Entidades.Cliente;
 import GrupoF.Proyecto3.Entidades.Usuario;
 import GrupoF.Proyecto3.Excepciones.MiExcepcion;
+
 import GrupoF.Proyecto3.Servicios.ClienteServicio;
 import GrupoF.Proyecto3.Servicios.ProveedorServicio;
 import java.util.List;
@@ -82,9 +83,9 @@ public class controladorInicio {
             
         try {
             if(modo.equalsIgnoreCase("cliente")){
-                cS.registrarCliente(nombreApellido,contrasenia,dni,correo,telefono,direccion);
+                cS.registrarCliente(nombreApellido,contrasenia,dni,correo,telefono,direccion,contraseniaChk);
             }else{
-                pS.registrarProveedor(nombreApellido, contrasenia, dni, correo,telefono, Integer.valueOf(numeroMatricula), categoriaServicio, costoHora);
+                pS.registrarProveedor(nombreApellido, contrasenia, dni, correo,telefono, Integer.valueOf(numeroMatricula), categoriaServicio, costoHora, contraseniaChk);
             }
 
             modelo.put("notificacion", "Usuario registrado correctamente!");
