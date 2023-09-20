@@ -34,9 +34,9 @@ public class ProveedorServicio implements UserDetailsService {
     private DniRepositorio dr;
     
     @Transactional
-    public void registrarProveedor (String nombreApellido, String contrasenia, String dni, String correo, String telefono, Integer numeroMatricula, String categoriaServicio, Double costoHora) throws MiExcepcion{
+    public void registrarProveedor (String nombreApellido, String contrasenia, String dni, String correo, String telefono, Integer numeroMatricula, String categoriaServicio, Double costoHora, String contraseniaChk) throws MiExcepcion{
         
-        validarDatosProveedor(nombreApellido, contrasenia, dni, correo, telefono, numeroMatricula, categoriaServicio, costoHora);
+        validarDatosProveedor(nombreApellido, contrasenia, dni, correo, telefono, numeroMatricula, categoriaServicio, costoHora, contraseniaChk);
 
              
         if (pr.buscarPorCorreo(correo) != null){
@@ -63,13 +63,16 @@ public class ProveedorServicio implements UserDetailsService {
     }
     
     
-    private void validarDatosProveedor(String nombreApellido, String contrasenia, String dni, String correo, String telefono, Integer numeroMatricula, String categoriaServicio, Double costoHora) throws MiExcepcion{
+    private void validarDatosProveedor(String nombreApellido, String contrasenia, String dni, String correo, String telefono, Integer numeroMatricula, String categoriaServicio, Double costoHora, String contraseniaChk) throws MiExcepcion{
 
         if (nombreApellido.isEmpty() || nombreApellido == null) {
             throw new MiExcepcion("El nombre y apellido no pueden ser nulos o estar vacíos");
         }
         if (contrasenia.isEmpty() || contrasenia == null || contrasenia.length() <= 8) {
-            throw new MiExcepcion("La contraseña no puede estar vacía, y debe tener al menos 8 caracteres");
+            throw new MiExcepcion("La contraseña no puede estar vacía y debe tener al menos 8 caracteres");
+        }
+        if (!contrasenia.equals(contraseniaChk)) {
+            throw new MiExcepcion("Las contraseñas ingresadas no coinciden");
         }
            if (dni.isEmpty() || dni == null) {
             throw new MiExcepcion("El DNI no puede ser nulo o estar vacio");
@@ -101,9 +104,9 @@ public class ProveedorServicio implements UserDetailsService {
 
     @Transactional
 
-    public void actualizarProveedor(String id, String nombreApellido, String contrasenia, String dni, String correo, String telefono, Integer numeroMatricula, String categoriaServicio, Double costoHora) throws MiExcepcion {
+    public void actualizarProveedor(String id, String nombreApellido, String contrasenia, String dni, String correo, String telefono, Integer numeroMatricula, String categoriaServicio, Double costoHora, String contraseniaChk) throws MiExcepcion {
         
-        validarDatosProveedor(nombreApellido, contrasenia, dni, correo, telefono, numeroMatricula, categoriaServicio, costoHora);
+        validarDatosProveedor(nombreApellido, contrasenia, dni, correo, telefono, numeroMatricula, categoriaServicio, costoHora, contraseniaChk);
 
         Optional<Proveedor> respuestaProveedor = pr.findById(id);
         Dni dni2 = new Dni();
