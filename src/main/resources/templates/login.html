@@ -19,8 +19,9 @@
                 <h3 class="title">Iniciar sesión</h3>
                 
 
-                <div class="alert alert-info" role="alert" th:text="${notificacion}"><p>Ingresa tus credenciales</p></div>
-
+                
+                
+                <p class="alert" role="alert" style="text-align: center; color: red" th:text="${notificacion}"></p>
 
                 <div class="inputContainer">
                     <input type="email" class="input" placeholder="service@gmail.com" name="correo" th:value="${correo}" required>
