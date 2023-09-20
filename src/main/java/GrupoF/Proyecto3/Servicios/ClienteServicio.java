@@ -28,17 +28,17 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 public class ClienteServicio implements UserDetailsService {
 
     @Autowired
-    private ClienteRepositorio cr;
+    private ClienteRepositorio cR;
 
     @Autowired
-    private DniRepositorio dr;
+    private DniRepositorio dR;
 
     @Transactional
     public void registrarCliente(String nombreApellido, String contrasenia, String dni, String correo, String telefono, String direccion, String contraseniaChk) throws MiExcepcion{
 
         validarDatosCliente(nombreApellido, contrasenia, dni, correo, direccion, contraseniaChk);
 
-        if (cr.buscarPorCorreo(correo) != null) {
+        if (cR.buscarPorCorreo(correo) != null) {
             throw new MiExcepcion("Ya existe un usuario registrado con este correo electrónico.");
         }
 
@@ -48,7 +48,7 @@ public class ClienteServicio implements UserDetailsService {
         cliente.setNombreApellido(nombreApellido);
         cliente.setContrasenia(new BCryptPasswordEncoder().encode(contrasenia));
         dni1.setNumero(dni);
-        dr.save(dni1);
+        dR.save(dni1);
         cliente.setDni(dni1);        
         cliente.setCorreo(correo);
         cliente.setTelefono(Integer.valueOf(telefono));
@@ -56,7 +56,7 @@ public class ClienteServicio implements UserDetailsService {
         cliente.setAlta(true);
         cliente.setRol(NombreRol.USUARIO);
 
-        cr.save(cliente);
+        cR.save(cliente);
     }
     
     private void validarDatosCliente(String nombreApellido, String contrasenia, String dni, String correo, String direccion, String contraseniaChk) throws MiExcepcion {
@@ -84,7 +84,7 @@ public class ClienteServicio implements UserDetailsService {
     public List<Cliente> listarClientes() {
 
         List<Cliente> clientes = new ArrayList();
-        clientes = cr.findAll();
+        clientes = cR.findAll();
         return clientes;
     }
 
@@ -93,7 +93,7 @@ public class ClienteServicio implements UserDetailsService {
         
         validarDatosCliente(nombreApellido, contrasenia, dni, correo, direccion, contraseniaChk);
 
-        Optional<Cliente> respuestaCliente = cr.findById(id);
+        Optional<Cliente> respuestaCliente = cR.findById(id);
         Dni dni1 = new Dni();
         if (respuestaCliente.isPresent()) {
 
@@ -101,29 +101,29 @@ public class ClienteServicio implements UserDetailsService {
             cliente.setNombreApellido(nombreApellido);
             cliente.setContrasenia(new BCryptPasswordEncoder().encode(contrasenia));
             dni1.setNumero(dni);
-            dr.save(dni1);
+            dR.save(dni1);
             cliente.setDni(dni1);
             cliente.setCorreo(correo);
             cliente.setTelefono(Integer.valueOf(telefono));
             cliente.setDireccion(direccion);
             
-            cr.save(cliente);
+            cR.save(cliente);
         }
     }
     
     @Transactional
     public void bajaCliente(String id){
-        Optional<Cliente> cliente = cr.findById(id);
+        Optional<Cliente> cliente = cR.findById(id);
         if (cliente.isPresent()){
             Cliente clienteAux = cliente.get();
             clienteAux.setAlta(false);
-            cr.save(clienteAux);
+            cR.save(clienteAux);
         }
     }
 
     @Transactional
     public Cliente clienteById (String id){
-        Optional<Cliente> cliente = cr.findById(id);
+        Optional<Cliente> cliente = cR.findById(id);
         Cliente clienteAux = new Cliente();
         if (cliente.isPresent()){
             clienteAux = cliente.get();    
@@ -133,7 +133,7 @@ public class ClienteServicio implements UserDetailsService {
     
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Cliente cliente = cr.buscarPorCorreo(username);
+        Cliente cliente = cR.buscarPorCorreo(username);
         
         if (cliente != null) {
             
@@ -157,4 +157,9 @@ public class ClienteServicio implements UserDetailsService {
             return null;
         }
     }
+    
+    
+    
+    
+    
 }

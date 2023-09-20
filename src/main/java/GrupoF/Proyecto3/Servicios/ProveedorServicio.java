@@ -29,9 +29,9 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 public class ProveedorServicio implements UserDetailsService {
     
     @Autowired
-    private ProveedorRepositorio pr;
+    private ProveedorRepositorio pR;
     @Autowired
-    private DniRepositorio dr;
+    private DniRepositorio dR;
     
     @Transactional
     public void registrarProveedor (String nombreApellido, String contrasenia, String dni, String correo, String telefono, Integer numeroMatricula, String categoriaServicio, Double costoHora, String contraseniaChk) throws MiExcepcion{
@@ -39,7 +39,7 @@ public class ProveedorServicio implements UserDetailsService {
         validarDatosProveedor(nombreApellido, contrasenia, dni, correo, telefono, numeroMatricula, categoriaServicio, costoHora, contraseniaChk);
 
              
-        if (pr.buscarPorCorreo(correo) != null){
+        if (pR.buscarPorCorreo(correo) != null){
             throw new MiExcepcion("Ya existe un usuario registrado con este correo electrónico.");
         }
         
@@ -49,7 +49,7 @@ public class ProveedorServicio implements UserDetailsService {
         proveedor.setNombreApellido(nombreApellido);
         proveedor.setContrasenia(new BCryptPasswordEncoder().encode(contrasenia));
         dni2.setNumero(dni);
-        dr.save(dni2);
+        dR.save(dni2);
         proveedor.setDni(dni2);
         proveedor.setCorreo(correo);
         proveedor.setTelefono(Integer.valueOf(telefono));
@@ -59,7 +59,7 @@ public class ProveedorServicio implements UserDetailsService {
         proveedor.setAlta(true);
         proveedor.setRol(NombreRol.USUARIO);
         
-        pr.save(proveedor);
+        pR.save(proveedor);
     }
     
     
@@ -98,7 +98,7 @@ public class ProveedorServicio implements UserDetailsService {
     public List<Proveedor> listarProveedores() {
 
         List<Proveedor> proveedores = new ArrayList();
-        proveedores = pr.findAll();
+        proveedores = pR.findAll();
         return proveedores;
     }
 
@@ -108,7 +108,7 @@ public class ProveedorServicio implements UserDetailsService {
         
         validarDatosProveedor(nombreApellido, contrasenia, dni, correo, telefono, numeroMatricula, categoriaServicio, costoHora, contraseniaChk);
 
-        Optional<Proveedor> respuestaProveedor = pr.findById(id);
+        Optional<Proveedor> respuestaProveedor = pR.findById(id);
         Dni dni2 = new Dni();
         if (respuestaProveedor.isPresent()) {
 
@@ -117,7 +117,7 @@ public class ProveedorServicio implements UserDetailsService {
             proveedor.setContrasenia(new BCryptPasswordEncoder().encode(contrasenia));
 
             dni2.setNumero(dni);
-            dr.save(dni2);
+            dR.save(dni2);
             proveedor.setDni(dni2);
             proveedor.setCorreo(correo);
             proveedor.setTelefono(Integer.valueOf(telefono));
@@ -125,23 +125,23 @@ public class ProveedorServicio implements UserDetailsService {
             proveedor.setCategoriaServicio(categoriaServicio);
             proveedor.setCostoHora(costoHora);
             
-            pr.save(proveedor);
+            pR.save(proveedor);
         }
     }
     
     @Transactional
     public void bajaProveedor(String id){
-        Optional<Proveedor> proveedor = pr.findById(id);
+        Optional<Proveedor> proveedor = pR.findById(id);
         if (proveedor.isPresent()){
             Proveedor proveedorAux = proveedor.get();
             proveedorAux.setAlta(false);
-            pr.save(proveedorAux);
+            pR.save(proveedorAux);
         }
     }
     
     @Transactional
     public Proveedor proveedorById (String id){
-        Optional<Proveedor> proveedor = pr.findById(id);
+        Optional<Proveedor> proveedor = pR.findById(id);
         Proveedor proveedorAux = new Proveedor();
         if (proveedor.isPresent()){
             proveedorAux = proveedor.get();    
@@ -152,7 +152,7 @@ public class ProveedorServicio implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Proveedor proveedor = pr.buscarPorCorreo(username);
+        Proveedor proveedor = pR.buscarPorCorreo(username);
         
         if (proveedor != null) {
             
