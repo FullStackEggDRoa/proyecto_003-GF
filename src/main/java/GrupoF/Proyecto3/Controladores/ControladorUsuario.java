@@ -15,6 +15,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -43,15 +44,15 @@ public class ControladorUsuario {
             return "sesion-admin.html";
             
         }else if(sesionUsuario.getClass().getName().contains("Cliente")){
-            System.out.println(sesionUsuario.getClass().getName());
+            
             String idCliente = sesionUsuario.getId();
             modelo.addAttribute("idCliente", idCliente);
             return "sesion-cliente.html";
         
         }else{
-            
+            String idProveedor = sesionUsuario.getId();
             List<Proveedor> proveedores = pS.listarProveedores();
-            modelo.addAttribute("proveedores", proveedores);
+            modelo.addAttribute("idProveedor", idProveedor);
             return "sesion-proveedor.html";
         }
     }
@@ -59,21 +60,20 @@ public class ControladorUsuario {
     @PreAuthorize("hasAnyRole('ROLE_USUARIO', 'ROLE_ADM')")
     @GetMapping("/modificacion")
     public String registro(HttpSession session, @RequestParam String modo, ModelMap modelo){
-         Usuario sesionUsuario = (Usuario) session.getAttribute("usuariosession");
+        Usuario sesionUsuario = (Usuario) session.getAttribute("usuariosession");
         if (modo.equalsIgnoreCase("cliente")) {
             String idCliente = sesionUsuario.getId();
             Cliente cliente = cS.clienteById(idCliente);
-            modelo.addAttribute("idCliente", idCliente);
-            
+            modelo.addAttribute("Cliente", cliente);
             return "modificar-cliente.html";
         } else {
             String idProveedor = sesionUsuario.getId();
             Proveedor proveedor = pS.proveedorById(idProveedor);
-            modelo.addAttribute("idProveedor", idProveedor);
+            modelo.addAttribute("Proveedor", proveedor);
             return "modificar-proveedor.html";
-        }
-        
+        }        
     }
+    
     @PostMapping("/modificar")
     public String modificar(@RequestParam String Id, @RequestParam String nombreApellido, @RequestParam String contrasenia,@RequestParam String dni,@RequestParam String correo, @RequestParam String telefono,
             @RequestParam String contraseniaChk, @RequestParam String direccion, @RequestParam String numeroMatricula,
@@ -81,12 +81,12 @@ public class ControladorUsuario {
     {
         try {
             if (modo.equalsIgnoreCase("cliente")) {
-                cS.actualizarCliente(Id, nombreApellido, contrasenia, dni, correo, telefono, direccion);
+                cS.actualizarCliente(Id, nombreApellido, contrasenia, dni, correo, telefono, direccion, contraseniaChk);
                 modelo.put("notificacion", "Datos de usuario actualizados correctamente!");
                 return "sesion-cliente.html";
             }
             else{
-                pS.actualizarProveedor(Id, nombreApellido, contrasenia, dni, correo, telefono, Integer.valueOf(numeroMatricula), categoriaServicio, costoHora);
+                pS.actualizarProveedor(Id, nombreApellido, contrasenia, dni, correo, telefono, Integer.valueOf(numeroMatricula), categoriaServicio, costoHora, contraseniaChk);
                 modelo.put("notificacion", "Datos de usuario actualizados correctamente!");
                 return "sesion-proveedor.html";
             }
@@ -103,11 +103,5 @@ public class ControladorUsuario {
     }
 
     
-    
-    
-    
-    //metodo para listar
-    
-    //metodos GET y POST para modificar
-    
+
 }

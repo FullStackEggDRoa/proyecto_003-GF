@@ -17,11 +17,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.ui.ModelMap;
 
-/**
- *
- * @author droa
- */
-
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -33,12 +28,11 @@ public class SeguridadWeb extends WebSecurityConfigurerAdapter {
     
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
-        auth.userDetailsService(pS)
-                .passwordEncoder(new BCryptPasswordEncoder());
         auth.userDetailsService(cS)
                 .passwordEncoder(new BCryptPasswordEncoder());
+        auth.userDetailsService(pS)
+                .passwordEncoder(new BCryptPasswordEncoder());
     }
-    
             
     @Override
     protected void configure(HttpSecurity http) throws Exception {
