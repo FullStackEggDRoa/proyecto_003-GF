@@ -81,12 +81,12 @@ public class ControladorUsuario {
     {
         try {
             if (modo.equalsIgnoreCase("cliente")) {
-                cS.actualizarCliente(Id, nombreApellido, contrasenia, dni, correo, telefono, direccion);
+                cS.actualizarCliente(Id, nombreApellido, contrasenia, dni, correo, telefono, direccion, contraseniaChk);
                 modelo.put("notificacion", "Datos de usuario actualizados correctamente!");
                 return "sesion-cliente.html";
             }
             else{
-                pS.actualizarProveedor(Id, nombreApellido, contrasenia, dni, correo, telefono, Integer.valueOf(numeroMatricula), categoriaServicio, costoHora);
+                pS.actualizarProveedor(Id, nombreApellido, contrasenia, dni, correo, telefono, Integer.valueOf(numeroMatricula), categoriaServicio, costoHora, contraseniaChk);
                 modelo.put("notificacion", "Datos de usuario actualizados correctamente!");
                 return "sesion-proveedor.html";
             }
@@ -103,4 +103,5 @@ public class ControladorUsuario {
     }
 
     
+
 }
