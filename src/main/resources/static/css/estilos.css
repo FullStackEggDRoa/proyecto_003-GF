@@ -75,7 +75,7 @@ color: purple ;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 120vh;
+    height: 90vh;
 }
 
 .form {
@@ -134,7 +134,7 @@ color: purple ;
     margin-left: auto;
     padding: 15px 30px;
     border: none;
-    background-color: purple;
+    background-color: #dc3545;
     color: white;
     border-radius: 6px;
     cursor: pointer;
@@ -148,7 +148,7 @@ color: purple ;
     padding: 10px 20px;
     border: none;
     background-color: transparent;
-    color: purple;
+    color: #dc3545;
     border-radius: 6px;
     cursor: pointer;
     font-size: 14px;
@@ -157,12 +157,12 @@ color: purple ;
 }
 
 .submitBtnR:hover {
-    background-color: #f3b634;
+    background-color: #dc3545;
     transform: translateY(-2px);
 }
 
 .submitBtn:hover {
-    background-color: #9867C5;
+    background-color: #dc3545;
     transform: translateY(-2px);
 }
 
