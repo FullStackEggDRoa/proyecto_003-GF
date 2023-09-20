@@ -11,33 +11,11 @@
     </head>
     <body>
         
-    <nav class="navbar navbar-expand-sm navbar-white bg-white" style="background-color: transparent; opacity: 1;" aria-label="Fourth navbar example">
-
-    <div class="container-fluid">
-        <a class="navbar-brand" href="/">
-            <img src="/img/Lg_sf.png"  width="65" height="50" class="d-inline-block align-text-top">
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-               
-            </ul>
-            <a href="/usuario/modificacion?modo=cliente" class="btn btn-danger" style="margin:5px;" role="button">Mi perfil</a>
-            
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Ir</button>
-            </form>
-        </div>
-    </div>
-</nav>
-
+    <nav th:replace="/fragments/navbar-sesion :: nav"> </nav>
       
-         
            
     <title>Bienvenido a Zona Servi!</title>
+         
     
 
 <div class="container my-5">
@@ -79,7 +57,7 @@
                         <div class="card mb-4" style="width: 18rem;">
                             <img class="card-img-top" src="/img/tarjetas/plomero.jpg" alt="Card image cap">
                             <div class="card-body">
-                                <h5 class="card-title">Plomeria</h5>
+                                <h5 class="card-title">Plomería</h5>
                                 <p class="card-text">Solución a tus problemas hogar e industria.</p>
                                 <a href="#" class="btn btn-primary">Ver</a>
                             </div>
@@ -89,7 +67,7 @@
                         <div class="card mb-4" style="width: 18rem;">
                             <img class="card-img-top" src="/img/tarjetas/albañil.jpg" alt="Card image cap">
                             <div class="card-body">
-                                <h5 class="card-title">Construcción</h5>
+                                <h5 class="card-title">Albañilería</h5>
                                 <p class="card-text">Solución a tus problemas hogar e industria.</p>
                                 <a href="#" class="btn btn-primary">Ver</a>
                             </div>
@@ -101,7 +79,7 @@
                         <div class="card mb-4" style="width: 18rem;">
                             <img class="card-img-top" src="/img/tarjetas/carpintero.jpg" alt="Card image cap">
                             <div class="card-body">
-                                <h5 class="card-title">Carpinteria</h5>
+                                <h5 class="card-title">Carpintería</h5>
                                 <p class="card-text">Solución a tus problemas hogar e industria.</p>
                                 <a href="#" class="btn btn-primary">Ver</a>
                             </div>
@@ -111,7 +89,7 @@
                         <div class="card mb-4" style="width: 18rem;">
                             <img class="card-img-top" src="/img/tarjetas/gasista.jpg" alt="Card image cap">
                             <div class="card-body">
-                                <h5 class="card-title">Gasista</h5>
+                                <h5 class="card-title">Gas</h5>
                                 <p class="card-text">Solución a tus problemas hogar e industria.</p>
                                 <a href="#" class="btn btn-primary">Ver</a>
                             </div>
@@ -121,7 +99,7 @@
                         <div class="card mb-4" style="width: 18rem;">
                             <img class="card-img-top" src="/img/tarjetas/jardinero.webp" alt="Card image cap">
                             <div class="card-body">
-                                <h5 class="card-title">Jardinero</h5>
+                                <h5 class="card-title">Jardinería</h5>
                                 <p class="card-text">Solución a tus problemas hogar e industria.</p>
                                 <a href="#" class="btn btn-primary">Ver</a>
                             </div>

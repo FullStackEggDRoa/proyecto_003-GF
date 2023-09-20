@@ -31,20 +31,6 @@
                     <input type="password" class="input" placeholder="" name="contrasenia" th:value="${contrasenia}" required>
                     <label for="" class="label">Contraseña</label>
                 </div>
-               
-                <div class="form-check">
-                    <p>¿Como deseas ingresar?</p>
-                    <input class="form-check-input" type="radio" name="modo" id="exampleRadios1" th:value="cliente" checked>
-                    <label class="form-check-label" for="exampleRadios1">
-                        Cliente
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="modo" id="exampleRadios2" th:value="proveedor">
-                    <label class="form-check-label" for="exampleRadios2">
-                        Proveedor
-                    </label>
-                </div>
 
                 <input type="submit" class="submitBtn" value="Enviar">
             </form>
