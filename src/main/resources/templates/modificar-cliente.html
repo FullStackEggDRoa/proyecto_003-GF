@@ -5,18 +5,18 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Perfil cliente</title>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <link rel="stylesheet" href="/css/bg.css">
         <link rel="stylesheet" href="/css/estilos.css">
     </head>
-    <body>
-        <nav th:replace="/fragments/navbar :: nav" ></nav>
+    <body class="bg-custom">
+        <nav th:replace="/fragments/navbar-sesion :: nav" ></nav>
 
         <div class="signupFrm">
 
 
-            <form  th:action="@{/usuario/modificar/__${Cleinte}__}" class="form" method="POST">
-    <!--                <input hidden th:value="${id}" name="id">-->
+            <form  th:action="@{/usuario/modificar/__${Cliente}__}" class="form" method="POST">
+           <!-- <input hidden th:value="${id}" name="id">-->
                 <input type="hidden" name="numeroMatricula" value="0">
                 <input type="hidden" name="categoriaServicio" value="NA">
                 <input type="hidden" name="costoHora" value="0">
@@ -34,7 +34,7 @@
                                                 <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
                                             </svg>
                                         </button>
-
+                                       
                                         <!-- Modal -->
                                         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog">
@@ -226,15 +226,14 @@
                                                                 </div>
                                                                 </div>
                                                                 </div>
-                                                                </div>
-                                                                <a href="/usuario/sesion?modo=cliente"  class="submitBtR" style="margin:5px;" role="button">Listo</a>
+     </div>
+     <a href="/usuario/sesion?modo=cliente"  class="submitBtR" style="margin:5px;" role="button">Listo</a>
 
                                                                 <input type="submit" class="submitBtR" value="Eliminar cuenta">
             </form>
     </div>
-    <footer th:replace="/fragments/footer :: footer"> </footer>  
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    <footer th:replace="/fragments/footer :: footer"> </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
 
 
