@@ -2,9 +2,7 @@ package GrupoF.Proyecto3.Controladores;
 
 
 import GrupoF.Proyecto3.Entidades.Cliente;
-import GrupoF.Proyecto3.Entidades.Proveedor;
 import GrupoF.Proyecto3.Entidades.Usuario;
-import GrupoF.Proyecto3.Enumeradores.NombreRol;
 import GrupoF.Proyecto3.Excepciones.MiExcepcion;
 import GrupoF.Proyecto3.Servicios.ClienteServicio;
 import GrupoF.Proyecto3.Servicios.ProveedorServicio;
@@ -97,7 +95,11 @@ public class controladorInicio {
 
         } catch (MiExcepcion ex) {
 
-            modelo.put("notificacion", ex.getMessage());
+            modelo.put("error", ex.getMessage());
+            modelo.put("correo", correo);
+            modelo.put("nombreApellido", nombreApellido);
+            modelo.put("dni", dni);
+            modelo.put("telefono", telefono);
             
             if(modo.equalsIgnoreCase("cliente")){
                 return "registro-cliente.html";
