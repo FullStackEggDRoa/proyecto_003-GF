@@ -49,18 +49,18 @@
                     <input type="text" class="input" placeholder="" name="categoriaServicio" th:value="${categoriaServicio}" required>
                     <label for="" class="label">Profesión</label>
                 </div>
-                <!-- SELECT CON LAS OPCIONES DE CATEGORIAS SERVICIO
+                
                 <div class="inputContainer">
                     <select class="form-select input" aria-label="Default select example">
                         <option selected>Categoria de servicio</option>
-                        <option value="1">Carpintería</option>
-                        <option value="2">Gas</option>
-                        <option value="3">Electricidad</option>
-                        <option value="4">Plomería</option>
-                        <option value="5">Jardinería</option>
-                        <option value="6">Albañilería</option>
+                        <option value="Carpintería">Carpintería</option>
+                        <option value="Gas">Gas</option>
+                        <option value="Electricidad">Electricidad</option>
+                        <option value="Plomería">Plomería</option>
+                        <option value="Jardinería">Jardinería</option>
+                        <option value="Albañilería">Albañilería</option>
                     </select>
-                </div>-->
+                </div>
 
                 <div class="inputContainer">
                     <input type="number" class="input" placeholder="" name="numeroMatricula" th:value="${numeroMatricula}" >
@@ -72,13 +72,10 @@
                     <label for="" class="label">Costo Hora de Trabajo</label>
                 </div>
                
-                <!-- File input -->
-                <!-- Deja un boon de busqueda en el archivo horrible-->
-                <!--<div class="inputContainer">
-                    
+                <div class="inputContainer">    
                     <input class="input" type="file" id="">
                     <label for="" class="label">Imagen de perfil</label>
-                </div> -->
+                </div>
 
                 <div class="inputContainer">
                     <input type="password" class="input" placeholder="" name="contrasenia" th:value="${contrasenia}" required>
