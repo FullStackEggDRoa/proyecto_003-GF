@@ -7,42 +7,31 @@
     height: 70px;
 }
 #logo{
-
-height: 400px;
-width: 400px;
-text-align: center;
-
+    height: 400px;
+    width: 400px;
+    text-align: center;
 }
-
-
 
 #palabra{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 body {
-
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  background-color: rgb(241, 240, 128);
-  font-family: "lato", sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(241, 240, 128);
+    font-family: "lato", sans-serif;
 }
 
 body {
-
-background-color: whitesmoke;
-   
-
+    background-color: whitesmoke;
 }
 /*index*/
 
 .marca{
- 
-   text-align: center;
-   margin-top: 30px;
+    text-align: center;
+    margin-top: 30px;
 }
-
-
 
 button{
     background-color:transparent;
@@ -55,17 +44,14 @@ button{
 }
 
 button:hover{
-color: purple ;
-
+    color: purple ;
 }
 
 .registrate{
-
     margin-left: 50px;
 }
 
 .visitanos{
-
     margin-left: 50px;
 }
 
@@ -142,7 +128,7 @@ color: purple ;
     margin-top: 30px
 }
 
- .submitBtnR {
+.submitBtnR {
     display: block;
     margin-left: auto;
     padding: 10px 20px;
@@ -172,11 +158,11 @@ color: purple ;
     z-index: 10;
     font-size: 14px;
     font-weight: 600;
-    color: #f3b634;
+    color: black;
 }
 
 .input:focus {
-    border: 2px solid purple;
+    border: 2px solid red;
 }
 
 .input:not(:placeholder-shown)+.label {
@@ -192,10 +178,10 @@ h3 {
 }
 <!--registro prueba-->
 #registro{
-    
-   border-width: 50px;
-   border-color: orangered;
-   background-color: #f3b634;
+
+    border-width: 50px;
+    border-color: red;
+    background-color: #f3b634;
 }
 .registro{
     border-width: 50px;
@@ -203,8 +189,8 @@ h3 {
     background-color: #f3b634;
 }
 #label{
-   width: 25%; 
-   float:left;
+    width: 25%;
+    float:left;
 }
 
 
