@@ -34,9 +34,10 @@ public class ClienteServicio implements UserDetailsService {
     private DniRepositorio dR;
 
     @Transactional
-    public void registrarCliente(String nombreApellido, String contrasenia, String dni, String correo, String telefono, String direccion, String contraseniaChk) throws MiExcepcion{
-
-        validarDatosCliente(nombreApellido, contrasenia, dni, correo, direccion, contraseniaChk);
+    public void registrarCliente(String nombreApellido, String contrasenia, String dni, String correo, String telefono, String direccion, String contraseniaChk) throws MiExcepcion {
+        
+        validarDatosCliente(nombreApellido, dni, correo, direccion);
+        validarContraseniaCliente(contrasenia, contraseniaChk);
 
         if (cR.buscarPorCorreo(correo) != null) {
             throw new MiExcepcion("Ya existe un usuario registrado con este correo electrónico.");
@@ -59,27 +60,6 @@ public class ClienteServicio implements UserDetailsService {
         cR.save(cliente);
     }
     
-    private void validarDatosCliente(String nombreApellido, String contrasenia, String dni, String correo, String direccion, String contraseniaChk) throws MiExcepcion {
-        if (nombreApellido.isEmpty() || nombreApellido == null) {
-            throw new MiExcepcion("El nombre y apellido no pueden ser nulos o estar vacíos");
-        }
-        if (contrasenia.isEmpty() || contrasenia == null || contrasenia.length() <= 8) {
-            throw new MiExcepcion("La contraseña no puede estar vacía y debe tener al menos 8 caracteres");
-        }
-        if (!contrasenia.equals(contraseniaChk)) {
-            throw new MiExcepcion("Las contraseñas ingresadas no coinciden");
-        }
-        if (dni.isEmpty() || dni == null) {
-            throw new MiExcepcion("El DNI no puede ser nulo o estar vacio");
-        }
-        if (correo.isEmpty() || correo == null) {
-            throw new MiExcepcion("El correo no puede ser nulo o estar vacio");
-        }
-        if (direccion.isEmpty() || direccion == null) {
-            throw new MiExcepcion("La direccion no puede ser nula o estar vacia");
-        }
-    }
-    
     @Transactional(readOnly = true)
     public List<Cliente> listarClientes() {
 
@@ -91,15 +71,14 @@ public class ClienteServicio implements UserDetailsService {
     @Transactional
     public void actualizarCliente(String id, String nombreApellido, String contrasenia, String dni, String correo, String telefono, String direccion, String contraseniaChk) throws MiExcepcion {
         
-        validarDatosCliente(nombreApellido, contrasenia, dni, correo, direccion, contraseniaChk);
-
+        validarDatosCliente(nombreApellido, dni, correo, direccion);
+        
         Optional<Cliente> respuestaCliente = cR.findById(id);
         Dni dni1 = new Dni();
         if (respuestaCliente.isPresent()) {
 
             Cliente cliente = respuestaCliente.get();
             cliente.setNombreApellido(nombreApellido);
-            cliente.setContrasenia(new BCryptPasswordEncoder().encode(contrasenia));
             dni1.setNumero(dni);
             dR.save(dni1);
             cliente.setDni(dni1);
@@ -107,7 +86,23 @@ public class ClienteServicio implements UserDetailsService {
             cliente.setTelefono(Integer.valueOf(telefono));
             cliente.setDireccion(direccion);
             
+            if(!(contrasenia.equals(cliente.getContrasenia()))){
+                cambiarContraseniaCliente(id, contrasenia, contraseniaChk);
+            }
+            
             cR.save(cliente);
+        }
+    }
+    
+    public void cambiarContraseniaCliente (String id, String nuevaContrasenia, String contraseniaChk) throws MiExcepcion{
+         
+        Optional<Cliente> cliente = cR.findById(id);
+        if (cliente.isPresent()){
+            validarContraseniaCliente(nuevaContrasenia, contraseniaChk);
+        
+            Cliente clienteAux = cliente.get();
+            clienteAux.setContrasenia(new BCryptPasswordEncoder().encode(nuevaContrasenia));
+            cR.save(clienteAux);
         }
     }
     
@@ -158,8 +153,29 @@ public class ClienteServicio implements UserDetailsService {
         }
     }
     
+     private void validarDatosCliente(String nombreApellido, String dni, String correo, String direccion) throws MiExcepcion {
+        if (nombreApellido.isEmpty() || nombreApellido == null) {
+            throw new MiExcepcion("El nombre y apellido no pueden ser nulos o estar vacíos.");
+        }
+        if (dni.isEmpty() || dni == null) {
+            throw new MiExcepcion("El DNI no puede ser nulo o estar vacio");
+        }
+        if (correo.isEmpty() || correo == null) {
+            throw new MiExcepcion("El correo no puede ser nulo o estar vacio");
+        }
+        if (direccion.isEmpty() || direccion == null) {
+            throw new MiExcepcion("La direccion no puede ser nula o estar vacia");
+        }
+    }
     
-    
-    
+    private void validarContraseniaCliente (String contrasenia, String contraseniaChk) throws MiExcepcion{
+        
+      if (contrasenia.isEmpty() || contrasenia == null || contrasenia.length() <= 8) {
+            throw new MiExcepcion("La contraseña no puede estar vacía y debe tener al menos 8 caracteres");
+        }
+        if (!contrasenia.equals(contraseniaChk)) {
+            throw new MiExcepcion("Las contraseñas ingresadas no coinciden.");
+        }  
+    }
     
 }

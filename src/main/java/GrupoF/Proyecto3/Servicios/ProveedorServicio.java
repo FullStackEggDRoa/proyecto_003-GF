@@ -1,5 +1,3 @@
-
-
 package GrupoF.Proyecto3.Servicios;
 
 import GrupoF.Proyecto3.Entidades.Dni;
@@ -27,25 +25,25 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 @Service
 public class ProveedorServicio implements UserDetailsService {
-    
+
     @Autowired
     private ProveedorRepositorio pR;
     @Autowired
     private DniRepositorio dR;
-    
-    @Transactional
-    public void registrarProveedor (String nombreApellido, String contrasenia, String dni, String correo, String telefono, Integer numeroMatricula, String categoriaServicio, Double costoHora, String contraseniaChk) throws MiExcepcion{
-        
-        validarDatosProveedor(nombreApellido, contrasenia, dni, correo, telefono, numeroMatricula, categoriaServicio, costoHora, contraseniaChk);
 
-             
-        if (pR.buscarPorCorreo(correo) != null){
+    @Transactional
+    public void registrarProveedor(String nombreApellido, String contrasenia, String dni, String correo, String telefono, Integer numeroMatricula, String categoriaServicio, Double costoHora, String contraseniaChk) throws MiExcepcion {
+
+        validarDatosProveedor(nombreApellido, dni, correo, telefono, numeroMatricula, categoriaServicio, costoHora);
+        validarContraseniaProveedor(contrasenia, contraseniaChk);
+
+        if (pR.buscarPorCorreo(correo) != null) {
             throw new MiExcepcion("Ya existe un usuario registrado con este correo electrónico.");
         }
-        
+
         Proveedor proveedor = new Proveedor();
         Dni dni2 = new Dni();
-        
+
         proveedor.setNombreApellido(nombreApellido);
         proveedor.setContrasenia(new BCryptPasswordEncoder().encode(contrasenia));
         dni2.setNumero(dni);
@@ -58,26 +56,113 @@ public class ProveedorServicio implements UserDetailsService {
         proveedor.setCostoHora(costoHora);
         proveedor.setAlta(true);
         proveedor.setRol(NombreRol.USUARIO);
-        
+
         pR.save(proveedor);
     }
+
+    @Transactional
+    public void actualizarProveedor(String id, String nombreApellido, String contrasenia, String dni, String correo, String telefono, Integer numeroMatricula, String categoriaServicio, Double costoHora, String contraseniaChk) throws MiExcepcion {
+
+        validarDatosProveedor(nombreApellido, dni, correo, telefono, numeroMatricula, categoriaServicio, costoHora);
+
+        Optional<Proveedor> respuestaProveedor = pR.findById(id);
+        Dni dni2 = new Dni();
+        if (respuestaProveedor.isPresent()) {
+
+            Proveedor proveedor = respuestaProveedor.get();
+            proveedor.setNombreApellido(nombreApellido);
+            dni2.setNumero(dni);
+            dR.save(dni2);
+            proveedor.setDni(dni2);
+            proveedor.setCorreo(correo);
+            proveedor.setTelefono(Integer.valueOf(telefono));
+            proveedor.setNumMatricula(numeroMatricula);
+            proveedor.setCategoriaServicio(categoriaServicio);
+            proveedor.setCostoHora(costoHora);
+
+            if(!(contrasenia.equals(proveedor.getContrasenia()))){
+                cambiarContraseniaProveedor(id, contrasenia, contraseniaChk);
+            }
+            
+            pR.save(proveedor);
+        }
+    }
     
+    public void cambiarContraseniaProveedor(String id, String nuevaContrasenia, String contraseniaChk) throws MiExcepcion {
+        
+        Optional<Proveedor> proveedor = pR.findById(id);
+        if (proveedor.isPresent()) {
+            validarContraseniaProveedor(nuevaContrasenia, contraseniaChk);
+
+            Proveedor proveedorAux = proveedor.get();
+            proveedorAux.setContrasenia(new BCryptPasswordEncoder().encode(nuevaContrasenia));
+            pR.save(proveedorAux);
+        }
+    }
+
+    @Transactional
+    public void bajaProveedor(String id) {
+        Optional<Proveedor> proveedor = pR.findById(id);
+        if (proveedor.isPresent()) {
+            Proveedor proveedorAux = proveedor.get();
+            proveedorAux.setAlta(false);
+            pR.save(proveedorAux);
+        }
+    }
+
+    @Transactional
+    public Proveedor proveedorById(String id) {
+        Optional<Proveedor> proveedor = pR.findById(id);
+        Proveedor proveedorAux = new Proveedor();
+        if (proveedor.isPresent()) {
+            proveedorAux = proveedor.get();
+        }
+        return proveedorAux;
+    }
     
-    private void validarDatosProveedor(String nombreApellido, String contrasenia, String dni, String correo, String telefono, Integer numeroMatricula, String categoriaServicio, Double costoHora, String contraseniaChk) throws MiExcepcion{
+    @Transactional(readOnly = true)
+    public List<Proveedor> listarProveedores() {
+
+        List<Proveedor> proveedores = new ArrayList();
+        proveedores = pR.findAll();
+        return proveedores;
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Proveedor proveedor = pR.buscarPorCorreo(username);
+
+        if (proveedor != null) {
+
+            List<GrantedAuthority> permisos = new ArrayList();
+
+            GrantedAuthority p = new SimpleGrantedAuthority("ROLE_" + proveedor.getRol().toString());
+
+            permisos.add(p);
+
+            ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+
+            HttpSession session = attr.getRequest().getSession(true);
+
+            session.setAttribute("usuariosession", proveedor);
+
+            return new User(proveedor.getCorreo(), proveedor.getContrasenia(), permisos);
+
+        } else {
+
+            return null;
+        }
+    }
+
+    private void validarDatosProveedor(String nombreApellido, String dni, String correo, String telefono, Integer numeroMatricula, String categoriaServicio, Double costoHora) throws MiExcepcion {
 
         if (nombreApellido.isEmpty() || nombreApellido == null) {
             throw new MiExcepcion("El nombre y apellido no pueden ser nulos o estar vacíos");
         }
-        if (contrasenia.isEmpty() || contrasenia == null || contrasenia.length() <= 8) {
-            throw new MiExcepcion("La contraseña no puede estar vacía y debe tener al menos 8 caracteres");
-        }
-        if (!contrasenia.equals(contraseniaChk)) {
-            throw new MiExcepcion("Las contraseñas ingresadas no coinciden");
-        }
-           if (dni.isEmpty() || dni == null) {
+        if (dni.isEmpty() || dni == null) {
             throw new MiExcepcion("El DNI no puede ser nulo o estar vacio");
         }
-         if (correo.isEmpty() || correo == null) {
+        if (correo.isEmpty() || correo == null) {
             throw new MiExcepcion("El correo no puede ser nulo o estar vacio");
         }
         if (telefono.isEmpty() || telefono == null) {
@@ -94,87 +179,14 @@ public class ProveedorServicio implements UserDetailsService {
         }
     }
 
-    @Transactional(readOnly = true)
-    public List<Proveedor> listarProveedores() {
+    private void validarContraseniaProveedor(String contrasenia, String contraseniaChk) throws MiExcepcion {
 
-        List<Proveedor> proveedores = new ArrayList();
-        proveedores = pR.findAll();
-        return proveedores;
-    }
-
-    @Transactional
-
-    public void actualizarProveedor(String id, String nombreApellido, String contrasenia, String dni, String correo, String telefono, Integer numeroMatricula, String categoriaServicio, Double costoHora, String contraseniaChk) throws MiExcepcion {
-        
-        validarDatosProveedor(nombreApellido, contrasenia, dni, correo, telefono, numeroMatricula, categoriaServicio, costoHora, contraseniaChk);
-
-        Optional<Proveedor> respuestaProveedor = pR.findById(id);
-        Dni dni2 = new Dni();
-        if (respuestaProveedor.isPresent()) {
-
-            Proveedor proveedor = respuestaProveedor.get();
-            proveedor.setNombreApellido(nombreApellido);
-            proveedor.setContrasenia(new BCryptPasswordEncoder().encode(contrasenia));
-
-            dni2.setNumero(dni);
-            dR.save(dni2);
-            proveedor.setDni(dni2);
-            proveedor.setCorreo(correo);
-            proveedor.setTelefono(Integer.valueOf(telefono));
-            proveedor.setNumMatricula(numeroMatricula);
-            proveedor.setCategoriaServicio(categoriaServicio);
-            proveedor.setCostoHora(costoHora);
-            
-            pR.save(proveedor);
+        if (contrasenia.isEmpty() || contrasenia == null || contrasenia.length() <= 8) {
+            throw new MiExcepcion("La contraseña no puede estar vacía y debe tener al menos 8 caracteres");
         }
-    }
-    
-    @Transactional
-    public void bajaProveedor(String id){
-        Optional<Proveedor> proveedor = pR.findById(id);
-        if (proveedor.isPresent()){
-            Proveedor proveedorAux = proveedor.get();
-            proveedorAux.setAlta(false);
-            pR.save(proveedorAux);
+        if (!contrasenia.equals(contraseniaChk)) {
+            throw new MiExcepcion("Las contraseñas ingresadas no coinciden");
         }
-    }
-    
-    @Transactional
-    public Proveedor proveedorById (String id){
-        Optional<Proveedor> proveedor = pR.findById(id);
-        Proveedor proveedorAux = new Proveedor();
-        if (proveedor.isPresent()){
-            proveedorAux = proveedor.get();    
-        }
-        return proveedorAux;
-    }
-    
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Proveedor proveedor = pR.buscarPorCorreo(username);
-        
-        if (proveedor != null) {
-            
-            List<GrantedAuthority> permisos = new ArrayList();
-            
-            GrantedAuthority p = new SimpleGrantedAuthority("ROLE_"+ proveedor.getRol().toString());
-            
-            permisos.add(p);
-   
-            ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-            
-            HttpSession session = attr.getRequest().getSession(true);
-            
-            session.setAttribute("usuariosession", proveedor);
-            
-            return new User(proveedor.getCorreo(), proveedor.getContrasenia(),permisos);
-        
-        }else{
-
-            return null;
-        }
     }
-    
 }
-
