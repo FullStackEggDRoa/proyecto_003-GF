@@ -96,11 +96,11 @@ public class controladorInicio {
 
         } catch (MiExcepcion ex) {
 
-            modelo.put("error", ex.getMessage());
             modelo.put("correo", correo);
             modelo.put("nombreApellido", nombreApellido);
             modelo.put("dni", dni);
             modelo.put("telefono", telefono);
+            modelo.put("error", ex.getMessage());
             
             if(modo.equalsIgnoreCase("cliente")){
                 return "registro-cliente.html";

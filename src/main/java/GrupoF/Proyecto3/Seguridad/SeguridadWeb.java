@@ -2,6 +2,7 @@ package GrupoF.Proyecto3.Seguridad;
 
 import GrupoF.Proyecto3.Servicios.ClienteServicio;
 import GrupoF.Proyecto3.Servicios.ProveedorServicio;
+import GrupoF.Proyecto3.Servicios.UsuarioServicio;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -17,15 +18,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SeguridadWeb extends WebSecurityConfigurerAdapter {
     @Autowired
-    public ClienteServicio cS;
+    public UsuarioServicio us;
     @Autowired
     public ProveedorServicio pS;
     
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
-        auth.userDetailsService(cS)
-                .passwordEncoder(new BCryptPasswordEncoder());
-        auth.userDetailsService(pS)
+        auth.userDetailsService(us)
                 .passwordEncoder(new BCryptPasswordEncoder());
     }
             
