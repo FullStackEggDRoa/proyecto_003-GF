@@ -36,11 +36,15 @@ public class controladorInicio {
     public String login(@RequestParam(required = false) String error, ModelMap modelo, @RequestParam String correo ) {
 
         if (error != null) {
+<<<<<<< HEAD
             if (correo == null){
                 modelo.put("notificacion", "Usuario invalido");
             }else{
             modelo.put("notificacion", "Contraseña invalida");            
             }
+=======
+            modelo.put("notificacion", "Usuario o Contraseña Invalidos");            
+>>>>>>> developer
         }
         
         return "login.html";
@@ -50,7 +54,7 @@ public class controladorInicio {
     public String registro(@RequestParam(required = false) String error, @RequestParam String modo,ModelMap modelo ) {
 
        if (error != null) {
-            modelo.put("notificacion", "Usuario o Contraseña invalidos!");
+            modelo.put("notificacion", "Usuario o Contraseña Invalidos!");
             
        }
        if(modo.equalsIgnoreCase("cliente")){ 
