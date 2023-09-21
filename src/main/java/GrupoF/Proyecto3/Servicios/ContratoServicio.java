@@ -3,6 +3,7 @@ package GrupoF.Proyecto3.Servicios;
 import GrupoF.Proyecto3.Entidades.Cliente;
 import GrupoF.Proyecto3.Entidades.Contrato;
 import GrupoF.Proyecto3.Entidades.Proveedor;
+import GrupoF.Proyecto3.Enumeradores.NombreEstadoContrato;
 import GrupoF.Proyecto3.Excepciones.MiExcepcion;
 import GrupoF.Proyecto3.Repositorios.ClienteRepositorio;
 import GrupoF.Proyecto3.Repositorios.ContratoRepositorio;
@@ -25,6 +26,11 @@ public class ContratoServicio {
     @Autowired
     private ProveedorRepositorio pR;
     
+    @Autowired
+    private ProveedorServicio pS;
+    @Autowired
+    private ClienteServicio cS;
+    
     @Transactional
     public void registrarContrato(String idCliente, String idProveedor){
         
@@ -35,8 +41,21 @@ public class ContratoServicio {
         contrato.setCliente(cliente);
         contrato.setProveedor(proveedor);
         contrato.setFechaInicio(new Date());
-        
+        contrato.setEstadoContrato(NombreEstadoContrato.ESPERA);
         coR.save(contrato);
+    }
+    
+    @Transactional
+    public Contrato contratoById (String id){
+        
+        Optional<Contrato> contrato = coR.findById(id);
+        Contrato contratoAux = new Contrato();
+        
+        if (contrato.isPresent()){
+            contratoAux = contrato.get();    
+        }
+        return contratoAux;
+        
     }
     
     public List<Contrato> listarContratos(){
@@ -49,16 +68,18 @@ public class ContratoServicio {
     
     public List<Contrato> listarContratosPorCliente (String idCliente){
         
+        Cliente cliente = cS.clienteById(idCliente);
         List<Contrato> contratos = new ArrayList();
-        contratos = coR.buscarPorIdCliente(idCliente);
+        contratos = coR.buscarPorIdCliente(cliente.getId());
         return contratos;
         
     }
     
     public List<Contrato> listarContratosPorProveedor (String idProveedor){
         
+        Proveedor proveedor = pS.proveedorById(idProveedor);
         List<Contrato> contratos = new ArrayList();
-        contratos = coR.buscarPorIdProveedor(idProveedor);
+        contratos = coR.buscarPorIdProveedor(proveedor.getId());
         return contratos;
         
     }
