@@ -29,12 +29,12 @@ public class UsuarioServicio implements UserDetailsService {
     private ProveedorRepositorio pr;
     
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String correo) throws UsernameNotFoundException {
         
-        Cliente cliente = cr.buscarPorCorreo(username);
-        Proveedor proveedor = pr.buscarPorCorreo(username);
+        Cliente cliente = cr.buscarPorCorreo(correo);
+        Proveedor proveedor = pr.buscarPorCorreo(correo);
         
-        if(cr.buscarPorCorreo(username) != null){
+        if(cr.buscarPorCorreo(correo) != null){
             
             List<GrantedAuthority> permisos = new ArrayList();
             GrantedAuthority p = new SimpleGrantedAuthority("ROLE_"+ cliente.getRol().toString());
@@ -45,7 +45,7 @@ public class UsuarioServicio implements UserDetailsService {
             
             return new User(cliente.getCorreo(), cliente.getContrasenia(),permisos);
         }
-        else if(pr.buscarPorCorreo(username) != null){
+        else if(pr.buscarPorCorreo(correo) != null){
             
             List<GrantedAuthority> permisos = new ArrayList();
             GrantedAuthority p = new SimpleGrantedAuthority("ROLE_"+ proveedor.getRol().toString());
