@@ -97,8 +97,8 @@ public class controladorInicio {
             return "login.html";
 
         } catch (MiExcepcion ex) {
-
-            modelo.put("notificacion", ex.getMessage());
+           // modifico el notificaion por error
+            modelo.put("error", ex.getMessage());
             
             if(modo.equalsIgnoreCase("cliente")){
                 return "registro-cliente.html";
