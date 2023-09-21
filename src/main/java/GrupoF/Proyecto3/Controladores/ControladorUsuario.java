@@ -47,12 +47,14 @@ public class ControladorUsuario {
             
             String idCliente = sesionUsuario.getId();
             modelo.addAttribute("idCliente", idCliente);
+            modelo.put("modo", "cliente");
             return "sesion-cliente.html";
         
         }else{
             String idProveedor = sesionUsuario.getId();
             List<Proveedor> proveedores = pS.listarProveedores();
             modelo.addAttribute("idProveedor", idProveedor);
+            modelo.put("modo", "proveedor");
             return "sesion-proveedor.html";
         }
     }
@@ -65,13 +67,13 @@ public class ControladorUsuario {
             String idCliente = sesionUsuario.getId();
             Cliente cliente = cS.clienteById(idCliente);
             modelo.addAttribute("Cliente", cliente);
-            modelo.put("modo", "cliente");
+            
             return "modificar-cliente.html";
         } else {
             String idProveedor = sesionUsuario.getId();
             Proveedor proveedor = pS.proveedorById(idProveedor);
             modelo.addAttribute("Proveedor", proveedor);
-            modelo.put("modo", "proveedor");
+            
             return "modificar-proveedor.html";
         }        
     }
