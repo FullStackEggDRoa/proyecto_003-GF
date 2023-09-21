@@ -33,10 +33,14 @@ public class controladorInicio {
     }
     
      @GetMapping("/ingreso")
-    public String login(@RequestParam(required = false) String error, ModelMap modelo ) {
+    public String login(@RequestParam(required = false) String error, ModelMap modelo, @RequestParam String correo ) {
 
         if (error != null) {
-            modelo.put("notificacion", "Usuario o Contraseña invalidos");            
+            if (correo == null){
+                modelo.put("notificacion", "Usuario invalido");
+            }else{
+            modelo.put("notificacion", "Contraseña invalida");            
+            }
         }
         
         return "login.html";
