@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequestMapping("/usuario")
@@ -75,13 +76,13 @@ public class ControladorUsuario {
     }
     
     @PostMapping("/modificar")
-    public String modificar(@RequestParam String Id, @RequestParam String nombreApellido, @RequestParam String contrasenia,@RequestParam String dni,@RequestParam String correo, @RequestParam String telefono,
+    public String modificar(MultipartFile archivo, @RequestParam String Id, @RequestParam String nombreApellido, @RequestParam String contrasenia,@RequestParam String dni,@RequestParam String correo, @RequestParam String telefono,
             @RequestParam String contraseniaChk, @RequestParam String direccion, @RequestParam String numeroMatricula,
             @RequestParam String categoriaServicio, @RequestParam Double costoHora,@RequestParam String modo, ModelMap modelo)
     {
         try {
             if (modo.equalsIgnoreCase("cliente")) {
-                cS.actualizarCliente(Id, nombreApellido, contrasenia, dni, correo, telefono, direccion, contraseniaChk);
+                cS.actualizarCliente(archivo, Id, nombreApellido, contrasenia, dni, correo, telefono, direccion, contraseniaChk);
                 modelo.put("notificacion", "Datos de usuario actualizados correctamente!");
                 return "sesion-cliente.html";
             }
