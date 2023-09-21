@@ -27,11 +27,10 @@
                     Creamos una página web que conecta clientes que necesitan servicios con profesionales capacitados. 
                 </p>
                 <div class="d-inline-flex gap-2 mb-5">
-                    <button class="d-inline-flex align-items-center btn btn-primary btn-lg px-4 rounded-pill"  th:href="@{/usuario/modificacion?modo=Cliente&Id=__${idCliente}__}" type="button" >
-                        
-                        Mi perfil
+                    <a class="d-inline-flex align-items-center btn btn-primary btn-lg px-4 rounded-pill" th:href="@{/usuario/modificar?modo=cliente&id=__${idCliente}__} " type="button">
+                                                Mi perfil
                         <svg class="bi ms-2" width="24" height="24"><use xlink:href="#arrow-right-short"/></svg>
-                    </button>
+                    </a>
                     <button class="btn btn-outline-secondary btn-lg px-4 rounded-pill" type="button">
                         ¡Conócenos más!
                     </button>
