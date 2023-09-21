@@ -65,11 +65,13 @@ public class ControladorUsuario {
             String idCliente = sesionUsuario.getId();
             Cliente cliente = cS.clienteById(idCliente);
             modelo.addAttribute("Cliente", cliente);
+            modelo.put("modo", "cliente");
             return "modificar-cliente.html";
         } else {
             String idProveedor = sesionUsuario.getId();
             Proveedor proveedor = pS.proveedorById(idProveedor);
             modelo.addAttribute("Proveedor", proveedor);
+            modelo.put("modo", "proveedor");
             return "modificar-proveedor.html";
         }        
     }

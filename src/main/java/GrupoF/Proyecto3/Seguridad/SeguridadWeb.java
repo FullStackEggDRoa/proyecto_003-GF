@@ -28,9 +28,9 @@ public class SeguridadWeb extends WebSecurityConfigurerAdapter {
     
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
-        auth.userDetailsService(pS)
-                .passwordEncoder(new BCryptPasswordEncoder());
         auth.userDetailsService(cS)
+                .passwordEncoder(new BCryptPasswordEncoder());
+        auth.userDetailsService(pS)
                 .passwordEncoder(new BCryptPasswordEncoder());
     }
             
