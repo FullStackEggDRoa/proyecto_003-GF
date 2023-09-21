@@ -158,6 +158,7 @@ public class ClienteServicio implements UserDetailsService {
     
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        
         Cliente cliente = cr.buscarPorCorreo(username);
         
         if (cliente != null) {

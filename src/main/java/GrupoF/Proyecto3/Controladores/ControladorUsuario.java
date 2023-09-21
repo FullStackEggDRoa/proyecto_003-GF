@@ -66,10 +66,13 @@ public class ControladorUsuario {
             String idCliente = sesionUsuario.getId();
             Cliente cliente = cS.clienteById(idCliente);
             modelo.addAttribute("Cliente", cliente);
+            modelo.put("modo", "cliente");
             return "modificar-cliente.html";
         } else {
             String idProveedor = sesionUsuario.getId();
             Proveedor proveedor = pS.proveedorById(idProveedor);
+             modelo.put("modo", "proveedor");
+            modelo.addAttribute("Proveedor", proveedor);
             modelo.addAttribute("Proveedor", proveedor);
             return "modificar-proveedor.html";
         }        
@@ -86,10 +89,13 @@ public class ControladorUsuario {
                 modelo.put("notificacion", "Datos de usuario actualizados correctamente!");
                 return "sesion-cliente.html";
             }
-            else{
-                pS.actualizarProveedor(Id, nombreApellido, contrasenia, dni, correo, telefono, Integer.valueOf(numeroMatricula), categoriaServicio, costoHora, contraseniaChk);
+            else if (modo.equalsIgnoreCase("proveedor")){
+                pS.actualizarProveedor(archivo, Id, nombreApellido, contrasenia, dni, correo, telefono, Integer.valueOf(numeroMatricula), categoriaServicio, costoHora, contraseniaChk);
                 modelo.put("notificacion", "Datos de usuario actualizados correctamente!");
                 return "sesion-proveedor.html";
+            }else {
+                
+                return "sesion-admin.html";                
             }
            
         } catch (MiExcepcion ex) {
