@@ -20,11 +20,11 @@
                 <h3 class="title">PERFIL PROVEEDOR</h3>
                 <!--NOMBRE Y APELLIDO-->
                 <div class="inputContainer">
-                <label for="" class="label">Nombre y apellido</label >
+                <label for="" class="label"></label >
                 <input type="text" class="input"  placeholder="" name="nombreApellido" th:value="${Proveedor.nombreApellido}" disabled>
                 <label for="floatingInputDisabled"></label>
                 <!-- Button LAPIZ MODIFICAR -->
-                <button type="button" class="btn btn-outline-secondary "data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <button style="display: block; margin-left: auto" type="button" class="btn btn-outline-secondary "data-bs-toggle="modal" data-bs-target="#exampleModal">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                         <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                         <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
@@ -48,15 +48,14 @@
                                 <button type="submit" class="btn btn-black">Modificar</button>
                             </div>
                         </div>
-                    submit
                 </div>
             </div>
             <!--DNI-->
             <div class="inputContainer">
-                <label for="" class="label">DNI</label >
+                <label for="" class="label"></label >
                 <input type="text" class="input" placeholder="" name="dni" th:value="${Proveedor.dni.numero}" disabled>
                 <!-- Button LAPIZ MODIFICAR -->
-                <button type="button" class="btn btn-outline-secondary "data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <button style="display: block; margin-left: auto" type="button" class="btn btn-outline-secondary "data-bs-toggle="modal" data-bs-target="#exampleModal">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                     <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                     <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
@@ -85,10 +84,10 @@
 
             <!--TELEFONO-->
             <div class="inputContainer">
-                <label for="" class="label">Teléfono</label >
+                <label for="" class="label"></label >
                 <input type="text" class="input" placeholder="" name="telefono" th:value="${Proveedor.telefono}" disabled>
                  <!-- Button LAPIZ MODIFICAR -->
-                <button type="button" class="btn btn-outline-secondary "data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <button style="display: block; margin-left: auto" type="button" class="btn btn-outline-secondary "data-bs-toggle="modal" data-bs-target="#exampleModal">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                         <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                         <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
@@ -118,10 +117,10 @@
         </div>
         <!--CORREO-->
         <div class="inputContainer">
-            <label for="" class="label">Correo electrónico</label >
+            <label for="" class="label"></label >
             <input type="email" class="input" placeholder="" name="correo" th:value="${Proveedor.correo}" disabled>
             <!-- Button LAPIZ MODIFICAR -->
-            <button type="button" class="btn btn-outline-secondary "data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <button style="display: block; margin-left: auto" type="button" class="btn btn-outline-secondary "data-bs-toggle="modal" data-bs-target="#exampleModal">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                     <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                     <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
@@ -151,10 +150,10 @@
 
         <!--CATEGORÍA SERVICIO-->
         <div class="inputContainer">
-            <label for="" class="label">Categoría de Servicio</label >
+            <label for="" class="label"></label >
             <input type="text" class="input" placeholder="" name="categoriaServicio" th:value="${Proveedor.categoriaServicio}" disabled>
             <!-- Button LAPIZ MODIFICAR -->
-            <button type="button" class="btn btn-outline-secondary "data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <button style="display: block; margin-left: auto" type="button" class="btn btn-outline-secondary "data-bs-toggle="modal" data-bs-target="#exampleModal">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                     <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                     <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
@@ -184,10 +183,10 @@
 
         <!--MATRICULA-->
         <div class="inputContainer">
-            <label for="" class="label">Matrícula profesional</label >
+            <label for="" class="label"></label >
                 <input type="number" class="input" placeholder="" name="numeroMatricula" th:value="${Proveedor.numMatricula}" disabled>
         <!-- Button LAPIZ MODIFICAR -->
-            <button type="button" class="btn btn-outline-secondary "data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <button style="display: block; margin-left: auto" type="button" class="btn btn-outline-secondary "data-bs-toggle="modal" data-bs-target="#exampleModal">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                     <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                     <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
@@ -218,10 +217,10 @@
 
         <!--COSTO POR HORA-->
         <div class="inputContainer">
-            <label for="" class="label">Costo por hora</label >
+            <label for="" class="label"></label >
             <input type="number" class="input" placeholder="" name="costoHora" th:value="${Proveedor.costoHora}" disabled>
             <!-- Button LAPIZ MODIFICAR -->
-            <button type="button" class="btn btn-outline-secondary "data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <button style="display: block; margin-left: auto" type="button" class="btn btn-outline-secondary "data-bs-toggle="modal" data-bs-target="#exampleModal">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                     <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                     <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
@@ -252,10 +251,10 @@
 
         <!--CONTRASEÑA-->
         <div class="inputContainer">
-            <label for="" class="label">Contraseña</label >
+            <label for="" class="label"></label >
             <input type="password" class="input" placeholder="" name="contrasenia" value="Contraseña Encriptada" disabled>
             <!-- Button LAPIZ MODIFICAR -->
-            <button type="button" class="btn btn-outline-secondary "data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <button style="display: block; margin-left: auto" type="button" class="btn btn-outline-secondary "data-bs-toggle="modal" data-bs-target="#exampleModal">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                     <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                     <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
