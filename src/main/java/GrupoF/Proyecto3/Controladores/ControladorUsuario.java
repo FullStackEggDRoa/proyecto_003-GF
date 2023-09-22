@@ -47,14 +47,18 @@ public class ControladorUsuario {
         }else if(sesionUsuario.getClass().getName().contains("Cliente")){
             
             String idCliente = sesionUsuario.getId();
+            String nombrePerfil = sesionUsuario.getNombreApellido();
             modelo.addAttribute("idCliente", idCliente);
+            modelo.addAttribute("nombrePerfil", nombrePerfil);
             modelo.put("modo", "cliente");
             return "sesion-cliente.html";
         
         }else{
             String idProveedor = sesionUsuario.getId();
+            String nombrePerfil = sesionUsuario.getNombreApellido();
             List<Proveedor> proveedores = pS.listarProveedores();
             modelo.addAttribute("idProveedor", idProveedor);
+            modelo.addAttribute("nombrePerfil",  nombrePerfil);
             modelo.put("modo", "proveedor");
             return "sesion-proveedor.html";
         }
