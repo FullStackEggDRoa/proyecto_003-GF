@@ -5,7 +5,9 @@
 package GrupoF.Proyecto3.Servicios;
 
 import GrupoF.Proyecto3.Entidades.Cliente;
+import GrupoF.Proyecto3.Entidades.Proveedor;
 import GrupoF.Proyecto3.Repositorios.ClienteRepositorio;
+import GrupoF.Proyecto3.Repositorios.ProveedorRepositorio;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpSession;
@@ -24,60 +26,37 @@ import org.springframework.web.context.request.ServletRequestAttributes;
  *
  * @author droa
  */
+
 @Service
 public class UsuarioServicio implements UserDetailsService{
     
     @Autowired
     private ClienteRepositorio cR;
-    
     @Autowired
-    private ClienteRepositorio pR;
+    private ProveedorRepositorio pR;
+    @Autowired
+    private ClienteServicio cS; 
+    @Autowired
+    private ProveedorServicio pS;
     
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         
+        Cliente cliente = cR.buscarPorCorreo(username);
+        Proveedor proveedor = pR.buscarPorCorreo(username);
         
-        if(pR.buscarPorCorreo(username) != null){
+        if(cliente != null){
+
+            return cS.loadUserByUsername(username);
             
-            Cliente cliente = cR.buscarPorCorreo(username);
-                    
-            List<GrantedAuthority> permisos = new ArrayList();
-            
-            GrantedAuthority p = new SimpleGrantedAuthority("ROLE_"+ cliente.getRol().toString());
-            
-            permisos.add(p);
-   
-            ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-            
-            HttpSession session = attr.getRequest().getSession(true);
-            
-            session.setAttribute("usuariosession", cliente);
-            
-            return new User(cliente.getCorreo(), cliente.getContrasenia(),permisos);
-            
-        }else if(pR.buscarPorCorreo(username)!= null){
-            
-            Cliente cliente = cR.buscarPorCorreo(username);
-                    
-            List<GrantedAuthority> permisos = new ArrayList();
-            
-            GrantedAuthority p = new SimpleGrantedAuthority("ROLE_"+ cliente.getRol().toString());
-            
-            permisos.add(p);
-   
-            ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-            
-            HttpSession session = attr.getRequest().getSession(true);
-            
-            session.setAttribute("usuariosession", cliente);
-            
-            return new User(cliente.getCorreo(), cliente.getContrasenia(),permisos);
-        
+        }else if(proveedor != null){
+
+            return pS.loadUserByUsername(username);
+      
         }else{
             
-            //throw new UsernameNotFoundException("Usuario y contraseña inválidos");
+            throw new UsernameNotFoundException("Serivicio No especficado o No Reconocido");
             
-            return null;
         }
     }
 }

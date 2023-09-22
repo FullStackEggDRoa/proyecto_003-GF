@@ -24,7 +24,6 @@ public class SeguridadWeb extends WebSecurityConfigurerAdapter {
     @Autowired
     public UsuarioServicio uS;
     
-    
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
         auth.userDetailsService(uS)

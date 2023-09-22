@@ -9,6 +9,7 @@ import GrupoF.Proyecto3.Enumeradores.NombreRol;
 import GrupoF.Proyecto3.Excepciones.MiExcepcion;
 import GrupoF.Proyecto3.Repositorios.ClienteRepositorio;
 import GrupoF.Proyecto3.Repositorios.DniRepositorio;
+import GrupoF.Proyecto3.Repositorios.UsuarioRepositorio;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -33,6 +34,9 @@ import org.springframework.web.multipart.MultipartFile;
 public class ClienteServicio implements UserDetailsService {
 
     @Autowired
+    private UsuarioRepositorio uR;
+    
+    @Autowired
     private ClienteRepositorio cr;
 
     @Autowired
@@ -40,6 +44,7 @@ public class ClienteServicio implements UserDetailsService {
     
     @Autowired
     private ImagenServicio iS;
+  
 
     @Transactional
     public void registrarCliente(String nombreApellido, String contrasenia, String dni, String correo, String telefono, String direccion, String contraseniaChk) throws MiExcepcion{
@@ -132,6 +137,7 @@ public class ClienteServicio implements UserDetailsService {
                 }
             }
             cliente.setImagen(imagen);
+            cliente.setImagen(imagen);
             cr.save(cliente);
         }
     }
@@ -159,7 +165,7 @@ public class ClienteServicio implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         
-        Cliente cliente = cr.buscarPorCorreo(username);
+        Cliente cliente = (Cliente) uR.buscarPorCorreo(username);
         
         if (cliente != null) {
             

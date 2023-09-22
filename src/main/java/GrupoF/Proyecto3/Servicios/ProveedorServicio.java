@@ -9,6 +9,7 @@ import GrupoF.Proyecto3.Enumeradores.NombreRol;
 import GrupoF.Proyecto3.Excepciones.MiExcepcion;
 import GrupoF.Proyecto3.Repositorios.DniRepositorio;
 import GrupoF.Proyecto3.Repositorios.ProveedorRepositorio;
+import GrupoF.Proyecto3.Repositorios.UsuarioRepositorio;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -30,6 +31,8 @@ import org.springframework.web.multipart.MultipartFile;
 @Service
 public class ProveedorServicio implements UserDetailsService {
     
+    @Autowired
+    private UsuarioRepositorio uR;
     @Autowired
     private ProveedorRepositorio pr;
     @Autowired
@@ -142,6 +145,7 @@ public class ProveedorServicio implements UserDetailsService {
                     throw new MiExcepcion("No se pudo Cargar el Avatar");
                 }
             }
+            proveedor.setImagen(imagen);
             proveedor.setNumMatricula(numeroMatricula);
             proveedor.setCategoriaServicio(categoriaServicio);
             proveedor.setCostoHora(costoHora);
@@ -173,7 +177,8 @@ public class ProveedorServicio implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Proveedor proveedor = pr.buscarPorCorreo(username);
+        
+        Proveedor proveedor = (Proveedor) uR.buscarPorCorreo(username);
         
         if (proveedor != null) {
             
