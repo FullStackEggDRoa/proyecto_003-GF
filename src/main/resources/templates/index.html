@@ -7,13 +7,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
         <link rel="stylesheet" href="/css/bg.css">
+        <link rel="stylesheet" href="/css/prueba.css">
        
     </head>
     <body class="bg-custom">
         <!-- Navbar Inicio -->
         <nav th:replace="/fragments/navbar :: nav"> </nav>
         <!-- Navbar Final -->
-
+        <div class="slider">
         <!-- Carrusel Inicio -->        
         <div class="container mt-5">
             <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
@@ -32,14 +33,17 @@
                 </div>
             </div>
         </div>
-        <div class="mt-4"></div>
+        </div>
+        <!--<div class="mt-4"></div>
         <!-- Carrusel Final -->
 
 
 
         <!-- Tarjetas Inicio -->
+        <div class="tarjetas">
+        <div class="container mt-5">
         <div class="container">
-            <div class="contenedor" style="width: 1219px; height:750px;">          
+            <!--<div class="contenedor" style="width: 1219px; height:2300px;">--<!-- comment -->          
                 <div class="row">             
                     <div class="col-md-4">
                         <div class="card mb-4" style="width: 18rem;">
@@ -104,6 +108,8 @@
                         </div>
                     </div>
                 </div>
+            </div>
+             </div>
             </div>
             <!-- Tarjetas Final -->
 
