@@ -112,4 +112,80 @@ public class ContratoServicio {
         }
     }  
     
+    public int calificacionPorProveedor (String idProveedor){
+        Proveedor proveedor = pS.proveedorById(idProveedor);
+        
+        List<Contrato> contratos = new ArrayList();
+        contratos = listarContratosPorProveedor(proveedor.getId());
+        int totalCalificaciones = 0;
+                
+        for (Contrato contrato : contratos) {
+            totalCalificaciones += contrato.getCalifProveedor();
+        }
+        
+        int respuesta = Math.round(totalCalificaciones / contratos.size()); 
+                      
+        return (respuesta) ;
+    }
+    
+    public int calificacionPorCliente (String idCliente){
+        Cliente cliente = cS.clienteById(idCliente);
+        
+        List<Contrato> contratos = new ArrayList();
+        contratos = listarContratosPorCliente(cliente.getId());
+        int totalCalificaciones = 0;
+                
+        for (Contrato contrato : contratos) {
+            totalCalificaciones += contrato.getCalifCliente();
+        }
+        
+        int respuesta = Math.round(totalCalificaciones / contratos.size()); 
+                      
+        return (respuesta) ;
+    }
+    
+    @Transactional
+    public void aceptarContratoProveedor(String idContrato){
+        
+        Contrato contrato = coR.findById(idContrato).get();
+        
+        contrato.setEstadoContrato(NombreEstadoContrato.PROCESO);
+        coR.save(contrato);
+    } 
+     
+    @Transactional
+    public void rechazarContratoProveedor(String idContrato){
+        
+        Contrato contrato = coR.findById(idContrato).get();
+        
+        contrato.setEstadoContrato(NombreEstadoContrato.RECHAZADO);
+        coR.save(contrato);
+    } 
+    
+    @Transactional
+    public void finalizarContratoProveedor(String idContrato){
+        
+        Contrato contrato = coR.findById(idContrato).get();
+        
+        contrato.setEstadoContrato(NombreEstadoContrato.FINALIZADO);
+        coR.save(contrato);
+    } 
+    
+    @Transactional
+    public void cancelarContratoCliente(String idContrato){
+        
+        Contrato contrato = coR.findById(idContrato).get();
+        
+        contrato.setEstadoContrato(NombreEstadoContrato.CANCELADO);
+        coR.save(contrato);
+    } 
+    
+    @Transactional
+    public void finalizarContratoCliente(String idContrato){
+        
+        Contrato contrato = coR.findById(idContrato).get();
+        
+        contrato.setEstadoContrato(NombreEstadoContrato.FINALIZADO);
+        coR.save(contrato);
+    } 
 }
