@@ -1,11 +1,11 @@
-.slider{
-    display: flow;
+.sider{
+    display: flow-root;
     margin-left: auto;
     margin-right: auto;    
     
 }
-.container{
-    display: flow;
+.tr{
+    display: flow-root;
     margin-left: auto;
     margin-right: auto;
 }

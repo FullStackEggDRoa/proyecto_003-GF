@@ -23,25 +23,25 @@
                 <input type="hidden" name="costoHora" value="0">
                 <input type="hidden" name="modo" value="cliente">
                 
+                <p style="color: red">Nombre y Apellido</p>
                 <div class="inputContainer">
-                    <input type="text" class="input" name="nombreApellido" th:text="${Cliente.nombreApellido}">
-                   
+                    <input type="text" class="input" name="nombreApellido" th:text="${Cliente.nombreApellido}">                    
                 </div>
-                
-                <div class="inputContainer">
+                <p style="color: red">DNI</p>
+                <div class="inputContainer" style="margin">
                     <input type="number" class="input" th:text="${Cliente.dni.numero}" name="dni" >
                     </div>
-                
+                <p style="color: red">Telefono</p>
                 <div class="inputContainer">
                     <input type="number" class="input" th:text="${Cliente.telefono}" name="telefono" >
                     
                 </div>
-
+                <p style="color: red">E-mail</p>
                 <div class="inputContainer">
                     <input type="email" class="input" th:text="${Cliente.correo}" name="correo" >
                     
                 </div>
-
+                <p style="color: red">Dirección</p>
                 <div class="inputContainer">
                     <input type="text" class="input" th.text="${Cliente.direccion}" name="direccion" >
                    
