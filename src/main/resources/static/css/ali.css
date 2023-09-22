@@ -1,11 +1,11 @@
 .slider{
     display: flow;
-    margin-left: 40px;
-    margin-right: 40px;    
+    margin-left: auto;
+    margin-right: auto;    
     
 }
-.tarjetas{
+.container{
     display: flow;
-    margin-left: 80px;
-    margin-right: 20px;
+    margin-left: auto;
+    margin-right: auto;
 }
