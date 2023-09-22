@@ -1,11 +1,13 @@
 package GrupoF.Proyecto3.Servicios;
 
 import GrupoF.Proyecto3.Entidades.Dni;
+import GrupoF.Proyecto3.Entidades.Imagen;
 import GrupoF.Proyecto3.Entidades.Proveedor;
 import GrupoF.Proyecto3.Enumeradores.NombreRol;
 import GrupoF.Proyecto3.Excepciones.MiExcepcion;
 import GrupoF.Proyecto3.Repositorios.DniRepositorio;
 import GrupoF.Proyecto3.Repositorios.ProveedorRepositorio;
+import GrupoF.Proyecto3.Repositorios.UsuarioRepositorio;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -22,18 +24,26 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class ProveedorServicio implements UserDetailsService {
 
     @Autowired
+    private UsuarioRepositorio uR;
+    
+    @Autowired
     private ProveedorRepositorio pR;
+    
     @Autowired
     private DniRepositorio dR;
-
+    
+    @Autowired
+    private ImagenServicio iS;
+    
     @Transactional
-    public void registrarProveedor(String nombreApellido, String contrasenia, String dni, String correo, String telefono, Integer numeroMatricula, String categoriaServicio, Double costoHora, String contraseniaChk) throws MiExcepcion {
-
+    public void registrarProveedor (String nombreApellido, String contrasenia, String dni, String correo, String telefono, Integer numeroMatricula, String categoriaServicio, Double costoHora, String contraseniaChk) throws MiExcepcion{
+       
         validarDatosProveedor(nombreApellido, dni, correo, telefono, numeroMatricula, categoriaServicio, costoHora);
         validarContraseniaProveedor(contrasenia, contraseniaChk);
 
@@ -61,8 +71,8 @@ public class ProveedorServicio implements UserDetailsService {
     }
 
     @Transactional
-    public void actualizarProveedor(String id, String nombreApellido, String contrasenia, String dni, String correo, String telefono, Integer numeroMatricula, String categoriaServicio, Double costoHora, String contraseniaChk) throws MiExcepcion {
-
+    public void actualizarProveedor(MultipartFile archivo, String id, String nombreApellido, String contrasenia, String dni, String correo, String telefono, Integer numeroMatricula, String categoriaServicio, Double costoHora, String contraseniaChk) throws MiExcepcion {
+    
         validarDatosProveedor(nombreApellido, dni, correo, telefono, numeroMatricula, categoriaServicio, costoHora);
 
         Optional<Proveedor> respuestaProveedor = pR.findById(id);
@@ -83,6 +93,25 @@ public class ProveedorServicio implements UserDetailsService {
             if(!(contrasenia.equals(proveedor.getContrasenia()))){
                 cambiarContraseniaProveedor(id, contrasenia, contraseniaChk);
             }
+            
+            Imagen imagen = new Imagen();
+            
+            if(proveedor.getImagen()!=null){
+                idImagen = proveedor.getImagen().getId();
+                try {
+                    iS.actualizar(archivo, idImagen);
+                } catch (Exception ex) {
+                    throw new MiExcepcion("No se pudo Actualizar el Avatar");
+                }
+            }else{
+                try {
+                    imagen = iS.guardar(archivo);
+                } catch (Exception ex) {
+                    throw new MiExcepcion("No se pudo Cargar el Avatar");
+                }
+            }
+            
+            proveedor.setImagen(imagen);
             
             pR.save(proveedor);
         }
@@ -128,32 +157,6 @@ public class ProveedorServicio implements UserDetailsService {
         return proveedores;
     }
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Proveedor proveedor = pR.buscarPorCorreo(username);
-
-        if (proveedor != null) {
-
-            List<GrantedAuthority> permisos = new ArrayList();
-
-            GrantedAuthority p = new SimpleGrantedAuthority("ROLE_" + proveedor.getRol().toString());
-
-            permisos.add(p);
-
-            ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-
-            HttpSession session = attr.getRequest().getSession(true);
-
-            session.setAttribute("usuariosession", proveedor);
-
-            return new User(proveedor.getCorreo(), proveedor.getContrasenia(), permisos);
-
-        } else {
-
-            return null;
-        }
-    }
-
     private void validarDatosProveedor(String nombreApellido, String dni, String correo, String telefono, Integer numeroMatricula, String categoriaServicio, Double costoHora) throws MiExcepcion {
 
         if (nombreApellido.isEmpty() || nombreApellido == null) {
@@ -183,10 +186,40 @@ public class ProveedorServicio implements UserDetailsService {
 
         if (contrasenia.isEmpty() || contrasenia == null || contrasenia.length() <= 8) {
             throw new MiExcepcion("La contraseña no puede estar vacía y debe tener al menos 8 caracteres");
+
         }
         if (!contrasenia.equals(contraseniaChk)) {
             throw new MiExcepcion("Las contraseñas ingresadas no coinciden");
         }
-
     }
+
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        
+        Proveedor proveedor = (Proveedor) uR.buscarPorCorreo(username);
+        
+        if (proveedor != null) {
+            
+            List<GrantedAuthority> permisos = new ArrayList();
+            
+            GrantedAuthority p = new SimpleGrantedAuthority("ROLE_"+ proveedor.getRol().toString());
+            
+            permisos.add(p);
+   
+            ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+            
+            HttpSession session = attr.getRequest().getSession(true);
+            
+            session.setAttribute("usuariosession", proveedor);
+            
+            return new User(proveedor.getCorreo(), proveedor.getContrasenia(),permisos);
+        
+        }else{
+
+            return null;
+        }
+    }
+
+    
 }

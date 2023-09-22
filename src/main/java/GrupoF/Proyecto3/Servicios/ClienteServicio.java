@@ -3,13 +3,18 @@ package GrupoF.Proyecto3.Servicios;
 
 import GrupoF.Proyecto3.Entidades.Cliente;
 import GrupoF.Proyecto3.Entidades.Dni;
+import GrupoF.Proyecto3.Entidades.Imagen;
+import GrupoF.Proyecto3.Entidades.Usuario;
 import GrupoF.Proyecto3.Enumeradores.NombreRol;
 import GrupoF.Proyecto3.Excepciones.MiExcepcion;
 import GrupoF.Proyecto3.Repositorios.ClienteRepositorio;
 import GrupoF.Proyecto3.Repositorios.DniRepositorio;
+import GrupoF.Proyecto3.Repositorios.UsuarioRepositorio;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -23,6 +28,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class ClienteServicio implements UserDetailsService {
@@ -32,6 +38,13 @@ public class ClienteServicio implements UserDetailsService {
 
     @Autowired
     private DniRepositorio dR;
+    
+    @Autowired
+    private UsuarioRepositorio uR;
+    
+    @Autowired
+    private ImagenServicio iS;
+  
 
     @Transactional
     public void registrarCliente(String nombreApellido, String contrasenia, String dni, String correo, String telefono, String direccion, String contraseniaChk) throws MiExcepcion {
@@ -69,13 +82,15 @@ public class ClienteServicio implements UserDetailsService {
     }
 
     @Transactional
-    public void actualizarCliente(String id, String nombreApellido, String contrasenia, String dni, String correo, String telefono, String direccion, String contraseniaChk) throws MiExcepcion {
+    public void actualizarCliente(MultipartFile archivo,  String id, String nombreApellido, String contrasenia, String dni, String correo, String telefono, String direccion, String contraseniaChk) throws MiExcepcion {
         
         validarDatosCliente(nombreApellido, dni, correo, direccion);
         
         Optional<Cliente> respuestaCliente = cR.findById(id);
         Dni dni1 = new Dni();
         if (respuestaCliente.isPresent()) {
+            
+            String idImagen = null;
 
             Cliente cliente = respuestaCliente.get();
             cliente.setNombreApellido(nombreApellido);
@@ -90,6 +105,24 @@ public class ClienteServicio implements UserDetailsService {
                 cambiarContraseniaCliente(id, contrasenia, contraseniaChk);
             }
             
+            Imagen imagen = new Imagen();
+            
+            if(cliente.getImagen()!=null){
+                idImagen = cliente.getImagen().getId();
+                try {
+                    iS.actualizar(archivo, idImagen);
+                } catch (Exception ex) {
+                    throw new MiExcepcion("No se pudo Actualizar el Avatar");
+                }
+            }else{
+                try {
+                    imagen = iS.guardar(archivo);
+                } catch (Exception ex) {
+                    throw new MiExcepcion("No se pudo Cargar el Avatar");
+                }
+            }
+            cliente.setImagen(imagen);
+            
             cR.save(cliente);
         }
     }
@@ -103,6 +136,7 @@ public class ClienteServicio implements UserDetailsService {
             Cliente clienteAux = cliente.get();
             clienteAux.setContrasenia(new BCryptPasswordEncoder().encode(nuevaContrasenia));
             cR.save(clienteAux);
+
         }
     }
     
@@ -128,7 +162,8 @@ public class ClienteServicio implements UserDetailsService {
     
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Cliente cliente = cR.buscarPorCorreo(username);
+ 
+        Cliente cliente = (Cliente) uR.buscarPorCorreo(username);
         
         if (cliente != null) {
             
