@@ -8,51 +8,88 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <title>tabla clientes</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
         <link rel="stylesheet" href="/css/bg.css">
         <link rel="stylesheet" href="/css/estilos.css">
 
     </head>
     <body>
-          <nav th:replace="/fragments/navbar-sesion :: nav" ></nav>
-          
-           <table class="table table-dark">
-                <thead>
-                    <tr>
-                        <th scope="col">Id</th>
-                        <th scope="col">Rol</th>
-                        <th scope="col">Nombre y apellido</th>
-                        <th scope="col">DNI</th>
-                        <th scope="col">Teléfono</th>
-                        <th scope="col">Correo elecrónico</th>
-                        <th scope="col">Dirección</th>
-                        <th scope="col">Imagen perfil</th>
-                        <th scope="col">Modificar</th>
-                        <th scope="col">Dar de baja</th>
-                    </tr>
-                </thead>
-                  <tbody > 
-                    <tr>
-                        <td ></td>
-                        <td ></td>
-                        <td ></td>
-                        <td ></td>
-                        <td ></td>
-                        <td ></td>
-                        <td ></td>
-                        <td ></td>
-                        
-                     <!--  para mostrar datos en el <td> th:text="${libro.editorial.nombre}" -->
-                         <td>
-                            <a href="#"><i class="fas fa-feather-alt"></i> Modificar </a>
-                        </td>
-                         <td >Dar de baja</td>
-                    </tr>
+        <nav class="navbar navbar-expand-sm navbar-white bg-white" style="background-color: transparent; opacity: 1;" aria-label="Fourth navbar example">
+            <!-- unificacion de navbar de las sesiones  -->
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/">
+                    <img src="/img/Lg_sf.png"  width="65" height="50" class="d-inline-block align-text-top">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-                </tbody>
-            </table>
-           <a href="#" class="btn btn-danger" style="margin:5px;" role="button">Volver</a>
-           
-           <footer th:replace="/fragments/footer :: footer"> </footer>
-    </body>
+                    </ul>
+
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Ir</button>
+                    </form>
+                    
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="/img/extraterrestre.png" alt="Logo" width="40" height="30" class="d-inline-block align-text-top">Tablas</a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+
+                        <li><a class="dropdown-item" href="#">Tabla Proveedores</a></li>   
+                        <li><a class="dropdown-item" href="#">Tabla Contaro</a></li> 
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Inicio</a></li> 
+                        <li><a class="dropdown-item" href="#"> <svg class="bi"><use xlink:href="#door-closed"/></svg>
+                                Cerrar sesion</a></li>
+                    </ul>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+<table class="table table-dark">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Rol</th>
+            <th scope="col">Nombre y apellido</th>
+            <th scope="col">DNI</th>
+            <th scope="col">Teléfono</th>
+            <th scope="col">Correo elecrónico</th>
+            <th scope="col">Dirección</th>
+            <th scope="col">Imagen perfil</th>
+            <th scope="col">Modificar</th>
+            <th scope="col">Dar de baja</th>
+        </tr>
+    </thead>
+    <tbody > 
+        <tr>
+            <td ></td>
+            <td ></td>
+            <td ></td>
+            <td ></td>
+            <td ></td>
+            <td ></td>
+            <td ></td>
+            <td ></td>
+
+            <!--  para mostrar datos en el <td> th:text="${libro.editorial.nombre}" -->
+            <td>
+                <a href="#"><i class="fas fa-feather-alt"></i> Modificar </a>
+            </td>
+            <td ><a href="#"><i class="fas fa-feather-alt"></i> Dar de Baja </a></td>
+        </tr>
+
+    </tbody>
+</table>
+<a href="#" class="btn btn-danger" style="margin:5px;" role="button">Volver</a>
+
+<footer th:replace="/fragments/footer :: footer"> </footer>
+</body>
 </html>

@@ -14,7 +14,43 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 
     </head>
     <body>
-          <nav th:replace="/fragments/navbar-sesion :: nav" ></nav>
+          <nav class="navbar navbar-expand-sm navbar-white bg-white" style="background-color: transparent; opacity: 1;" aria-label="Fourth navbar example">
+            <!-- unificacion de navbar de las sesiones  -->
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/">
+                    <img src="/img/Lg_sf.png"  width="65" height="50" class="d-inline-block align-text-top">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                    </ul>
+
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Ir</button>
+                    </form>
+                    
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="/img/extraterrestre.png" alt="Logo" width="40" height="30" class="d-inline-block align-text-top">Tablas</a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+
+                        <li><a class="dropdown-item" href="#">Tabla Clientes</a></li>   
+                        <li><a class="dropdown-item" href="#">Tabla Contaro</a></li> 
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Inicio</a></li> 
+                        <li><a class="dropdown-item" href="#"> <svg class="bi"><use xlink:href="#door-closed"/></svg>
+                                Cerrar sesion</a></li>
+                    </ul>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
           
            <table class="table table-dark">
                 <thead>
@@ -51,9 +87,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                          <td>
                             <a  href="#"><i class="fas fa-feather-alt"></i> Modificar </a>
                         </td>
-                         <td>
-                            Dar de baja
-                        </td>
+                            <td ><a href="#"><i class="fas fa-feather-alt"></i> Dar de Baja </a></td>
                     </tr>
 
                 </tbody>
