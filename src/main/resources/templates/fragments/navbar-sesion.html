@@ -2,7 +2,7 @@
 <nav class="navbar navbar-expand-sm navbar-white bg-white" style="background-color: transparent; opacity: 1;" aria-label="Fourth navbar example">
     <!-- unificacion de navbar de las sesiones  -->
     <div class="container-fluid">
-        <a class="navbar-brand" href="/">
+        <a class="navbar-brand" th:href="@{/usuario/sesion}">
             <img src="/img/Lg_sf.png"  width="65" height="50" class="d-inline-block align-text-top">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -12,23 +12,23 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
             </ul>
-
-            <a href="/usuario/modificacion?modo=cliente" class="btn btn-danger" style="margin:5px;" role="button">Mi perfil</a>
-            <a href="" class="btn btn-danger" style="margin:5px;" role="button">Mi perfil</a>
+            
             <a href="#" class="btn btn-danger" style="margin:5px;" role="button">Contratos</a>
             <a href="#" class="btn btn-danger" style="margin:5px;" role="button">Notificaciones</a>
             <form class="d-flex" role="search">
                 <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Ir</button>
             </form>
-            <span class="badge d-flex align-items-center p-1 pe-2 text-danger-emphasis bg-danger-subtle border border-danger-subtle rounded-pill">
-                <a  th:href="@{/usuario/modificacion?modo=proveedor&id=__${idProveedor}__} " role="button"><img class="rounded-circle me-1" width="24" height="24" src="/img/Lg_sf.png" alt="">
+            <span class="badge d-flex align-items-center p-1 pe-2 text-danger-emphasis bg-danger-subtle border border-danger-subtle rounded-pill" th:if="${modo != 'cliente'}" >
+                <a  href="/usuario/modificacion?modo=proveedor" role="button"><img class="rounded-circle me-1" width="24" height="24" src="/img/Lg_sf.png" alt="">
                     Mi Perfil pro </a>
                 <span class="vr mx-2"></span>
                 <a  href="/"><svg class="bi" width="16" height="16"><use xlink:href="#x-circle-fill"/></svg></a>
             </span>
-            <span class="badge d-flex align-items-center p-1 pe-2 text-danger-emphasis bg-danger-subtle border border-danger-subtle rounded-pill">
-                <a  href="/usuario/modificacion?modo=cliente" role="button"><img class="rounded-circle me-1" width="24" height="24" src="/img/Lg_sf.png" alt="">
+              <span class="badge d-flex align-items-center p-1 pe-2 text-danger-emphasis bg-danger-subtle border border-danger-subtle rounded-pill" th:if="${modo != 'proveedor'}">
+
+                <a   href="/usuario/modificacion?modo=cliente" role="button"><img class="rounded-circle me-1" width="24" height="24" src="/img/Lg_sf.png" alt="">
+
                     Mi Perfil cl </a>
                 <span class="vr mx-2"></span>
                 <a  href="/"><svg class="bi" width="16" height="16"><use xlink:href="#x-circle-fill"/></svg></a>
