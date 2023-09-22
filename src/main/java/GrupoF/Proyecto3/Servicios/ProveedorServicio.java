@@ -3,11 +3,13 @@
 package GrupoF.Proyecto3.Servicios;
 
 import GrupoF.Proyecto3.Entidades.Dni;
+import GrupoF.Proyecto3.Entidades.Imagen;
 import GrupoF.Proyecto3.Entidades.Proveedor;
 import GrupoF.Proyecto3.Enumeradores.NombreRol;
 import GrupoF.Proyecto3.Excepciones.MiExcepcion;
 import GrupoF.Proyecto3.Repositorios.DniRepositorio;
 import GrupoF.Proyecto3.Repositorios.ProveedorRepositorio;
+import GrupoF.Proyecto3.Repositorios.UsuarioRepositorio;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -24,14 +26,19 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class ProveedorServicio implements UserDetailsService {
     
     @Autowired
+    private UsuarioRepositorio uR;
+    @Autowired
     private ProveedorRepositorio pr;
     @Autowired
     private DniRepositorio dr;
+    @Autowired
+    private ImagenServicio iS;
     
     @Transactional
     public void registrarProveedor (String nombreApellido, String contrasenia, String dni, String correo, String telefono, Integer numeroMatricula, String categoriaServicio, Double costoHora, String contraseniaChk) throws MiExcepcion{
@@ -104,7 +111,7 @@ public class ProveedorServicio implements UserDetailsService {
 
     @Transactional
 
-    public void actualizarProveedor(String id, String nombreApellido, String contrasenia, String dni, String correo, String telefono, Integer numeroMatricula, String categoriaServicio, Double costoHora, String contraseniaChk) throws MiExcepcion {
+    public void actualizarProveedor(MultipartFile archivo, String id, String nombreApellido, String contrasenia, String dni, String correo, String telefono, Integer numeroMatricula, String categoriaServicio, Double costoHora, String contraseniaChk) throws MiExcepcion {
         
         validarDatosProveedor(nombreApellido, contrasenia, dni, correo, telefono, numeroMatricula, categoriaServicio, costoHora, contraseniaChk);
 
@@ -112,6 +119,8 @@ public class ProveedorServicio implements UserDetailsService {
         Dni dni2 = new Dni();
         if (respuestaProveedor.isPresent()) {
 
+            String idImagen = null;
+            
             Proveedor proveedor = respuestaProveedor.get();
             proveedor.setNombreApellido(nombreApellido);
             proveedor.setContrasenia(new BCryptPasswordEncoder().encode(contrasenia));
@@ -121,6 +130,22 @@ public class ProveedorServicio implements UserDetailsService {
             proveedor.setDni(dni2);
             proveedor.setCorreo(correo);
             proveedor.setTelefono(Integer.valueOf(telefono));
+            Imagen imagen = new Imagen();
+            if(proveedor.getImagen()!=null){
+                idImagen = proveedor.getImagen().getId();
+                try {
+                    iS.actualizar(archivo, idImagen);
+                } catch (Exception ex) {
+                    throw new MiExcepcion("No se pudo Actualizar el Avatar");
+                }
+            }else{
+                try {
+                    imagen = iS.guardar(archivo);
+                } catch (Exception ex) {
+                    throw new MiExcepcion("No se pudo Cargar el Avatar");
+                }
+            }
+            proveedor.setImagen(imagen);
             proveedor.setNumMatricula(numeroMatricula);
             proveedor.setCategoriaServicio(categoriaServicio);
             proveedor.setCostoHora(costoHora);
@@ -152,7 +177,8 @@ public class ProveedorServicio implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Proveedor proveedor = pr.buscarPorCorreo(username);
+        
+        Proveedor proveedor = (Proveedor) uR.buscarPorCorreo(username);
         
         if (proveedor != null) {
             
