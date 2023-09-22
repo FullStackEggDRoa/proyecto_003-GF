@@ -78,6 +78,8 @@ public class ProveedorServicio implements UserDetailsService {
         Optional<Proveedor> respuestaProveedor = pR.findById(id);
         Dni dni2 = new Dni();
         if (respuestaProveedor.isPresent()) {
+            
+            String idImagen = null;
 
             Proveedor proveedor = respuestaProveedor.get();
             proveedor.setNombreApellido(nombreApellido);
