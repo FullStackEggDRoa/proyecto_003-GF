@@ -10,35 +10,35 @@
     </head>
 
     <body class="bg-custom">
-
         <nav th:replace="/fragments/navbar-sesion :: nav"></nav>
 
         <div class="signupFrm">
 
-            <form th:action="@{/usuario/modificar/__${Proveedor.id}__}" class="form" method="POST">
+            <form  th:action="@{/usuario/modificar}" class="form" method="POST">
                 
+                <h3 class="title">EDITAR PROVEEDOR</h3>
                 <input type="hidden" name="direccion" value="NA">
-                
-                <h3 class="title">PERFIL PROVEEDOR</h3>
+                <input type="hidden" name="modo" value="proveedor">
+              
               
                 <div class="inputContainer">
-                    <input type="text" class="input" placeholder="" name="nombreApellido" >
-                    <label for="" class="label">Nombre y Apellido</label>
+                    <input type="text" class="input" th:value="${Proveedor.nombreApellido}" name="nombreApellido" >
+                    
+             </div>
+                   <div class="inputContainer">
+                    <input type="number" class="input" th:value="${Proveedor.dni.numero}"name="dni" >
+                 
                 </div>
-                <div class="inputContainer">
-                    <input type="number" class="input" placeholder="" name="dni" >
-                    <label for="" class="label">DNI</label>
+               <div class="inputContainer">
+                    <input type="number" class="input" th:value="${Proveedor.telefono}" name="telefono">
+                    
                 </div>
-                <div class="inputContainer">
-                    <input type="number" class="input" placeholder="" name="telefono">
-                    <label for="" class="label">Telefono</label>
+              <div class="inputContainer">
+                    <input type="email" class="input" th:value="${Proveedor.correo}" name="correo"  >
+                    
                 </div>
-                <div class="inputContainer">
-                    <input type="email" class="input" placeholder="" name="correo"  >
-                    <label for="" class="label">E-mail</label>
-                </div>
-                <div class="inputContainer">
-                    <select class="form-select input" aria-label="Default select example">
+            <div class="inputContainer">
+                    <select class="form-select input" aria-label="Default select example" th:value%{Proveedor.categoriaServicio}>
                         <option selected>Categoria de servicio</option>
                         <option value="Carpintería">Carpintería</option>
                         <option value="Gas">Gas</option>
@@ -48,17 +48,17 @@
                         <option value="Construcción">Construcción</option>
                     </select>
                 </div>
-                <div class="inputContainer">
-                    <input type="number" class="input" placeholder="" name="numeroMatricula"  >
-                    <label for="" class="label">Matricula Profesional</label>
-                </div>
-                <div class="inputContainer">
-                    <input type="number" class="input" placeholder=""  name="costoHora"  >
-                    <label for="" class="label">Costo Hora de Trabajo</label>
+                   <div class="inputContainer" th:value{$}>
+                    <input type="text" class="input" th:value="${Proveedor.numMatricula}" name="numMatricula"  >
+                   </div>
+
+                 <div class="inputContainer">
+                    <input type="number" class="input" th:value="${Proveedor.costoHora}" name="costoHora"  >
+                    
                 </div>
                 <div class="inputContainer">
                     <input type="file" class="input" placeholder=""  name="archivo"  >
-                    <label for="" class="label">Imagen Perfil</label>
+                    
                 </div>
                 <input type="submit" class="submitBtn" value="Enviar modificacion">
             </form>
