@@ -17,6 +17,50 @@
 
             <form th:action="@{/usuario/modificar/__${Proveedor.id}__}" class="form" method="POST">
                 
+                <input type="hidden" name="direccion" value="NA">
+                
+                <h3 class="title">PERFIL PROVEEDOR</h3>
+              
+                <div class="inputContainer">
+                    <input type="text" class="input" placeholder="" name="nombreApellido" >
+                    <label for="" class="label">Nombre y Apellido</label>
+                </div>
+                <div class="inputContainer">
+                    <input type="number" class="input" placeholder="" name="dni" >
+                    <label for="" class="label">DNI</label>
+                </div>
+                <div class="inputContainer">
+                    <input type="number" class="input" placeholder="" name="telefono">
+                    <label for="" class="label">Telefono</label>
+                </div>
+                <div class="inputContainer">
+                    <input type="email" class="input" placeholder="" name="correo"  >
+                    <label for="" class="label">E-mail</label>
+                </div>
+                <div class="inputContainer">
+                    <select class="form-select input" aria-label="Default select example">
+                        <option selected>Categoria de servicio</option>
+                        <option value="Carpintería">Carpintería</option>
+                        <option value="Gas">Gas</option>
+                        <option value="Electricidad">Electricidad</option>
+                        <option value="Plomería">Plomería</option>
+                        <option value="Jardinería">Jardinería</option>
+                        <option value="Construcción">Construcción</option>
+                    </select>
+                </div>
+                <div class="inputContainer">
+                    <input type="number" class="input" placeholder="" name="numeroMatricula"  >
+                    <label for="" class="label">Matricula Profesional</label>
+                </div>
+                <div class="inputContainer">
+                    <input type="number" class="input" placeholder=""  name="costoHora"  >
+                    <label for="" class="label">Costo Hora de Trabajo</label>
+                </div>
+                <div class="inputContainer">
+                    <input type="file" class="input" placeholder=""  name="archivo"  >
+                    <label for="" class="label">Imagen Perfil</label>
+                </div>
+                <input type="submit" class="submitBtn" value="Enviar modificacion">
             </form>
     </div>
     <footer th:replace="/fragments/footer :: footer"> </footer>
