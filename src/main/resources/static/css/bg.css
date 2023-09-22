@@ -1,3 +1,13 @@
 .bg-custom{
-    background-color: ghostwhite;
+    background-color: white;
+}
+.slider-container{
+    border: 1px solid red;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.navbar-container{
+    border: 1px solid red;
+    border-radius: 0px;
+    margin: auto;
 }

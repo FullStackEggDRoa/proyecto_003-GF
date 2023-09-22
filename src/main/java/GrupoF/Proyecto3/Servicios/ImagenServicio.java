@@ -14,7 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class ImagenServicio {
     
     @Autowired
-    private ImagenRepositorio imagenRepositorio;
+    private ImagenRepositorio iR;
     
     public Imagen guardar(MultipartFile archivo) throws Exception{
         if (archivo != null) {
@@ -28,7 +28,7 @@ public class ImagenServicio {
                 
                 imagen.setContenido(archivo.getBytes());
                 
-                return imagenRepositorio.save(imagen);
+                return iR.save(imagen);
                 
             } catch (Exception e) {
                 System.err.println(e.getMessage());
@@ -44,7 +44,7 @@ public class ImagenServicio {
                 Imagen imagen = new Imagen();
                 
                 if (idImagen != null) {
-                    Optional<Imagen> respuesta = imagenRepositorio.findById(idImagen);
+                    Optional<Imagen> respuesta = iR.findById(idImagen);
                     
                     if (respuesta.isPresent()) {
                         imagen = respuesta.get();
@@ -57,7 +57,7 @@ public class ImagenServicio {
                 
                 imagen.setContenido(archivo.getBytes());
                 
-                return imagenRepositorio.save(imagen);
+                return iR.save(imagen);
                 
             } catch (Exception e) {
                 System.err.println(e.getMessage());
@@ -69,7 +69,7 @@ public class ImagenServicio {
     
     @Transactional(readOnly = true)
 	public List<Imagen> listarTodos() {
-		return imagenRepositorio.findAll();
+		return iR.findAll();
 	}
   
 }

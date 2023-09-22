@@ -14,222 +14,46 @@
 
         <div class="signupFrm">
 
-
-            <form  th:action="@{/usuario/modificar/__${Cliente}__}" class="form" method="POST">
-           <!-- <input hidden th:value="${id}" name="id">-->
+            <form  th:action="@{/usuario/modificar}" class="form" method="POST">
+                
+                <h3 class="title">Editar Perfil</h3>
+                
                 <input type="hidden" name="numeroMatricula" value="0">
                 <input type="hidden" name="categoriaServicio" value="NA">
                 <input type="hidden" name="costoHora" value="0">
+                
+                <div class="inputContainer">
+                    <input type="text" class="input" placeholder="" name="nombreApellido" >
+                    <label for="" class="label">Nombre y apellido</label>
+                </div>
+                
+                <div class="inputContainer">
+                    <input type="number" class="input" placeholder="" name="dni" >
+                    <label for="" class="label">DNI</label>
+                </div>
+                
+                <div class="inputContainer">
+                    <input type="number" class="input" placeholder="" name="telefono" >
+                    <label for="" class="label">Telefono</label>
+                </div>
 
-                                <h3 class="title">PERFIL CLIENTE</h3>
-                                <!--NOMBRE Y APELLIDO-->
-                                <div class="inputContainer">
-                                    <label for="" class="label">Nombre y apellido</label >
-                                    <input type="text" class="input"  placeholder="" name="nombreApellido" th:value="${Cliente.nombreApellido}" disabled>
+                <div class="inputContainer">
+                    <input type="email" class="input" placeholder="" name="correo" >
+                    <label for="" class="label">E-mail</label>
+                </div>
 
-                                        <!-- Button LAPIZ MODIFICAR -->
-                                        <button type="button" class="btn btn-outline-secondary "data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                                                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                                                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-                                            </svg>
-                                        </button>
-                                       
-                                        <!-- Modal -->
-                                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h1 class="modal-title fs-5" id="exampleModalLabel" th:text="${Cliente.nombreApellido}">Modificar</h1>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <label for="" class="label">Nombre y apellido</label >
-                                                        <input type="text" class="input" placeholder="" name="nombreApellido" th:value="${Cliente.nombreApellido}">
-
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                                        <button type="submit" class="btn btn-black">Modificar</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                </div>
-                                <!--DNI-->
-                                <div class="inputContainer">
-                                    <label for="" class="label">DNI</label >
-                                    <input type="text" class="input" placeholder="" name="dni" th:value="${Cliente.dni.numero}" disabled>
-                                        <!-- Button LAPIZ MODIFICAR -->
-                                        <button type="button" class="btn btn-outline-secondary "data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                                                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                                                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-                                            </svg>
-                                        </button>
-
-                                        <!-- Modal -->
-                                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h1 class="modal-title fs-5" id="exampleModalLabel" th:text="${Cliente.dni.numero}" >Modificar</h1>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <label for="" class="label">DNI</label >
-                                                        <input type="number" class="input" placeholder="" name="dni" th:value="${Cliente.dni.numero}">
-
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                                        <button type="submit" class="btn btn-black">Modificar</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                </div>
-
-                                <!--TELEFONO-->
-                                <div class="inputContainer">
-                                    <label for="" class="label">Teléfono</label >
-                                    <input type="text" class="input" placeholder="" name="telefono" th:value="${Cliente.telefono}" disabled>
-                                        <!-- Button LAPIZ MODIFICAR -->
-                                        <button type="button" class="btn btn-outline-secondary "data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                                                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                                                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-                                            </svg>
-                                        </button>
-
-                                        <!-- Modal -->
-                                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h1 class="modal-title fs-5" id="exampleModalLabel" th:text="${Cliente.telefono}">Modificar</h1>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <label for="" class="label">Teléfono</label >
-                                                        <input type="number" class="input" placeholder="" name="telefono" th:value="${Cliente.telefono}">
-
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                                        <button type="submit" class="btn btn-black">Modificar</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                </div>
-                                <!--CORREO-->
-                                <div class="inputContainer">
-                                    <label for="" class="label">Correo electrónico</label >
-                                    <input type="email" class="input" placeholder="" name="correo" th:value="${Cliente.correo}" disabled>
-                                        <!-- Button LAPIZ MODIFICAR -->
-                                        <button type="button" class="btn btn-outline-secondary "data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                                                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                                                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-                                            </svg>
-                                        </button>
-
-                                        <!-- Modal -->
-                                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h1 class="modal-title fs-5" id="exampleModalLabel" th:text="${Cliente.correo}">Modificar</h1>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <label for="" class="label">Correo electrónico</label >
-                                                        <input type="email" class="input" placeholder="" name="correo" th:value="${Cliente.correo}">
-
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                                        <button type="submit" class="btn btn-black">Modificar</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                </div>
-
-                                <!--DIRECCION-->
-                                <div class="inputContainer">
-                                    <label for="" class="label">Dirección</label >
-                                    <input type="text" class="input" placeholder="" name="direccion" th:value="${Cliente.direccion}" disabled>
-                                        <!-- Button LAPIZ MODIFICAR -->
-                                        <button type="button" class="btn btn-outline-secondary "data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                                                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                                                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-                                            </svg>
-                                        </button>
-
-                                        <!-- Modal -->
-                                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h1 class="modal-title fs-5" id="exampleModalLabel" th:text="${Cliente.direccion}">Modificar</h1>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <label for="" class="label">Dirección</label >
-                                                        <input type="text" class="input" placeholder="" name="direccion" th:value="${Cliente.direccion}">
-
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                                        <button type="submit" class="btn btn-black">Modificar</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                </div>
-
-
-                                <!--CONTRASEÑA-->
-                                <div class="inputContainer">
-                                    <label for="" class="label">Contraseña</label >
-                                    <input type="password" class="input" placeholder="" name="contrasenia" value="Contraseña Encriptada" disabled>
-                                        <!-- Button LAPIZ MODIFICAR -->
-                                        <button type="button" class="btn btn-outline-secondary "data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                                                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                                                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-                                            </svg>
-                                        </button>
-
-                                        <!-- Modal -->
-                                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h1 class="modal-title fs-5" id="exampleModalLabel" text="Contraseña Encriptada">Modificar</h1>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <label for="" class="label">Contraseña</label >
-                                                        <input type="password" class="input" placeholder="" name="contrasenia" value="Contraseña Encriptada" >
-                                                            <label for="" class="label">Repetir contraseña</label >
-                                                            <input type="password" class="input" placeholder="" name="contraseniaChk"
-                                                                   value="Contraseña Encriptada">
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                                                    <button type="submit" class="btn btn-black">Modificar</button>
-                                                                </div>
-                                                                </div>
-                                                                </div>
-                                                                </div>
-     </div>
-     <a href="/usuario/sesion?modo=cliente"  class="submitBtR" style="margin:5px;" role="button">Listo</a>
-
-                                                                <input type="submit" class="submitBtR" value="Eliminar cuenta">
+                <div class="inputContainer">
+                    <input type="text" class="input" placeholder="" name="direccion" >
+                    <label for="" class="label">Dirección</label>
+                </div>
+                
+                 <div class="inputContainer">
+                    <input type="file" class="input" placeholder=""  name="imagen"  >
+                    <label for="" class="label">Imagen Perfil</label>
+                </div>
+                
+                <input type="submit" class="submitBtn" value=" Enviar cambios">
+                
             </form>
     </div>
     <footer th:replace="/fragments/footer :: footer"> </footer>
