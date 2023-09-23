@@ -37,11 +37,17 @@ public class ControladorUsuario {
         Usuario sesionUsuario = (Usuario) session.getAttribute("usuariosession");
         
         if (sesionUsuario.getRol().toString().equals("ADM")) {
-            
+            String nombrePerfil = null;
             List<Cliente> clientes = cS.listarClientes();
             List<Proveedor> proveedores = pS.listarProveedores();
+            if(sesionUsuario.getClass().getName().contains("Cliente")){
+                nombrePerfil = sesionUsuario.getNombreApellido();
+            }else if(sesionUsuario.getClass().getName().contains("Proveedor")){
+                nombrePerfil = sesionUsuario.getNombreApellido();
+            }
             modelo.addAttribute("clientes", clientes);
             modelo.addAttribute("proveedores", proveedores);
+            modelo.addAttribute("nombrePerfil",  nombrePerfil);
             return "sesion-admin.html";
             
         }else if(sesionUsuario.getClass().getName().contains("Cliente")){
