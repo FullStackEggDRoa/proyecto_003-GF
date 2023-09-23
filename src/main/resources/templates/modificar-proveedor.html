@@ -14,11 +14,14 @@
 
         <div class="signupFrm">
 
-            <form  th:action="@{/usuario/modificar/idProveedor}" class="form" method="POST">
+            <form  th:action="@{/usuario/modificar}" class="form" method="POST">
                 
                 <h3 class="title">EDITAR PROVEEDOR</h3>
                 <input type="hidden" name="direccion" value="NA">
                 <input type="hidden" name="modo" value="proveedor">
+                <input type="hidden" name="Id" th:value="${Proveedor.id}">
+                <input type="hidden" name="contrasenia" th:value="${Proveedor.contrasenia}">
+                <input type="hidden" name="contraseniaChk" th:value="${Proveedor.contrasenia}">
               
               
                 <div class="inputContainer">
