@@ -79,7 +79,7 @@ public class ControladorUsuario {
             Cliente cliente = cS.clienteById(idCliente);
             modelo.put("modo", "cliente");
             modelo.addAttribute("Cliente", cliente);
-            
+            modelo.addAttribute("idCliente", idCliente);
             return "modificar-cliente.html";
             
         } else {
@@ -87,7 +87,7 @@ public class ControladorUsuario {
             Proveedor proveedor = pS.proveedorById(idProveedor);
             modelo.put("modo", "proveedor");
             modelo.addAttribute("Proveedor", proveedor);
-            
+            modelo.addAttribute("idProveedor", idProveedor);
             return "modificar-proveedor.html";
             
         }        
