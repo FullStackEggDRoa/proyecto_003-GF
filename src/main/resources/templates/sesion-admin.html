@@ -43,24 +43,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 
 
                 <!-- perfil foto sola usuario -->
-                
-                        <div class="col-1">
-                            <a style="color: white" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="/img/extraterrestre.png" alt="Logo" width="40" height="30" class="d-inline-block align-text-top">Sesion Admin</a>
-                </div>
-                        </div>
-                    </div>
-                
-                            
-                            
-                        
-                    <div class="row">
-                        
-                            <div class="col-4">
-                <a style="color: white" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="/img/extraterrestre.png" alt="Logo" width="40" height="30" class="d-inline-block align-text-top">Sesion Admin</a>
+
                 <ul class="dropdown-menu dropdown-menu-end">
-                    <li><a class="dropdown-item" href="#" >Perfil Administrador</a></li>
+                    <li><a class="dropdown-item" href="#" >Perfil</a></li>
                     <li><a class="dropdown-item" href="#">Notificaciones</a></li>   
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" href="#"> 
@@ -86,22 +71,27 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                             <ul class="nav flex-column">
                                 <li class="nav-item">
                                     <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="#">
-                                        Tablas Usuarios
+                                        Dashboard Administrador
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="#">
+                                        Indices
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link d-flex align-items-center gap-2" href="#">
-                                        Tablas Clientes
+                                        Clientes
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link d-flex align-items-center gap-2" href="#">
-                                        Tablas Proveedores
+                                        Proveedores
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link d-flex align-items-center gap-2" href="#">
-                                        Tabla contratos
+                                        Contratos
                                     </a>
                                 </li>
 
@@ -125,81 +115,72 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
 
 
-                    <h2>Tabla Proveedores</h2>
+                    <h2 id="proveedores">Proveedores</h2>
                     <div class="table-responsive small">
                         <table class="table table-striped table-sm">
                             <thead>
                                 <tr>
                                     <th scope="col">Id</th>
                                     <th scope="col">Rol</th>
-                                    <th scope="col">Nombre y apellido</th>
+                                    <th scope="col">Nombre Apellido</th>
                                     <th scope="col">DNI</th>
                                     <th scope="col">Teléfono</th>
                                     <th scope="col">Correo elecrónico</th>
                                     <th scope="col">Categoría de Servicio</th>
-                                    <th scope="col">Matrícula profesional</th>
-                                    <th scope="col">Costo por hora</th>
-                                    <th scope="col">Imagen perfil</th>
-                                    <th scope="col">Modificar</th>
-                                    <th scope="col">Dar de baja</th>
+                                    <th scope="col">Matrícula Profesional</th>
+                                    <th scope="col">Costo/Hora</th>
+                                    <th scope="col">Acciones</th>
+                                    
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody th:each="proveedor : ${proveedores}">
                                 <tr>
-                                    <td ></td>
-                                    <td ></td>
-                                    <td ></td>
-                                    <td ></td>
-                                    <td ></td>
-                                    <td ></td>
-                                    <td ></td>
-                                    <td ></td>
-                                    <td ></td>
-                                    <td ></td>
-
-                                    <!--  para mostrar datos en el <td> th:text="${libro.editorial.nombre}" -->
+                                    <td th:text=${#strings.substring(proveedor.id,0,5)}></td>
+                                    <td th:text=${proveedor.rol}></td>
+                                    <td th:text=${proveedor.nombreApellido}></td>
+                                    <td th:text=${proveedor.dni.numero}></td>
+                                    <td th:text=${proveedor.telefono}></td>
+                                    <td th:text=${proveedor.correo}></td>
+                                    <td th:text=${proveedor.categoriaServicio}></td>
+                                    <td th:text=${proveedor.numMatricula}></td>
+                                    <td th:text=${proveedor.costoHora}></td>
                                     <td>
-                                        <a  href="#"><i class="fas fa-feather-alt"></i> Modificar </a>
+                                        <a th:href="@{/usuario/modificacion/__${proveedor.id}__}"><i class="fas fa-feather-alt"></i>✏️ </a>
+                                        <a th:href="@{/usuario/modificacion/__${proveedor.id}__}"><i class="fas fa-feather-alt"></i> 🗑</a>
                                     </td>
-                                    <td ><a href="#"><i class="fas fa-feather-alt"></i> Dar de Baja </a></td>
+                                    
                                 </tr>          
                             </tbody>
                         </table>
                     </div>
-                    <h2>Tabla Clientes</h2>
+                    <h2 id="clientes">Clientes</h2>
                     <div class="table-responsive small">
                         <table class="table table-striped table-sm">
                             <thead>
                                 <tr>
                                     <th scope="col">Id</th>
                                     <th scope="col">Rol</th>
-                                    <th scope="col">Nombre y apellido</th>
+                                    <th scope="col">Nombre Apellido</th>
                                     <th scope="col">DNI</th>
                                     <th scope="col">Teléfono</th>
                                     <th scope="col">Correo elecrónico</th>
                                     <th scope="col">Dirección</th>
-                                    <th scope="col">Imagen perfil</th>
-                                    <th scope="col">Modificar</th>
-                                    <th scope="col">Dar de baja</th>
+                                    <th scope="col">Acciones</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody th:each="cliente : ${clientes}">
                                 <tr>
-                                    <td ></td>
-                                    <td ></td>
-                                    <td ></td>
-                                    <td ></td>
-                                    <td ></td>
-                                    <td ></td>
-                                  
-                                    <td ></td>
-                                    <td ></td>
-
-                                    <!--  para mostrar datos en el <td> th:text="${libro.editorial.nombre}" -->
-                                    <td>
-                                        <a  href="#"><i class="fas fa-feather-alt"></i> Modificar </a>
+                                    <td th:text=${#strings.substring(cliente.id,0,5)}></td>
+                                    <td th:text=${cliente.rol}></td>
+                                    <td th:text=${cliente.nombreApellido}></td>
+                                    <td th:text=${cliente.dni.numero}></td>
+                                    <td th:text=${cliente.telefono}></td>
+                                    <td th:text=${cliente.correo}></td>                                  
+                                    <td th:text=${cliente.direccion}></td>
+                                    <td ></td>                                    <td>
+                                        <a th:href="@{/usuario/modificacion/__${cliente.id}__}"><i class="fas fa-feather-alt"></i>✏️ </a>
+                                        <a th:href="@{/usuario/modificacion/__${cliente.id}__}"><i class="fas fa-feather-alt"></i> 🗑</a>
                                     </td>
-                                    <td ><a href="#"><i class="fas fa-feather-alt"></i> Dar de Baja </a></td>
                                 </tr>          
                             </tbody>
                         </table>
