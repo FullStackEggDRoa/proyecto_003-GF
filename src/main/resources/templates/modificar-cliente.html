@@ -24,26 +24,26 @@
                 <input type="hidden" name="modo" value="cliente">
                 
                 <div class="inputContainer">
-                    <input type="text" class="input" name="nombreApellido" th:text="${Cliente.nombreApellido}">
+                    <input type="text" class="input" name="nombreApellido" th:value="${Cliente.nombreApellido}">
                    
                 </div>
                 
                 <div class="inputContainer">
-                    <input type="number" class="input" th:text="${Cliente.dni.numero}" name="dni" >
+                    <input type="number" class="input" th:value="${Cliente.dni.numero}" name="dni" >
                     </div>
                 
                 <div class="inputContainer">
-                    <input type="number" class="input" th:text="${Cliente.telefono}" name="telefono" >
+                    <input type="number" class="input" th:value="${Cliente.telefono}" name="telefono" >
                     
                 </div>
 
                 <div class="inputContainer">
-                    <input type="email" class="input" th:text="${Cliente.correo}" name="correo" >
+                    <input type="email" class="input" th:value="${Cliente.correo}" name="correo" >
                     
                 </div>
 
                 <div class="inputContainer">
-                    <input type="text" class="input" th.text="${Cliente.direccion}" name="direccion" >
+                    <input type="text" class="input" th:value="${Cliente.direccion}" name="direccion" >
                    
                 </div>
                 
