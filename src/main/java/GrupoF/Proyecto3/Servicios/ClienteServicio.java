@@ -34,24 +34,25 @@ import org.springframework.web.multipart.MultipartFile;
 public class ClienteServicio implements UserDetailsService {
 
     @Autowired
-    private UsuarioRepositorio uR;
-    
-    @Autowired
-    private ClienteRepositorio cr;
+    private ClienteRepositorio cR;
 
     @Autowired
-    private DniRepositorio dr;
+    private DniRepositorio dR;
+    
+    @Autowired
+    private UsuarioRepositorio uR;
     
     @Autowired
     private ImagenServicio iS;
   
 
     @Transactional
-    public void registrarCliente(String nombreApellido, String contrasenia, String dni, String correo, String telefono, String direccion, String contraseniaChk) throws MiExcepcion{
+    public void registrarCliente(String nombreApellido, String contrasenia, String dni, String correo, String telefono, String direccion, String contraseniaChk) throws MiExcepcion {
+        
+        validarDatosCliente(nombreApellido, dni, correo, direccion);
+        validarContraseniaCliente(contrasenia, contraseniaChk);
 
-        validarDatosCliente(nombreApellido, contrasenia, dni, correo, direccion, contraseniaChk);
-
-        if (cr.buscarPorCorreo(correo) != null) {
+        if (cR.buscarPorCorreo(correo) != null) {
             throw new MiExcepcion("Ya existe un usuario registrado con este correo electrónico.");
         }
 
@@ -61,7 +62,7 @@ public class ClienteServicio implements UserDetailsService {
         cliente.setNombreApellido(nombreApellido);
         cliente.setContrasenia(new BCryptPasswordEncoder().encode(contrasenia));
         dni1.setNumero(dni);
-        dr.save(dni1);
+        dR.save(dni1);
         cliente.setDni(dni1);        
         cliente.setCorreo(correo);
         cliente.setTelefono(Integer.valueOf(telefono));
@@ -69,44 +70,23 @@ public class ClienteServicio implements UserDetailsService {
         cliente.setAlta(true);
         cliente.setRol(NombreRol.USUARIO);
 
-        cr.save(cliente);
-    }
-    
-    private void validarDatosCliente(String nombreApellido, String contrasenia, String dni, String correo, String direccion, String contraseniaChk) throws MiExcepcion {
-        if (nombreApellido.isEmpty() || nombreApellido == null) {
-            throw new MiExcepcion("El nombre y apellido no pueden ser nulos o estar vacíos");
-        }
-        if (contrasenia.isEmpty() || contrasenia == null || contrasenia.length() <= 8) {
-            throw new MiExcepcion("La contraseña no puede estar vacía y debe tener al menos 8 caracteres");
-        }
-        if (!contrasenia.equals(contraseniaChk)) {
-            throw new MiExcepcion("Las contraseñas ingresadas no coinciden");
-        }
-        if (dni.isEmpty() || dni == null) {
-            throw new MiExcepcion("El DNI no puede ser nulo o estar vacio");
-        }
-        if (correo.isEmpty() || correo == null) {
-            throw new MiExcepcion("El correo no puede ser nulo o estar vacio");
-        }
-        if (direccion.isEmpty() || direccion == null) {
-            throw new MiExcepcion("La direccion no puede ser nula o estar vacia");
-        }
+        cR.save(cliente);
     }
     
     @Transactional(readOnly = true)
     public List<Cliente> listarClientes() {
 
         List<Cliente> clientes = new ArrayList();
-        clientes = cr.findAll();
+        clientes = cR.findAll();
         return clientes;
     }
 
     @Transactional
     public void actualizarCliente(MultipartFile archivo,  String id, String nombreApellido, String contrasenia, String dni, String correo, String telefono, String direccion, String contraseniaChk) throws MiExcepcion {
         
-        validarDatosCliente(nombreApellido, contrasenia, dni, correo, direccion, contraseniaChk);
-
-        Optional<Cliente> respuestaCliente = cr.findById(id);
+        validarDatosCliente(nombreApellido, dni, correo, direccion);
+        
+        Optional<Cliente> respuestaCliente = cR.findById(id);
         Dni dni1 = new Dni();
         if (respuestaCliente.isPresent()) {
             
@@ -114,14 +94,19 @@ public class ClienteServicio implements UserDetailsService {
 
             Cliente cliente = respuestaCliente.get();
             cliente.setNombreApellido(nombreApellido);
-            cliente.setContrasenia(new BCryptPasswordEncoder().encode(contrasenia));
             dni1.setNumero(dni);
-            dr.save(dni1);
+            dR.save(dni1);
             cliente.setDni(dni1);
             cliente.setCorreo(correo);
             cliente.setTelefono(Integer.valueOf(telefono));
             cliente.setDireccion(direccion);
+            
+            if(!(contrasenia.equals(cliente.getContrasenia()))){
+                cambiarContraseniaCliente(id, contrasenia, contraseniaChk);
+            }
+            
             Imagen imagen = new Imagen();
+            
             if(cliente.getImagen()!=null){
                 idImagen = cliente.getImagen().getId();
                 try {
@@ -137,24 +122,37 @@ public class ClienteServicio implements UserDetailsService {
                 }
             }
             cliente.setImagen(imagen);
-            cliente.setImagen(imagen);
-            cr.save(cliente);
+            
+            cR.save(cliente);
+        }
+    }
+    
+    public void cambiarContraseniaCliente (String id, String nuevaContrasenia, String contraseniaChk) throws MiExcepcion{
+         
+        Optional<Cliente> cliente = cR.findById(id);
+        if (cliente.isPresent()){
+            validarContraseniaCliente(nuevaContrasenia, contraseniaChk);
+        
+            Cliente clienteAux = cliente.get();
+            clienteAux.setContrasenia(new BCryptPasswordEncoder().encode(nuevaContrasenia));
+            cR.save(clienteAux);
+
         }
     }
     
     @Transactional
     public void bajaCliente(String id){
-        Optional<Cliente> cliente = cr.findById(id);
+        Optional<Cliente> cliente = cR.findById(id);
         if (cliente.isPresent()){
             Cliente clienteAux = cliente.get();
             clienteAux.setAlta(false);
-            cr.save(clienteAux);
+            cR.save(clienteAux);
         }
     }
 
     @Transactional
     public Cliente clienteById (String id){
-        Optional<Cliente> cliente = cr.findById(id);
+        Optional<Cliente> cliente = cR.findById(id);
         Cliente clienteAux = new Cliente();
         if (cliente.isPresent()){
             clienteAux = cliente.get();    
@@ -164,7 +162,7 @@ public class ClienteServicio implements UserDetailsService {
     
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        
+ 
         Cliente cliente = (Cliente) uR.buscarPorCorreo(username);
         
         if (cliente != null) {
@@ -189,4 +187,30 @@ public class ClienteServicio implements UserDetailsService {
             return null;
         }
     }
+    
+     private void validarDatosCliente(String nombreApellido, String dni, String correo, String direccion) throws MiExcepcion {
+        if (nombreApellido.isEmpty() || nombreApellido == null) {
+            throw new MiExcepcion("El nombre y apellido no pueden ser nulos o estar vacíos.");
+        }
+        if (dni.isEmpty() || dni == null) {
+            throw new MiExcepcion("El DNI no puede ser nulo o estar vacio");
+        }
+        if (correo.isEmpty() || correo == null) {
+            throw new MiExcepcion("El correo no puede ser nulo o estar vacio");
+        }
+        if (direccion.isEmpty() || direccion == null) {
+            throw new MiExcepcion("La direccion no puede ser nula o estar vacia");
+        }
+    }
+    
+    private void validarContraseniaCliente (String contrasenia, String contraseniaChk) throws MiExcepcion{
+        
+      if (contrasenia.isEmpty() || contrasenia == null || contrasenia.length() <= 8) {
+            throw new MiExcepcion("La contraseña no puede estar vacía y debe tener al menos 8 caracteres");
+        }
+        if (!contrasenia.equals(contraseniaChk)) {
+            throw new MiExcepcion("Las contraseñas ingresadas no coinciden.");
+        }  
+    }
+    
 }

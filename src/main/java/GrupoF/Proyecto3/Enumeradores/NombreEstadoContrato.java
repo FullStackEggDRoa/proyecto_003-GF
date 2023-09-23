@@ -7,4 +7,5 @@ public enum NombreEstadoContrato {
 
     ESPERA, RECHAZADO, FINALIZADO, PROCESO, CANCELADO
     
+    //CANCELADO  
 }
