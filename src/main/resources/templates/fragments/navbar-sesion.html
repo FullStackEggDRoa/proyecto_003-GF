@@ -3,7 +3,7 @@
     <!-- unificacion de navbar de las sesiones  -->
     <div class="container-fluid">
 
-        <a class="navbar-brand" href="/">
+        <a class="navbar-brand" href=""@{/usuario/sesion}"">
             <img src="/img/logo-letra-b.png"  width="65" height="50" class="d-inline-block align-text-top">
 
         </a>
@@ -14,7 +14,7 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
             </ul>
-            
+
             <a href="#" class="btn btn-danger" style="margin:5px;" role="button">Contratos</a>
             <a href="#" class="btn btn-danger" style="margin:5px;" role="button">Notificaciones</a>
             <form class="d-flex" role="search">
@@ -22,8 +22,8 @@
                 <button class="btn btn-outline-success" type="submit">Ir</button>
 
             </form>
-           
-            
+
+
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" th:if="${modo != 'proveedor'}">
                 <img src="/img/extraterrestre.png" alt="Logo" width="40" height="30" class="d-inline-block align-text-top" th:text="${nombrePerfil}"></a>
             <ul class="dropdown-menu dropdown-menu-end">
@@ -33,9 +33,9 @@
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="/salir">Cerrar sesion</a></li>
             </ul>
-            
-              
-            
+
+
+
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" th:if="${modo != 'cliente'}">
                 <img src="/img/extraterrestre.png" alt="Logo" width="40" height="30" class="d-inline-block align-text-top" th:text="${nombrePerfil}"></a>
             <ul class="dropdown-menu dropdown-menu-end">
@@ -45,7 +45,7 @@
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="/salir">Cerrar sesion</a></li>
             </ul>
-            
+
 
         </div>
     </div>
