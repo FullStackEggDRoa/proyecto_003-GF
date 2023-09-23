@@ -19,12 +19,12 @@
             <a href="#" class="btn btn-danger" style="margin:5px;" role="button">Notificaciones</a>
             <form class="d-flex" role="search">
                 <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Ir</button>
+                <button style="margin-right: 50px" class="btn btn-outline-success" type="submit">Ir</button>
 
             </form>
 
 
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" th:if="${modo != 'proveedor'}">
+            <a style="margin-right: -110px" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" th:if="${modo != 'proveedor'}">
                 <img src="/img/extraterrestre.png" alt="Logo" width="40" height="30" class="d-inline-block align-text-top" th:text="${nombrePerfil}"></a>
             <ul class="dropdown-menu dropdown-menu-end">
                 <li><a class="dropdown-item" th:href="@{/usuario/modificacion?modo=cliente}">Mi Perfil</a></li>
