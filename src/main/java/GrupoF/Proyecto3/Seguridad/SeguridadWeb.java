@@ -6,7 +6,7 @@ package GrupoF.Proyecto3.Seguridad;
 
 import GrupoF.Proyecto3.Servicios.ClienteServicio;
 import GrupoF.Proyecto3.Servicios.ProveedorServicio;
-
+import GrupoF.Proyecto3.Servicios.UsuarioServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -22,15 +22,11 @@ import org.springframework.ui.ModelMap;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SeguridadWeb extends WebSecurityConfigurerAdapter {
     @Autowired
-    public ClienteServicio cS;
-    @Autowired
-    public ProveedorServicio pS;
+    public UsuarioServicio uS;
     
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
-        auth.userDetailsService(pS)
-                .passwordEncoder(new BCryptPasswordEncoder());
-        auth.userDetailsService(cS)
+        auth.userDetailsService(uS)
                 .passwordEncoder(new BCryptPasswordEncoder());
     }
             
@@ -39,9 +35,9 @@ public class SeguridadWeb extends WebSecurityConfigurerAdapter {
         
         http
             .authorizeRequests()
-                .antMatchers("/admin/*").hasRole("ROL_ADM")
-                .antMatchers("/cliente/*").hasRole("ROL_USUARIO")
-                .antMatchers("/proveedor/*").hasRole("ROL_USUARIO")
+                .antMatchers("/usuario/admin/*").hasRole("ROL_ADM")
+                .antMatchers("/usuario/cliente/*").hasRole("ROL_USUARIO")
+                .antMatchers("/usuario/proveedor/*").hasRole("ROL_USUARIO")
                 .antMatchers("/index").hasAnyRole()
                 .antMatchers("/css/*", "/js/*", "/img/*", "/**")
                 .permitAll()
