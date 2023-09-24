@@ -72,7 +72,7 @@ public class ControladorUsuario {
     
     @PreAuthorize("hasAnyRole('ROLE_USUARIO', 'ROLE_ADM')")
     @GetMapping("/modificacion")
-    public String modificacion(HttpSession session, @RequestParam String modo, ModelMap modelo){
+    public String modificacion(HttpSession session,@RequestParam String modo, ModelMap modelo){
         Usuario sesionUsuario = (Usuario) session.getAttribute("usuariosession");
         if (modo.equalsIgnoreCase("cliente")) {
             String idCliente = sesionUsuario.getId();

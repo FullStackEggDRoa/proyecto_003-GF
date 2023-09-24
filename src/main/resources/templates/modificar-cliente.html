@@ -14,7 +14,7 @@
 
         <div class="signupFrm">
 
-            <form  th:action="@{/usuario/modificar}" class="form" method="POST">
+            <form  th:action="@{/usuario/modificar}" class="form" method="POST" enctype="multipart/form-data">
                 
                 <h3 class="title">Editar Perfil</h3>
                
@@ -22,7 +22,7 @@
                 <input type="hidden" name="categoriaServicio" value="NA">
                 <input type="hidden" name="costoHora" value="0">
                 <input type="hidden" name="modo" value="cliente">
-                <input type="hidden" name="Id" th:value="${Cliente.id}">
+                <input type="hidden" name="Id" th:value="${Cliente.id}">-->
                 <input type="hidden" name="contrasenia" th:value="${Cliente.contrasenia}">
                 <input type="hidden" name="contraseniaChk" th:value="${Cliente.contrasenia}">
                 
