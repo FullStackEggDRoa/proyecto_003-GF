@@ -20,7 +20,7 @@
            
             
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" th:if="${modo != 'proveedor'}">
-                <img th:src="${session.usuariosession.imagen != null} ? @{/imagenes/__${idCliente}__} : @{/img/extraterrestre.png}" alt="Logo" width="30" height="30" class="rounded-circle me-1 d-inline-block align-text-top" th:text="${nombrePerfil}"></a>
+                <img th:src="${session.usuariosession.imagen != null} ? @{/imagenes/__${idCliente}__} : @{/img/extraterrestre.png}" alt="Logo" width="40" height="40" class="rounded-circle me-1 d-inline-block align-text-center" th:text="${nombrePerfil}"></a>
             
             <ul class="dropdown-menu dropdown-menu-end">
                 <li><a class="dropdown-item" th:href="@{/usuario/modificacion?modo=cliente}">Mi Perfil</a></li>
@@ -33,7 +33,7 @@
               
             
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" th:if="${modo != 'cliente'}">
-                <img th:src="${session.usuariosession.imagen != null} ? @{/imagenes/__${idProveedor}__} : @{/img/extraterrestre.png}" alt="Logo" width="40" height="30" class="d-inline-block align-text-top" th:text="${nombrePerfil}"></a>
+                <img th:src="${session.usuariosession.imagen != null} ? @{/imagenes/__${idProveedor}__} : @{/img/extraterrestre.png}" alt="Logo" width="40" height="40" class="rounded-circle me-1 d-inline-block align-text-center" th:text="${nombrePerfil}"></a>
             <ul class="dropdown-menu dropdown-menu-end">
                 <li><a class="dropdown-item"  th:href="@{/usuario/modificacion?modo=proveedor}">Mi Perfil</a></li>
                 <li><a class="dropdown-item" href="#">Mis Contratos</a></li>       
