@@ -16,6 +16,7 @@ public class ImagenServicio {
     @Autowired
     private ImagenRepositorio iR;
     
+    @Transactional
     public Imagen guardar(MultipartFile archivo) throws Exception{
         if (archivo != null) {
             try {
@@ -37,6 +38,7 @@ public class ImagenServicio {
         return null;
     }
     
+    @Transactional
     public Imagen actualizar(MultipartFile archivo, String idImagen) throws Exception{
          if (archivo != null) {
             try {
@@ -68,9 +70,9 @@ public class ImagenServicio {
     }
     
     @Transactional(readOnly = true)
-	public List<Imagen> listarTodos() {
-		return iR.findAll();
-	}
+    public List<Imagen> listarTodos() {
+            return iR.findAll();
+    }
   
 }
 

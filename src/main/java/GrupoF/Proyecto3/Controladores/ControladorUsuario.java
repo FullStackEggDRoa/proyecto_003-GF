@@ -76,18 +76,22 @@ public class ControladorUsuario {
         Usuario sesionUsuario = (Usuario) session.getAttribute("usuariosession");
         if (modo.equalsIgnoreCase("cliente")) {
             String idCliente = sesionUsuario.getId();
+            String nombrePerfil = sesionUsuario.getNombreApellido();
             Cliente cliente = cS.clienteById(idCliente);
             modelo.put("modo", "cliente");
             modelo.addAttribute("Cliente", cliente);
             modelo.addAttribute("idCliente", idCliente);
+            modelo.addAttribute("nombrePerfil", nombrePerfil);
             return "modificar-cliente.html";
             
         } else {
             String idProveedor = sesionUsuario.getId();
+            String nombrePerfil = sesionUsuario.getNombreApellido();
             Proveedor proveedor = pS.proveedorById(idProveedor);
             modelo.put("modo", "proveedor");
             modelo.addAttribute("Proveedor", proveedor);
             modelo.addAttribute("idProveedor", idProveedor);
+            modelo.addAttribute("nombrePerfil", nombrePerfil);
             return "modificar-proveedor.html";
             
         }        
@@ -102,12 +106,14 @@ public class ControladorUsuario {
             if (modo.equalsIgnoreCase("cliente")) {
                 cS.actualizarCliente(archivo, Id, nombreApellido, contrasenia, dni, correo, telefono, direccion, contraseniaChk);
                 modelo.put("notificacion", "Datos de usuario actualizados correctamente!");
-                return "sesion-cliente.html";
+                modelo.put("modo", "cliente");
+                return "redirect:/usuario/sesion";
             }
             else if (modo.equalsIgnoreCase("proveedor")){
                 pS.actualizarProveedor(archivo, Id, nombreApellido, contrasenia, dni, correo, telefono, Integer.valueOf(numeroMatricula), categoriaServicio, costoHora, contraseniaChk);
                 modelo.put("notificacion", "Datos de usuario actualizados correctamente!");
-                return "sesion-proveedor.html";
+                modelo.put("modo", "proveedor");
+                return "redirect:/usuario/sesion";
             }else {
                 
                 return "sesion-admin.html";                
