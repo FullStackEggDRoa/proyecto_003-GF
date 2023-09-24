@@ -127,6 +127,7 @@ public class ClienteServicio implements UserDetailsService {
         }
     }
     
+    @Transactional
     public void cambiarContraseniaCliente (String id, String nuevaContrasenia, String contraseniaChk) throws MiExcepcion{
          
         Optional<Cliente> cliente = cR.findById(id);
