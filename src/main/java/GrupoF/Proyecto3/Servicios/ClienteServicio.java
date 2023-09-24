@@ -107,10 +107,10 @@ public class ClienteServicio implements UserDetailsService {
             
             Imagen imagen = new Imagen();
             
-            if(cliente.getImagen()!=null){
+            if(cliente.getImagen() != null){
                 idImagen = cliente.getImagen().getId();
                 try {
-                    iS.actualizar(archivo, idImagen);
+                    imagen= iS.actualizar(archivo, idImagen);
                 } catch (Exception ex) {
                     throw new MiExcepcion("No se pudo Actualizar el Avatar");
                 }
@@ -127,6 +127,7 @@ public class ClienteServicio implements UserDetailsService {
         }
     }
     
+    @Transactional
     public void cambiarContraseniaCliente (String id, String nuevaContrasenia, String contraseniaChk) throws MiExcepcion{
          
         Optional<Cliente> cliente = cR.findById(id);
