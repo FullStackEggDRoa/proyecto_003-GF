@@ -19,26 +19,29 @@
                 <h3 class="title">EDITAR PROVEEDOR</h3>
                 <input type="hidden" name="direccion" value="NA">
                 <input type="hidden" name="modo" value="proveedor">
+                <input type="hidden" name="Id" th:value="${Proveedor.id}">
+                <input type="hidden" name="contrasenia" th:value="${Proveedor.contrasenia}">
+                <input type="hidden" name="contraseniaChk" th:value="${Proveedor.contrasenia}">
               
               
                 <div class="inputContainer">
-                    <input type="text" class="input" th:value="${Proveedor.nombreApellido}" name="nombreApellido" >
+                    <input type="text" class="input" th:value="${Proveedor.nombreApellido}" name="nombreApellido" required>
                     
              </div>
                    <div class="inputContainer">
-                    <input type="number" class="input" th:value="${Proveedor.dni.numero}"name="dni" >
+                    <input type="number" class="input" th:value="${Proveedor.dni.numero}"name="dni" required>
                  
                 </div>
                <div class="inputContainer">
-                    <input type="number" class="input" th:value="${Proveedor.telefono}" name="telefono">
+                    <input type="number" class="input" th:value="${Proveedor.telefono}" name="telefono" required>
                     
                 </div>
               <div class="inputContainer">
-                    <input type="email" class="input" th:value="${Proveedor.correo}" name="correo"  >
+                    <input type="email" class="input" th:value="${Proveedor.correo}" name="correo"  required>
                     
                 </div>
             <div class="inputContainer">
-                    <select class="form-select input" aria-label="Default select example" th:value%{Proveedor.categoriaServicio}>
+                    <select class="form-select input" aria-label="Default select example" th:value%{Proveedor.categoriaServicio} required>
                         <option selected>Categoria de servicio</option>
                         <option value="Carpintería">Carpintería</option>
                         <option value="Gas">Gas</option>
@@ -49,15 +52,15 @@
                     </select>
                 </div>
                    <div class="inputContainer" th:value{$}>
-                    <input type="text" class="input" th:value="${Proveedor.numMatricula}" name="numMatricula"  >
+                    <input type="text" class="input" th:value="${Proveedor.numMatricula}" name="numMatricula" required >
                    </div>
 
                  <div class="inputContainer">
-                    <input type="number" class="input" th:value="${Proveedor.costoHora}" name="costoHora"  >
+                    <input type="number" class="input" th:value="${Proveedor.costoHora}" name="costoHora" required >
                     
                 </div>
                 <div class="inputContainer">
-                    <input type="file" class="input" placeholder=""  name="archivo"  >
+                    <input type="file" class="input" placeholder=""  name="archivo"  required >
                     
                 </div>
                 <input type="submit" class="submitBtn" value="Enviar modificacion">
