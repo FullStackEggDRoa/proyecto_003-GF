@@ -1,0 +1,20 @@
+.bg-custom{
+    background-color: white;
+}
+.slider-container{
+    border: 1px solid red;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.navbar-container{
+    border: 1px solid red;
+    border-radius: 0px;
+    margin: auto;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0;
+}

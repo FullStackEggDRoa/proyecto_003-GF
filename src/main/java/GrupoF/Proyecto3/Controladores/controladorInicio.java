@@ -2,8 +2,11 @@ package GrupoF.Proyecto3.Controladores;
 
 
 import GrupoF.Proyecto3.Entidades.Cliente;
+import GrupoF.Proyecto3.Entidades.Proveedor;
 import GrupoF.Proyecto3.Entidades.Usuario;
 import GrupoF.Proyecto3.Enumeradores.NombreRol;
+import GrupoF.Proyecto3.Excepciones.MiExcepcion;
+
 import GrupoF.Proyecto3.Servicios.ClienteServicio;
 import GrupoF.Proyecto3.Servicios.ProveedorServicio;
 import java.util.List;
@@ -35,21 +38,24 @@ public class controladorInicio {
     public String login(@RequestParam(required = false) String error, ModelMap modelo ) {
 
         if (error != null) {
-            modelo.put("notificacion", "Usuario o Contraseña invalidos");            
+            modelo.put("notificacion", "Usuario o Contraseña Invalidos");            
         }
         
         return "login.html";
     }
     
     @GetMapping("/registro")
-    public String registro(@RequestParam(required = false) String error, ModelMap modelo ) {
+    public String registro(@RequestParam(required = false) String error, @RequestParam String modo,ModelMap modelo ) {
 
        if (error != null) {
-            modelo.put("notificacion", "Usuario o Contraseña invalidos!");
+            modelo.put("notificacion", "Usuario o Contraseña Invalidos!");
             
        }
-        
-        return "registro-cliente.html";
+       if(modo.equalsIgnoreCase("cliente")){ 
+            return "registro-cliente.html";
+       }else {
+            return "registro-proveedor.html";
+       }
     }
     
     
@@ -59,7 +65,7 @@ public class controladorInicio {
         
         Usuario sesionUsuario = (Usuario) session.getAttribute("usuariosession");
         
-        if (sesionUsuario.getRol().toString().equals("ADM")) {
+       if (sesionUsuario.getRol().toString().equals("ADM")) {
             
             List<Cliente> clientes = cS.listarClientes();
             modelo.addAttribute("clientes", clientes);
@@ -72,26 +78,39 @@ public class controladorInicio {
     }
     
     @PostMapping("/registrar_usuario")
+
     public String registrar(@RequestParam String nombreApellido, @RequestParam String contrasenia,@RequestParam String dni,@RequestParam String correo, @RequestParam String telefono,
-            @RequestParam String contraseniaChk, @RequestParam String direccion, ModelMap modelo) {
+            @RequestParam String contraseniaChk, @RequestParam String direccion, @RequestParam String numeroMatricula,
+            @RequestParam String categoriaServicio, @RequestParam Double costoHora,@RequestParam String modo, ModelMap modelo) {
             
         try {
-            cS.registrarCliente(nombreApellido,contrasenia,dni,correo,telefono,direccion);
+            if(modo.equalsIgnoreCase("cliente")){
+                cS.registrarCliente(nombreApellido,contrasenia,dni,correo,telefono,direccion,contraseniaChk);
+            }else{
+                pS.registrarProveedor(nombreApellido, contrasenia, dni, correo,telefono, Integer.valueOf(numeroMatricula), categoriaServicio, costoHora, contraseniaChk);
+            }
 
             modelo.put("notificacion", "Usuario registrado correctamente!");
-            modelo.put("correo",correo);
+            modelo.put("correo", correo);
             modelo.put("contrasenia", contrasenia);
-            
-            return "redirect:/";
-            
-        } catch (Exception ex) {
+
+            return "login.html";
+
+        } catch (MiExcepcion ex) {
 
             modelo.put("notificacion", ex.getMessage());
             
-            return "redirect:/registro";
+            if(modo.equalsIgnoreCase("cliente")){
+                return "registro-cliente.html";
+            }else{
+                return "registro-proveedor.html";
+            }
+            
         }
 
     }
+    
+    
     
 }
 

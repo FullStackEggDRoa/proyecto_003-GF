@@ -1,0 +1,49 @@
+
+<nav class="navbar navbar-expand-sm navbar-white bg-white" style="background-color: transparent; opacity: 1;" aria-label="Fourth navbar example">
+    <!-- unificacion de navbar de las sesiones  -->
+    <div class="container-fluid">
+        <a class="navbar-brand" th:href="@{/usuario/sesion}">
+            <img src="/img/Lg_sf.png"  width="65" height="50" class="d-inline-block align-text-top">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+            </ul>
+            
+            <a href="#" class="btn btn-danger" style="margin:5px;" role="button">Contratos</a>
+            <a href="#" class="btn btn-danger" style="margin:5px;" role="button">Notificaciones</a>
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Ir</button>
+            </form>
+           
+            
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" th:if="${modo != 'proveedor'}">
+                <img th:src="${session.usuariosession.imagen != null} ? @{/imagenes/__${idCliente}__} : @{/img/extraterrestre.png}" alt="Logo" width="40" height="30" class="d-inline-block align-text-top" th:text="${nombrePerfil}"></a>
+            
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" th:href="@{/usuario/modificacion?modo=cliente}">Mi Perfil</a></li>
+                <li><a class="dropdown-item" href="#">Mis Contratos</a></li>   
+                <li><a class="dropdown-item" href="#">Notificaciones</a></li> 
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="/salir">Cerrar sesion</a></li>
+            </ul>
+            
+              
+            
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" th:if="${modo != 'cliente'}">
+                <img th:src="${session.usuariosession.imagen != null} ? @{/imagenes/__${idProveedor}__} : @{/img/extraterrestre.png}" alt="Logo" width="40" height="30" class="d-inline-block align-text-top" th:text="${nombrePerfil}"></a>
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item"  th:href="@{/usuario/modificacion?modo=proveedor}">Mi Perfil</a></li>
+                <li><a class="dropdown-item" href="#">Mis Contratos</a></li>       
+                <li><a class="dropdown-item" href="#">Notificaciones</a></li>  
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="/salir">Cerrar sesion</a></li>
+            </ul>
+            
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,68 @@
+
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Perfil cliente</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <link rel="stylesheet" href="/css/bg.css">
+        <link rel="stylesheet" href="/css/estilos.css">
+    </head>
+    <body class="bg-custom">
+        <nav th:replace="/fragments/navbar-sesion :: nav" ></nav>
+
+        <div class="signupFrm">
+
+            <form  th:action="@{/usuario/modificar}" class="form" method="POST">
+                
+                <h3 class="title">Editar Perfil</h3>
+               
+                <input type="hidden" name="numeroMatricula" value="0">
+                <input type="hidden" name="categoriaServicio" value="NA">
+                <input type="hidden" name="costoHora" value="0">
+                <input type="hidden" name="modo" value="cliente">
+                <input type="hidden" name="Id" th:value="${Cliente.id}">
+                <input type="hidden" name="contrasenia" th:value="${Cliente.contrasenia}">
+                <input type="hidden" name="contraseniaChk" th:value="${Cliente.contrasenia}">
+                
+                <div class="inputContainer">
+                    <input type="text" class="input" name="nombreApellido" th:value="${Cliente.nombreApellido}">
+                   
+                </div>
+                
+                <div class="inputContainer">
+                    <input type="number" class="input" th:value="${Cliente.dni.numero}" name="dni" >
+                    </div>
+                
+                <div class="inputContainer">
+                    <input type="number" class="input" th:value="${Cliente.telefono}" name="telefono" >
+                    
+                </div>
+
+                <div class="inputContainer">
+                    <input type="email" class="input" th:value="${Cliente.correo}" name="correo" >
+                    
+                </div>
+
+                <div class="inputContainer">
+                    <input type="text" class="input" th:value="${Cliente.direccion}" name="direccion" >
+                   
+                </div>
+                
+                 <div class="inputContainer">
+                     <input type="file" class="input" placeholder=""  name="archivo">
+                   
+                </div>
+                
+                <input type="submit" class="submitBtn" value=" Enviar cambios">
+                
+            </form>
+    </div>
+    <footer th:replace="/fragments/footer :: footer"> </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+
+
+    </body>
+</html>
