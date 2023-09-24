@@ -42,14 +42,14 @@
                     <label for="" class="label">E-mail</label>
                 </div>
 
-                <!--  input viejo de categoria servicio-->
+                <!--  input viejo de categoria servicio
                 <div class="inputContainer">
                     <input type="text" class="input" placeholder="" name="categoriaServicio" th:value="${categoriaServicio}" required>
                     <label for="" class="label">Profesión</label>
-                </div>
+                </div>-->
                 
                 <div class="inputContainer">
-                    <select class="form-select input" aria-label="Default select example">
+                    <select class="form-select input" aria-label="Default select example" th:value%{Proveedor.categoriaServicio}>
                         <option selected>Categoria de servicio</option>
                         <option value="Carpintería">Carpintería</option>
                         <option value="Gas">Gas</option>
@@ -70,10 +70,10 @@
                     <label for="" class="label">Costo Hora de Trabajo</label>
                 </div>
                
-                <div class="inputContainer">    
+<!--                <div class="inputContainer">    
                     <input class="input" type="file" id="">
                     <label for="" class="label">Imagen de perfil</label>
-                </div>
+                </div>-->
 
                 <div class="inputContainer">
                     <input type="password" class="input" placeholder="" name="contrasenia" th:value="${contrasenia}" required>
