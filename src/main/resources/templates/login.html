@@ -17,8 +17,18 @@
                 
                 <h3 class="title">Iniciar sesión</h3>             
 
-                <p class="alert" role="alert" style="text-align: center; color: red" th:text="${notificacion}"></p>
-
+             <!--   <p class="alert" role="alert" style="text-align: center; color: red" th:text="${notificacion}"></p>-->
+      <!-- card alert de notificacion de registro correcto -->
+        <div th:if="${notificacion != null}" class="card text-white bg-success mb-3 mt-3 mensajeExito" >
+            <div class="card-body">
+                <p class="card-text" th:text="${notificacion}"></p>
+            </div>
+        </div>
+      <div th:if="${error != null}" class="card text-white bg-danger mb-3 mt-3 mensajeError" >
+            <div class="card-body">
+                <p class="card-text" th:text="${notificacion}"></p>
+            </div>
+        </div>
                 <div class="inputContainer">
                     <input type="email" class="input" placeholder="service@gmail.com" name="correo" th:value="${correo}" required>
                     <label for="" class="label">E-mail</label>
