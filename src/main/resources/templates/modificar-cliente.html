@@ -27,26 +27,26 @@
                 <input type="hidden" name="contraseniaChk" th:value="${Cliente.contrasenia}">
                 
                 <div class="inputContainer">
-                    <input type="text" class="input" name="nombreApellido" th:value="${Cliente.nombreApellido}">
+                    <input type="text" class="input" name="nombreApellido" th:value="${Cliente.nombreApellido}"  required>
                    
                 </div>
                 
                 <div class="inputContainer">
-                    <input type="number" class="input" th:value="${Cliente.dni.numero}" name="dni" >
+                    <input type="number" class="input" th:value="${Cliente.dni.numero}" name="dni" required >
                     </div>
                 
                 <div class="inputContainer">
-                    <input type="number" class="input" th:value="${Cliente.telefono}" name="telefono" >
+                    <input type="number" class="input" th:value="${Cliente.telefono}" name="telefono" required>
                     
                 </div>
 
                 <div class="inputContainer">
-                    <input type="email" class="input" th:value="${Cliente.correo}" name="correo" >
+                    <input type="email" class="input" th:value="${Cliente.correo}" name="correo" required>
                     
                 </div>
 
                 <div class="inputContainer">
-                    <input type="text" class="input" th:value="${Cliente.direccion}" name="direccion" >
+                    <input type="text" class="input" th:value="${Cliente.direccion}" name="direccion" required>
                    
                 </div>
                 
