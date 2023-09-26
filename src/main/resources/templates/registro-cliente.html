@@ -27,7 +27,12 @@
                 <input type="hidden" name="costoHora" value="0">
 
                 <h3 class="title">Registrarse</h3>
-
+      
+        <div th:if="${notificacion != null}" class="card text-white bg-danger mb-3 mt-3 mensajeError" >
+            <div class="card-body">
+                <p class="card-text" th:text="${notificacion}"></p>
+            </div>
+        </div>
                 <div class="inputContainer">
                     <input type="text" class="input" placeholder="" name="nombreApellido" th:value="${nombreApellido}"
                            required>
@@ -50,12 +55,6 @@
                 <div class="inputContainer">
                     <input type="text" class="input" placeholder="" name="direccion" th:value="${direccion}" required>
                     <label for="" class="label">Dirección</label>
-                </div>
-                <div class="inputContainer">
-
-                    <input class="input" type="file" id="">
-                    <label for="" class="label">Imagen de perfil</label>
-                    
                 </div>
 
                 <div class="inputContainer">
