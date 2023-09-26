@@ -22,7 +22,7 @@
                 <input type="hidden" name="direccion" value="N/A">
 
                 <h3 class="title">Registrarse</h3>
-<!-- card alert de notificacion de error de contraseña-->
+
         <div th:if="${notificaion != null}" class="card text-white bg-danger mb-3 mt-3 mensajeError" >
             <div class="card-body">
                 <p class="card-text" th:text="${notificaion}"></p>
