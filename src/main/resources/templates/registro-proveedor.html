@@ -47,16 +47,16 @@
                     <input type="text" class="input" placeholder="" name="categoriaServicio" th:value="${categoriaServicio}" required>
                     <label for="" class="label">Profesión</label>
                 </div>
-                
+                 <!--selected disabled value=""-->
                 <div class="inputContainer">
                     <select class="form-select input" aria-label="Default select example">
                         <option selected>Categoria de servicio</option>
-                        <option value="Carpintería">Carpintería</option>
-                        <option value="Gas">Gas</option>
-                        <option value="Electricidad">Electricidad</option>
-                        <option value="Plomería">Plomería</option>
-                        <option value="Jardinería">Jardinería</option>
-                        <option value="Construcción">Construcción</option>
+                        <option  th:value="${categoriaServicio}" name="categoriaServicio">Carpintería</option>
+                        <option th:value="${categoriaServicio}" name="categoriaServicio" >Gas</option>
+                        <option th:value="${categoriaServicio}"  name="categoriaServicio" >Electricidad</option>
+                        <option th:value="${categoriaServicio}"   name="categoriaServicio">Plomería</option>
+                        <option th:value="${categoriaServicio}"  name="categoriaServicio">Jardinería</option>
+                        <option th:value="${categoriaServicio}"    name="categoriaServicio">Construcción</option>
                     </select>
                 </div>
 
