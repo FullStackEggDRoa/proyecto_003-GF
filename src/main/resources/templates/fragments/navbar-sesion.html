@@ -12,9 +12,7 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
             </ul>
-            
-            <a href="#" class="btn btn-danger" style="margin:5px;" role="button">Contratos</a>
-            <a href="#" class="btn btn-danger" style="margin:5px;" role="button">Notificaciones</a>
+           
             <form class="d-flex" role="search">
                 <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Ir</button>
@@ -22,7 +20,7 @@
            
             
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" th:if="${modo != 'proveedor'}">
-                <img th:src="${session.usuariosession.imagen != null} ? @{/imagenes/__${idCliente}__} : @{/img/extraterrestre.png}" alt="Logo" width="40" height="30" class="d-inline-block align-text-top" th:text="${nombrePerfil}"></a>
+                <img th:src="${session.usuariosession.imagen != null} ? @{/imagenes/__${idCliente}__} : @{/img/extraterrestre.png}" alt="Logo" width="40" height="40" class="rounded-circle me-1 d-inline-block align-text-center" th:text="${nombrePerfil}"></a>
             
             <ul class="dropdown-menu dropdown-menu-end">
                 <li><a class="dropdown-item" th:href="@{/usuario/modificacion?modo=cliente}">Mi Perfil</a></li>
@@ -35,7 +33,7 @@
               
             
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" th:if="${modo != 'cliente'}">
-                <img th:src="${session.usuariosession.imagen != null} ? @{/imagenes/__${idProveedor}__} : @{/img/extraterrestre.png}" alt="Logo" width="40" height="30" class="d-inline-block align-text-top" th:text="${nombrePerfil}"></a>
+                <img th:src="${session.usuariosession.imagen != null} ? @{/imagenes/__${idProveedor}__} : @{/img/extraterrestre.png}" alt="Logo" width="40" height="40" class="rounded-circle me-1 d-inline-block align-text-center" th:text="${nombrePerfil}"></a>
             <ul class="dropdown-menu dropdown-menu-end">
                 <li><a class="dropdown-item"  th:href="@{/usuario/modificacion?modo=proveedor}">Mi Perfil</a></li>
                 <li><a class="dropdown-item" href="#">Mis Contratos</a></li>       

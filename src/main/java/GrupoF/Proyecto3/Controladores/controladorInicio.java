@@ -38,7 +38,7 @@ public class controladorInicio {
     public String login(@RequestParam(required = false) String error, ModelMap modelo ) {
 
         if (error != null) {
-            modelo.put("notificacion", "Usuario o Contraseña Invalidos");            
+            modelo.put("error", "Usuario o Contraseña Invalidos");            
         }
         
         return "login.html";
