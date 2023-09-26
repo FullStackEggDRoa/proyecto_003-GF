@@ -26,31 +26,6 @@ public class ControladorImagen {
     ProveedorServicio pS;
 
     @GetMapping("/{id}")
-//    public ResponseEntity<byte[]> imagenUsuario(@PathVariable String id, @RequestParam String modo) {
-//        
-//        byte[] imagen = null;
-//
-//        if (modo.equalsIgnoreCase("cliente")) {
-//            Cliente cliente = cS.clienteById(id);
-//            
-//            imagen = cliente.getImagen().getContenido();
-//        }
-//
-//        if (modo.equalsIgnoreCase("proveedor")) {
-//            Proveedor proveedor = pS.proveedorById(id);
-//            
-//            imagen = proveedor.getImagen().getContenido();
-//            
-//        }
-//        
-//            HttpHeaders headers = new HttpHeaders();
-//            headers.setContentType(MediaType.IMAGE_JPEG);
-//        
-//        return new ResponseEntity<>(imagen, headers, HttpStatus.OK);
-//        
-//    }
-//}
-
     public ResponseEntity<byte[]> imagenUsuario(@PathVariable String id) {
 
         Cliente cliente = cS.clienteById(id);
