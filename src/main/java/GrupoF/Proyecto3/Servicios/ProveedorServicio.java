@@ -101,15 +101,15 @@ public class ProveedorServicio implements UserDetailsService {
             if(proveedor.getImagen()!=null){
                 idImagen = proveedor.getImagen().getId();
                 try {
-                    iS.actualizar(archivo, idImagen);
+                    imagen = iS.actualizar(archivo, idImagen);
                 } catch (Exception ex) {
-                    throw new MiExcepcion("No se pudo Actualizar el Avatar");
+                    throw new MiExcepcion("No se pudo actualizar el avatar");
                 }
             }else{
                 try {
                     imagen = iS.guardar(archivo);
                 } catch (Exception ex) {
-                    throw new MiExcepcion("No se pudo Cargar el Avatar");
+                    throw new MiExcepcion("No se pudo cargar el avatar");
                 }
             }
             
