@@ -28,31 +28,32 @@
                 
                 <div class="inputContainer">
                     <input type="text" class="input" name="nombreApellido" th:value="${Cliente.nombreApellido}"  required>
-                   
+                    <label for="" class="label">Nombre y Apellido</label>
                 </div>
                 
                 <div class="inputContainer">
                     <input type="number" class="input" th:value="${Cliente.dni.numero}" name="dni" required >
+                     <label for="" class="label">DNI</label>
                     </div>
                 
                 <div class="inputContainer">
                     <input type="number" class="input" th:value="${Cliente.telefono}" name="telefono" required>
-                    
+                     <label for="" class="label">Teléfono</label>
                 </div>
 
                 <div class="inputContainer">
                     <input type="email" class="input" th:value="${Cliente.correo}" name="correo" required>
-                    
+                     <label for="" class="label">Correo electrónico</label>
                 </div>
 
                 <div class="inputContainer">
                     <input type="text" class="input" th:value="${Cliente.direccion}" name="direccion" required>
-                   
+                    <label for="" class="label">Dirección</label>
                 </div>
                 
                  <div class="inputContainer">
                      <input type="file" class="input"  placeholder="" name="archivo" >
-                   
+                    <label for="" class="label">Imagen perfil</label>
                 </div>
                 
                 <input type="submit" class="submitBtn" value=" Enviar modificaciones">
