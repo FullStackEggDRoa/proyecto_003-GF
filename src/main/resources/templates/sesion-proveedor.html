@@ -21,15 +21,16 @@
                         </div>
                         <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
                             <ul class="nav flex-column">
+
+
                                 <li class="nav-item">
                                     <a style="font-family: arial; color: black" class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="#">
-                                        <b>Dashboard Proveedor</b>
+                                        <b>Sesion Proveedor</b>
                                     </a>
                                 </li>
+
                                 <hr class="my-3">
-                                <li class="nav-item">
-                                    <h4>Indices</h4>
-                                </li>
+
                                 <li class="nav-item">
                                     <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="#">
                                         Mi perfil
@@ -40,7 +41,11 @@
                                         Mis contratos
                                     </a>
                                 </li>
-
+                                <li class="nav-item">
+                                    <a class="nav-link d-flex align-items-center gap-2" href="#">
+                                        Comentarios
+                                    </a>
+                                </li>
 
                             </ul>
 
@@ -61,32 +66,20 @@
 
                 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
 
-                    <title>Bienvenido a Zona Servi!</title>
-
-
-                    <div class="container my-5">
-                        <div class="p-5 text-center bg-body-tertiary rounded-3">
-
-                            <img src="/img/Lg_sf.png"  width="100" height="100" class="bi mt-4 mb-3">
-
-                            <h1 class="text-body-emphasis">¡BIENVENIDO A ZONA SERVI!</h1>
-                            <h3 class="text-body-emphasis" th:text="${nombreApellido}">nombre proveedor</h3>
-                            <p class="col-lg-8 mx-auto fs-5 text-muted">
-                                Creamos una página web para que puedas sumar nuevos clientes y prestar servicios en la zona de Chacras de Coria. 
-                            </p>
-
-                        </div>
+                    <div class="alert alert-light alert-dismissible fade show" role="alert">
+                        <strong>Hola Mario!</strong> 
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
 
 
                     <div class="card mb-3" style="max-width: 540px;">
                         <div class="row g-0">
                             <div class="col-md-4">
-                                <img src="${session.usuariosession.imagen != null} ? @{/imagenes/__${idCliente}__} : @{/img/extraterrestre.png}" class="img-fluid rounded-start" alt="...">
+                                <img src="${session.usuariosession.imagen != null} ? @{/imagenes/__${idCliente}__} : @{/img/extraterrestre.png}" class="img-fluid rounded-start" alt="perfil">
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
+                                    <h5 class="card-title">Mi perfil</h5>
                                     <ul class="list-group list-group-flush">
                                         <li class="list-group-item">Nombre</li>
                                         <li class="list-group-item">dni</li>
@@ -95,8 +88,8 @@
                                         <li class="list-group-item">matricula</li>
                                         <li class="list-group-item">costo por hora</li>
                                     </ul>
-                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                    <p class="card-text"><small class="text-body-secondary"><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i></small></p>
+
+                                    <p class="card-text"><small class="text-body-secondary">calificacion</small></p>
                                     <a class="dropdown-item" type="button" th:href="@{/usuario/modificacion?modo=proveedor}">Editar Perfil</a>
                                 </div>
 
@@ -109,11 +102,10 @@
                             <thead>
                                 <tr>
 
-                                    <th scope="col">Cliente</th>
-                                    <th scope="col">Proveedor</th>
+                                    <th scope="col">Cliente</th>                                  
                                     <th scope="col">Fecha inicio</th>
-                                    <th scope="col">Fecha finalizado</th>
                                     <th scope="col">Estado del contrato</th>
+                                    <th scope="col">Fecha finalizado</th>                                 
                                     <th scope="col">Calificacion </th>                           
                                     <th scope="col">Comentarios</th>
 
@@ -121,7 +113,6 @@
                             </thead>
                             <tbody >
                                 <tr>
-                                    <td ></td>
                                     <td ></td>
                                     <td ></td>
                                     <td ></td>
