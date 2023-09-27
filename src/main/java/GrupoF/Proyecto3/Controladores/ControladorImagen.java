@@ -42,5 +42,3 @@ public class ControladorImagen {
         return new ResponseEntity<>(imagen, headers, HttpStatus.OK);
     }
 }
-
-//PROBANDO RAMA NUEVA
