@@ -14,29 +14,34 @@
 
         <div class="signupFrm">
 
-            <form  th:action="@{/usuario/modificar}" class="form" method="POST" enctype="multipart/form-data">
+            <form  th:action="@{/usuario/modificar}" class="form" method="POST">
+                
+                <h3 class="title">EDITAR PROVEEDOR</h3>
                 <input type="hidden" name="direccion" value="NA">
                 <input type="hidden" name="modo" value="proveedor">
-                <h3 class="title">EDITAR PROVEEDOR</h3>
-                          
+                <input type="hidden" name="Id" th:value="${Proveedor.id}">
+                <input type="hidden" name="contrasenia" th:value="${Proveedor.contrasenia}">
+                <input type="hidden" name="contraseniaChk" th:value="${Proveedor.contrasenia}">
+              
+              
                 <div class="inputContainer">
-                    <input type="text" class="input" th:value="${Proveedor.nombreApellido}" name="nombreApellido" >
-                     <label for="" class="label">Nombre y apellido</label>
+                    <input type="text" class="input" th:value="${Proveedor.nombreApellido}" name="nombreApellido" required>
+                    
              </div>
                    <div class="inputContainer">
-                    <input type="number" class="input" th:value="${Proveedor.dni.numero}"name="dni" >
-                  <label for="" class="label">DNI</label>
+                    <input type="number" class="input" th:value="${Proveedor.dni.numero}"name="dni" required>
+                 
                 </div>
                <div class="inputContainer">
-                    <input type="number" class="input" th:value="${Proveedor.telefono}" name="telefono">
-                     <label for="" class="label">Teléfono</label>
+                    <input type="number" class="input" th:value="${Proveedor.telefono}" name="telefono" required>
+                    
                 </div>
               <div class="inputContainer">
-                    <input type="email" class="input" th:value="${Proveedor.correo}" name="correo"  >
-                     <label for="" class="label">Correo</label>
+                    <input type="email" class="input" th:value="${Proveedor.correo}" name="correo"  required>
+                    
                 </div>
             <div class="inputContainer">
-                    <select class="form-select input" aria-label="Default select example" th:value%{Proveedor.categoriaServicio}>
+                    <select class="form-select input" aria-label="Default select example" th:value%{Proveedor.categoriaServicio} required>
                         <option selected>Categoria de servicio</option>
                         <option value="Carpintería">Carpintería</option>
                         <option value="Gas">Gas</option>
@@ -47,19 +52,18 @@
                     </select>
                 </div>
                    <div class="inputContainer" th:value{$}>
-                    <input type="text" class="input" th:value="${Proveedor.numMatricula}" name="numMatricula"  >
-                     <label for="" class="label">Número de matrícula</label>
+                    <input type="text" class="input" th:value="${Proveedor.numMatricula}" name="numMatricula" required >
                    </div>
 
                  <div class="inputContainer">
-                    <input type="number" class="input" th:value="${Proveedor.costoHora}" name="costoHora"  >
-                     <label for="" class="label">Costo por Hora</label>
+                    <input type="number" class="input" th:value="${Proveedor.costoHora}" name="costoHora" required >
+                    
                 </div>
                 <div class="inputContainer">
-                    <input type="file" class="input" placeholder=""  name="archivo"  >
-                     <label for="" class="label">Imagen Perfil</label>
+                    <input type="file" class="input" name="archivo"  >
+                    
                 </div>
-                <input type="submit" class="submitBtn" value="Enviar modificacion">
+                <input type="submit" class="submitBtn" value="Enviar modificaciones">
             </form>
     </div>
     <footer th:replace="/fragments/footer :: footer"> </footer>

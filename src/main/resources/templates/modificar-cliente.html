@@ -15,45 +15,47 @@
         <div class="signupFrm">
 
             <form  th:action="@{/usuario/modificar}" class="form" method="POST" enctype="multipart/form-data">
+                
+                <h3 class="title">Editar Perfil</h3>
+               
                 <input type="hidden" name="numeroMatricula" value="0">
                 <input type="hidden" name="categoriaServicio" value="NA">
                 <input type="hidden" name="costoHora" value="0">
                 <input type="hidden" name="modo" value="cliente">
-                
-                <h3 class="title">Editar Perfil</h3>
-               
+                <input type="hidden" name="Id" th:value="${Cliente.id}">
+                <input type="hidden" name="contrasenia" th:value="${Cliente.contrasenia}">
+                <input type="hidden" name="contraseniaChk" th:value="${Cliente.contrasenia}">
                 
                 <div class="inputContainer">
-                    <input type="text" class="input" name="nombreApellido"  th:value="${Cliente.nombreApellido}">
-                   <label for="" class="label">Nombre y apellido</label>
+                    <input type="text" class="input" name="nombreApellido" th:value="${Cliente.nombreApellido}"  required>
+                   
                 </div>
                 
                 <div class="inputContainer">
-                    <input type="number" class="input" th:value="${Cliente.dni.numero}" name="dni" >
-                    <label for="" class="label">DNI</label>
+                    <input type="number" class="input" th:value="${Cliente.dni.numero}" name="dni" required >
                     </div>
                 
                 <div class="inputContainer">
-                    <input type="number" class="input" th:value="${Cliente.telefono}" name="telefono" >
-                    <label for="" class="label">Teléfono</label>
+                    <input type="number" class="input" th:value="${Cliente.telefono}" name="telefono" required>
+                    
                 </div>
 
                 <div class="inputContainer">
-                    <input type="email" class="input" th:value="${Cliente.correo}" name="correo" >
-                    <label for="" class="label">Correo</label>
+                    <input type="email" class="input" th:value="${Cliente.correo}" name="correo" required>
+                    
                 </div>
 
                 <div class="inputContainer">
-                    <input type="text" class="input" th:value="${Cliente.direccion}" name="direccion" >
-                   <label for="" class="label">Dirección</label>
+                    <input type="text" class="input" th:value="${Cliente.direccion}" name="direccion" required>
+                   
                 </div>
                 
                  <div class="inputContainer">
-                     <input type="file" class="input"  name="archivo">
-                   <label for="" class="label">Imagen Perfil</label>
+                     <input type="file" class="input"  placeholder="" name="archivo" >
+                   
                 </div>
                 
-                <input type="submit" class="submitBtn" value=" Enviar cambios">
+                <input type="submit" class="submitBtn" value=" Enviar modificaciones">
                 
             </form>
     </div>

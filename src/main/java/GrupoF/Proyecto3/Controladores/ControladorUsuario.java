@@ -37,24 +37,34 @@ public class ControladorUsuario {
         Usuario sesionUsuario = (Usuario) session.getAttribute("usuariosession");
         
         if (sesionUsuario.getRol().toString().equals("ADM")) {
-            
+            String nombrePerfil = null;
             List<Cliente> clientes = cS.listarClientes();
             List<Proveedor> proveedores = pS.listarProveedores();
+            if(sesionUsuario.getClass().getName().contains("Cliente")){
+                nombrePerfil = sesionUsuario.getNombreApellido();
+            }else if(sesionUsuario.getClass().getName().contains("Proveedor")){
+                nombrePerfil = sesionUsuario.getNombreApellido();
+            }
             modelo.addAttribute("clientes", clientes);
             modelo.addAttribute("proveedores", proveedores);
+            modelo.addAttribute("nombrePerfil",  nombrePerfil);
             return "sesion-admin.html";
             
         }else if(sesionUsuario.getClass().getName().contains("Cliente")){
             
             String idCliente = sesionUsuario.getId();
+            String nombrePerfil = sesionUsuario.getNombreApellido();
             modelo.addAttribute("idCliente", idCliente);
+            modelo.addAttribute("nombrePerfil", nombrePerfil);
             modelo.put("modo", "cliente");
             return "sesion-cliente.html";
         
         }else{
             String idProveedor = sesionUsuario.getId();
+            String nombrePerfil = sesionUsuario.getNombreApellido();
             List<Proveedor> proveedores = pS.listarProveedores();
             modelo.addAttribute("idProveedor", idProveedor);
+            modelo.addAttribute("nombrePerfil",  nombrePerfil);
             modelo.put("modo", "proveedor");
             return "sesion-proveedor.html";
         }
@@ -62,22 +72,26 @@ public class ControladorUsuario {
     
     @PreAuthorize("hasAnyRole('ROLE_USUARIO', 'ROLE_ADM')")
     @GetMapping("/modificacion")
-    public String registro(HttpSession session, @RequestParam String modo, ModelMap modelo){
+    public String modificacion(HttpSession session,@RequestParam String modo, ModelMap modelo){
         Usuario sesionUsuario = (Usuario) session.getAttribute("usuariosession");
         if (modo.equalsIgnoreCase("cliente")) {
             String idCliente = sesionUsuario.getId();
+            String nombrePerfil = sesionUsuario.getNombreApellido();
             Cliente cliente = cS.clienteById(idCliente);
             modelo.put("modo", "cliente");
             modelo.addAttribute("Cliente", cliente);
-            
+            modelo.addAttribute("idCliente", idCliente);
+            modelo.addAttribute("nombrePerfil", nombrePerfil);
             return "modificar-cliente.html";
             
         } else {
             String idProveedor = sesionUsuario.getId();
+            String nombrePerfil = sesionUsuario.getNombreApellido();
             Proveedor proveedor = pS.proveedorById(idProveedor);
             modelo.put("modo", "proveedor");
             modelo.addAttribute("Proveedor", proveedor);
-            
+            modelo.addAttribute("idProveedor", idProveedor);
+            modelo.addAttribute("nombrePerfil", nombrePerfil);
             return "modificar-proveedor.html";
             
         }        
@@ -92,12 +106,14 @@ public class ControladorUsuario {
             if (modo.equalsIgnoreCase("cliente")) {
                 cS.actualizarCliente(archivo, Id, nombreApellido, contrasenia, dni, correo, telefono, direccion, contraseniaChk);
                 modelo.put("notificacion", "Datos de usuario actualizados correctamente!");
-                return "sesion-cliente.html";
+                modelo.put("modo", "cliente");
+                return "redirect:/usuario/sesion";
             }
             else if (modo.equalsIgnoreCase("proveedor")){
                 pS.actualizarProveedor(archivo, Id, nombreApellido, contrasenia, dni, correo, telefono, Integer.valueOf(numeroMatricula), categoriaServicio, costoHora, contraseniaChk);
                 modelo.put("notificacion", "Datos de usuario actualizados correctamente!");
-                return "sesion-proveedor.html";
+                modelo.put("modo", "proveedor");
+                return "redirect:/usuario/sesion";
             }else {
                 
                 return "sesion-admin.html";                

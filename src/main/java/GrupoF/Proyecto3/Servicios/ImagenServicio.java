@@ -2,6 +2,7 @@ package GrupoF.Proyecto3.Servicios;
 
 import GrupoF.Proyecto3.Entidades.Imagen;
 import GrupoF.Proyecto3.Repositorios.ImagenRepositorio;
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +17,12 @@ public class ImagenServicio {
     @Autowired
     private ImagenRepositorio iR;
     
+    @Transactional
     public Imagen guardar(MultipartFile archivo) throws Exception{
+        
         if (archivo != null) {
             try {
-                
+                  
                 Imagen imagen = new Imagen();
                 
                 imagen.setMime(archivo.getContentType());
@@ -28,15 +31,19 @@ public class ImagenServicio {
                 
                 imagen.setContenido(archivo.getBytes());
                 
+                System.out.print(imagen.getNombre());
+                
                 return iR.save(imagen);
                 
-            } catch (Exception e) {
+            } catch (IOException e) {
                 System.err.println(e.getMessage());
+                System.out.println(e.getMessage());
             }
         }
         return null;
     }
     
+    @Transactional
     public Imagen actualizar(MultipartFile archivo, String idImagen) throws Exception{
          if (archivo != null) {
             try {
@@ -68,9 +75,9 @@ public class ImagenServicio {
     }
     
     @Transactional(readOnly = true)
-	public List<Imagen> listarTodos() {
-		return iR.findAll();
-	}
+    public List<Imagen> listarTodos() {
+            return iR.findAll();
+    }
   
 }
 

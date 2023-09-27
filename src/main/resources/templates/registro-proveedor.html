@@ -12,7 +12,7 @@
     <body class="bg-custom">
 
         <nav th:replace="/fragments/navbar :: nav"> </nav>
-      
+
 
         <div class="signupFrm">
             <form th:action="@{/registrar_usuario}" class="form" method="POST">
@@ -23,12 +23,12 @@
 
                 <h3 class="title">Registrarse</h3>
 
-<div th:if="${error}!=null" class="card text-white bg-danger mb-3 mensajeError" >
-                <div class="card-body">
+        <div th:if="${notificaion != null}" class="card text-white bg-danger mb-3 mt-3 mensajeError" >
+            <div class="card-body">
+                <p class="card-text" th:text="${notificaion}"></p>
+            </div>
+        </div>
 
-                    <p class="card-text" th:text="${error}"></p>
-                </div>
-  </div>
                 <div class="inputContainer">
                     <input type="text" class="input" placeholder="" name="nombreApellido" th:value="${nombreApellido}" required>
                     <label for="" class="label">Nombre y Apellido</label>
@@ -48,6 +48,8 @@
                     <label for="" class="label">E-mail</label>
                 </div>
 
+              
+                
                 <div class="inputContainer">
                     <select class="form-select input" aria-label="Default select example">
                         <option selected>Categoria de servicio</option>
@@ -61,7 +63,7 @@
                 </div>
 
                 <div class="inputContainer">
-                    <input type="number" class="input" placeholder="" name="numeroMatricula" th:value="${numeroMatricula}" >
+                    <input type="number" class="input" placeholder="" name="numeroMatricula" th:value="${numeroMatricula}" required>
                     <label for="" class="label">Matricula Profesional</label>
                 </div>
 
@@ -69,6 +71,7 @@
                     <input type="number" class="input" placeholder=""  name="costoHora" th:value="${costoHora}" required>
                     <label for="" class="label">Costo Hora de Trabajo</label>
                 </div>
+              
 
                 <div class="inputContainer">
                     <input type="password" class="input" placeholder="" name="contrasenia" th:value="${contrasenia}" required>
