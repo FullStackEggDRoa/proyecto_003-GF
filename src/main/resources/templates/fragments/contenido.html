@@ -78,54 +78,34 @@
         </div>
     </div>
 
-    <div class="card mb-3" style="max-width: 540px;">
-        <div class="row g-0">
-            <div class="col-md-4">
-                <img src="${session.usuariosession.imagen != null} ? @{/imagenes/__${idCliente}__} : @{/img/extraterrestre.png}" class="img-fluid rounded-start" alt="perfil">
-            </div>
-            <div class="col-md-8">
-                <div class="card-body">
-                    <h5 class="card-title">Mi perfil</h5>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Nombre</li>
-                        <li class="list-group-item">dni</li>
-                        <li class="list-group-item">telefono</li>
-                        <li class="list-group-item">servicio</li>
-                        <li class="list-group-item">matricula</li>
-                        <li class="list-group-item">costo por hora</li>
-                    </ul>
 
-                    <p class="card-text"><small class="text-body-secondary">calificacion</small></p>
-                    <a class="dropdown-item" type="button" th:href="@{/usuario/modificacion?modo=proveedor}">Editar Perfil</a>
-                </div>
- </div>
-            </div>
-         </div>
-            <h2 id="contratos">Contratos</h2>
-            <div class="table-responsive small">
-                <table class="table table-striped table-sm">
-                    <thead>
-                        <tr>
+    <h2 id="contratos">Contratos</h2>
+    <div class="table-responsive small">
+        <table class="table table-striped table-sm">
+            <thead>
+                <tr>
 
-                            <th scope="col">Cliente</th>                                  
-                            <th scope="col">Fecha inicio</th>
-                            <th scope="col">Estado del contrato</th>
-                            <th scope="col">Fecha finalizado</th>                                 
-                            <th scope="col">Calificacion </th>                           
-                            <th scope="col">Comentarios</th>
+                    <th scope="col">Cliente</th>                                  
+                    <th scope="col">Fecha inicio</th>
+                    <th scope="col">Estado del contrato</th>
+                    <th scope="col">Fecha finalizado</th>                                 
+                    <th scope="col">Calificacion </th>                           
+                    <th scope="col">Comentarios</th>
 
-                        </tr>
-                    </thead>
-                    <tbody >
-                        <tr>
-                            <td ></td>
-                            <td ></td>
-                            <td ></td>
-                            <td </td>
-                            <td ></td>
-                            <td ></td>
+                </tr>
+            </thead>
+            <tbody >
+                <tr>
+                    <td ></td>
+                    <td ></td>
+                    <td ></td>
+                    <td </td>
+                    <td ></td>
+                    <td ></td>
 
-                        </tr>          
-                    </tbody>
-                </table>
-                </main>
+                </tr>          
+            </tbody>
+        </table>
+        
+        
+</main>
