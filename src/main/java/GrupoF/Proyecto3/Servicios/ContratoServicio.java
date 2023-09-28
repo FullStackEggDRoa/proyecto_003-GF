@@ -57,7 +57,7 @@ public class ContratoServicio {
 
     }
 
-    public List<Contrato> listarContratos() throws MiExcepcion {  //Para Vista Admin
+    public List<Contrato> listarContratos() throws MiExcepcion { 
 
         List<Contrato> contratos = new ArrayList();
         contratos = coR.findAll();
@@ -65,7 +65,7 @@ public class ContratoServicio {
 
     }
 
-    public List<Contrato> listarContratosPorCliente(String idCliente) throws MiExcepcion {  //Vista Sesión Cliente
+    public List<Contrato> listarContratosPorCliente(String idCliente) throws MiExcepcion { 
 
         Cliente cliente = cS.clienteById(idCliente);
         List<Contrato> contratos = new ArrayList();
@@ -74,7 +74,7 @@ public class ContratoServicio {
 
     }
 
-    public List<Contrato> listarContratosPorProveedor(String idProveedor)throws MiExcepcion {  //Vista Sesión Proveedor
+    public List<Contrato> listarContratosPorProveedor(String idProveedor)throws MiExcepcion { 
 
         Proveedor proveedor = pS.proveedorById(idProveedor);
         List<Contrato> contratos = new ArrayList();
