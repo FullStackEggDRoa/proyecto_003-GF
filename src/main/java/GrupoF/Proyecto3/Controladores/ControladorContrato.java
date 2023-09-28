@@ -17,7 +17,7 @@ public class ControladorContrato {
     @Autowired
     private ContratoServicio coS;
     
-    @PreAuthorize("hasAnyRole('ROLE_USUARIO')")    
+@PreAuthorize("hasAnyRole('ROLE_USUARIO')")    
     @PostMapping("/contratar")
     public  String registrarContrato(@RequestParam String idCliente, @RequestParam String idProveedor, ModelMap modelo) {
         try {
