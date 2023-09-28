@@ -32,7 +32,7 @@ public class ContratoServicio {
     private ClienteServicio cS;
 
     @Transactional
-    public void registrarContrato(String idCliente, String idProveedor) {
+    public void registrarContrato(String idCliente, String idProveedor) throws MiExcepcion {
 
         Cliente cliente = cR.findById(idCliente).get();
         Proveedor proveedor = pR.findById(idProveedor).get();
@@ -45,7 +45,7 @@ public class ContratoServicio {
         coR.save(contrato);
     }
 
-    public Contrato contratoById(String id) {
+    public Contrato contratoById(String id) throws MiExcepcion {
 
         Optional<Contrato> contrato = coR.findById(id);
         Contrato contratoAux = new Contrato();
@@ -57,7 +57,7 @@ public class ContratoServicio {
 
     }
 
-    public List<Contrato> listarContratos() {
+    public List<Contrato> listarContratos() throws MiExcepcion { 
 
         List<Contrato> contratos = new ArrayList();
         contratos = coR.findAll();
@@ -65,7 +65,7 @@ public class ContratoServicio {
 
     }
 
-    public List<Contrato> listarContratosPorCliente(String idCliente) {
+    public List<Contrato> listarContratosPorCliente(String idCliente) throws MiExcepcion { 
 
         Cliente cliente = cS.clienteById(idCliente);
         List<Contrato> contratos = new ArrayList();
@@ -74,7 +74,7 @@ public class ContratoServicio {
 
     }
 
-    public List<Contrato> listarContratosPorProveedor(String idProveedor) {
+    public List<Contrato> listarContratosPorProveedor(String idProveedor)throws MiExcepcion { 
 
         Proveedor proveedor = pS.proveedorById(idProveedor);
         List<Contrato> contratos = new ArrayList();
@@ -103,8 +103,30 @@ public class ContratoServicio {
         
         Contrato contrato = contratoById(idContrato);
 
-        contrato.setCalifProveedor(calificacionCliente);
-        contrato.setComentarioProveedor(comentarioCliente);
+        contrato.setCalifCliente(calificacionCliente);
+        contrato.setComentarioCliente(comentarioCliente);
+
+        coR.save(contrato);
+
+    }
+    
+    @Transactional
+    public void eliminarComentarioProveedor(String idContrato) throws MiExcepcion {
+
+        Contrato contrato = contratoById(idContrato);
+
+        contrato.setComentarioProveedor("Eliminado por el Administrador, comentario ofensivo.");
+
+        coR.save(contrato);
+
+    }
+    
+    @Transactional
+    public void eliminarComentarioCliente(String idContrato) throws MiExcepcion {
+
+        Contrato contrato = contratoById(idContrato);
+
+        contrato.setComentarioCliente("Eliminado por el Administrador, comentario ofensivo.");
 
         coR.save(contrato);
 
@@ -119,7 +141,7 @@ public class ContratoServicio {
         }
     }
 
-    public int calificacionPorProveedor(String idProveedor) {
+    public int calificacionPorProveedor(String idProveedor) throws MiExcepcion {
         Proveedor proveedor = pS.proveedorById(idProveedor);
 
         List<Contrato> contratos = new ArrayList();
@@ -135,7 +157,7 @@ public class ContratoServicio {
         return (respuesta);
     }
 
-    public int calificacionPorCliente(String idCliente) {
+    public int calificacionPorCliente(String idCliente) throws MiExcepcion {
         Cliente cliente = cS.clienteById(idCliente);
 
         List<Contrato> contratos = new ArrayList();
@@ -198,7 +220,7 @@ public class ContratoServicio {
 
         Contrato contrato = contratoById(idContrato);
         
-        if (contrato.getEstadoContrato() == NombreEstadoContrato.ESPERA){
+        if (contrato.getEstadoContrato() == NombreEstadoContrato.ESPERA || contrato.getEstadoContrato() == NombreEstadoContrato.PROCESO){
             contrato.setEstadoContrato(NombreEstadoContrato.CANCELADO);
             coR.save(contrato);
         } else {
