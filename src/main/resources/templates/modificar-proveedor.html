@@ -14,7 +14,7 @@
 
         <div class="signupFrm">
 
-            <form  th:action="@{/usuario/modificar}" class="form" method="POST">
+            <form  th:action="@{/usuario/modificar}" class="form" method="POST" enctype="multipart/form-data">
                 
                 <h3 class="title">EDITAR PROVEEDOR</h3>
                 <input type="hidden" name="direccion" value="NA">
@@ -26,22 +26,23 @@
               
                 <div class="inputContainer">
                     <input type="text" class="input" th:value="${Proveedor.nombreApellido}" name="nombreApellido" required>
-                    
+                    <label for="" class="label">Nombre y apellido</label>
              </div>
                    <div class="inputContainer">
                     <input type="number" class="input" th:value="${Proveedor.dni.numero}"name="dni" required>
-                 
+                    <label for="" class="label">DNI</label>
                 </div>
                <div class="inputContainer">
                     <input type="number" class="input" th:value="${Proveedor.telefono}" name="telefono" required>
-                    
+                    <label for="" class="label">Telefono</label>
                 </div>
               <div class="inputContainer">
                     <input type="email" class="input" th:value="${Proveedor.correo}" name="correo"  required>
-                    
+                    <label for="" class="label">Correo electrónico</label>
                 </div>
-            <div class="inputContainer">
-                    <select class="form-select input" aria-label="Default select example" th:value%{Proveedor.categoriaServicio} required>
+                
+                <div class="inputContainer">
+                    <select class="form-select input" aria-label="Default select example" th:value="${Proveedor.categoriaServicio}" name="categoriaServicio" required>
                         <option selected>Categoria de servicio</option>
                         <option value="Carpintería">Carpintería</option>
                         <option value="Gas">Gas</option>
@@ -50,16 +51,20 @@
                         <option value="Jardinería">Jardinería</option>
                         <option value="Construcción">Construcción</option>
                     </select>
+                    <label for="" class="label">Categoría Servicio</label>
                 </div>
-                   <div class="inputContainer" th:value{$}>
-                    <input type="text" class="input" th:value="${Proveedor.numMatricula}" name="numMatricula" required >
+    
+                   <div class="inputContainer">
+                    <input type="text" class="input" th:value="${Proveedor.numMatricula}" name="numeroMatricula" required >
+                    <label for="" class="label">Número de matrícula</label>
                    </div>
 
-                 <div class="inputContainer">
+                <div class="inputContainer">
                     <input type="number" class="input" th:value="${Proveedor.costoHora}" name="costoHora" required >
-                    
+                    <label for="" class="label">Costo por hora</label>
                 </div>
                 <div class="inputContainer">
+
                     <input type="file" class="input" name="archivo"  >
                     
                 </div>

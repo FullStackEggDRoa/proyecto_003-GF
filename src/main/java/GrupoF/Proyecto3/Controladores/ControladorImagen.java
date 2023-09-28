@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package GrupoF.Proyecto3.Controladores;
 
 import GrupoF.Proyecto3.Entidades.Cliente;
@@ -17,34 +13,32 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-/**
- *
- * @author droa
- */
 @Controller
 @RequestMapping("/imagenes")
 public class ControladorImagen {
+
     @Autowired
     ClienteServicio cS;
-    
+
     @Autowired
     ProveedorServicio pS;
-    
+
     @GetMapping("/{id}")
-    public ResponseEntity<byte[]> imagenUsuario (@PathVariable String id){
-       
-       Cliente cliente = cS.clienteById(id);
-       Proveedor proveedor = pS.proveedorById(id);
-       byte[] imagen = null;
-       HttpHeaders headers = new HttpHeaders();
-       headers.setContentType(MediaType.IMAGE_JPEG);
-       
-       if(cliente != null){           
-           imagen = cliente.getImagen().getContenido();
-       }else if (proveedor != null){
-           imagen = proveedor.getImagen().getContenido();
-       }
-       return new ResponseEntity<>(imagen,headers, HttpStatus.OK); 
+    public ResponseEntity<byte[]> imagenUsuario(@PathVariable String id) {
+
+        Cliente cliente = cS.clienteById(id);
+        Proveedor proveedor = pS.proveedorById(id);
+        byte[] imagen = null;
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.IMAGE_JPEG);
+
+        if (cliente != null) {
+            imagen = cliente.getImagen().getContenido();
+        } else if (proveedor != null) {
+            imagen = proveedor.getImagen().getContenido();
+        }
+        return new ResponseEntity<>(imagen, headers, HttpStatus.OK);
     }
 }
