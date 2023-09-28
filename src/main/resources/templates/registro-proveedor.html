@@ -23,6 +23,12 @@
 
                 <h3 class="title">Registrarse</h3>
 
+        <div th:if="${notificaion != null}" class="card text-white bg-danger mb-3 mt-3 mensajeError" >
+            <div class="card-body">
+                <p class="card-text" th:text="${notificaion}"></p>
+            </div>
+        </div>
+
                 <div class="inputContainer">
                     <input type="text" class="input" placeholder="" name="nombreApellido" th:value="${nombreApellido}" required>
                     <label for="" class="label">Nombre y Apellido</label>
@@ -42,14 +48,10 @@
                     <label for="" class="label">E-mail</label>
                 </div>
 
-                <!--  input viejo de categoria servicio-->
-                <div class="inputContainer">
-                    <input type="text" class="input" placeholder="" name="categoriaServicio" th:value="${categoriaServicio}" required>
-                    <label for="" class="label">Profesión</label>
-                </div>
+
                 
-                <div class="inputContainer">
-                    <select class="form-select input" aria-label="Default select example">
+               <div class="inputContainer">
+                    <select class="form-select input" aria-label="Default select example" th:value="${categoriaServicio}" required>
                         <option selected>Categoria de servicio</option>
                         <option value="Carpintería">Carpintería</option>
                         <option value="Gas">Gas</option>
@@ -68,11 +70,6 @@
                 <div class="inputContainer">
                     <input type="number" class="input" placeholder=""  name="costoHora" th:value="${costoHora}" required>
                     <label for="" class="label">Costo Hora de Trabajo</label>
-                </div>
-               
-                <div class="inputContainer">    
-                    <input class="input" type="file" id="">
-                    <label for="" class="label">Imagen de perfil</label>
                 </div>
 
                 <div class="inputContainer">
