@@ -1,5 +1,6 @@
 package GrupoF.Proyecto3.Repositorios;
 
+
 import GrupoF.Proyecto3.Entidades.Cliente;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
