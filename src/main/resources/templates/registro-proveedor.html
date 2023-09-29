@@ -48,10 +48,9 @@
                     <label for="" class="label">E-mail</label>
                 </div>
 
-
-                
+               
                <div class="inputContainer">
-                    <select class="form-select input" aria-label="Default select example" th:value="${categoriaServicio}" required>
+                    <select class="form-select input" aria-label="Default select example" name="categoriaServicio" th:value="${categoriaServicio}" required>
                         <option selected>Categoria de servicio</option>
                         <option value="Carpintería">Carpintería</option>
                         <option value="Gas">Gas</option>
@@ -60,8 +59,9 @@
                         <option value="Jardinería">Jardinería</option>
                         <option value="Construcción">Construcción</option>
                     </select>
+                    <label for="" class="label">Categoría Servicio</label>
                 </div>
-
+          
                 <div class="inputContainer">
                     <input type="number" class="input" placeholder="" name="numeroMatricula" th:value="${numeroMatricula}" required>
                     <label for="" class="label">Matricula Profesional</label>

@@ -101,15 +101,15 @@ public class ProveedorServicio implements UserDetailsService {
             if(proveedor.getImagen()!=null){
                 idImagen = proveedor.getImagen().getId();
                 try {
-                    iS.actualizar(archivo, idImagen);
+                    imagen = iS.actualizar(archivo, idImagen);
                 } catch (Exception ex) {
-                    throw new MiExcepcion("No se pudo Actualizar el Avatar");
+                    throw new MiExcepcion("No se pudo actualizar el avatar");
                 }
             }else{
                 try {
                     imagen = iS.guardar(archivo);
                 } catch (Exception ex) {
-                    throw new MiExcepcion("No se pudo Cargar el Avatar");
+                    throw new MiExcepcion("No se pudo cargar el avatar");
                 }
             }
             
@@ -223,15 +223,5 @@ public class ProveedorServicio implements UserDetailsService {
         }
     }
 
-    public List<Proveedor> listaProveedoresOrdenados() {
-        return pR.listarProveedoresPorCategoriaYNombre();
-    }
-    
-    public List<Proveedor> buscarProveedoresPorCategoria(String categoriaServicio) throws MiExcepcion {
-        if (categoriaServicio == null || categoriaServicio.isEmpty()) {
-            throw new MiExcepcion("La categoría de servicio no puede estar vacía o ser nula");
-        }
-        return (List<Proveedor>) pR.buscarPorCategoria(categoriaServicio);
-    }
     
 }

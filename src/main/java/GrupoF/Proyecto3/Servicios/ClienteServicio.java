@@ -112,13 +112,13 @@ public class ClienteServicio implements UserDetailsService {
                 try {
                     imagen= iS.actualizar(archivo, idImagen);
                 } catch (Exception ex) {
-                    throw new MiExcepcion("No se pudo Actualizar el Avatar");
+                    throw new MiExcepcion("No se pudo actualizar el avatar");
                 }
             }else{
                 try {
                     imagen = iS.guardar(archivo);
                 } catch (Exception ex) {
-                    throw new MiExcepcion("No se pudo Cargar el Avatar");
+                    throw new MiExcepcion("No se pudo cargar el avatar");
                 }
             }
             cliente.setImagen(imagen);
@@ -214,7 +214,4 @@ public class ClienteServicio implements UserDetailsService {
         }  
     }
     
-    public List<Cliente> listaClientesOrdenados() {
-        return cR.listarClientesPorNombre();
-    }
 }
