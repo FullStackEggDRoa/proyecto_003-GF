@@ -1,6 +1,6 @@
 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
     <div class="alert alert-light alert-dismissible fade show" role="alert">
-        <strong>Hola Mario!</strong> 
+        <strong th:text="'Hola de nuevo ' + ${nombrePerfil}+'!'"></strong> 
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 
@@ -12,7 +12,7 @@
                         <img class="card-img-top" src="/img/tarjetas/electricista.jpg" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title">Electricidad</h5>
-                            <p class="card-text">Solución a tus problemas hogar e industria</p>
+                            <p class="card-text">Amplia experiencia en instalaciones eléctricas residenciales. Comprometido con la seguridad y eficiencia energética. Soluciones confiables.</p>
                             <a href="#" class="btn btn-primary">Ver</a>
                         </div>
 
@@ -23,7 +23,7 @@
                         <img class="card-img-top" src="/img/tarjetas/plomero.jpg" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title">Plomería</h5>
-                            <p class="card-text">Solución a tus problemas hogar e industria</p>
+                            <p class="card-text">Reparaciones y mantenimiento de tuberías y sistemas de plomería. Resuelve problemas con eficiencia y garantiza calidad.</p>
                             <a href="#" class="btn btn-primary">Ver</a>
                         </div>
 
@@ -34,7 +34,7 @@
                         <img class="card-img-top" src="/img/tarjetas/albañil.jpg" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title">Construcción</h5>
-                            <p class="card-text">Solución a tus problemas hogar e industria</p>
+                            <p class="card-text">Construcción y reparación, especializada en proyectos residenciales. Soluciones integrales, calidad y satisfacción del cliente.</p>
                             <a href="#" class="btn btn-primary">Ver</a>
                         </div>
 
@@ -45,7 +45,7 @@
                         <img class="card-img-top" src="/img/tarjetas/gasista.jpg" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title">Gas</h5>
-                            <p class="card-text">Solución a tus problemas hogar e industria</p>
+                            <p class="card-text">Gasistas matriculados con experiencia en instalaciones y reparaciones de sistemas de gas. Cumplimiento de normativas de seguridad.</p>
                             <a href="#" class="btn btn-primary">Ver</a>
                         </div>
 
@@ -56,7 +56,7 @@
                         <img class="card-img-top" src="/img/tarjetas/carpintero.jpg" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title">Carpintería</h5>
-                            <p class="card-text">Solución a tus problemas hogar e industria</p>
+                            <p class="card-text">Habilidades excepcionales en la creación de muebles y estructuras a medida. Detallistas y comprometidos con la excelencia artesanal.</p>
                             <a href="#" class="btn btn-primary">Ver</a>
                         </div>
 
@@ -67,7 +67,7 @@
                         <img class="card-img-top" src="/img/tarjetas/jardinero.webp" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title">Jardinería</h5>
-                            <p class="card-text">Solución a tus problemas hogar e industria</p>
+                            <p class="card-text">Apasionados por el diseño y mantenimiento de espacios verdes. Transformamos tu jardín en un oasis natural, cuidando cada detalle.</p>
                             <a href="#" class="btn btn-primary">Ver</a>
                         </div>
 
@@ -84,7 +84,7 @@
             <thead>
                 <tr>
 
-                    <th scope="col">Cliente</th>                                  
+                    <th scope="col">Proveedor</th>                                  
                     <th scope="col">Fecha inicio</th>
                     <th scope="col">Estado del contrato</th>
                     <th scope="col">Fecha finalizado</th>                                 
@@ -93,15 +93,14 @@
 
                 </tr>
             </thead>
-            <tbody >
+            <tbody th:each="contrato : ${contrato}" >
                 <tr>
-                    <td ></td>
-                    <td ></td>
-                    <td ></td>
-                    <td </td>
-                    <td ></td>
-                    <td ></td>
-
+                    <td th:text=${#strings.substring(contrato.id,0,5)}></td>
+                    <td th:text=${contrato.fecha_inicio} ></td>
+                    <td th:text=${contrato.estado} ></td>
+                    <td th:text=${contrato.fecha_fin} ></td>
+                    <td th:text=${contrato.calificacion_prov} ></td>
+                    <td th:text=${contrato.comentario_prov} ></td>
                 </tr>          
             </tbody>
         </table>
