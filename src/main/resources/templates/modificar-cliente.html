@@ -28,26 +28,27 @@
                 
                 <div class="inputContainer">
                     <input type="text" class="input" name="nombreApellido" th:value="${Cliente.nombreApellido}"  required>
-                   
+                    <label for="" class="label">Nombre y Apellido</label>
                 </div>
                 
                 <div class="inputContainer">
                     <input type="number" class="input" th:value="${Cliente.dni.numero}" name="dni" required >
-                    </div>
+                    <label for="" class="label">DNI</label>
+                </div>
                 
                 <div class="inputContainer">
                     <input type="number" class="input" th:value="${Cliente.telefono}" name="telefono" required>
-                    
+                    <label for="" class="label">Telefono</label>
                 </div>
 
                 <div class="inputContainer">
                     <input type="email" class="input" th:value="${Cliente.correo}" name="correo" required>
-                    
+                    <label for="" class="label">E-mail</label>
                 </div>
 
                 <div class="inputContainer">
                     <input type="text" class="input" th:value="${Cliente.direccion}" name="direccion" required>
-                   
+                    <label for="" class="label">Dirección</label>
                 </div>
                 
                  <div class="inputContainer">

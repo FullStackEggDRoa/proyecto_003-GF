@@ -1,9 +1,8 @@
-
-<nav class="navbar navbar-expand-sm navbar-white bg-white" style="background-color: transparent; opacity: 1;" aria-label="Fourth navbar example">
+<nav class="navbar navbar-expand-sm navbar-white" style="background-color: black; opacity: opacity: 1;" aria-label="Fourth navbar example">
    
     <div class="container-fluid">
         <a class="navbar-brand" th:href="@{/usuario/sesion}">
-            <img src="/img/Lg_sf.png"  width="65" height="50" class="d-inline-block align-text-top">
+            <img src="/img/logo-letra-b.png"  width="65" height="50" class="d-inline-block align-text-top">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -19,8 +18,8 @@
             </form>
            
             
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" th:if="${modo != 'proveedor'}">
-                <img th:src="${session.usuariosession.imagen != null} ? @{/imagenes/__${idCliente}__} : @{/img/extraterrestre.png}" alt="Logo" width="40" height="40" class="rounded-circle me-1 d-inline-block align-text-center" th:text="${nombrePerfil}"></a>
+            <a style="color: white" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" th:if="${modo != 'proveedor'}">
+            <img th:src="${session.usuariosession.imagen != null} ? @{/imagenes/__${idCliente}__} : @{/img/extraterrestre.png}" alt="Logo" width="40" height="40" class="rounded-circle me-1 d-inline-block align-text-center" th:text="${nombrePerfil}"></a>
             
             <ul class="dropdown-menu dropdown-menu-end">
                 <li><a class="dropdown-item" th:href="@{/usuario/modificacion?modo=cliente}">Editar Perfil</a></li>              
@@ -30,8 +29,8 @@
             
               
             
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" th:if="${modo != 'cliente'}">
-                <img th:src="${session.usuariosession.imagen != null} ? @{/imagenes/__${idProveedor}__} : @{/img/extraterrestre.png}" alt="Logo" width="40" height="40" class="rounded-circle me-1 d-inline-block align-text-center" th:text="${nombrePerfil}"></a>
+            <a style="color: white" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" th:if="${modo != 'cliente'}">
+            <img th:src="${session.usuariosession.imagen != null} ? @{/imagenes/__${idProveedor}__} : @{/img/extraterrestre.png}" alt="Logo" width="40" height="40" class="rounded-circle me-1 d-inline-block align-text-center" th:text="${nombrePerfil}"></a>
             <ul class="dropdown-menu dropdown-menu-end">
                 <li><a class="dropdown-item"  th:href="@{/usuario/modificacion?modo=proveedor}">Editar Perfil</a></li>      
                 <li><hr class="dropdown-divider"></li>

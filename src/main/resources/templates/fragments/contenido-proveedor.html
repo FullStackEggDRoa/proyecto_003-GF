@@ -6,14 +6,14 @@
 
     
 
-    <div class="card mb-3" style="max-width: 540px;">
+    <div class="card mb-3" style="max-width: 700px;">
         <div class="row g-0">
             <div class="col-md-4">
               <img th:src="${session.usuariosession.imagen != null} ? @{/imagenes/__${idProveedor}__} : @{/img/extraterrestre.png}" alt="Logo" width="40" height="40" class="rounded-circle me-1 d-inline-block align-text-center"></a>
             </div>
             <div class="col-md-8">
                 <div class="card-body">
-                    <h5 class="card-title">Mi perfil</h5>
+                    <h5 class="card-title">Mi Perfil</h5>
                     <ul class="list-group list-group-flush" >
                         
                        <li class="list-group-item" th:text="'Numero Matricula: ' + ${Proveedor.numMatricula}"></li> 
@@ -31,18 +31,18 @@
  </div>
             </div>
          </div>
-            <h2 id="contratos">Contratos</h2>
+            <h4 id="contratos">Contratos</h4>
             <div class="table-responsive small">
                 <table class="table table-striped table-sm">
-                    <thead>
+                    <thead class="table-dark">
                         <tr>
 
-                            <th scope="col">Cliente</th>                                  
-                            <th scope="col">Fecha inicio</th>
-                            <th scope="col">Estado del contrato</th>
-                            <th scope="col">Fecha finalizado</th>                                 
-                            <th scope="col">Calificacion </th>                           
-                            <th scope="col">Comentarios</th>
+                            <th style="font-size: 85%" scope="col">Cliente</th>                                  
+                            <th style="font-size: 85%" scope="col">Fecha inicio</th>
+                            <th style="font-size: 85%" scope="col">Estado del contrato</th>
+                            <th style="font-size: 85%" scope="col">Fecha finalizado</th>                                 
+                            <th style="font-size: 85%" scope="col">Calificacion </th>                           
+                            <th style="font-size: 85%" scope="col">Comentarios</th>
 
                         </tr>
                     </thead>
@@ -51,7 +51,7 @@
                             <td ></td>
                             <td ></td>
                             <td ></td>
-                            <td </td>
+                            <td ></td>
                             <td ></td>
                             <td ></td>
 
