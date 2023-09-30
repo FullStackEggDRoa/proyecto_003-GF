@@ -62,7 +62,9 @@ public class ControladorUsuario {
         }else{
             String idProveedor = sesionUsuario.getId();
             String nombrePerfil = sesionUsuario.getNombreApellido();
+            Proveedor proveedor = pS.proveedorById(idProveedor);
             List<Proveedor> proveedores = pS.listarProveedores();
+            modelo.addAttribute("Proveedor", proveedor);
             modelo.addAttribute("idProveedor", idProveedor);
             modelo.addAttribute("nombrePerfil",  nombrePerfil);
             modelo.put("modo", "proveedor");
