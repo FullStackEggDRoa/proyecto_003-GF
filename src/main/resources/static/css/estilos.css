@@ -17,10 +17,10 @@
 }
 body {
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
     background-color: rgb(241, 240, 128);
     font-family: "lato", sans-serif;
+    
+    
 }
 
 body {
@@ -61,7 +61,8 @@ button:hover{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 90vh;
+    height: auto;
+    
 }
 
 .form {
@@ -70,10 +71,14 @@ button:hover{
     border-radius: 8px;
     padding: 20px 40px;
     box-shadow: 0 10px 25px rgba(92, 99, 105, .2);
+    margin: 0 auto;
+    
+ 
+   
 }
 
 .title {
-    font-size: 50px;
+    font-size: 32px;
     margin-bottom: 50px;
 }
 
