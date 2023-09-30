@@ -214,4 +214,7 @@ public class ClienteServicio implements UserDetailsService {
         }  
     }
     
+    public List<Cliente> listaClientesOrdenados() {
+        return cR.listarClientesPorNombre();
+    }
 }
