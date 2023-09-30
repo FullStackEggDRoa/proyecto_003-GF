@@ -223,5 +223,15 @@ public class ProveedorServicio implements UserDetailsService {
         }
     }
 
+    public List<Proveedor> listaProveedoresOrdenados() {
+        return pR.listarProveedoresPorCategoriaYNombre();
+    }
+
+    public List<Proveedor> buscarProveedoresPorCategoria(String categoriaServicio) throws MiExcepcion {
+        if (categoriaServicio == null || categoriaServicio.isEmpty()) {
+            throw new MiExcepcion("La categoría de servicio no puede estar vacía o ser nula");
+        }
+        return (List<Proveedor>) pR.buscarPorCategoria(categoriaServicio);
+    }
     
 }
