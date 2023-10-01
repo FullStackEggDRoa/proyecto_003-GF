@@ -20,10 +20,7 @@ text-align: center;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 body {
-
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+  box-sizing: border-box;  
   background-color: rgb(241, 240, 128);
   font-family: "lato", sans-serif;
 }
@@ -84,6 +81,7 @@ color: purple ;
     border-radius: 8px;
     padding: 20px 40px;
     box-shadow: 0 10px 25px rgba(92, 99, 105, .2);
+    margin: auto;
 }
 
 .title {
