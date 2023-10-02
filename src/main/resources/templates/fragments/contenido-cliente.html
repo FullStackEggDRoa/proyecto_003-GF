@@ -3,7 +3,6 @@
         <strong th:text="'Hola de nuevo ' + ${nombrePerfil}+'!'"></strong> 
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
-
     <div class="container">
         <div class="m-0 row g-5 justify-content-center align-items-center">
             <div class="row g-5">
@@ -15,7 +14,6 @@
                             <p class="card-text">Amplia experiencia en instalaciones eléctricas residenciales. Comprometido con la seguridad y eficiencia energética. Soluciones confiables.</p>
                             <a href="#" class="btn btn-primary">Ver</a>
                         </div>
-
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4">
@@ -26,7 +24,6 @@
                             <p class="card-text">Reparaciones y mantenimiento de tuberías y sistemas de plomería. Resuelve problemas con eficiencia y garantiza calidad.</p>
                             <a href="#" class="btn btn-primary">Ver</a>
                         </div>
-
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4">
@@ -37,7 +34,6 @@
                             <p class="card-text">Construcción y reparación, especializada en proyectos residenciales. Soluciones integrales, calidad y satisfacción del cliente.</p>
                             <a href="#" class="btn btn-primary">Ver</a>
                         </div>
-
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4">
@@ -48,7 +44,6 @@
                             <p class="card-text">Gasistas matriculados con experiencia en instalaciones y reparaciones de sistemas de gas. Cumplimiento de normativas de seguridad.</p>
                             <a href="#" class="btn btn-primary">Ver</a>
                         </div>
-
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4">
@@ -59,7 +54,6 @@
                             <p class="card-text">Habilidades excepcionales en la creación de muebles y estructuras a medida. Detallistas y comprometidos con la excelencia artesanal.</p>
                             <a href="#" class="btn btn-primary">Ver</a>
                         </div>
-
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4">
@@ -70,34 +64,28 @@
                             <p class="card-text">Apasionados por el diseño y mantenimiento de espacios verdes. Transformamos tu jardín en un oasis natural, cuidando cada detalle.</p>
                             <a href="#" class="btn btn-primary">Ver</a>
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-
     <h4 id="contratos">Contratos</h4>
     <div class="table-responsive small">
         <table class="table table-striped table-sm">
             <thead class="table-dark">
                 <tr>
 
-                    <th style="font-size: 85%" scope="col">Cliente</th>                                  
-                    <th style="font-size: 85%" scope="col">Fecha inicio</th>
-                    <th style="font-size: 85%" scope="col">Estado del contrato</th>
-                    <th style="font-size: 85%" scope="col">Fecha finalizado</th>                                 
+                    <th style="font-size: 85%" scope="col">Cliente</th>                  
+                    <th style="font-size: 85%" scope="col">Fecha Inicio</th>
+                    <th style="font-size: 85%" scope="col">Estado Del Contrato</th>
+                    <th style="font-size: 85%" scope="col">Fecha Finalizado</th>                                 
                     <th style="font-size: 85%" scope="col">Calificacion </th>                           
                     <th style="font-size: 85%" scope="col">Comentarios</th>
                     <th style="font-size: 85%" scope="col">Cancelar</th>
-
-
-                </tr>
+                     </tr>
             </thead>
             <tbody th:each="contrato : ${contrato}" >
                 <tr>
-
                     <td ></td>
                     <td ></td>
                     <td ></td>
@@ -107,10 +95,7 @@
                     <td >
                          <button type="button" class=" btn btn-danger btn-close" ></button>
                     </td>
-
                 </tr>          
             </tbody>
         </table>
-
-
 </main>
