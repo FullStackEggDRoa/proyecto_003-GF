@@ -54,8 +54,10 @@ public class ControladorUsuario {
             
             String idCliente = sesionUsuario.getId();
             String nombrePerfil = sesionUsuario.getNombreApellido();
+            List<Proveedor> proveedores = pS.listarProveedores();
             modelo.addAttribute("idCliente", idCliente);
             modelo.addAttribute("nombrePerfil", nombrePerfil);
+            modelo.addAttribute("proveedores", proveedores);
             modelo.put("modo", "cliente");
             return "sesion-cliente.html";
         
@@ -70,14 +72,6 @@ public class ControladorUsuario {
             modelo.put("modo", "proveedor");
             return "sesion-proveedor.html";
         }
-    }
-    
-    @PreAuthorize("hasAnyRole('ROLE_USUARIO')")
-    @GetMapping("/lista")
-    public String listarProveedores(ModelMap modelo){
-        List <Proveedor> proveedores = pS.listaProveedoresOrdenados();
-        modelo.addAttribute("proveedores", proveedores);
-        return "proveedor-lista.html";
     }
     
     @PreAuthorize("hasAnyRole('ROLE_USUARIO', 'ROLE_ADM')")
