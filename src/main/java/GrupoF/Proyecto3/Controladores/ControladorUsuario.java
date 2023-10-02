@@ -72,6 +72,14 @@ public class ControladorUsuario {
         }
     }
     
+    @PreAuthorize("hasAnyRole('ROLE_USUARIO')")
+    @GetMapping("/lista")
+    public String listarProveedores(ModelMap modelo){
+        List <Proveedor> proveedores = pS.listaProveedoresOrdenados();
+        modelo.addAttribute("proveedores", proveedores);
+        return "provedor_lista.html";
+    }
+    
     @PreAuthorize("hasAnyRole('ROLE_USUARIO', 'ROLE_ADM')")
     @GetMapping("/modificacion")
     public String modificacion(HttpSession session,@RequestParam String modo, ModelMap modelo){
