@@ -37,7 +37,7 @@ public class ImagenServicio {
                 
             } catch (IOException e) {
                 System.err.println(e.getMessage());
-                System.out.println(e.getMessage());
+              //  System.out.println(e.getMessage());
             }
         }
         return null;
