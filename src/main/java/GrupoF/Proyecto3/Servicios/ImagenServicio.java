@@ -20,7 +20,7 @@ public class ImagenServicio {
     @Transactional
     public Imagen guardar(MultipartFile archivo) throws Exception{
         
-        if (archivo != null) {
+        
             try {
                   
                 Imagen imagen = new Imagen();
@@ -39,13 +39,13 @@ public class ImagenServicio {
                 System.err.println(e.getMessage());
               //  System.out.println(e.getMessage());
             }
-        }
+        
         return null;
     }
     
     @Transactional
     public Imagen actualizar(MultipartFile archivo, String idImagen) throws Exception{
-         if (archivo != null) {
+        
             try {
                 
                 Imagen imagen = new Imagen();
@@ -69,7 +69,7 @@ public class ImagenServicio {
             } catch (Exception e) {
                 System.err.println(e.getMessage());
             }
-        }
+       
         return null;
         
     }

@@ -105,7 +105,7 @@ public class ClienteServicio implements UserDetailsService {
                 cambiarContraseniaCliente(id, contrasenia, contraseniaChk);
             }
             
-            
+            if (!(archivo.isEmpty())){
                 Imagen imagen = new Imagen();
 
                 if (cliente.getImagen() != null) {
@@ -123,7 +123,7 @@ public class ClienteServicio implements UserDetailsService {
                     }
                 }
                 cliente.setImagen(imagen);
-            
+            }
 
             cR.save(cliente);
         }
