@@ -96,24 +96,25 @@ public class ProveedorServicio implements UserDetailsService {
                 cambiarContraseniaProveedor(id, contrasenia, contraseniaChk);
             }
             
-            Imagen imagen = new Imagen();
-            
-            if(proveedor.getImagen()!=null){
-                idImagen = proveedor.getImagen().getId();
-                try {
-                    imagen = iS.actualizar(archivo, idImagen);
-                } catch (Exception ex) {
-                    throw new MiExcepcion("No se pudo actualizar el avatar");
+            if (!(archivo.isEmpty())) {
+                Imagen imagen = new Imagen();
+
+                if (proveedor.getImagen() != null) {
+                    idImagen = proveedor.getImagen().getId();
+                    try {
+                        imagen = iS.actualizar(archivo, idImagen);
+                    } catch (Exception ex) {
+                        throw new MiExcepcion("No se pudo actualizar el avatar");
+                    }
+                } else {
+                    try {
+                        imagen = iS.guardar(archivo);
+                    } catch (Exception ex) {
+                        throw new MiExcepcion("No se pudo cargar el avatar");
+                    }
                 }
-            }else{
-                try {
-                    imagen = iS.guardar(archivo);
-                } catch (Exception ex) {
-                    throw new MiExcepcion("No se pudo cargar el avatar");
-                }
+                proveedor.setImagen(imagen);
             }
-            
-            proveedor.setImagen(imagen);
             
             pR.save(proveedor);
         }
