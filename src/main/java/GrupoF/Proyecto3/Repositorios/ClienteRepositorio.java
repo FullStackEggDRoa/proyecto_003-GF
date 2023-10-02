@@ -12,11 +12,7 @@ public interface ClienteRepositorio extends JpaRepository<Cliente, String> {
 
     @Query("SELECT c FROM Cliente c WHERE c.correo = :correo")
     public Cliente buscarPorCorreo(@Param("correo") String correo);
-<<<<<<< HEAD
-
-=======
-    
->>>>>>> c3e65b71f1923a66561be4303edbb4ff53201518
+ 
     @Query("SELECT c FROM Cliente c ORDER BY c.nombreApellido")
     public List<Cliente> listarClientesPorNombre();
 }
