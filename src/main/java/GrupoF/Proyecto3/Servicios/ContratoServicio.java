@@ -196,12 +196,20 @@ public class ContratoServicio {
             throw new MiExcepcion("Para poder finalizar un contrato, éste debería haber sido aceptado y estar en proceso");
         }
     }
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> developer
     @Transactional
     public void editarEstadoContratoCliente(String idContrato, String nuevoEstado) throws MiExcepcion {
 
         Contrato contrato = contratoById(idContrato);
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> developer
         if ((contrato.getEstadoContrato() == NombreEstadoContrato.ESPERA || contrato.getEstadoContrato() == NombreEstadoContrato.PROCESO) && nuevoEstado == "CANCELAR"){
             contrato.setEstadoContrato(NombreEstadoContrato.CANCELADO);
             coR.save(contrato);
@@ -215,7 +223,11 @@ public class ContratoServicio {
             throw new MiExcepcion("Para poder finalizar un contrato, éste debería haber sido aceptado y estar en proceso");
         }
     }
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> developer
     @Transactional
     public void aceptarContratoProveedor(String idContrato) throws MiExcepcion {
 
