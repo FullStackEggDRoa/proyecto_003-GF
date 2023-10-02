@@ -24,7 +24,7 @@
 
 
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#"  data-bs-toggle="dropdown" aria-expanded="false">Categoría de servicios</a>
+                    <a class="nav-link dropdown-toggle" href="#"  data-bs-toggle="dropdown" aria-expanded="false" th:if="${modo != 'proveedor'}" >Categoría de servicios</a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="#">Carpintería</a></li>
                         <li><a class="dropdown-item" href="#">Gas</a></li>
@@ -40,11 +40,7 @@
                         Mis Contratos
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2" href="#">
-                        Comentarios
-                    </a>
-                </li>
+              
 
             </ul>
 
