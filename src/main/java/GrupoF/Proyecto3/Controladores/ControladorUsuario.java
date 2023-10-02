@@ -75,11 +75,8 @@ public class ControladorUsuario {
     @PreAuthorize("hasAnyRole('ROLE_USUARIO')")
     @GetMapping("/lista")
     public String listarProveedores(ModelMap modelo){
-        
         List <Proveedor> proveedores = pS.listaProveedoresOrdenados();
-        
         modelo.addAttribute("proveedores", proveedores);
-        
         return "provedor_lista.html";
     }
     
