@@ -15,7 +15,7 @@
         <div class="container-fluid">
             <div class="row">
                 <menu  th:replace="/fragments/menu :: menu"> </menu>
-                <main  th:replace="/fragments/contenido-cliente :: main"> </main>
+                <main  th:replace="${contenido == '1'} ? ~{/fragments/contenido-cliente :: main} : ~{/fragments/cartas-proveedor :: main}"></main> 
             </div>
         </div>
         <footer th:replace="/fragments/footer :: footer"> </footer>
