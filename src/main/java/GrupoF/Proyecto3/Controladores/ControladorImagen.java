@@ -21,7 +21,6 @@ public class ControladorImagen {
 
     @Autowired
     ClienteServicio cS;
-
     @Autowired
     ProveedorServicio pS;
 
@@ -34,11 +33,17 @@ public class ControladorImagen {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.IMAGE_JPEG);
 
-        if (cliente != null) {
+        if (cliente != null && cliente.getImagen() != null) {
             imagen = cliente.getImagen().getContenido();
-        } else if (proveedor != null) {
+        } else if (proveedor != null && proveedor.getImagen() != null) {
             imagen = proveedor.getImagen().getContenido();
         }
-        return new ResponseEntity<>(imagen, headers, HttpStatus.OK);
+
+        if (imagen != null) {
+            return new ResponseEntity<>(imagen, headers, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
+
 }

@@ -57,7 +57,7 @@ public class ContratoServicio {
 
     }
 
-    public List<Contrato> listarContratos() throws MiExcepcion { 
+    public List<Contrato> listarContratos() throws MiExcepcion {
 
         List<Contrato> contratos = new ArrayList();
         contratos = coR.findAll();
@@ -65,7 +65,7 @@ public class ContratoServicio {
 
     }
 
-    public List<Contrato> listarContratosPorCliente(String idCliente) throws MiExcepcion { 
+    public List<Contrato> listarContratosPorCliente(String idCliente) throws MiExcepcion {
 
         Cliente cliente = cS.clienteById(idCliente);
         List<Contrato> contratos = new ArrayList();
@@ -74,7 +74,7 @@ public class ContratoServicio {
 
     }
 
-    public List<Contrato> listarContratosPorProveedor(String idProveedor)throws MiExcepcion { 
+    public List<Contrato> listarContratosPorProveedor(String idProveedor) throws MiExcepcion {
 
         Proveedor proveedor = pS.proveedorById(idProveedor);
         List<Contrato> contratos = new ArrayList();
@@ -86,30 +86,35 @@ public class ContratoServicio {
     @Transactional
     public void calificarProveedor(String idContrato, int calificacionProveedor, String comentarioProveedor) throws MiExcepcion {
 
-        validarDatos(calificacionProveedor, comentarioProveedor);
-
         Contrato contrato = contratoById(idContrato);
 
-        contrato.setCalifProveedor(calificacionProveedor);
-        contrato.setComentarioProveedor(comentarioProveedor);
+        if (contrato.getEstadoContrato() == NombreEstadoContrato.FINALIZADO) {
+            validarDatos(calificacionProveedor, comentarioProveedor);
+            contrato.setCalifProveedor(calificacionProveedor);
+            contrato.setComentarioProveedor(comentarioProveedor);
+            coR.save(contrato);
+        } else {
+            throw new MiExcepcion("El contrato no ha finalizado. Aún no se puede calificar al Proveedor.");
+        }
 
-        coR.save(contrato);
     }
 
     @Transactional
     public void calificarCliente(String idContrato, int calificacionCliente, String comentarioCliente) throws MiExcepcion {
 
-        validarDatos(calificacionCliente, comentarioCliente);
-        
         Contrato contrato = contratoById(idContrato);
 
-        contrato.setCalifCliente(calificacionCliente);
-        contrato.setComentarioCliente(comentarioCliente);
-
-        coR.save(contrato);
+        if (contrato.getEstadoContrato() == NombreEstadoContrato.FINALIZADO)  {
+            validarDatos(calificacionCliente, comentarioCliente);
+            contrato.setCalifCliente(calificacionCliente);
+            contrato.setComentarioCliente(comentarioCliente);
+            coR.save(contrato);
+        } else {
+            throw new MiExcepcion("El contrato no ha finalizado. Aún no se puede calificar al Cliente.");
+        }
 
     }
-    
+
     @Transactional
     public void eliminarComentarioProveedor(String idContrato) throws MiExcepcion {
 
@@ -120,7 +125,7 @@ public class ContratoServicio {
         coR.save(contrato);
 
     }
-    
+
     @Transactional
     public void eliminarComentarioCliente(String idContrato) throws MiExcepcion {
 
@@ -177,126 +182,113 @@ public class ContratoServicio {
     public void editarEstadoContratoProveedor(String idContrato, String nuevoEstado) throws MiExcepcion {
 
         Contrato contrato = contratoById(idContrato);
-        if (contrato.getEstadoContrato() == NombreEstadoContrato.ESPERA && nuevoEstado == "ACEPTAR"){
+        if (contrato.getEstadoContrato() == NombreEstadoContrato.ESPERA && nuevoEstado == "ACEPTAR") {
             contrato.setEstadoContrato(NombreEstadoContrato.PROCESO);
             coR.save(contrato);
         } else {
             throw new MiExcepcion("Para poder aceptar un contrato, éste debería ser solicitado");
         }
-        if (contrato.getEstadoContrato() == NombreEstadoContrato.ESPERA && nuevoEstado == "RECHAZAR"){
+        if (contrato.getEstadoContrato() == NombreEstadoContrato.ESPERA && nuevoEstado == "RECHAZAR") {
             contrato.setEstadoContrato(NombreEstadoContrato.RECHAZADO);
             coR.save(contrato);
         } else {
             throw new MiExcepcion("Para poder rechazar un contrato, éste debería ser solicitado");
         }
-        if (contrato.getEstadoContrato() == NombreEstadoContrato.PROCESO && nuevoEstado == "FINALIZAR"){
+        if (contrato.getEstadoContrato() == NombreEstadoContrato.PROCESO && nuevoEstado == "FINALIZAR") {
             contrato.setEstadoContrato(NombreEstadoContrato.FINALIZADO);
             coR.save(contrato);
         } else {
             throw new MiExcepcion("Para poder finalizar un contrato, éste debería haber sido aceptado y estar en proceso");
         }
     }
-<<<<<<< HEAD
-    
-=======
 
->>>>>>> developer
     @Transactional
     public void editarEstadoContratoCliente(String idContrato, String nuevoEstado) throws MiExcepcion {
 
         Contrato contrato = contratoById(idContrato);
-<<<<<<< HEAD
-        
-=======
-
->>>>>>> developer
-        if ((contrato.getEstadoContrato() == NombreEstadoContrato.ESPERA || contrato.getEstadoContrato() == NombreEstadoContrato.PROCESO) && nuevoEstado == "CANCELAR"){
+        if ((contrato.getEstadoContrato() == NombreEstadoContrato.ESPERA || contrato.getEstadoContrato() == NombreEstadoContrato.PROCESO) && nuevoEstado == "CANCELAR") {
             contrato.setEstadoContrato(NombreEstadoContrato.CANCELADO);
             coR.save(contrato);
         } else {
             throw new MiExcepcion("Para poder cancelar un contrato, éste debería ser solicitado");
         }
-        if (contrato.getEstadoContrato() == NombreEstadoContrato.PROCESO && nuevoEstado == "FINALIZAR"){
-             contrato.setEstadoContrato(NombreEstadoContrato.FINALIZADO);
-        coR.save(contrato);
+        if (contrato.getEstadoContrato() == NombreEstadoContrato.PROCESO && nuevoEstado == "FINALIZAR") {
+            contrato.setEstadoContrato(NombreEstadoContrato.FINALIZADO);
+            coR.save(contrato);
         } else {
             throw new MiExcepcion("Para poder finalizar un contrato, éste debería haber sido aceptado y estar en proceso");
         }
     }
-<<<<<<< HEAD
-    
-=======
 
->>>>>>> developer
     @Transactional
     public void aceptarContratoProveedor(String idContrato) throws MiExcepcion {
 
         Contrato contrato = contratoById(idContrato);
-        
-        if (contrato.getEstadoContrato() == NombreEstadoContrato.ESPERA){
+
+        if (contrato.getEstadoContrato() == NombreEstadoContrato.ESPERA) {
             contrato.setEstadoContrato(NombreEstadoContrato.PROCESO);
             coR.save(contrato);
         } else {
             throw new MiExcepcion("Para poder aceptar un contrato, éste debería ser solicitado");
         }
-        
+
     }
 
     @Transactional
     public void rechazarContratoProveedor(String idContrato) throws MiExcepcion {
 
         Contrato contrato = contratoById(idContrato);
-        
-        if (contrato.getEstadoContrato() == NombreEstadoContrato.ESPERA){
+
+        if (contrato.getEstadoContrato() == NombreEstadoContrato.ESPERA) {
             contrato.setEstadoContrato(NombreEstadoContrato.RECHAZADO);
             coR.save(contrato);
         } else {
             throw new MiExcepcion("Para poder rechazar un contrato, éste debería ser solicitado");
         }
-        
+
     }
 
     @Transactional
     public void finalizarContratoProveedor(String idContrato) throws MiExcepcion {
 
         Contrato contrato = contratoById(idContrato);
-        
-        if (contrato.getEstadoContrato() == NombreEstadoContrato.PROCESO){
+
+        if (contrato.getEstadoContrato() == NombreEstadoContrato.PROCESO) {
             contrato.setEstadoContrato(NombreEstadoContrato.FINALIZADO);
             coR.save(contrato);
         } else {
             throw new MiExcepcion("Para poder finalizar un contrato, éste debería haber sido aceptado y estar en proceso");
         }
-        
+
     }
 
     @Transactional
     public void cancelarContratoCliente(String idContrato) throws MiExcepcion {
 
         Contrato contrato = contratoById(idContrato);
-        
-        if (contrato.getEstadoContrato() == NombreEstadoContrato.ESPERA || contrato.getEstadoContrato() == NombreEstadoContrato.PROCESO){
+
+        if (contrato.getEstadoContrato() == NombreEstadoContrato.ESPERA || contrato.getEstadoContrato() == NombreEstadoContrato.PROCESO) {
             contrato.setEstadoContrato(NombreEstadoContrato.CANCELADO);
             coR.save(contrato);
         } else {
             throw new MiExcepcion("Para poder cancelar un contrato, éste debería ser solicitado");
 
         }
-        
+
     }
 
     @Transactional
     public void finalizarContratoCliente(String idContrato) throws MiExcepcion {
 
         Contrato contrato = contratoById(idContrato);
-        
-        if (contrato.getEstadoContrato() == NombreEstadoContrato.PROCESO){
-             contrato.setEstadoContrato(NombreEstadoContrato.FINALIZADO);
-        coR.save(contrato);
+
+        if (contrato.getEstadoContrato() == NombreEstadoContrato.PROCESO) {
+            contrato.setEstadoContrato(NombreEstadoContrato.FINALIZADO);
+            coR.save(contrato);
         } else {
             throw new MiExcepcion("Para poder finalizar un contrato, éste debería haber sido aceptado y estar en proceso");
         }
 
     }
-    
+
 }
