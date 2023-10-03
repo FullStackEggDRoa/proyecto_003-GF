@@ -21,7 +21,6 @@ public class ControladorImagen {
 
     @Autowired
     ClienteServicio cS;
-
     @Autowired
     ProveedorServicio pS;
 
@@ -44,6 +43,7 @@ public class ControladorImagen {
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-}
 
-        }
+    }
+
+}

@@ -116,6 +116,7 @@ public class ProveedorServicio implements UserDetailsService {
 
                 proveedor.setImagen(imagen);
             }
+            
             pR.save(proveedor);
         }
     }

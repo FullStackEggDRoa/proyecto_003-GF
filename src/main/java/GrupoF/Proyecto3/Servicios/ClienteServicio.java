@@ -105,7 +105,8 @@ public class ClienteServicio implements UserDetailsService {
                 cambiarContraseniaCliente(id, contrasenia, contraseniaChk);
             }
             
-            if (!(archivo.isEmpty())){
+            if (!(archivo.isEmpty())) {
+
                 Imagen imagen = new Imagen();
 
                 if (cliente.getImagen() != null) {
