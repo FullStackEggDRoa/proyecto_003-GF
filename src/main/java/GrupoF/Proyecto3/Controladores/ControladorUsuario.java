@@ -54,8 +54,10 @@ public class ControladorUsuario {
             
             String idCliente = sesionUsuario.getId();
             String nombrePerfil = sesionUsuario.getNombreApellido();
+            List<Proveedor> proveedores = pS.listarProveedores();
             modelo.addAttribute("idCliente", idCliente);
             modelo.addAttribute("nombrePerfil", nombrePerfil);
+            modelo.addAttribute("proveedores", proveedores);
             modelo.put("modo", "cliente");
             return "sesion-cliente.html";
         

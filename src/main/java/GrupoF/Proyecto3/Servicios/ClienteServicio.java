@@ -105,23 +105,25 @@ public class ClienteServicio implements UserDetailsService {
                 cambiarContraseniaCliente(id, contrasenia, contraseniaChk);
             }
             
-            Imagen imagen = new Imagen();
-            
-            if(cliente.getImagen() != null){
-                idImagen = cliente.getImagen().getId();
-                try {
-                    imagen= iS.actualizar(archivo, idImagen);
-                } catch (Exception ex) {
-                    throw new MiExcepcion("No se pudo actualizar el avatar");
+            if (!(archivo.isEmpty())) {
+                Imagen imagen = new Imagen();
+
+                if (cliente.getImagen() != null) {
+                    idImagen = cliente.getImagen().getId();
+                    try {
+                        imagen = iS.actualizar(archivo, idImagen);
+                    } catch (Exception ex) {
+                        throw new MiExcepcion("No se pudo actualizar el avatar");
+                    }
+                } else {
+                    try {
+                        imagen = iS.guardar(archivo);
+                    } catch (Exception ex) {
+                        throw new MiExcepcion("No se pudo cargar el avatar");
+                    }
                 }
-            }else{
-                try {
-                    imagen = iS.guardar(archivo);
-                } catch (Exception ex) {
-                    throw new MiExcepcion("No se pudo cargar el avatar");
-                }
+                cliente.setImagen(imagen);
             }
-            cliente.setImagen(imagen);
             
             cR.save(cliente);
         }
