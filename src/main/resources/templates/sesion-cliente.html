@@ -16,8 +16,8 @@
             <div class="row">
                 <menu  th:replace="/fragments/menu :: menu"> </menu>
                
-                <main th:replace="@{${contenido == '1'} ? ~{/fragments/contenido-cliente :: main} : ~{/fragments/cartas-proveedor :: main}}"></main>
-
+                <main th:replace="${contenido == "1"} ? ~{/fragments/contenido-cliente :: main} : ~{/fragments/cartas-proveedor :: main}"></main>
+                  
 
             </div>
         </div>
