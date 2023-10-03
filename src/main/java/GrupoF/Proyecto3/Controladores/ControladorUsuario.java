@@ -32,7 +32,7 @@ public class ControladorUsuario {
     
     @PreAuthorize("hasAnyRole('ROLE_USUARIO', 'ROLE_ADM')")
     @GetMapping("/sesion")
-    public String sesion(HttpSession session, @RequestParam String categoriaServicio, ModelMap modelo) throws MiExcepcion {
+    public String sesion(HttpSession session, @RequestParam (name = "categoriaServicio", defaultValue = "Gas") String categoriaServicio,@RequestParam (name = "contenido", defaultValue = "1") String contenido, ModelMap modelo) throws MiExcepcion {
         
         Usuario sesionUsuario = (Usuario) session.getAttribute("usuariosession");
         
@@ -55,10 +55,12 @@ public class ControladorUsuario {
             String idCliente = sesionUsuario.getId();
             String nombrePerfil = sesionUsuario.getNombreApellido();
             List<Proveedor> proveedores = pS.buscarProveedoresPorCategoria(categoriaServicio);
+            
             modelo.addAttribute("idCliente", idCliente);
             modelo.addAttribute("nombrePerfil", nombrePerfil);
             modelo.addAttribute("proveedores", proveedores);
             modelo.put("modo", "cliente");
+            modelo.put("contenido", contenido);
             return "sesion-cliente.html";
         
         }else{
