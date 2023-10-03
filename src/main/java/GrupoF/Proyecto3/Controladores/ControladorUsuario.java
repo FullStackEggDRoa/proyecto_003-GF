@@ -32,7 +32,11 @@ public class ControladorUsuario {
     
     @PreAuthorize("hasAnyRole('ROLE_USUARIO', 'ROLE_ADM')")
     @GetMapping("/sesion")
+<<<<<<< HEAD
     public String sesion(HttpSession session, @RequestParam String categoriaServicio, ModelMap modelo) throws MiExcepcion {
+=======
+    public String sesion(HttpSession session, @RequestParam (name = "categoriaServicio", defaultValue = "vacio") String categoriaServicio, ModelMap modelo) throws MiExcepcion {
+>>>>>>> developer
         
         Usuario sesionUsuario = (Usuario) session.getAttribute("usuariosession");
         

@@ -64,4 +64,19 @@ public class ControladorContrato {
         return null;
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_USUARIO')")
+    @PostMapping("/calificar")
+    public String calificar(HttpSession session, @RequestParam String modo, @RequestParam String idContrato, @RequestParam int calificacion, @RequestParam String comentario, ModelMap modelo) throws MiExcepcion {
+        if (modo.equalsIgnoreCase("cliente")) {
+            coS.calificarProveedor(idContrato, calificacion, comentario);
+            modelo.put("notificacion", "Se ha calificado al Proveedor exitosamente.");
+            return "sesion-cliente.html";
+        } else if (modo.equalsIgnoreCase("proveedor")) {
+            coS.calificarCliente(idContrato, calificacion, comentario);
+            modelo.put("notificacion", "Se ha calificado al Cliente exitosamente.");
+            return "sesion-proveedor.html";
+        } 
+        return null;
+    }
+
 }
