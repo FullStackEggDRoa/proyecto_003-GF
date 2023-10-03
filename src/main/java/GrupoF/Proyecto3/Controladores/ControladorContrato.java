@@ -63,7 +63,7 @@ public class ControladorContrato {
         } 
         return null;
     }
-    
+
     @PreAuthorize("hasAnyRole('ROLE_USUARIO')")
     @PostMapping("/calificar")
     public String calificar(HttpSession session, @RequestParam String modo, @RequestParam String idContrato, @RequestParam int calificacion, @RequestParam String comentario, ModelMap modelo) throws MiExcepcion {
@@ -78,5 +78,5 @@ public class ControladorContrato {
         } 
         return null;
     }
-    
+
 }

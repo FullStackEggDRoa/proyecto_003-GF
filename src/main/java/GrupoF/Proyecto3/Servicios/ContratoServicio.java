@@ -73,6 +73,15 @@ public class ContratoServicio {
         return contratos;
 
     }
+    
+    public List<Contrato> listarContratosClienteDatosProveedor(String idCliente) throws MiExcepcion {
+
+        Cliente cliente = cS.clienteById(idCliente);
+        List<Contrato> contratos = new ArrayList();
+        contratos = coR.listarContratosClienteConDatosProveedor(cliente.getId());
+        return contratos;
+
+    }
 
     public List<Contrato> listarContratosPorProveedor(String idProveedor) throws MiExcepcion {
 

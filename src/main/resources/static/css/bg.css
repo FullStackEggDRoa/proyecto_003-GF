@@ -18,3 +18,13 @@ input[type="number"]::-webkit-outer-spin-button {
     appearance: none;
     margin: 0;
 }
+.star{
+    font-size: 12px; 
+    color:black ;
+    transition: color 0.3s; 
+    border: none;
+}
+.star:hover{
+    color: gold;
+      cursor: pointer;
+}
