@@ -3,6 +3,11 @@
         <strong th:text="'Hola de nuevo ' + ${nombrePerfil}+'!'"></strong> 
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
+    <div th:if="${notificacion != null}" class="card text-bg-light bg-success mb-3 mt-3 mensajeExito" >
+        <div class="card-body">
+            <p class="card-text" th:text="${notificacion}"></p>
+        </div>
+    </div>
     <div class="container">
         <div class="m-0 row g-5 justify-content-center align-items-center">
             <div class="row g-5">
@@ -78,11 +83,13 @@
                     <th style="font-size: 85%" scope="col">Cliente</th>                  
                     <th style="font-size: 85%" scope="col">Fecha Inicio</th>
                     <th style="font-size: 85%" scope="col">Estado Del Contrato</th>
-                    <th style="font-size: 85%" scope="col">Fecha Finalizado</th>                                 
-                    <th style="font-size: 85%" scope="col">Calificacion </th>                           
+                    <th style="font-size: 85%" scope="col">Fecha Finalizado</th>  
+                    <th style="font-size: 85%" scope="col">Cambiar Estado</th>
+                    <th style="font-size: 85%" scope="col">Calificacion
+</th>                           
                     <th style="font-size: 85%" scope="col">Comentarios</th>
-                    <th style="font-size: 85%" scope="col">Cancelar</th>
-                     </tr>
+
+                </tr>
             </thead>
             <tbody th:each="contrato : ${contrato}" >
                 <tr>
@@ -90,11 +97,27 @@
                     <td ></td>
                     <td ></td>
                     <td ></td>
-                    <td ></td>
-                    <td ></td>
                     <td >
-                         <button type="button" class=" btn btn-danger btn-close" ></button>
+                        <div class="btn-group">
+                            <a class="dropdown-item" href="#" data-bs-toggle="dropdown" aria-expanded="false">estado actual</a>
+                            <ul class="dropdown-menu">                                                     
+                                <li><a class="dropdown-item" href="#">FINALIZADO</a></li>                              
+                                <li><a class="dropdown-item" href="#">CANCELAR</a></li>
+                            </ul>
+                        </div>
                     </td>
+                    <td >
+
+                        <i class="star"  value="1">&#9733;</i>
+                        <i class="star"  value="2">&#9733;</i>
+                        <i class="star"  value="3">&#9733;</i>
+                        <i class="star"  value="4">&#9733;</i>
+                        <i class="star"  value="5">&#9733;</i>
+                    </td>
+                    <td >
+                        <textarea class="form-control" id="textarea" placeholder="Comentario" rows="3"></textarea>
+                    </td>
+
                 </tr>          
             </tbody>
         </table>
