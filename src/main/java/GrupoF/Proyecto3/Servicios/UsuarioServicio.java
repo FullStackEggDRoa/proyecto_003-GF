@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package GrupoF.Proyecto3.Servicios;
 
 import GrupoF.Proyecto3.Entidades.Cliente;
@@ -21,11 +18,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
-
-/**
- *
- * @author droa
- */
 
 @Service
 public class UsuarioServicio implements UserDetailsService{
