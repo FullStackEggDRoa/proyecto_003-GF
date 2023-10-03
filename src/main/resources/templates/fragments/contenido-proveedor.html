@@ -4,58 +4,77 @@
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 
-    
+
 
     <div class="card mb-3" style="max-width: 700px;">
         <div class="row g-0">
             <div class="col-md-4">
-              <img th:src="${session.usuariosession.imagen != null} ? @{/imagenes/__${idProveedor}__} : @{/img/extraterrestre.png}" alt="Logo" width="40" height="40" class="rounded-circle me-1 d-inline-block align-text-center"></a>
+                <img th:src="${session.usuariosession.imagen != null} ? @{/imagenes/__${idProveedor}__} : @{/img/extraterrestre.png}" alt="Logo" width="40" height="40" class="rounded-circle me-1 d-inline-block align-text-center"></a>
             </div>
             <div class="col-md-8">
                 <div class="card-body">
                     <h5 class="card-title">Mi Perfil</h5>
                     <ul class="list-group list-group-flush" >
-                        
-                       <li class="list-group-item" th:text="'Numero Matricula: ' + ${Proveedor.numMatricula}"></li> 
-                       <li class="list-group-item" th:text="'Nombre: ' + ${Proveedor.nombreApellido}"></li>
-                       <li class="list-group-item" th:text="'DNI: ' + ${Proveedor.dni.numero}"></li> 
-                       <li class="list-group-item" th:text="'Telefono: ' + ${Proveedor.telefono}"></li>
-                       <li class="list-group-item" th:text="'Correo: ' + ${Proveedor.correo}"></li>
-                       <li class="list-group-item" th:text="'Costo por hora: ' + ${Proveedor.costoHora}"></li>
-                    
+
+                        <li class="list-group-item" th:text="'Numero Matricula: ' + ${Proveedor.numMatricula}"></li> 
+                        <li class="list-group-item" th:text="'Nombre: ' + ${Proveedor.nombreApellido}"></li>
+                        <li class="list-group-item" th:text="'DNI: ' + ${Proveedor.dni.numero}"></li> 
+                        <li class="list-group-item" th:text="'Telefono: ' + ${Proveedor.telefono}"></li>
+                        <li class="list-group-item" th:text="'Correo: ' + ${Proveedor.correo}"></li>
+                        <li class="list-group-item" th:text="'Costo por hora: ' + ${Proveedor.costoHora}"></li>
+
                     </ul>
 
                     <p class="card-text"><small class="text-body-secondary">calificacion</small></p>
                     <a class="dropdown-item" type="button" th:href="@{/usuario/modificacion?modo=proveedor}">Editar Perfil</a>
                 </div>
- </div>
             </div>
-         </div>
-            <h4 id="contratos">Contratos</h4>
-            <div class="table-responsive small">
-                <table class="table table-striped table-sm">
-                    <thead class="table-dark">
-                        <tr>
+        </div>
+    </div>
+    <h4 id="contratos">Contratos</h4>
+    <div class="table-responsive small">
+        <table class="table table-striped table-sm">
+            <thead class="table-dark">
+                <tr>
 
-                            <th style="font-size: 85%" scope="col">Cliente</th>                                  
-                            <th style="font-size: 85%" scope="col">Fecha inicio</th>
-                            <th style="font-size: 85%" scope="col">Estado del contrato</th>
-                            <th style="font-size: 85%" scope="col">Fecha finalizado</th>                                 
-                            <th style="font-size: 85%" scope="col">Calificacion </th>                           
-                            <th style="font-size: 85%" scope="col">Comentarios</th>
+                    <th style="font-size: 85%" scope="col">Cliente</th>                                  
+                    <th style="font-size: 85%" scope="col">Fecha inicio</th>
+                    <th style="font-size: 85%" scope="col">Estado del contrato</th>
+                    <th style="font-size: 85%" scope="col">Fecha finalizado</th>                                 
+                    <th style="font-size: 85%" scope="col">Calificacion </th>                           
+                    <th style="font-size: 85%" scope="col">Comentarios</th>
+               
+                </tr>
+            </thead>
+            <tbody >
+                <tr>
+                    <td ></td>
+                    <td ></td>
+                    <td >
+                           <div class="btn-group">
+                            <a class="dropdown-item" href="#" data-bs-toggle="dropdown" aria-expanded="false">estado actual</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">EN ESPERA</a></li>
+                                <li><a class="dropdown-item" href="#">RECHAZADO</a></li>
+                                <li><a class="dropdown-item" href="#">FINALIZADO</a></li>
+                                <li><a class="dropdown-item" href="#">EN PROCESO</a></li>
+                                <li><a class="dropdown-item" href="#">CANCELAR</a></li>
+                            </ul>
+                        </div>
+                    </td>
+                    <td ></td>
+                    <td >
+                        <i class="bi bi-star-fill star" value="1"></i>
+                        <i class="bi bi-star-fill star" value="2"></i>
+                        <i class="bi bi-star-fill star" value="3"></i>
+                        <i class="bi bi-star-fill star" value="4"></i>
+                        <i class="bi bi-star-fill star" value="5"></i>
+                    </td>
+                    <td >
+                        <textarea class="form-control" id="textarea" placeholder="Comentario" rows="3"></textarea>
+                    </td>
 
-                        </tr>
-                    </thead>
-                    <tbody >
-                        <tr>
-                            <td ></td>
-                            <td ></td>
-                            <td ></td>
-                            <td ></td>
-                            <td ></td>
-                            <td ></td>
-
-                        </tr>          
-                    </tbody>
-                </table>
-                </main>
+                </tr>          
+            </tbody>
+        </table>
+</main>
