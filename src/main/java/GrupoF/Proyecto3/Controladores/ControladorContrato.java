@@ -22,12 +22,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping("/contratos")
 public class ControladorContrato {
-    
+
     @Autowired
+
     private ContratoServicio coS;  
     @Autowired
     private ProveedorServicio pS;
     
+
     @PreAuthorize("hasAnyRole('ROLE_USUARIO')")
     @PostMapping("/contratar")
     public String registrarContrato(HttpSession session, @RequestParam (name = "categoriaServicio", defaultValue = "Gas") String categoriaServicio, @RequestParam String idCliente, @RequestParam String idProveedor, @RequestParam (name = "contenido", defaultValue = "1") String contenido, ModelMap modelo) {
