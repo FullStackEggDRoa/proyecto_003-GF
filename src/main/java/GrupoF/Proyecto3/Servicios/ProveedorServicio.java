@@ -232,7 +232,7 @@ public class ProveedorServicio implements UserDetailsService {
         if (categoriaServicio == null || categoriaServicio.isEmpty()) {
             throw new MiExcepcion("La categoría de servicio no puede estar vacía o ser nula");
         }
-        return (List<Proveedor>) pR.buscarPorCategoria(categoriaServicio);
+        return pR.buscarPorCategoria(categoriaServicio);
     }
 
 }
