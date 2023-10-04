@@ -31,19 +31,19 @@ public class ProveedorServicio implements UserDetailsService {
 
     @Autowired
     private UsuarioRepositorio uR;
-    
+
     @Autowired
     private ProveedorRepositorio pR;
-    
+
     @Autowired
     private DniRepositorio dR;
-    
+
     @Autowired
     private ImagenServicio iS;
-    
+
     @Transactional
-    public void registrarProveedor (String nombreApellido, String contrasenia, String dni, String correo, String telefono, Integer numeroMatricula, String categoriaServicio, Double costoHora, String contraseniaChk) throws MiExcepcion{
-       
+    public void registrarProveedor(String nombreApellido, String contrasenia, String dni, String correo, String telefono, Integer numeroMatricula, String categoriaServicio, Double costoHora, String contraseniaChk) throws MiExcepcion {
+
         validarDatosProveedor(nombreApellido, dni, correo, telefono, numeroMatricula, categoriaServicio, costoHora);
         validarContraseniaProveedor(contrasenia, contraseniaChk);
 
@@ -72,13 +72,13 @@ public class ProveedorServicio implements UserDetailsService {
 
     @Transactional
     public void actualizarProveedor(MultipartFile archivo, String id, String nombreApellido, String contrasenia, String dni, String correo, String telefono, Integer numeroMatricula, String categoriaServicio, Double costoHora, String contraseniaChk) throws MiExcepcion {
-    
+
         validarDatosProveedor(nombreApellido, dni, correo, telefono, numeroMatricula, categoriaServicio, costoHora);
 
         Optional<Proveedor> respuestaProveedor = pR.findById(id);
         Dni dni2 = new Dni();
         if (respuestaProveedor.isPresent()) {
-            
+
             String idImagen = null;
 
             Proveedor proveedor = respuestaProveedor.get();
@@ -92,10 +92,10 @@ public class ProveedorServicio implements UserDetailsService {
             proveedor.setCategoriaServicio(categoriaServicio);
             proveedor.setCostoHora(costoHora);
 
-            if(!(contrasenia.equals(proveedor.getContrasenia()))){
+            if (!(contrasenia.equals(proveedor.getContrasenia()))) {
                 cambiarContraseniaProveedor(id, contrasenia, contraseniaChk);
             }
-            
+
             if (!(archivo.isEmpty())) {
                 Imagen imagen = new Imagen();
 
@@ -116,13 +116,13 @@ public class ProveedorServicio implements UserDetailsService {
 
                 proveedor.setImagen(imagen);
             }
-            
+
             pR.save(proveedor);
         }
     }
-    
+
     public void cambiarContraseniaProveedor(String id, String nuevaContrasenia, String contraseniaChk) throws MiExcepcion {
-        
+
         Optional<Proveedor> proveedor = pR.findById(id);
         if (proveedor.isPresent()) {
             validarContraseniaProveedor(nuevaContrasenia, contraseniaChk);
@@ -152,7 +152,7 @@ public class ProveedorServicio implements UserDetailsService {
         }
         return proveedorAux;
     }
-    
+
     @Transactional(readOnly = true)
     public List<Proveedor> listarProveedores() {
 
@@ -178,8 +178,8 @@ public class ProveedorServicio implements UserDetailsService {
         if (numeroMatricula == -1 || numeroMatricula == null) {
             throw new MiExcepcion("El número de matrícula no puede ser nulo o estar vacio");
         }
-        if (categoriaServicio.isEmpty() || categoriaServicio == null) {
-            throw new MiExcepcion("La categoria de servicio no puede ser nula o estar vacia");
+        if ((categoriaServicio.equalsIgnoreCase("Categoria de servicio"))) {
+            throw new MiExcepcion("Debe ingresar una categoria de servicio");
         }
         if (costoHora == -1 || costoHora == null) {
             throw new MiExcepcion("El costo no puede ser nulo o estar vacio");
@@ -197,29 +197,28 @@ public class ProveedorServicio implements UserDetailsService {
         }
     }
 
-
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        
+
         Proveedor proveedor = (Proveedor) uR.buscarPorCorreo(username);
-        
+
         if (proveedor != null) {
-            
+
             List<GrantedAuthority> permisos = new ArrayList();
-            
-            GrantedAuthority p = new SimpleGrantedAuthority("ROLE_"+ proveedor.getRol().toString());
-            
+
+            GrantedAuthority p = new SimpleGrantedAuthority("ROLE_" + proveedor.getRol().toString());
+
             permisos.add(p);
-   
+
             ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-            
+
             HttpSession session = attr.getRequest().getSession(true);
-            
+
             session.setAttribute("usuariosession", proveedor);
-            
-            return new User(proveedor.getCorreo(), proveedor.getContrasenia(),permisos);
-        
-        }else{
+
+            return new User(proveedor.getCorreo(), proveedor.getContrasenia(), permisos);
+
+        } else {
 
             return null;
         }
@@ -235,5 +234,5 @@ public class ProveedorServicio implements UserDetailsService {
         }
         return (List<Proveedor>) pR.buscarPorCategoria(categoriaServicio);
     }
-    
+
 }

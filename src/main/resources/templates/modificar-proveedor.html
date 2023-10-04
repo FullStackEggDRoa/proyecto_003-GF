@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-         <link rel="icon" type="image/svg+xml" href="/img/Lg_sf.png" />
+        <link rel="icon" type="image/svg+xml" href="/img/Lg_sf.png" />
         <title>Zona Servi</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
         <link rel="stylesheet" href="/css/bg.css">
@@ -16,49 +16,49 @@
         <div class="signupFrm">
 
             <form  th:action="@{/usuario/modificar}" class="form" method="POST" enctype="multipart/form-data">
-                
+
                 <h3 class="title">EDITAR PROVEEDOR</h3>
                 <input type="hidden" name="direccion" value="NA">
                 <input type="hidden" name="modo" value="proveedor">
                 <input type="hidden" name="Id" th:value="${Proveedor.id}">
                 <input type="hidden" name="contrasenia" th:value="${Proveedor.contrasenia}">
                 <input type="hidden" name="contraseniaChk" th:value="${Proveedor.contrasenia}">
-              
-              
+
+
                 <div class="inputContainer">
                     <input type="text" class="input" th:value="${Proveedor.nombreApellido}" name="nombreApellido" required>
                     <label for="" class="label">Nombre y apellido</label>
-             </div>
-                   <div class="inputContainer">
+                </div>
+                <div class="inputContainer">
                     <input type="number" class="input" th:value="${Proveedor.dni.numero}"name="dni" required>
                     <label for="" class="label">DNI</label>
                 </div>
-               <div class="inputContainer">
+                <div class="inputContainer">
                     <input type="number" class="input" th:value="${Proveedor.telefono}" name="telefono" required>
                     <label for="" class="label">Telefono</label>
                 </div>
-              <div class="inputContainer">
+                <div class="inputContainer">
                     <input type="email" class="input" th:value="${Proveedor.correo}" name="correo"  required>
                     <label for="" class="label">Correo electrónico</label>
                 </div>
-                
+
                 <div class="inputContainer">
-                    <select class="form-select input" aria-label="Default select example" th:value="${Proveedor.categoriaServicio}" name="categoriaServicio" required>
-                        <option selected>Categoria de servicio</option>
-                        <option value="Carpintería">Carpintería</option>
-                        <option value="Gas">Gas</option>
-                        <option value="Electricidad">Electricidad</option>
-                        <option value="Plomería">Plomería</option>
-                        <option value="Jardinería">Jardinería</option>
-                        <option value="Construcción">Construcción</option>
+                    <select class="form-select input" aria-label="Default select example" name="categoriaServicio" required>
+                        <option value="">Categoria de servicio</option>
+                        <option value="Carpintería" th:selected="${Proveedor.categoriaServicio == 'Carpintería'}">Carpintería</option>
+                        <option value="Gas" th:selected="${Proveedor.categoriaServicio == 'Gas'}">Gas</option>
+                        <option value="Electricidad" th:selected="${Proveedor.categoriaServicio == 'Electricidad'}">Electricidad</option>
+                        <option value="Plomería" th:selected="${Proveedor.categoriaServicio == 'Plomería'}">Plomería</option>
+                        <option value="Jardinería" th:selected="${Proveedor.categoriaServicio == 'Jardinería'}">Jardinería</option>
+                        <option value="Construcción" th:selected="${Proveedor.categoriaServicio == 'Construcción'}">Construcción</option>
                     </select>
                     <label for="" class="label">Categoría Servicio</label>
                 </div>
-    
-                   <div class="inputContainer">
+
+                <div class="inputContainer">
                     <input type="text" class="input" th:value="${Proveedor.numMatricula}" name="numeroMatricula" required >
                     <label for="" class="label">Número de matrícula</label>
-                   </div>
+                </div>
 
                 <div class="inputContainer">
                     <input type="number" class="input" th:value="${Proveedor.costoHora}" name="costoHora" required >
@@ -67,19 +67,19 @@
                 <div class="inputContainer">
 
                     <input type="file" class="input" name="archivo"  >
-                    
+
                 </div>
                 <input type="submit" class="submitBtn" value="Enviar modificaciones">
                 <div class="navbar-container">
-            <ul class="navbar">
-                <li><a href="javascript:history.back()" class="btn btn-primary">Regresar</a></li>
-            </ul>
-        </div>
+                    <ul class="navbar">
+                        <li><a href="javascript:history.back()" class="btn btn-primary">Regresar</a></li>
+                    </ul>
+                </div>
             </form>
-    </div>
-    <footer th:replace="/fragments/footer :: footer"> </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-        
+        </div>
+        <footer th:replace="/fragments/footer :: footer"> </footer>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
     </body>
 
 </html>
