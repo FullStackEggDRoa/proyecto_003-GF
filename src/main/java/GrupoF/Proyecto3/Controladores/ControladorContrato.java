@@ -18,10 +18,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping("/contratos")
 public class ControladorContrato {
-    
+
     @Autowired
     private ContratoServicio coS;
-    
+
     @PreAuthorize("hasAnyRole('ROLE_USUARIO')")
     @PostMapping("/contratar")
     public String registrarContrato(@RequestParam String idCliente, @RequestParam String idProveedor, ModelMap modelo) {
@@ -59,6 +59,21 @@ public class ControladorContrato {
         } else if (modo.equalsIgnoreCase("proveedor")) {
             coS.editarEstadoContratoProveedor(idContrato, nuevoEstado);
             modelo.put("notificacion", "Se ha cambiado el estado del contrato exitosamente.");
+            return "sesion-proveedor.html";
+        } 
+        return null;
+    }
+
+    @PreAuthorize("hasAnyRole('ROLE_USUARIO')")
+    @PostMapping("/calificar")
+    public String calificar(HttpSession session, @RequestParam String modo, @RequestParam String idContrato, @RequestParam int calificacion, @RequestParam String comentario, ModelMap modelo) throws MiExcepcion {
+        if (modo.equalsIgnoreCase("cliente")) {
+            coS.calificarProveedor(idContrato, calificacion, comentario);
+            modelo.put("notificacion", "Se ha calificado al Proveedor exitosamente.");
+            return "sesion-cliente.html";
+        } else if (modo.equalsIgnoreCase("proveedor")) {
+            coS.calificarCliente(idContrato, calificacion, comentario);
+            modelo.put("notificacion", "Se ha calificado al Cliente exitosamente.");
             return "sesion-proveedor.html";
         } 
         return null;
