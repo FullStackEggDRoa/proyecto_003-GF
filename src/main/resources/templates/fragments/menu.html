@@ -5,7 +5,7 @@
             <h5 class="offcanvas-title" id="sidebarMenuLabel">Zona Servi</h5>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu" aria-label="Close"></button>
         </div>
-        <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
+        <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3">
             <ul class="nav flex-column mb-auto">
 
                 <li class="nav-item" >
@@ -26,12 +26,12 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#"  data-bs-toggle="dropdown" aria-expanded="false" th:if="${modo != 'proveedor'}" >Categoría de servicios</a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Carpintería</a></li>
-                        <li><a class="dropdown-item" href="#">Gas</a></li>
-                        <li><a class="dropdown-item" href="#">Electricidad</a></li>
-                        <li><a class="dropdown-item" href="#">Plomería</a></li>
-                        <li><a class="dropdown-item" href="#">Jardinería</a></li>
-                        <li><a class="dropdown-item" href="#">Construccion</a></li>
+                        <li><a class="dropdown-item" href="/usuario/sesion?categoriaServicio=Carpintería&contenido=2"  >Carpintería</a></li>
+                        <li><a class="dropdown-item" href="/usuario/sesion?categoriaServicio=Gas&contenido=2"  >Gas</a></li>
+                        <li><a class="dropdown-item" href="/usuario/sesion?categoriaServicio=Electricidad&contenido=2"  >Electricidad</a></li>
+                        <li><a class="dropdown-item" href="/usuario/sesion?categoriaServicio=Plomería&contenido=2"  >Plomería</a></li>
+                        <li><a class="dropdown-item" href="/usuario/sesion?categoriaServicio=Jardinería&contenido=2"  >Jardinería</a></li>
+                        <li><a class="dropdown-item" href="/usuario/sesion?categoriaServicio=Construcción&contenido=2"  >Construccion</a></li>
                     </ul>
 
                 </li>
@@ -40,7 +40,7 @@
                         Mis Contratos
                     </a>
                 </li>
-            
+
 
             </ul>
 

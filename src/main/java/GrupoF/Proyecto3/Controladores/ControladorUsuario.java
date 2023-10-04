@@ -33,8 +33,8 @@ public class ControladorUsuario {
     @PreAuthorize("hasAnyRole('ROLE_USUARIO', 'ROLE_ADM')")
     @GetMapping("/sesion")
 
-    public String sesion(HttpSession session, @RequestParam (name = "categoriaServicio", defaultValue = "vacio") String categoriaServicio, ModelMap modelo) throws MiExcepcion {
-        
+public String sesion(HttpSession session, @RequestParam (name = "categoriaServicio", defaultValue = "-") String categoriaServicio,@RequestParam (name = "contenido", defaultValue = "1") String contenido, ModelMap modelo) throws MiExcepcion {        
+
         Usuario sesionUsuario = (Usuario) session.getAttribute("usuariosession");
         
         if (sesionUsuario.getRol().toString().equals("ADM")) {
@@ -60,6 +60,7 @@ public class ControladorUsuario {
             modelo.addAttribute("nombrePerfil", nombrePerfil);
             modelo.addAttribute("proveedores", proveedores);
             modelo.put("modo", "cliente");
+            modelo.put("contenido", contenido);
             return "sesion-cliente.html";
         
         }else{
