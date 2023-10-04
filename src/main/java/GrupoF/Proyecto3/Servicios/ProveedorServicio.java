@@ -60,7 +60,7 @@ public class ProveedorServicio implements UserDetailsService {
         dR.save(dni2);
         proveedor.setDni(dni2);
         proveedor.setCorreo(correo);
-        proveedor.setTelefono(Integer.valueOf(telefono));
+        proveedor.setTelefono(telefono);
         proveedor.setNumMatricula(numeroMatricula);
         proveedor.setCategoriaServicio(categoriaServicio);
         proveedor.setCostoHora(costoHora);
@@ -87,7 +87,7 @@ public class ProveedorServicio implements UserDetailsService {
             dR.save(dni2);
             proveedor.setDni(dni2);
             proveedor.setCorreo(correo);
-            proveedor.setTelefono(Integer.valueOf(telefono));
+            proveedor.setTelefono(telefono);
             proveedor.setNumMatricula(numeroMatricula);
             proveedor.setCategoriaServicio(categoriaServicio);
             proveedor.setCostoHora(costoHora);
