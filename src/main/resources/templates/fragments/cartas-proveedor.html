@@ -3,19 +3,21 @@
         <div class="container">
             <div class="m-0 row g-5 justify-content-center align-items-center">
                 <div class="row g-5">
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <div class="card" style="width: 20rem;" th:each="proveedor : ${proveedores}">
+                    <div class="col-12 col-md-6 col-lg-4" th:each="proveedor : ${proveedores}">
+                        <div class="card" style="width: 20rem;" >
                             
                             <div class="card-body">
                                 <ul class="list-group list-group-flush">
-                                    <img class="card-img-top" th:src=@{/imagenes/__${idCliente}__} alt="Card image cap">
+                                    <img class="card-img-top" th:src="${session.usuariosession.imagen != null} ? @{/imagenes/__${proveedor.id}__} : @{../img/extraterrestre.png}" alt="Perfil sin imagen">
                                     
-                                 <li  class="list-group-item" th:text="'Nombre y Apellido: ' + ${proveedor.nombreApellido}"> </li>                                  
+                                    <li  class="list-group-item" th:text="'Nombre y Apellido: ' + ${proveedor.nombreApellido}"> </li>                                  
                                     <li class="list-group-item" th:text="'Costo por Hora: ' + ${proveedor.costoHora}"> </li>
                                     <li class="list-group-item" > Calificacion: </li>
                                 </ul>
-                                <a href="#" class="btn btn-primary">Ver perfil</a>
-                                <a href="#" class="btn btn-primary">Contratar</a>
+
+                          <p class="card-text"></p>
+                               <a th:href="@{/contratar?idCliente=__${idCliente}__&idProveedor=__${proveedor.id}__}" class="btn btn-primary">Contratar</a>
+                                                             
                             </div>
                           
                         </div>

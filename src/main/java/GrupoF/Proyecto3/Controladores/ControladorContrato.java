@@ -1,10 +1,14 @@
 package GrupoF.Proyecto3.Controladores;
 
 import GrupoF.Proyecto3.Entidades.Contrato;
+import GrupoF.Proyecto3.Entidades.Proveedor;
 import GrupoF.Proyecto3.Entidades.Usuario;
 import GrupoF.Proyecto3.Excepciones.MiExcepcion;
 import GrupoF.Proyecto3.Servicios.ContratoServicio;
+import GrupoF.Proyecto3.Servicios.ProveedorServicio;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -20,16 +24,53 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class ControladorContrato {
     
     @Autowired
-    private ContratoServicio coS;
+    private ContratoServicio coS;  
+    @Autowired
+    private ProveedorServicio pS;
     
     @PreAuthorize("hasAnyRole('ROLE_USUARIO')")
     @PostMapping("/contratar")
-    public String registrarContrato(@RequestParam String idCliente, @RequestParam String idProveedor, ModelMap modelo) {
+    public String registrarContrato(HttpSession session, @RequestParam (name = "categoriaServicio", defaultValue = "Gas") String categoriaServicio, @RequestParam String idCliente, @RequestParam String idProveedor, @RequestParam (name = "contenido", defaultValue = "1") String contenido, ModelMap modelo) {
+       Usuario sesionUsuario = (Usuario) session.getAttribute("usuariosession");
+
         try {
+            
             coS.registrarContrato(idCliente, idProveedor);
-            modelo.put("exito", "Contrato registrado exitosamente.");
+            
+            String nombrePerfil = sesionUsuario.getNombreApellido();
+            List<Proveedor> proveedores = pS.buscarProveedoresPorCategoria(categoriaServicio);
+            
+            modelo.put("notificacion", "Contrato registrado exitosamente.");
+            modelo.addAttribute("idCliente", idCliente);
+            modelo.addAttribute("nombrePerfil", nombrePerfil);
+            modelo.addAttribute("proveedores", proveedores);
+            modelo.put("modo", "cliente");
+            modelo.put("contenido", contenido);
+            
+            
+            
         } catch (MiExcepcion e) {
             modelo.put("error", "Error al registrar el contrato.");
+             
+            
+            String nombrePerfil = sesionUsuario.getNombreApellido();
+            List<Proveedor> proveedores ;
+           try {
+               
+               proveedores = pS.buscarProveedoresPorCategoria(categoriaServicio);
+               modelo.put("notificacion", "Contrato registrado exitosamente.");
+            modelo.addAttribute("idCliente", idCliente);
+            modelo.addAttribute("nombrePerfil", nombrePerfil);
+            modelo.addAttribute("proveedores", proveedores);
+            modelo.put("modo", "cliente");
+            modelo.put("contenido", contenido);
+            
+            return ("sesion-cliente.html");
+           } catch (MiExcepcion ex) {
+                  return ("error.html");
+                    }
+            
+            
         }
         return ("sesion-cliente.html");
     }
