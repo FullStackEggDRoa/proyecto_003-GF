@@ -17,7 +17,7 @@
 
             <form  th:action="@{/usuario/modificar}" class="form" method="POST" enctype="multipart/form-data">
                 
-                <h3 class="title">EDITAR PROVEEDOR</h3>
+                <h3 class="title">Editar Perfil</h3>
                 <input type="hidden" name="direccion" value="NA">
                 <input type="hidden" name="modo" value="proveedor">
                 <input type="hidden" name="Id" th:value="${Proveedor.id}">
@@ -27,7 +27,7 @@
               
                 <div class="inputContainer">
                     <input type="text" class="input" th:value="${Proveedor.nombreApellido}" name="nombreApellido" required>
-                    <label for="" class="label">Nombre y apellido</label>
+                    <label for="" class="label">Nombre y Apellido</label>
              </div>
                    <div class="inputContainer">
                     <input type="number" class="input" th:value="${Proveedor.dni.numero}"name="dni" required>
@@ -43,14 +43,14 @@
                 </div>
                 
                 <div class="inputContainer">
-                    <select class="form-select input" aria-label="Default select example" th:value="${Proveedor.categoriaServicio}" name="categoriaServicio" required>
-                        <option selected>Categoria de servicio</option>
-                        <option value="Carpintería">Carpintería</option>
-                        <option value="Gas">Gas</option>
-                        <option value="Electricidad">Electricidad</option>
-                        <option value="Plomería">Plomería</option>
-                        <option value="Jardinería">Jardinería</option>
-                        <option value="Construcción">Construcción</option>
+                    <select class="form-select input" aria-label="Default select example" name="categoriaServicio" required>
+                        <option value="">Categoria de servicio</option>
+                        <option value="Carpintería" th:selected="${Proveedor.categoriaServicio == 'Carpintería'}">Carpintería</option>
+                        <option value="Gas" th:selected="${Proveedor.categoriaServicio == 'Gas'}">Gas</option>
+                        <option value="Electricidad" th:selected="${Proveedor.categoriaServicio == 'Electricidad'}">Electricidad</option>
+                        <option value="Plomería" th:selected="${Proveedor.categoriaServicio == 'Plomería'}">Plomería</option>
+                        <option value="Jardinería" th:selected="${Proveedor.categoriaServicio == 'Jardinería'}">Jardinería</option>
+                        <option value="Construcción" th:selected="${Proveedor.categoriaServicio == 'Construcción'}">Construcción</option>
                     </select>
                     <label for="" class="label">Categoría Servicio</label>
                 </div>
@@ -67,13 +67,14 @@
                 <div class="inputContainer">
 
                     <input type="file" class="input" name="archivo"  >
-                    
-                </div>
-                 
-               <a href="#" class="btn btn-primary">Cambiaar contraseña</a>
-                <input type="submit" class="submitBtn" value="Enviar modificaciones">
-               <a href="javascript:history.back()" class="btn btn-primary">Regresar</a>
-               
+
+                    </div>                
+
+                <input type="submit" class="submitBtn" value="Enviar Modificaciones">
+                
+                <input type="submit" href="javascript:history.back()" class="submitBtn" value="Regresar">
+                
+
             </form>
     </div>
     <footer th:replace="/fragments/footer :: footer"> </footer>

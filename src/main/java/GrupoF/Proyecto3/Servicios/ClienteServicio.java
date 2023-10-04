@@ -65,7 +65,7 @@ public class ClienteServicio implements UserDetailsService {
         dR.save(dni1);
         cliente.setDni(dni1);        
         cliente.setCorreo(correo);
-        cliente.setTelefono(Integer.valueOf(telefono));
+        cliente.setTelefono(telefono);
         cliente.setDireccion(direccion);
         cliente.setAlta(true);
         cliente.setRol(NombreRol.USUARIO);
@@ -98,7 +98,7 @@ public class ClienteServicio implements UserDetailsService {
             dR.save(dni1);
             cliente.setDni(dni1);
             cliente.setCorreo(correo);
-            cliente.setTelefono(Integer.valueOf(telefono));
+            cliente.setTelefono(telefono);
             cliente.setDireccion(direccion);
             
             if(!(contrasenia.equals(cliente.getContrasenia()))){

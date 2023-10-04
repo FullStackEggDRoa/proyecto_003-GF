@@ -60,7 +60,7 @@ public class ProveedorServicio implements UserDetailsService {
         dR.save(dni2);
         proveedor.setDni(dni2);
         proveedor.setCorreo(correo);
-        proveedor.setTelefono(Integer.valueOf(telefono));
+        proveedor.setTelefono(telefono);
         proveedor.setNumMatricula(numeroMatricula);
         proveedor.setCategoriaServicio(categoriaServicio);
         proveedor.setCostoHora(costoHora);
@@ -87,7 +87,7 @@ public class ProveedorServicio implements UserDetailsService {
             dR.save(dni2);
             proveedor.setDni(dni2);
             proveedor.setCorreo(correo);
-            proveedor.setTelefono(Integer.valueOf(telefono));
+            proveedor.setTelefono(telefono);
             proveedor.setNumMatricula(numeroMatricula);
             proveedor.setCategoriaServicio(categoriaServicio);
             proveedor.setCostoHora(costoHora);
@@ -177,8 +177,8 @@ public class ProveedorServicio implements UserDetailsService {
         if (numeroMatricula == -1 || numeroMatricula == null) {
             throw new MiExcepcion("El número de matrícula no puede ser nulo o estar vacio");
         }
-        if (categoriaServicio.isEmpty() || categoriaServicio == null) {
-            throw new MiExcepcion("La categoria de servicio no puede ser nula o estar vacia");
+        if ((categoriaServicio.equalsIgnoreCase("Categoria de servicio"))) {
+            throw new MiExcepcion("Debe ingresar una categoria de servicio");
         }
         if (costoHora == -1 || costoHora == null) {
             throw new MiExcepcion("El costo no puede ser nulo o estar vacio");
