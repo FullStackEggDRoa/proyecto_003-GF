@@ -122,4 +122,20 @@ public class ControladorContrato {
         return null;
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_ADM')")
+    @PostMapping("/eliminarComentarioCliente")
+    public String eliminarComentarioCliente(@RequestParam String idContrato, ModelMap modelo) throws MiExcepcion {
+        coS.eliminarComentarioCliente(idContrato);
+        modelo.put("notificacion", "El mensaje ha sido eliminado exitosamente.");
+        return "admin.html";
+    }
+    
+    @PreAuthorize("hasAnyRole('ROLE_ADM')")
+    @PostMapping("/eliminarComentarioProveedor")
+    public String eliminarComentarioProveedor(@RequestParam String idContrato, ModelMap modelo) throws MiExcepcion {
+        coS.eliminarComentarioProveedor(idContrato);
+        modelo.put("notificacion", "El mensaje ha sido eliminado exitosamente.");
+        return "admin.html";
+    }
+    
 }
