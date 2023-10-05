@@ -10,25 +10,7 @@
         <link rel="stylesheet" href="/css/bg.css">
     </head>
     <body>
-        <header class="navbar sticky-top bg-dark flex-md-nowrap p-0 shadow" data-bs-theme="dark">
-            <a class="navbar-brand" href="/">
-                <img src="/img/logo-letra-b.png"  width="65" height="50" class="d-inline-block align-text-top">
-            </a>
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            </ul>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Ir</button>
-            </form>
-            <a style="color: white" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="/img/admin.jpg" alt="Logo" width="40" height="30" class="rounded-circle me-1 d-inline-block align-text-center" th:text="${nombrePerfil}"></a>
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#" >Perfil</a></li>
-                <li><a class="dropdown-item" href="#">Notificaciones</a></li>   
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="/salir">Cerrar sesion</a></li>
-            </ul>
-        </header>
+        <header> <nav th:replace="/fragments/navbar-sesion :: nav"> </nav> </header>
         <div class="container-fluid">
             <div class="row">
                 <div class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary">
