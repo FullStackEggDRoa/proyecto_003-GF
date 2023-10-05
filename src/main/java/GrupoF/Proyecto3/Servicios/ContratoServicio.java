@@ -97,7 +97,7 @@ public class ContratoServicio {
 
         Contrato contrato = contratoById(idContrato);
 
-        if (contrato.getEstadoContrato() == NombreEstadoContrato.FINALIZADO) {
+        if (contrato.getEstadoContrato() == NombreEstadoContrato.FINALIZADO && contrato.getComentarioProveedor().isEmpty()) {
             validarDatos(calificacionProveedor, comentarioProveedor);
             contrato.setCalifProveedor(calificacionProveedor);
             contrato.setComentarioProveedor(comentarioProveedor);
@@ -113,7 +113,7 @@ public class ContratoServicio {
 
         Contrato contrato = contratoById(idContrato);
 
-        if (contrato.getEstadoContrato() == NombreEstadoContrato.FINALIZADO)  {
+        if (contrato.getEstadoContrato() == NombreEstadoContrato.FINALIZADO && contrato.getComentarioProveedor().isEmpty())  {
             validarDatos(calificacionCliente, comentarioCliente);
             contrato.setCalifCliente(calificacionCliente);
             contrato.setComentarioCliente(comentarioCliente);
@@ -205,6 +205,7 @@ public class ContratoServicio {
         }
         if (contrato.getEstadoContrato() == NombreEstadoContrato.PROCESO && nuevoEstado == "FINALIZAR") {
             contrato.setEstadoContrato(NombreEstadoContrato.FINALIZADO);
+            contrato.setFechaFinalizado(new Date());
             coR.save(contrato);
         } else {
             throw new MiExcepcion("Para poder finalizar un contrato, éste debería haber sido aceptado y estar en proceso");
@@ -223,6 +224,7 @@ public class ContratoServicio {
         }
         if (contrato.getEstadoContrato() == NombreEstadoContrato.PROCESO && nuevoEstado == "FINALIZAR") {
             contrato.setEstadoContrato(NombreEstadoContrato.FINALIZADO);
+            contrato.setFechaFinalizado(new Date());
             coR.save(contrato);
         } else {
             throw new MiExcepcion("Para poder finalizar un contrato, éste debería haber sido aceptado y estar en proceso");
