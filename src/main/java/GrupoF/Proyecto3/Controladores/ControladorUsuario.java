@@ -41,9 +41,11 @@ public String sesion(HttpSession session, @RequestParam (name = "categoriaServic
         
         if (sesionUsuario.getRol().toString().equals("ADM")) {
             String nombrePerfil = null;
-            List<Cliente> clientes = cS.listarClientes();
-            List<Proveedor> proveedores = pS.listarProveedores();
+
+            List<Cliente> clientes = cS.listaClientesOrdenados();
+            List<Proveedor> proveedores = pS.listaProveedoresOrdenados();
             List<Contrato> contratos = coS.listarContratos();
+
             if(sesionUsuario.getClass().getName().contains("Cliente")){
                 nombrePerfil = sesionUsuario.getNombreApellido();
             }else if(sesionUsuario.getClass().getName().contains("Proveedor")){
