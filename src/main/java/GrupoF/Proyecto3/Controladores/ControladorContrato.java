@@ -98,12 +98,11 @@ public class ControladorContrato {
             coS.editarEstadoContratoCliente(idContrato, nuevoEstado);
             modelo.put("notificacion", "Se ha cambiado el estado del contrato exitosamente.");
             return "sesion-cliente.html";
-        } else if (modo.equalsIgnoreCase("proveedor")) {
+        } else {
             coS.editarEstadoContratoProveedor(idContrato, nuevoEstado);
             modelo.put("notificacion", "Se ha cambiado el estado del contrato exitosamente.");
             return "sesion-proveedor.html";
         } 
-        return null;
     }
 
     @PreAuthorize("hasAnyRole('ROLE_USUARIO')")
@@ -113,12 +112,11 @@ public class ControladorContrato {
             coS.calificarProveedor(idContrato, calificacion, comentario);
             modelo.put("notificacion", "Se ha calificado al Proveedor exitosamente.");
             return "sesion-cliente.html";
-        } else if (modo.equalsIgnoreCase("proveedor")) {
+        } else {
             coS.calificarCliente(idContrato, calificacion, comentario);
             modelo.put("notificacion", "Se ha calificado al Cliente exitosamente.");
             return "sesion-proveedor.html";
         } 
-        return null;
     }
 
     @PreAuthorize("hasAnyRole('ROLE_ADM')")
