@@ -9,7 +9,7 @@
     <div class="card mb-3" style="max-width: 700px;">
         <div class="row g-0">
             <div class="col-md-4">
-                <img th:src="${session.usuariosession.imagen != null} ? @{/imagenes/__${idProveedor}__} : @{/img/extraterrestre.png}" alt="Logo" width="280" height="280" class="rounded-circle me-1 d-inline-block align-text-center"></a>
+                <img class="img-fluid" mx-auto d-block" " th:src="${session.usuariosession.imagen != null} ? @{/imagenes/__${idProveedor}__} : @{/img/extraterrestre.png}" alt="Logo" ></a>
             </div>
             <div class="col-md-8">
                 <div class="card-body">
@@ -33,46 +33,51 @@
     </div>
     <h4 id="contratos">Contratos</h4>
     <div class="table-responsive small">
-        <table class="table table-striped table-sm">
+        
+<table class="table table-striped table-sm">
             <thead class="table-dark">
                 <tr>
 
-                    <th style="font-size: 85%" scope="col">Cliente</th>                                  
-                    <th style="font-size: 85%" scope="col">Fecha inicio</th>
-                    <th style="font-size: 85%" scope="col">Estado del contrato</th>
-                    <th style="font-size: 85%" scope="col">Fecha finalizado</th>                                 
-                    <th style="font-size: 85%" scope="col">Calificacion </th>                           
+                    <th style="font-size: 85%" scope="col">Cliente</th>                  
+                    <th style="font-size: 85%" scope="col">Fecha Inicio</th>
+                    <th style="font-size: 85%" scope="col">Fecha Finalizado</th>  
+                    <th style="font-size: 85%" scope="col">Estado Del Contrato</th>
+                    <th style="font-size: 85%" scope="col">Calificacion</th>                           
                     <th style="font-size: 85%" scope="col">Comentarios</th>
-               
+
                 </tr>
             </thead>
-            <tbody >
+            <tbody th:each="contrato : ${contratos}">
                 <tr>
-                    <td ></td>
-                    <td ></td>
-                    <td >
-                           <div class="btn-group">
-                            <a class="dropdown-item" href="#" data-bs-toggle="dropdown" aria-expanded="false">estado actual</a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">EN ESPERA</a></li>
-                                <li><a class="dropdown-item" href="#">RECHAZADO</a></li>
-                                <li><a class="dropdown-item" href="#">FINALIZADO</a></li>
-                                <li><a class="dropdown-item" href="#">EN PROCESO</a></li>
-                                <li><a class="dropdown-item" href="#">CANCELAR</a></li>
-                            </ul>
-                        </div>
-                    </td>
-                    <td ></td>
-                    <td >
-                        <i class="star" value="1">&#9733;</i>
-                        <i class="star" value="2">&#9733;</i>
-                        <i class="star" value="3">&#9733;</i>
-                        <i class="star" value="4">&#9733;</i>
-                        <i class="star" value="5">&#9733;</i>
-                    </td>
-                    <td >
-                        <textarea class="form-control" id="textarea" placeholder="Comentario" rows="3"></textarea>
-                    </td>
+                                <td style="font-size: 85%" th:text=${contrato.cliente}></td>
+                                <td style="font-size: 85%" th:text=${contrato.fechaInicio}></td>
+                                <td style="font-size: 85%" th:text=${contrato.fechaFinalizado}></td>
+                                <td style="font-size: 85%" th:text=${contrato.estadoContrato}>
+                                     <div class="inputContainer">
+                                        <select class="form-select input" aria-label="Default select example" name="categoriaServicio" th:value="${contrat.estadoContrato}" required>
+                                                                               
+                                            <option selected>Categoria de servicio</option>
+                                            
+                                            <option value="ESPERA">EN ESPERA</option>
+                                            <option value="ACEPTAR">ACEPTAR</option>
+                                            <option value="PROCESO">EN PROCESO</option>
+                                            <option value="CANCELAR">CANCELAR</option>
+                                            <option value="FINALIZAR">FINALIZAR</option>
+                                                              
+                                        </select>
+                                            
+                                     </div>
+                                 </td>
+                                <td style="font-size: 85%" th:text=${contrato.califCliente}>
+                                          <i class="star"  value="1">&#9733;</i>
+                                          <i class="star"  value="2">&#9733;</i>
+                                          <i class="star"  value="3">&#9733;</i>
+                                          <i class="star"  value="4">&#9733;</i>
+                                          <i class="star"  value="5">&#9733;</i>
+                                </td>
+                                <td >
+                                         <textarea style="font-size: 85%"  class="form-control" id="textarea" placeholder="Comentario" rows="3 th:text=${contrato.comentarioProveedor}"></textarea>
+                                </td>
 
                 </tr>          
             </tbody>
