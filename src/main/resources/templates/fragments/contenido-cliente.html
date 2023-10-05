@@ -81,6 +81,7 @@
                 <tr>
 
                     <th style="font-size: 85%" scope="col">Proveedor</th>                  
+                    <th style="font-size: 85%" scope="col">Telefono de contacto</th>                  
                     <th style="font-size: 85%" scope="col">Fecha Inicio</th>
                     <th style="font-size: 85%" scope="col">Fecha Finalizado</th>  
                     <th style="font-size: 85%" scope="col">Estado Del Contrato</th>
@@ -91,7 +92,8 @@
             </thead>
             <tbody th:each="contrato : ${contratos}">
                 <tr>
-                                <td style="font-size: 85%" th:text=${contrato.proveedor}></td>
+                                <td style="font-size: 85%" th:text=${contrato.proveedor.nombreApellido}></td>
+                                <td style="font-size: 85%" th:text=${contrato.proveedor.telefono}></td>
                                 <td style="font-size: 85%" th:text=${contrato.fechaInicio}></td>
                                 <td style="font-size: 85%" th:text=${contrato.fechaFinalizado}></td>
                                 <td style="font-size: 85%" th:text=${contrato.estadoContrato}>
