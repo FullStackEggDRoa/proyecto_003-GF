@@ -102,19 +102,19 @@ public String sesion(HttpSession session, @RequestParam (name = "categoriaServic
     }
     
     @PostMapping("/modificar")
-    public String modificar(MultipartFile archivo, @RequestParam String Id, @RequestParam String nombreApellido, @RequestParam String contrasenia,@RequestParam String dni,@RequestParam String correo, @RequestParam String telefono,
-            @RequestParam String contraseniaChk, @RequestParam String direccion, @RequestParam String numeroMatricula,
+    public String modificar(MultipartFile archivo, @RequestParam String Id, @RequestParam String nombreApellido, @RequestParam String dni,@RequestParam String correo, @RequestParam String telefono,
+            @RequestParam String direccion, @RequestParam String numeroMatricula,
             @RequestParam String categoriaServicio, @RequestParam Double costoHora,@RequestParam String modo, ModelMap modelo)
     {
         try {
             if (modo.equalsIgnoreCase("cliente")) {
-                cS.actualizarCliente(archivo, Id, nombreApellido, contrasenia, dni, correo, telefono, direccion, contraseniaChk);
+                cS.actualizarCliente(archivo, Id, nombreApellido, dni, correo, telefono, direccion);
                 modelo.put("notificacion", "Datos de usuario actualizados correctamente!");
                 modelo.put("modo", "cliente");
                 return "redirect:/usuario/sesion";
             }
             else if (modo.equalsIgnoreCase("proveedor")){
-                pS.actualizarProveedor(archivo, Id, nombreApellido, contrasenia, dni, correo, telefono, Integer.valueOf(numeroMatricula), categoriaServicio, costoHora, contraseniaChk);
+                pS.actualizarProveedor(archivo, Id, nombreApellido, dni, correo, telefono, Integer.valueOf(numeroMatricula), categoriaServicio, costoHora);
                 modelo.put("notificacion", "Datos de usuario actualizados correctamente!");
                 modelo.put("modo", "proveedor");
                 return "redirect:/usuario/sesion";
@@ -135,5 +135,64 @@ public String sesion(HttpSession session, @RequestParam (name = "categoriaServic
     }
 
     
+ @PreAuthorize("hasAnyRole('ROLE_USUARIO', 'ROLE_ADM')")
+    @GetMapping("/modificacionContrasenia")
+    public String modificacionContrasenia(HttpSession session,@RequestParam String modo, ModelMap modelo){
+        Usuario sesionUsuario = (Usuario) session.getAttribute("usuariosession");
+        if (modo.equalsIgnoreCase("cliente")) {
+            String idCliente = sesionUsuario.getId();
+            String nombrePerfil = sesionUsuario.getNombreApellido();
+            Cliente cliente = cS.clienteById(idCliente);
+            modelo.put("modo", "cliente");
+            modelo.addAttribute("Cliente", cliente);
+            modelo.addAttribute("idCliente", idCliente);
+            modelo.addAttribute("nombrePerfil", nombrePerfil);
+            return "modificacion-contrasenia.html";
+            
+        } else {
+            String idProveedor = sesionUsuario.getId();
+            String nombrePerfil = sesionUsuario.getNombreApellido();
+            Proveedor proveedor = pS.proveedorById(idProveedor);
+            modelo.put("modo", "proveedor");
+            modelo.addAttribute("Proveedor", proveedor);
+            modelo.addAttribute("idProveedor", idProveedor);
+            modelo.addAttribute("nombrePerfil", nombrePerfil);
+            return "modificacion-contrasenia.html";
+            
+        }        
+    }
+    
+    @PostMapping("/modificarContrasenia")
+    public String modificarContrasenia( @RequestParam String Id, @RequestParam String contrasenia,
+            @RequestParam String contraseniaChk, @RequestParam String modo, ModelMap modelo)
+    {
+        try {
+            if (modo.equalsIgnoreCase("cliente")) {
+                cS.cambiarContraseniaCliente(Id, contrasenia, contraseniaChk);
+                modelo.put("notificacion", "¡Datos de usuario actualizados correctamente!");
+                modelo.put("modo", "cliente");
+                return "redirect:/usuario/sesion";
+            }
+            else if (modo.equalsIgnoreCase("proveedor")){
+                pS.cambiarContraseniaProveedor(Id, contrasenia, contraseniaChk);
+                modelo.put("notificacion", "Datos de usuario actualizados correctamente!");
+                modelo.put("modo", "proveedor");
+                return "redirect:/usuario/sesion";
+            }else {
+                
+                return "sesion-admin.html";                
+            }
+           
+        } catch (MiExcepcion ex) {
+            if (modo.equalsIgnoreCase("cliente")) {
+                return "modificacion-contrasenia.html";
+            } else {
+                return "modificacion-contrasenia.html";
+            }
+        }
+        
+        
+    }
 
+    
 }
