@@ -1,10 +1,12 @@
 package GrupoF.Proyecto3.Controladores;
 
 import GrupoF.Proyecto3.Entidades.Cliente;
+import GrupoF.Proyecto3.Entidades.Contrato;
 import GrupoF.Proyecto3.Entidades.Proveedor;
 import GrupoF.Proyecto3.Entidades.Usuario;
 import GrupoF.Proyecto3.Excepciones.MiExcepcion;
 import GrupoF.Proyecto3.Servicios.ClienteServicio;
+import GrupoF.Proyecto3.Servicios.ContratoServicio;
 import GrupoF.Proyecto3.Servicios.ProveedorServicio;
 import java.util.List;
 import java.util.logging.Level;
@@ -29,6 +31,8 @@ public class ControladorUsuario {
     private ClienteServicio cS;
     @Autowired
     private ProveedorServicio pS;
+    @Autowired
+    private ContratoServicio coS;
     
     @PreAuthorize("hasAnyRole('ROLE_USUARIO', 'ROLE_ADM')")
     @GetMapping("/sesion")
@@ -39,6 +43,7 @@ public String sesion(HttpSession session, @RequestParam (name = "categoriaServic
             String nombrePerfil = null;
             List<Cliente> clientes = cS.listarClientes();
             List<Proveedor> proveedores = pS.listarProveedores();
+            List<Contrato> contratos = coS.listarContratos();
             if(sesionUsuario.getClass().getName().contains("Cliente")){
                 nombrePerfil = sesionUsuario.getNombreApellido();
             }else if(sesionUsuario.getClass().getName().contains("Proveedor")){
@@ -46,6 +51,7 @@ public String sesion(HttpSession session, @RequestParam (name = "categoriaServic
             }
             modelo.addAttribute("clientes", clientes);
             modelo.addAttribute("proveedores", proveedores);
+            modelo.addAttribute("contratos", contratos);
             modelo.addAttribute("nombrePerfil",  nombrePerfil);
             return "sesion-admin.html";
             
@@ -54,9 +60,11 @@ public String sesion(HttpSession session, @RequestParam (name = "categoriaServic
             String idCliente = sesionUsuario.getId();
             String nombrePerfil = sesionUsuario.getNombreApellido();
             List<Proveedor> proveedores = pS.buscarProveedoresPorCategoria(categoriaServicio);
+            List<Contrato> contratos = coS.listarContratosClienteDatosProveedor(idCliente);
             modelo.addAttribute("idCliente", idCliente);
             modelo.addAttribute("nombrePerfil", nombrePerfil);
             modelo.addAttribute("proveedores", proveedores);
+            modelo.addAttribute("contratos", contratos);
             modelo.put("modo", "cliente");
             modelo.put("contenido", contenido);
             return "sesion-cliente.html";
@@ -66,8 +74,10 @@ public String sesion(HttpSession session, @RequestParam (name = "categoriaServic
             String nombrePerfil = sesionUsuario.getNombreApellido();
             Proveedor proveedor = pS.proveedorById(idProveedor);
             List<Proveedor> proveedores = pS.listarProveedores();
+            List<Contrato> contratos = coS.listarContratosPorProveedor(idProveedor);
             modelo.addAttribute("Proveedor", proveedor);
             modelo.addAttribute("idProveedor", idProveedor);
+            modelo.addAttribute("contratos", contratos);
             modelo.addAttribute("nombrePerfil",  nombrePerfil);
             modelo.put("modo", "proveedor");
             return "sesion-proveedor.html";
