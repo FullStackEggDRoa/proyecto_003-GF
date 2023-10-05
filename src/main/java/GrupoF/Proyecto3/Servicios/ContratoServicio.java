@@ -302,4 +302,7 @@ public class ContratoServicio {
 
     }
 
+    public Contrato getOne(String id){
+        return coR.getOne(id);
+    }
 }

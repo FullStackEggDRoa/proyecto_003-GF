@@ -76,16 +76,18 @@ public class ControladorContrato {
 
     @PreAuthorize("hasAnyRole('ROLE_USUARIO')")
     @PostMapping("/listaContratos")
-    public List listarContratos(HttpSession session, @RequestParam String modo) throws MiExcepcion {
+    public String listarContratos(HttpSession session, @RequestParam String modo, ModelMap modelo) throws MiExcepcion {
         Usuario sesionUsuario = (Usuario) session.getAttribute("usuariosession");
         if (modo.equalsIgnoreCase("cliente")) {
             String idCliente = sesionUsuario.getId();
             List<Contrato> contratos = coS.listarContratosPorCliente(idCliente);
-            return contratos;
+            modelo.addAttribute("contratos", contratos);
+            return "sesion-cliente.html";
         } else {
             String idProveedor = sesionUsuario.getId();
             List<Contrato> contratos = coS.listarContratosPorProveedor(idProveedor);
-            return contratos;
+            modelo.addAttribute("contratos", contratos);
+            return "sesion-proveedor.html";
         }
     }
 
@@ -96,12 +98,11 @@ public class ControladorContrato {
             coS.editarEstadoContratoCliente(idContrato, nuevoEstado);
             modelo.put("notificacion", "Se ha cambiado el estado del contrato exitosamente.");
             return "sesion-cliente.html";
-        } else if (modo.equalsIgnoreCase("proveedor")) {
+        } else {
             coS.editarEstadoContratoProveedor(idContrato, nuevoEstado);
             modelo.put("notificacion", "Se ha cambiado el estado del contrato exitosamente.");
             return "sesion-proveedor.html";
         } 
-        return null;
     }
 
     @PreAuthorize("hasAnyRole('ROLE_USUARIO')")
@@ -111,12 +112,11 @@ public class ControladorContrato {
             coS.calificarProveedor(idContrato, calificacion, comentario);
             modelo.put("notificacion", "Se ha calificado al Proveedor exitosamente.");
             return "sesion-cliente.html";
-        } else if (modo.equalsIgnoreCase("proveedor")) {
+        } else {
             coS.calificarCliente(idContrato, calificacion, comentario);
             modelo.put("notificacion", "Se ha calificado al Cliente exitosamente.");
             return "sesion-proveedor.html";
         } 
-        return null;
     }
 
     @PreAuthorize("hasAnyRole('ROLE_ADM')")

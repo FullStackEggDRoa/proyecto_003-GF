@@ -12,12 +12,12 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ContratoRepositorio extends JpaRepository<Contrato, String> {
     
-    @Query("SELECT c FROM Contrato c WHERE c.cliente = :Id")
+    @Query("SELECT c FROM Contrato c WHERE c.cliente.id = :Id")
     public List<Contrato> buscarPorIdCliente(@Param("Id") String idCliente);
     
-    @Query("SELECT p FROM Contrato p WHERE p.proveedor = :Id")
+    @Query("SELECT c FROM Contrato c WHERE c.proveedor.id = :Id")
     public List<Contrato> buscarPorIdProveedor(@Param("Id") String idProveedor);
     
     @Query("SELECT c, p.telefono FROM Contrato c INNER JOIN c.proveedor p WHERE c.cliente.id = :idCliente")
-    public List<Contrato> listarContratosClienteConDatosProveedor(@Param("id") String idCliente);
+    public List<Contrato> listarContratosClienteConDatosProveedor(@Param("idCliente") String idCliente);
 }
