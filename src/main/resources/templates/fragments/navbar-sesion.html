@@ -22,7 +22,7 @@
                 <li><a class="dropdown-item" href="/salir">Cerrar sesion</a></li>
             </ul>
                 
-          <a style="color: white" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" th:if="${modo != 'proveedor'}">
+          <a style="color: white" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" th:if="${modo == 'cliente'}">
 
             <img th:src="${session.usuariosession.imagen != null} ? @{/imagenes/__${idCliente}__} : @{/img/extraterrestre.png}" alt="Logo" width="40" height="40" class="rounded-circle me-1 d-inline-block align-text-center" th:text="${nombrePerfil}"></a>
             
@@ -34,7 +34,7 @@
             
               
             
-            <a style="color: white" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" th:if="${modo != 'cliente'}">
+            <a style="color: white" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" th:if="${modo == 'proveedor'}">
             <img th:src="${session.usuariosession.imagen != null} ? @{/imagenes/__${idProveedor}__} : @{/img/extraterrestre.png}" alt="Logo" width="40" height="40" class="rounded-circle me-1 d-inline-block align-text-center" th:text="${nombrePerfil}"></a>
             <ul class="dropdown-menu dropdown-menu-end">
                 <li><a class="dropdown-item"  th:href="@{/usuario/modificacion?modo=proveedor}">Editar Perfil</a></li>      
