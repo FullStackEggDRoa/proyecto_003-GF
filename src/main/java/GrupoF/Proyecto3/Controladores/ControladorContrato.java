@@ -78,17 +78,19 @@ public class ControladorContrato {
     }
 
     @PreAuthorize("hasAnyRole('ROLE_USUARIO')")
-    @PostMapping("/listaContratos")
-    public List listarContratos(HttpSession session, @RequestParam String modo) throws MiExcepcion {
+    @PostMapping("/contratos/listaContratos")
+    public String listarContratos(HttpSession session, @RequestParam String modo, ModelMap modelo) throws MiExcepcion {
         Usuario sesionUsuario = (Usuario) session.getAttribute("usuariosession");
         if (modo.equalsIgnoreCase("cliente")) {
             String idCliente = sesionUsuario.getId();
             List<Contrato> contratos = coS.listarContratosPorCliente(idCliente);
-            return contratos;
+            modelo.addAttribute("contratos", contratos);
+            return "sesion-cliente.html";
         } else {
             String idProveedor = sesionUsuario.getId();
             List<Contrato> contratos = coS.listarContratosPorProveedor(idProveedor);
-            return contratos;
+            modelo.addAttribute("contratos", contratos);
+            return "sesion-proveedor.html";
         }
     }
 
