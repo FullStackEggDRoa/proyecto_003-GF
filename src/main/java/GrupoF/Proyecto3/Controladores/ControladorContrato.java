@@ -6,6 +6,7 @@ import GrupoF.Proyecto3.Entidades.Usuario;
 import GrupoF.Proyecto3.Excepciones.MiExcepcion;
 import GrupoF.Proyecto3.Servicios.ContratoServicio;
 import GrupoF.Proyecto3.Servicios.ProveedorServicio;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,16 +32,20 @@ public class ControladorContrato {
     
 
     @PreAuthorize("hasAnyRole('ROLE_USUARIO')")
-    @PostMapping("/contratar")
-    public String registrarContrato(HttpSession session, @RequestParam (name = "categoriaServicio", defaultValue = "Gas") String categoriaServicio, @RequestParam String idCliente, @RequestParam String idProveedor, @RequestParam (name = "contenido", defaultValue = "1") String contenido, ModelMap modelo) {
-       Usuario sesionUsuario = (Usuario) session.getAttribute("usuariosession");
+    @GetMapping("/contratar")
+    public String registrarContrato(HttpSession session, @RequestParam (name = "categoriaServicio", defaultValue = "Gas") String categoriaServicio, @RequestParam String idProveedor, @RequestParam (name = "contenido", defaultValue = "1") String contenido, ModelMap modelo) {
+       
+        Usuario sesionUsuario = (Usuario) session.getAttribute("usuariosession");
+        
+        String idCliente = sesionUsuario.getId();
+        List<Proveedor> proveedores = new ArrayList <>();
 
         try {
             
             coS.registrarContrato(idCliente, idProveedor);
             
             String nombrePerfil = sesionUsuario.getNombreApellido();
-            List<Proveedor> proveedores = pS.buscarProveedoresPorCategoria(categoriaServicio);
+            proveedores = pS.buscarProveedoresPorCategoria(categoriaServicio);
             
             modelo.put("notificacion", "Contrato registrado exitosamente.");
             modelo.addAttribute("idCliente", idCliente);
@@ -49,18 +54,15 @@ public class ControladorContrato {
             modelo.put("modo", "cliente");
             modelo.put("contenido", contenido);
             
-            
+            return ("sesion-cliente.html");
             
         } catch (MiExcepcion e) {
+            
             modelo.put("error", "Error al registrar el contrato.");
-             
             
             String nombrePerfil = sesionUsuario.getNombreApellido();
-            List<Proveedor> proveedores ;
-           try {
-               
-               proveedores = pS.buscarProveedoresPorCategoria(categoriaServicio);
-               modelo.put("notificacion", "Contrato registrado exitosamente.");
+            
+            modelo.put("notificacion", "Contrato registrado exitosamente.");
             modelo.addAttribute("idCliente", idCliente);
             modelo.addAttribute("nombrePerfil", nombrePerfil);
             modelo.addAttribute("proveedores", proveedores);
@@ -68,13 +70,8 @@ public class ControladorContrato {
             modelo.put("contenido", contenido);
             
             return ("sesion-cliente.html");
-           } catch (MiExcepcion ex) {
-                  return ("error.html");
-                    }
-            
-            
         }
-        return ("sesion-cliente.html");
+        
     }
 
     @PreAuthorize("hasAnyRole('ROLE_USUARIO')")
@@ -122,4 +119,20 @@ public class ControladorContrato {
         return null;
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_ADM')")
+    @PostMapping("/eliminarComentarioCliente")
+    public String eliminarComentarioCliente(@RequestParam String idContrato, ModelMap modelo) throws MiExcepcion {
+        coS.eliminarComentarioCliente(idContrato);
+        modelo.put("notificacion", "El mensaje ha sido eliminado exitosamente.");
+        return "admin.html";
+    }
+    
+    @PreAuthorize("hasAnyRole('ROLE_ADM')")
+    @PostMapping("/eliminarComentarioProveedor")
+    public String eliminarComentarioProveedor(@RequestParam String idContrato, ModelMap modelo) throws MiExcepcion {
+        coS.eliminarComentarioProveedor(idContrato);
+        modelo.put("notificacion", "El mensaje ha sido eliminado exitosamente.");
+        return "admin.html";
+    }
+    
 }
