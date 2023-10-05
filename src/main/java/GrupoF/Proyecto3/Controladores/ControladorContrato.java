@@ -75,7 +75,7 @@ public class ControladorContrato {
     }
 
     @PreAuthorize("hasAnyRole('ROLE_USUARIO')")
-    @PostMapping("/contratos/listaContratos")
+    @PostMapping("/listaContratos")
     public String listarContratos(HttpSession session, @RequestParam String modo, ModelMap modelo) throws MiExcepcion {
         Usuario sesionUsuario = (Usuario) session.getAttribute("usuariosession");
         if (modo.equalsIgnoreCase("cliente")) {
