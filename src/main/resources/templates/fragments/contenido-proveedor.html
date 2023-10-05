@@ -44,6 +44,7 @@
                     <th style="font-size: 85%" scope="col">Estado Del Contrato</th>
                     <th style="font-size: 85%" scope="col">Calificacion</th>                           
                     <th style="font-size: 85%" scope="col">Comentarios</th>
+                    <th style="font-size: 85%" scope="col">Acciones</th>
 
                 </tr>
             </thead>
@@ -53,22 +54,23 @@
                                 <td style="font-size: 85%" th:text=${contrato.fechaInicio}></td>
                                 <td style="font-size: 85%" th:text=${contrato.fechaFinalizado}></td>
                                 <td style="font-size: 85%" th:text=${contrato.estadoContrato}>
+                                    
                                      <div class="inputContainer">
-                                        <select class="form-select input" aria-label="Default select example" name="categoriaServicio" th:value="${contrat.estadoContrato}" required>
+                                        <select class="form-select input" aria-label="Default select example" name="categoriaServicio" required>
                                                                                
                                             <option selected>Categoria de servicio</option>
                                             
-                                            <option value="ESPERA">EN ESPERA</option>
-                                            <option value="ACEPTAR">ACEPTAR</option>
-                                            <option value="PROCESO">EN PROCESO</option>
-                                            <option value="CANCELAR">CANCELAR</option>
-                                            <option value="FINALIZAR">FINALIZAR</option>
+                                            <option value="ESPERA" th:selected="${contrato.estadoContrato}">EN ESPERA</option>
+                                            <option value="ACEPTAR" th:selected="${contrato.estadoContrato}">ACEPTAR</option>
+                                            <option value="PROCESO" th:selected="${contrato.estadoContrato}">EN PROCESO</option>
+                                            <option value="CANCELAR" th:selected="${contrato.estadoContrato}">CANCELAR</option>
+                                            <option value="FINALIZAR"th:selected="${contrato.estadoContrato}">FINALIZAR</option>
                                                               
                                         </select>
                                             
                                      </div>
                                  </td>
-                                <td style="font-size: 85%" th:text=${contrato.califCliente}>
+                                <td style="font-size: 85%" th:value=${contrato.califCliente}>
                                           <i class="star"  value="1">&#9733;</i>
                                           <i class="star"  value="2">&#9733;</i>
                                           <i class="star"  value="3">&#9733;</i>
@@ -77,6 +79,10 @@
                                 </td>
                                 <td >
                                          <textarea style="font-size: 85%"  class="form-control" id="textarea" placeholder="Comentario" rows="3 th:text=${contrato.comentarioProveedor}"></textarea>
+                                </td>
+                                <td style="font-size: 85%">
+                                    <a th:href="@{/contratos/comentar/__${contrato.id}__}"><i class="fas fa-feather-alt"></i>✉</a>
+                                    
                                 </td>
 
                 </tr>          

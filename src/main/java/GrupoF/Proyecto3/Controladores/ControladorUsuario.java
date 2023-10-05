@@ -77,10 +77,12 @@ public String sesion(HttpSession session, @RequestParam (name = "categoriaServic
             Proveedor proveedor = pS.proveedorById(idProveedor);
             List<Proveedor> proveedores = pS.listarProveedores();
             List<Contrato> contratos = coS.listarContratosPorProveedor(idProveedor);
+            
             modelo.addAttribute("Proveedor", proveedor);
             modelo.addAttribute("idProveedor", idProveedor);
             modelo.addAttribute("contratos", contratos);
             modelo.addAttribute("nombrePerfil",  nombrePerfil);
+            modelo.addAttribute("contratos", contratos);
             modelo.put("modo", "proveedor");
             return "sesion-proveedor.html";
         }
