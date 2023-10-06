@@ -25,11 +25,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class ControladorContrato {
 
     @Autowired
-
     private ContratoServicio coS;  
     @Autowired
     private ProveedorServicio pS;
-    
 
     @PreAuthorize("hasAnyRole('ROLE_USUARIO')")
     @GetMapping("/contratar")

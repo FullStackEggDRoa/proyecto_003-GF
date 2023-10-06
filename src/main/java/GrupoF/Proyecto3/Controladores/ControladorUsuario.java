@@ -79,6 +79,7 @@ public class ControladorUsuario {
             Proveedor proveedor = pS.proveedorById(idProveedor);
             List<Proveedor> proveedores = pS.listarProveedores();
             List<Contrato> contratos = coS.listarContratosPorProveedor(idProveedor);
+            
             modelo.addAttribute("Proveedor", proveedor);
             modelo.addAttribute("idProveedor", idProveedor);
             modelo.addAttribute("contratos", contratos);
