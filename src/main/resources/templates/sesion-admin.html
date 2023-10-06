@@ -84,7 +84,8 @@
                                 <td style="font-size: 85%" th:text=${proveedor.categoriaServicio}></td>
                                 <td style="font-size: 85%" th:text=${proveedor.numMatricula}></td>
                                 <td style="font-size: 85%" th:text=${proveedor.costoHora}></td>
-                                <td style="font-size: 85%">
+                                <td style="font-size: 85%" th:value="${#strings.substring(proveedor.id,0,5)}" name="id">
+
                                     <a th:href="@{/usuario/modificacion/__${proveedor.id}__}"><i class="fas fa-feather-alt"></i>✏️ </a>
                                     <a th:href="@{/usuario/modificacion/__${proveedor.id}__}"><i class="fas fa-feather-alt"></i> 🗑</a>
                                 </td>
@@ -166,9 +167,9 @@
                                 </td>
                                 <td style="font-size: 85%" th:text=${contrato.comentarioCliente}></td>
                                 <td style="font-size: 85%" th:text=${contrato.comentarioProveedor}></td>
-                                <td >
+<!--                                <td >
                                     <button type="button" class=" btn btn-danger btn-close" ></button>
-                                </td>
+                                </td>-->
                             </tr>          
                         </tbody>
                     </table>

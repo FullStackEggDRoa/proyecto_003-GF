@@ -33,14 +33,14 @@ public class ControladorUsuario {
     private ProveedorServicio pS;
     @Autowired
     private ContratoServicio coS;
-    
+
     @PreAuthorize("hasAnyRole('ROLE_USUARIO', 'ROLE_ADM')")
     @GetMapping("/sesion")
 
-public String sesion(HttpSession session, @RequestParam (name = "categoriaServicio", defaultValue = "-") String categoriaServicio,@RequestParam (name = "contenido", defaultValue = "1") String contenido, ModelMap modelo) throws MiExcepcion {        
+    public String sesion(HttpSession session, @RequestParam(name = "categoriaServicio", defaultValue = "-") String categoriaServicio, @RequestParam(name = "contenido", defaultValue = "1") String contenido, ModelMap modelo) throws MiExcepcion {
 
         Usuario sesionUsuario = (Usuario) session.getAttribute("usuariosession");
-        
+
         if (sesionUsuario.getRol().toString().equals("ADM")) {
             String nombrePerfil = null;
 
@@ -48,19 +48,19 @@ public String sesion(HttpSession session, @RequestParam (name = "categoriaServic
             List<Proveedor> proveedores = pS.listaProveedoresOrdenados();
             List<Contrato> contratos = coS.listarContratos();
 
-            if(sesionUsuario.getClass().getName().contains("Cliente")){
+            if (sesionUsuario.getClass().getName().contains("Cliente")) {
                 nombrePerfil = sesionUsuario.getNombreApellido();
-            }else if(sesionUsuario.getClass().getName().contains("Proveedor")){
+            } else if (sesionUsuario.getClass().getName().contains("Proveedor")) {
                 nombrePerfil = sesionUsuario.getNombreApellido();
             }
             modelo.addAttribute("clientes", clientes);
             modelo.addAttribute("proveedores", proveedores);
             modelo.addAttribute("contratos", contratos);
-            modelo.addAttribute("nombrePerfil",  nombrePerfil);
+            modelo.addAttribute("nombrePerfil", nombrePerfil);
             return "sesion-admin.html";
-            
-        }else if(sesionUsuario.getClass().getName().contains("Cliente")){
-            
+
+        } else if (sesionUsuario.getClass().getName().contains("Cliente")) {
+
             String idCliente = sesionUsuario.getId();
             String nombrePerfil = sesionUsuario.getNombreApellido();
             List<Proveedor> proveedores = pS.buscarProveedoresPorCategoria(categoriaServicio);
@@ -72,8 +72,8 @@ public String sesion(HttpSession session, @RequestParam (name = "categoriaServic
             modelo.put("modo", "cliente");
             modelo.put("contenido", contenido);
             return "sesion-cliente.html";
-        
-        }else{
+
+        } else {
             String idProveedor = sesionUsuario.getId();
             String nombrePerfil = sesionUsuario.getNombreApellido();
             Proveedor proveedor = pS.proveedorById(idProveedor);
@@ -82,15 +82,15 @@ public String sesion(HttpSession session, @RequestParam (name = "categoriaServic
             modelo.addAttribute("Proveedor", proveedor);
             modelo.addAttribute("idProveedor", idProveedor);
             modelo.addAttribute("contratos", contratos);
-            modelo.addAttribute("nombrePerfil",  nombrePerfil);
+            modelo.addAttribute("nombrePerfil", nombrePerfil);
             modelo.put("modo", "proveedor");
             return "sesion-proveedor.html";
         }
     }
-    
+
     @PreAuthorize("hasAnyRole('ROLE_USUARIO', 'ROLE_ADM')")
     @GetMapping("/modificacion")
-    public String modificacion(HttpSession session,@RequestParam String modo, ModelMap modelo){
+    public String modificacion(HttpSession session, @RequestParam String modo, ModelMap modelo) {
         Usuario sesionUsuario = (Usuario) session.getAttribute("usuariosession");
         if (modo.equalsIgnoreCase("cliente")) {
             String idCliente = sesionUsuario.getId();
@@ -101,7 +101,7 @@ public String sesion(HttpSession session, @RequestParam (name = "categoriaServic
             modelo.addAttribute("idCliente", idCliente);
             modelo.addAttribute("nombrePerfil", nombrePerfil);
             return "modificar-cliente.html";
-            
+
         } else {
             String idProveedor = sesionUsuario.getId();
             String nombrePerfil = sesionUsuario.getNombreApellido();
@@ -111,32 +111,30 @@ public String sesion(HttpSession session, @RequestParam (name = "categoriaServic
             modelo.addAttribute("idProveedor", idProveedor);
             modelo.addAttribute("nombrePerfil", nombrePerfil);
             return "modificar-proveedor.html";
-            
-        }        
+
+        }
     }
-    
+
     @PostMapping("/modificar")
-    public String modificar(MultipartFile archivo, @RequestParam String Id, @RequestParam String nombreApellido, @RequestParam String contrasenia,@RequestParam String dni,@RequestParam String correo, @RequestParam String telefono,
-            @RequestParam String contraseniaChk, @RequestParam String direccion, @RequestParam String numeroMatricula,
-            @RequestParam String categoriaServicio, @RequestParam Double costoHora,@RequestParam String modo, ModelMap modelo)
-    {
+    public String modificar(MultipartFile archivo, @RequestParam String Id, @RequestParam String nombreApellido, @RequestParam String dni, @RequestParam String correo, @RequestParam String telefono,
+            @RequestParam String direccion, @RequestParam String numeroMatricula,
+            @RequestParam String categoriaServicio, @RequestParam Double costoHora, @RequestParam String modo, ModelMap modelo) {
         try {
             if (modo.equalsIgnoreCase("cliente")) {
-                cS.actualizarCliente(archivo, Id, nombreApellido, contrasenia, dni, correo, telefono, direccion, contraseniaChk);
-                modelo.put("notificacion", "Datos de usuario actualizados correctamente!");
+                cS.actualizarCliente(archivo, Id, nombreApellido, dni, correo, telefono, direccion);
+                modelo.put("notificacion", "¡Datos de usuario actualizados correctamente!");
                 modelo.put("modo", "cliente");
                 return "redirect:/usuario/sesion";
-            }
-            else if (modo.equalsIgnoreCase("proveedor")){
-                pS.actualizarProveedor(archivo, Id, nombreApellido, contrasenia, dni, correo, telefono, Integer.valueOf(numeroMatricula), categoriaServicio, costoHora, contraseniaChk);
-                modelo.put("notificacion", "Datos de usuario actualizados correctamente!");
+            } else if (modo.equalsIgnoreCase("proveedor")) {
+                pS.actualizarProveedor(archivo, Id, nombreApellido, dni, correo, telefono, Integer.valueOf(numeroMatricula), categoriaServicio, costoHora);
+                modelo.put("notificacion", "¡Datos de usuario actualizados correctamente!");
                 modelo.put("modo", "proveedor");
                 return "redirect:/usuario/sesion";
-            }else {
-                
-                return "sesion-admin.html";                
+            } else {
+
+                return "sesion-admin.html";
             }
-           
+
         } catch (MiExcepcion ex) {
             if (modo.equalsIgnoreCase("cliente")) {
                 return "modificar-cliente.html";
@@ -144,10 +142,83 @@ public String sesion(HttpSession session, @RequestParam (name = "categoriaServic
                 return "modificar-proveedor.html";
             }
         }
-        
-        
+
     }
 
-    
+    @PreAuthorize("hasAnyRole('ROLE_USUARIO', 'ROLE_ADM')")
+    @GetMapping("/modificacionContrasenia")
+    public String modificacionContrasenia(HttpSession session, @RequestParam String modo, ModelMap modelo) {
+        Usuario sesionUsuario = (Usuario) session.getAttribute("usuariosession");
+        if (modo.equalsIgnoreCase("cliente")) {
+            String idCliente = sesionUsuario.getId();
+            String nombrePerfil = sesionUsuario.getNombreApellido();
+            Cliente cliente = cS.clienteById(idCliente);
+            modelo.put("modo", "cliente");
+            modelo.addAttribute("Cliente", cliente);
+            modelo.addAttribute("idCliente", idCliente);
+            modelo.addAttribute("nombrePerfil", nombrePerfil);
+            return "modificacion-contrasenia.html";
+
+        } else {
+            String idProveedor = sesionUsuario.getId();
+            String nombrePerfil = sesionUsuario.getNombreApellido();
+            Proveedor proveedor = pS.proveedorById(idProveedor);
+            modelo.put("modo", "proveedor");
+            modelo.addAttribute("Proveedor", proveedor);
+            modelo.addAttribute("idProveedor", idProveedor);
+            modelo.addAttribute("nombrePerfil", nombrePerfil);
+            return "modificacion-contrasenia.html";
+
+        }
+    }
+
+    @PostMapping("/modificarContrasenia")
+    public String modificarContrasenia(@RequestParam String Id, @RequestParam String contrasenia,
+            @RequestParam String contraseniaChk, @RequestParam String modo, ModelMap modelo) {
+        try {
+            if (modo.equalsIgnoreCase("cliente")) {
+                cS.cambiarContraseniaCliente(Id, contrasenia, contraseniaChk);
+                modelo.put("notificacion", "¡Datos de usuario actualizados correctamente!");
+                modelo.put("modo", "cliente");
+                return "redirect:/usuario/sesion";
+            } else if (modo.equalsIgnoreCase("proveedor")) {
+                pS.cambiarContraseniaProveedor(Id, contrasenia, contraseniaChk);
+                modelo.put("notificacion", "Datos de usuario actualizados correctamente!");
+                modelo.put("modo", "proveedor");
+                return "redirect:/usuario/sesion";
+            } else {
+
+                return "sesion-admin.html";
+            }
+
+        } catch (MiExcepcion ex) {
+            if (modo.equalsIgnoreCase("cliente")) {
+                return "modificacion-contrasenia.html";
+            } else {
+                return "modificacion-contrasenia.html";
+            }
+        }
+
+    }
+
+    @PreAuthorize("hasAnyRole('ROLE_ADM')")
+    @PostMapping("/darDeBaja")
+    public String eliminar(HttpSession session, @RequestParam String id, ModelMap modelo) {
+        Usuario sesionUsuario = (Usuario) session.getAttribute("usuariosession");
+        String idUsuario = sesionUsuario.getId();
+        Cliente cliente = cS.clienteById(idUsuario);
+        Proveedor proveedor = pS.proveedorById(idUsuario);
+        if (cliente != null) {
+            cS.bajaCliente(id);
+            modelo.put("notificacion", "Cliente dado de baja.");
+
+            return "sesion-admin.html";
+        } else {
+            pS.bajaProveedor(id);
+            modelo.put("notificacion", "Proveedor dado de baja.");
+
+            return "sesion-admin.html";
+        }
+    }
 
 }

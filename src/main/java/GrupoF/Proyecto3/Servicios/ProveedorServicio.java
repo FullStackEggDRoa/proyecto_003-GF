@@ -71,7 +71,7 @@ public class ProveedorServicio implements UserDetailsService {
     }
 
     @Transactional
-    public void actualizarProveedor(MultipartFile archivo, String id, String nombreApellido, String contrasenia, String dni, String correo, String telefono, Integer numeroMatricula, String categoriaServicio, Double costoHora, String contraseniaChk) throws MiExcepcion {
+    public void actualizarProveedor(MultipartFile archivo, String id, String nombreApellido, String dni, String correo, String telefono, Integer numeroMatricula, String categoriaServicio, Double costoHora ) throws MiExcepcion {
 
         validarDatosProveedor(nombreApellido, dni, correo, telefono, numeroMatricula, categoriaServicio, costoHora);
 
@@ -91,10 +91,6 @@ public class ProveedorServicio implements UserDetailsService {
             proveedor.setNumMatricula(numeroMatricula);
             proveedor.setCategoriaServicio(categoriaServicio);
             proveedor.setCostoHora(costoHora);
-
-            if (!(contrasenia.equals(proveedor.getContrasenia()))) {
-                cambiarContraseniaProveedor(id, contrasenia, contraseniaChk);
-            }
 
             if (!(archivo.isEmpty())) {
                 Imagen imagen = new Imagen();

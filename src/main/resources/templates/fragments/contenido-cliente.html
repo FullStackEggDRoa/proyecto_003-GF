@@ -27,7 +27,7 @@
                         <div class="card-body">
                             <h5 class="card-title">Plomería</h5>
                             <p class="card-text">Reparaciones y mantenimiento de tuberías y sistemas de plomería. Resuelve problemas con eficiencia y garantiza calidad.</p>
-                             <a type="button" href="/usuario/sesion?categoriaServicio=Plomería&contenido=2"  class="btn btn-primary" id="boton">Ver</a>
+                            <a type="button" href="/usuario/sesion?categoriaServicio=Plomería&contenido=2"  class="btn btn-primary" id="boton">Ver</a>
                         </div>
                     </div>
                 </div>
@@ -47,7 +47,7 @@
                         <div class="card-body">
                             <h5 class="card-title">Gas</h5>
                             <p class="card-text">Gasistas matriculados con experiencia en instalaciones y reparaciones de sistemas de gas. Cumplimiento de normativas de seguridad.</p>
-                           <a type="button" href="/usuario/sesion?categoriaServicio=Gas&contenido=2"  class="btn btn-primary" id="boton">Ver</a>
+                            <a type="button" href="/usuario/sesion?categoriaServicio=Gas&contenido=2"  class="btn btn-primary" id="boton">Ver</a>
                         </div>
                     </div>
                 </div>
@@ -57,7 +57,7 @@
                         <div class="card-body">
                             <h5 class="card-title">Carpintería</h5>
                             <p class="card-text">Habilidades excepcionales en la creación de muebles y estructuras a medida. Detallistas y comprometidos con la excelencia artesanal.</p>
-                             <a type="button" href="/usuario/sesion?categoriaServicio=Carpintería&contenido=2"  class="btn btn-primary" id="boton">Ver</a>
+                            <a type="button" href="/usuario/sesion?categoriaServicio=Carpintería&contenido=2"  class="btn btn-primary" id="boton">Ver</a>
                         </div>
                     </div>
                 </div>
@@ -67,7 +67,7 @@
                         <div class="card-body">
                             <h5 class="card-title">Jardinería</h5>
                             <p class="card-text">Apasionados por el diseño y mantenimiento de espacios verdes. Transformamos tu jardín en un oasis natural, cuidando cada detalle.</p>
-                             <a type="button" href="/usuario/sesion?categoriaServicio=Jardinería&contenido=2"  class="btn btn-primary" id="boton">Ver</a>
+                            <a type="button" href="/usuario/sesion?categoriaServicio=Jardinería&contenido=2"  class="btn btn-primary" id="boton">Ver</a>
                         </div>
                     </div>
                 </div>
@@ -92,34 +92,34 @@
             </thead>
             <tbody th:each="contrato : ${contratos}">
                 <tr>
-                                <td style="font-size: 85%" th:text=${contrato.proveedor.nombreApellido}></td>
-                                <td style="font-size: 85%" th:text=${contrato.proveedor.telefono}></td>
-                                <td style="font-size: 85%" th:text=${contrato.fechaInicio}></td>
-                                <td style="font-size: 85%" th:text=${contrato.fechaFinalizado}></td>
-                                <td style="font-size: 85%" th:text=${contrato.estadoContrato}>
-                                     <div class="inputContainer">
-                                        <select class="form-select input" aria-label="Default select example" name="categoriaServicio" th:value="${contrato.estadoContrato}" required>
-                                                                               
-                                            <option selected>Categoria de servicio</option>
-                                            <option value="ESPERA">EN ESPERA</option>
-                                            <option value="PROCESO">EN PROCESO</option>
-                                            <option value="CANCELAR">CANCELAR</option>
-                                            
-                                                                 
-                                        </select>
-                                            
-                                     </div>
-                                 </td>
-                                <td style="font-size: 85%" th:text=${contrato.califProveedor}>
-                                          <i class="star"  value="1">&#9733;</i>
-                                          <i class="star"  value="2">&#9733;</i>
-                                          <i class="star"  value="3">&#9733;</i>
-                                          <i class="star"  value="4">&#9733;</i>
-                                          <i class="star"  value="5">&#9733;</i>
-                                </td>
-                                <td >
-                                         <textarea style="font-size: 85%"  class="form-control" id="textarea" placeholder="Comentario" rows="3 th:text=${contrato.comentarioProveedor}"></textarea>
-                                </td>
+                    <td style="font-size: 85%" th:text=${contrato.proveedor.nombreApellido}></td>
+                    <td style="font-size: 85%" th:text=${contrato.proveedor.telefono}></td>
+                    <td style="font-size: 85%" th:text=${contrato.fechaInicio}></td>
+                    <td style="font-size: 85%" th:text=${contrato.fechaFinalizado}></td>
+                    <td style="font-size: 85%" th:text=${contrato.estadoContrato}>
+                        <div class="inputContainer">
+                            <select class="form-select input" aria-label="Default select example" name="categoriaServicio" th:value="${contrato.estadoContrato}" required>
+
+                                <option selected>Categoria de servicio</option>
+                                <option value="ESPERA">EN ESPERA</option>
+                                <option value="PROCESO">EN PROCESO</option>
+                                <option value="CANCELAR">CANCELAR</option>
+
+
+                            </select>
+
+                        </div>
+                    </td>
+                    <td style="font-size: 85%" th:text=${contrato.califProveedor}>
+                        <i class="star"  value="1" th:selected="${contrato.califProveedor == '1'}">&#9733;</i>
+                        <i class="star"  value="2" th:selected="${contrato.califProveedor == '2'}">&#9733;</i>
+                        <i class="star"  value="3" th:selected="${contrato.califProveedor == '3'}">&#9733;</i>
+                        <i class="star"  value="4" th:selected="${contrato.califProveedor == '4'}">&#9733;</i>
+                        <i class="star"  value="5" th:selected="${contrato.califProveedor == '5'}">&#9733;</i>
+                    </td>
+                    <td >
+                        <textarea style="font-size: 85%"  class="form-control" id="textarea" placeholder="Comentario" rows="3 th:text=${contrato.comentarioProveedor}"></textarea>
+                    </td>
 
                 </tr>          
             </tbody>

@@ -82,7 +82,7 @@ public class ClienteServicio implements UserDetailsService {
     }
 
     @Transactional
-    public void actualizarCliente(MultipartFile archivo,  String id, String nombreApellido, String contrasenia, String dni, String correo, String telefono, String direccion, String contraseniaChk) throws MiExcepcion {
+    public void actualizarCliente(MultipartFile archivo,  String id, String nombreApellido, String dni, String correo, String telefono, String direccion) throws MiExcepcion {
         
         validarDatosCliente(nombreApellido, dni, correo, direccion);
         
@@ -100,10 +100,6 @@ public class ClienteServicio implements UserDetailsService {
             cliente.setCorreo(correo);
             cliente.setTelefono(telefono);
             cliente.setDireccion(direccion);
-            
-            if(!(contrasenia.equals(cliente.getContrasenia()))){
-                cambiarContraseniaCliente(id, contrasenia, contraseniaChk);
-            }
             
             if (!(archivo.isEmpty())) {
 
