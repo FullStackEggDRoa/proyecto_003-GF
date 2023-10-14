@@ -90,7 +90,7 @@ public class controladorInicio {
                 pS.registrarProveedor(nombreApellido, contrasenia, dni, correo,telefono, Integer.valueOf(numeroMatricula), categoriaServicio, costoHora, contraseniaChk);
             }
 
-            modelo.put("notificacion", "Usuario registrado correctamente!");
+            modelo.put("notificacion", "¡Usuario registrado correctamente!");
             modelo.put("correo", correo);
             modelo.put("contrasenia", contrasenia);
 

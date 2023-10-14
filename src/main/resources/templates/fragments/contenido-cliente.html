@@ -92,37 +92,34 @@
             </thead>
             <tbody th:each="contrato : ${contratos}">
                 <tr>
-                                <td style="font-size: 85%" th:text=${contrato.proveedor}></td>
-                                <td style="font-size: 85%" th:text=${contrato.fechaInicio}></td>
-                                <td style="font-size: 85%" th:text=${contrato.fechaFinalizado}></td>
-                                <td style="font-size: 85%" th:text=${contrato.estadoContrato}>
-                                     <div class="inputContainer">
-                                        <select class="form-select input" aria-label="Default select example" name="categoriaServicio"  required>
-                                                                               
-                                            <option selected>Seleccione</option>
-                                            <option value="ESPERA" th:selected="${contrato.estadoContrato}">EN ESPERA</option>
-                                            <option value="PROCESO" th:selected="${contrato.estadoContrato}">EN PROCESO</option>
-                                            <option value="CANCELAR" th:selected="${contrato.estadoContrato}">CANCELAR</option>
-                                                            
-                                        </select>
-                                            
-                                     </div>
-                                 </td>
-                                <td style="font-size: 85%" th:value=${contrato.califProveedor}>
-                                          <i class="star"  value="1">&#9733;</i>
-                                          <i class="star"  value="2">&#9733;</i>
-                                          <i class="star"  value="3">&#9733;</i>
-                                          <i class="star"  value="4">&#9733;</i>
-                                          <i class="star"  value="5">&#9733;</i>
-                                </td>
-                                <td >
-                                         <textarea style="font-size: 85%"  class="form-control" id="textarea" placeholder="Comentario" rows="3 th:text=${contrato.comentarioProveedor}"></textarea>
-                                </td>
-                                <td style="font-size: 85%">
-                                    <a th:href="@{/contratos/comentar/__${contrato.id}__}"><i class="fas fa-feather-alt"></i>✉</a>
-                                    
-                                </td>
+                                        <td style="font-size: 85%" th:text=${contrato.proveedor.nombreApellido}></td>
+                    <td style="font-size: 85%" th:text=${contrato.proveedor.telefono}></td>
+                    <td style="font-size: 85%" th:text=${contrato.fechaInicio}></td>
+                    <td style="font-size: 85%" th:text=${contrato.fechaFinalizado}></td>
+                    <td style="font-size: 85%" th:text=${contrato.estadoContrato}>
+                        <div class="inputContainer">
+                            <select class="form-select input" aria-label="Default select example" name="categoriaServicio" th:value="${contrato.estadoContrato}" required>
 
+                                <option selected>Categoria de servicio</option>
+                                <option value="ESPERA">EN ESPERA</option>
+                                <option value="PROCESO">EN PROCESO</option>
+                                <option value="CANCELAR">CANCELAR</option>
+
+
+                            </select>
+
+                        </div>
+                    </td>
+                    <td style="font-size: 85%" th:text=${contrato.califProveedor}>
+                        <i class="star"  value="1" th:selected="${contrato.califProveedor == '1'}">&#9733;</i>
+                        <i class="star"  value="2" th:selected="${contrato.califProveedor == '2'}">&#9733;</i>
+                        <i class="star"  value="3" th:selected="${contrato.califProveedor == '3'}">&#9733;</i>
+                        <i class="star"  value="4" th:selected="${contrato.califProveedor == '4'}">&#9733;</i>
+                        <i class="star"  value="5" th:selected="${contrato.califProveedor == '5'}">&#9733;</i>
+                    </td>
+                    <td >
+                        <textarea style="font-size: 85%"  class="form-control" id="textarea" placeholder="Comentario" rows="3 th:text=${contrato.comentarioProveedor}"></textarea>
+                    </td>
                 </tr>          
             </tbody>
         </table>

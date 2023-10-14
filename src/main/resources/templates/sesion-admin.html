@@ -139,32 +139,32 @@
                                 <th style="font-size: 85%" scope="col">Comentarios Proveedor</th>
                             </tr>
                         </thead>
-                        <tbody >
+                        <tbody  th:each="contrato : ${contratos}">
                             <tr>
-                                <td ></td>
-                                <td ></td>
-                                <td ></td>
-                                <td ></td>
-                                <td ></td>
-                                <td ></td>
-                                <td ></td>
+                                <td style="font-size: 85%" th:text=${#strings.substring(contrato.id,0,5)}></td>
+                                <td style="font-size: 85%" th:text=${contrato.proveedor.nombreApellido}></td>
+                                <td style="font-size: 85%" th:text=${contrato.cliente.nombreApellido}></td>
+                                <td style="font-size: 85%" th:text=${contrato.fechaInicio}></td>
+                                <td style="font-size: 85%" th:text=${contrato.estadoContrato}></td>
+                                <td style="font-size: 85%" th:text=${contrato.fechaFinalizado}></td>
                                 <td >
-                                    <i class="star"  value="1">&#9733;</i>
-                                    <i class="star"  value="2">&#9733;</i>
-                                    <i class="star"  value="3">&#9733;</i>
-                                    <i class="star"  value="4">&#9733;</i>
-                                    <i class="star"  value="5">&#9733;</i>
+                                    <i class="star"  value="1" th:selected="${contrato.califCliente == '1'}">&#9733;</i>
+                                    <i class="star"  value="2" th:selected="${contrato.califCliente == '2'}">&#9733;</i>
+                                    <i class="star"  value="3" th:selected="${contrato.califCliente == '3'}">&#9733;</i>
+                                    <i class="star"  value="4" th:selected="${contrato.califCliente == '4'}">&#9733;</i>
+                                    <i class="star"  value="5" th:selected="${contrato.califCliente == '5'}">&#9733;</i>
                                 </td>
                                 <td >
 
-                                    <i class="star"  value="1">&#9733;</i>
-                                    <i class="star"  value="2">&#9733;</i>
-                                    <i class="star"  value="3">&#9733;</i>
-                                    <i class="star"  value="4">&#9733;</i>
-                                    <i class="star"  value="5">&#9733;</i>
+                                    <i class="star"  value="1" th:selected="${contrato.califProveedor == '1'}">&#9733;</i>
+                                    <i class="star"  value="2" th:selected="${contrato.califProveedor == '2'}">&#9733;</i>
+                                    <i class="star"  value="3" th:selected="${contrato.califProveedor == '3'}">&#9733;</i>
+                                    <i class="star"  value="4" th:selected="${contrato.califProveedor == '4'}">&#9733;</i>
+                                    <i class="star"  value="5" th:selected="${contrato.califProveedor == '5'}">&#9733;</i>
                                 </td>
-                                <td ></td>
-                                <td >
+                                <td style="font-size: 85%" th:text=${contrato.comentarioCliente}></td>
+                                <td style="font-size: 85%" th:text=${contrato.comentarioProveedor}></td>
+                                <td>
                                     <button type="button" class=" btn btn-danger btn-close" ></button>
                                 </td>
                             </tr>          
