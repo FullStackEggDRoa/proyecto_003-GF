@@ -134,7 +134,7 @@ public String sesion(HttpSession session, @RequestParam (name = "categoriaServic
         
     }
 
-    
+    //Controladores para cambio contraseña
  @PreAuthorize("hasAnyRole('ROLE_USUARIO', 'ROLE_ADM')")
     @GetMapping("/modificacionContrasenia")
     public String modificacionContrasenia(HttpSession session,@RequestParam String modo, ModelMap modelo){

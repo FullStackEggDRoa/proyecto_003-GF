@@ -27,7 +27,7 @@
                         <div class="card-body">
                             <h5 class="card-title">Plomería</h5>
                             <p class="card-text">Reparaciones y mantenimiento de tuberías y sistemas de plomería. Resuelve problemas con eficiencia y garantiza calidad.</p>
-                             <a type="button" href="/usuario/sesion?categoriaServicio=Plomería&contenido=2"  class="btn btn-primary" id="boton">Ver</a>
+                            <a type="button" href="/usuario/sesion?categoriaServicio=Plomería&contenido=2"  class="btn btn-primary" id="boton">Ver</a>
                         </div>
                     </div>
                 </div>
@@ -47,7 +47,7 @@
                         <div class="card-body">
                             <h5 class="card-title">Gas</h5>
                             <p class="card-text">Gasistas matriculados con experiencia en instalaciones y reparaciones de sistemas de gas. Cumplimiento de normativas de seguridad.</p>
-                           <a type="button" href="/usuario/sesion?categoriaServicio=Gas&contenido=2"  class="btn btn-primary" id="boton">Ver</a>
+                            <a type="button" href="/usuario/sesion?categoriaServicio=Gas&contenido=2"  class="btn btn-primary" id="boton">Ver</a>
                         </div>
                     </div>
                 </div>
@@ -57,7 +57,7 @@
                         <div class="card-body">
                             <h5 class="card-title">Carpintería</h5>
                             <p class="card-text">Habilidades excepcionales en la creación de muebles y estructuras a medida. Detallistas y comprometidos con la excelencia artesanal.</p>
-                             <a type="button" href="/usuario/sesion?categoriaServicio=Carpintería&contenido=2"  class="btn btn-primary" id="boton">Ver</a>
+                            <a type="button" href="/usuario/sesion?categoriaServicio=Carpintería&contenido=2"  class="btn btn-primary" id="boton">Ver</a>
                         </div>
                     </div>
                 </div>
@@ -67,14 +67,14 @@
                         <div class="card-body">
                             <h5 class="card-title">Jardinería</h5>
                             <p class="card-text">Apasionados por el diseño y mantenimiento de espacios verdes. Transformamos tu jardín en un oasis natural, cuidando cada detalle.</p>
-                             <a type="button" href="/usuario/sesion?categoriaServicio=Jardinería&contenido=2"  class="btn btn-primary" id="boton">Ver</a>
+                            <a type="button" href="/usuario/sesion?categoriaServicio=Jardinería&contenido=2"  class="btn btn-primary" id="boton">Ver</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <h4 id="contratos">Contratos</h4>
+    <h4 id="contratos">Contratos en ESPERA</h4>
     <div class="table-responsive small">
         <table class="table table-striped table-sm">
             <thead class="table-dark">
@@ -82,12 +82,10 @@
 
                     <th style="font-size: 85%" scope="col">Cliente</th>                  
                     <th style="font-size: 85%" scope="col">Fecha Inicio</th>
-                    <th style="font-size: 85%" scope="col">Estado Del Contrato</th>
-                    <th style="font-size: 85%" scope="col">Fecha Finalizado</th>  
+                    <th style="font-size: 85%" scope="col">Estado Del Contrato</th>                    
                     <th style="font-size: 85%" scope="col">Cambiar Estado</th>
-                    <th style="font-size: 85%" scope="col">Calificacion
-</th>                           
-                    <th style="font-size: 85%" scope="col">Comentarios</th>
+
+
 
                 </tr>
             </thead>
@@ -96,33 +94,80 @@
                     <td ></td>
                     <td ></td>
                     <td ></td>
-                    <td ></td>
-                    <td >
-                        <div class="btn-group">
-                            <a class="dropdown-item" href="#" data-bs-toggle="dropdown" aria-expanded="false">estado actual</a>
-                            <ul class="dropdown-menu">                                                     
-                                <li><a class="dropdown-item" href="#">FINALIZADO</a></li>                              
-                                <li><a class="dropdown-item" href="#">CANCELAR</a></li>
-                            </ul>
-                        </div>
-                    </td>
-                    <td >
-
-                       <div class="container">
-                        <div class="rating">
-                        <input type="radio" name="rating1" style="--c:#ff9933;">                       
-                        <input type="radio" name="rating2" style="--c:#ff9933;">
-                        <input type="radio" name="rating3" style="--c:#ff9933;">
-                        <input type="radio" name="rating4" style="--c:#ff9933;">
-                        <input type="radio" name="rating5" style="--c:#ff9933;">
-                        </div>
-                        </div>
-                    </td>
-                    <td >
-                        <textarea class="form-control" id="textarea" placeholder="Comentario" rows="3"></textarea>
-                    </td>
-
+                    <td ><a type="button" class="button" href="#">CANCELAR</a> </td>
                 </tr>          
             </tbody>
         </table>
-</main>
+        <h4 id="contratos">Contratos en PROCESO</h4>
+        <div class="table-responsive small">
+            <table class="table table-striped table-sm">
+                <thead class="table-dark">
+                    <tr>
+
+                        <th style="font-size: 85%" scope="col">Cliente</th>                  
+                        <th style="font-size: 85%" scope="col">Fecha Inicio</th>
+                        <th style="font-size: 85%" scope="col">Estado Del Contrato</th>
+                        <th style="font-size: 85%" scope="col">Cambiar Estado</th>
+                        <th style="font-size: 85%" scope="col">Teléfono</th>
+
+
+                    </tr>
+                </thead>
+                <tbody >
+                    <tr>
+                        <td ></td>
+                        <td ></td>
+                        <td ></td>
+                        <td >
+                            <a type="button" class="button" href="#">FINALIZADO</a>
+                        </td>
+                        <td ></td>
+                    </tr>          
+                </tbody>
+            </table>
+            <h4 id="contratos">Contratos por CALIFICAR</h4>
+            <div class="table-responsive small">
+                <table class="table table-striped table-sm">
+                    <thead class="table-dark">
+                        <tr>
+
+                            <th style="font-size: 85%" scope="col">Cliente</th>                  
+                            <th style="font-size: 85%" scope="col">Fecha Inicio</th>
+                            <th style="font-size: 85%" scope="col">Estado Del Contrato</th>
+                            <th style="font-size: 85%" scope="col">Fecha Finalizado</th>  
+                        
+                            <th style="font-size: 85%" scope="col">Teléfono</th>
+                            <th style="font-size: 85%" scope="col">Calificacion</th>                           
+                            <th style="font-size: 85%" scope="col">Comentarios</th>
+
+                        </tr>
+                    </thead>
+                    <tbody >
+                        <tr>
+                            <td ></td>
+                            <td ></td>
+                            <td ></td>
+                            <td ></td>
+                            <td ></td>
+                            <td >
+
+                                <div class="container">
+                                    <div class="rating">
+                                        <input type="radio" name="rating1" style="--c:#ff9933;">                       
+                                        <input type="radio" name="rating2" style="--c:#ff9933;">
+                                        <input type="radio" name="rating3" style="--c:#ff9933;">
+                                        <input type="radio" name="rating4" style="--c:#ff9933;">
+                                        <input type="radio" name="rating5" style="--c:#ff9933;">
+                                    </div>
+                                </div>
+                            </td>
+                            <td >
+                                <textarea class="form-control" id="textarea" placeholder="Comentario" rows="3"></textarea>
+                            </td>
+
+                        </tr>          
+                    </tbody>
+                </table>
+               
+
+                        </main>

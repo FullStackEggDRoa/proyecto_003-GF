@@ -80,7 +80,7 @@ public class ClienteServicio implements UserDetailsService {
         clientes = cR.findAll();
         return clientes;
     }
-
+// eliminacion de contrasenia y contraseniaChk en atributos
     @Transactional
     public void actualizarCliente(MultipartFile archivo,  String id, String nombreApellido, String dni, String correo, String telefono, String direccion) throws MiExcepcion {
     
@@ -100,7 +100,7 @@ public class ClienteServicio implements UserDetailsService {
             cliente.setCorreo(correo);
             cliente.setTelefono(telefono);
             cliente.setDireccion(direccion);
-            
+            //comentamos este if
          /*   if(respuestaCambio){
                 cambiarContraseniaCliente(id, contrasenia, contraseniaChk);
                 respuestaCambio = false;

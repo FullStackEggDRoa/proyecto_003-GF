@@ -69,7 +69,7 @@ public class ProveedorServicio implements UserDetailsService {
 
         pR.save(proveedor);
     }
-
+// eliminacion de contrasenia y contraseniaChk de atributo
     @Transactional
     public void actualizarProveedor(MultipartFile archivo, String id, String nombreApellido,  String dni, String correo, String telefono, Integer numeroMatricula, String categoriaServicio, Double costoHora) throws MiExcepcion {
     
@@ -91,7 +91,7 @@ public class ProveedorServicio implements UserDetailsService {
             proveedor.setNumMatricula(numeroMatricula);
             proveedor.setCategoriaServicio(categoriaServicio);
             proveedor.setCostoHora(costoHora);
-
+//eliminar ese if
           /*  if(!(contrasenia.equals(proveedor.getContrasenia()))){
                 cambiarContraseniaProveedor(id, contrasenia, contraseniaChk);
             }*/
